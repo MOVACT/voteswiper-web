@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply p-0 m-0 h-full bg-fixed;
+  background-image: linear-gradient(135deg, #7577bd, #392f52);
+}
+
+@layer components {
+  .focus-default {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary;
+  }
+}
+
+/*@import '~modern-normalize/modern-normalize.css';*/
+/*
+:root {
+  --color-primary: 89,86,139;
+  --font-primary: Rubik, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html,
+body {
+
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-primary);
+  background-image: linear-gradient(135deg,#7577bd,#392f52);
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+@import "_typography";*/

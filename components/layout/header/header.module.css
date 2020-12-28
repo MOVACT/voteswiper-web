@@ -1,0 +1,21 @@
+.header::after {
+  top: 8rem;
+  content: '';
+  @apply fixed left-0 w-full h-px opacity-0 bg-white bg-opacity-5 transition-all duration-200;
+}
+.header.scrolled {
+  backdrop-filter: blur(8px);
+}
+.header.scrolled::after {
+  top: 4rem;
+  @apply opacity-100 block duration-500;
+}
+
+.link::after {
+  content: '';
+  bottom: -0.2rem;
+  @apply absolute block left-0 w-full border-b border-white origin-left transform scale-x-0 transition-all duration-200;
+}
+.link:hover::after {
+  @apply scale-x-100 origin-right;
+}

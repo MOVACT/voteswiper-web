@@ -1,0 +1,15 @@
+
+
+.breadcrumb li::after {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  display: block;
+  margin: 0 0.3rem;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M74.88 62.24L40.06 96.76a11.23 11.23 0 01-16.9-1.27 11.32 11.32 0 011.42-14.7l31.04-30.78-31.34-31.13a11.06 11.06 0 011.3-16.82 11.5 11.5 0 0114.8 1.4l34.5 34.25a17.26 17.26 0 010 24.53z' fill='%23fff' fill-opacity='0.5' fill-rule='nonzero'/%3E%3C/svg%3E");
+}
+
+.breadcrumb li:last-child::after {
+  display: none;
+}

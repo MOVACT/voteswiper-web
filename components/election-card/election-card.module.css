@@ -1,0 +1,10 @@
+.image {
+  border-radius: 0.45rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  @apply overflow-hidden;
+}
+
+.content {
+  padding: 1.25rem;
+}

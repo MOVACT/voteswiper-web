@@ -1,15 +1,51 @@
 {
   "name": "voteswiper-web",
-  "version": "0.1.0",
-  "private": true,
+  "version": "3.1.0",
+  "bugs": "https://github.com/movact/voteswiper-web/issues",
+  "description": "Voting advice application for political elections in Germany and Europe",
+  "license": "GPL-3.0-only",
+  "homepage": "https://www.voteswiper.org",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "10.0.0",
+    "autoprefixer": "^10.1.0",
+    "axios": "^0.21.0",
+    "classnames": "^2.2.6",
+    "framer-motion": "^2.9.5",
+    "graphql": "^15.4.0",
+    "graphql-tag": "^2.11.0",
+    "next": "^10.0.4",
+    "next-compose-plugins": "^2.2.1",
+    "next-seo": "^4.17.0",
+    "next-translate": "^1.0.0",
+    "postcss": "^8.2.1",
+    "postcss-focus-visible": "^5.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-intl": "^5.8.8",
+    "react-use": "^15.3.4",
+    "request": "^2.88.2",
+    "sass": "^1.28.0",
+    "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^5.4.0",
+    "@types/classnames": "^2.2.11",
+    "@types/node": "^14.14.6",
+    "@types/react": "^16.9.55",
+    "@types/request": "^2.48.5",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.0.5"
   }
 }
