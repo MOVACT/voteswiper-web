@@ -16,7 +16,7 @@ interface Props {
   elections?: Election[];
 }
 
-const Home: NextPage<Props> = ({ countries, elections }) => {
+const Home: NextPage<Props> = () => {
   return (
     <div className="relative">
       <Container className="pt-48 pb-48 flex items-center min-h-screen">
