@@ -7,10 +7,6 @@ const data = [
     href: '/participate',
     text: 'header:participate',
   },
-  {
-    href: '/donate',
-    text: 'header:donate',
-  },
 ];
 
 export default data;

@@ -1,28 +1,70 @@
 import React from 'react';
+import cn from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './election-card.module.css';
 import asset from 'util/asset';
 import { Country, Election } from 'types/api';
+import { useRouter } from 'next/router';
+import formatLocal from 'util/formatLocal';
+import useTranslation from 'next-translate/useTranslation';
 
 interface Props extends Election {
   country: Country;
 }
 
-const ElectionCard: React.FC<Props> = ({ slug, card, name, country }) => {
+const ElectionCard: React.FC<Props> = ({
+  slug,
+  card,
+  name,
+  country,
+  active,
+  active_date,
+  voting_day,
+}) => {
+  const { locale } = useRouter();
+  const { t } = useTranslation();
+  const cardClassName =
+    'bg-gradient-to-b from-white to-brand-light-blue rounded-lg focus-default';
+
+  const content = (
+    <>
+      <div className={styles.image}>
+        <Image
+          width={1600}
+          height={900}
+          layout="responsive"
+          alt={name}
+          src={asset(card)}
+        />
+      </div>
+      <div className="py-4 px-5 leading-tight">
+        <div className="font-medium text-lg lg:text-xl text-brand-primary">
+          {name}
+        </div>
+        <div className="pt-1 text-brand-primary">
+          {t(active ? 'common:votingDay' : 'common:availableFrom', {
+            date: formatLocal(
+              new Date(active ? voting_day : active_date),
+              'PPP',
+              locale
+            ),
+          })}
+        </div>
+      </div>
+    </>
+  );
+
+  if (!active) {
+    return (
+      <div className={cn(cardClassName, 'opacity-50 shadow-xl')}>{content}</div>
+    );
+  }
+
   return (
     <Link href={`/${country.slug}/${slug}`} passHref>
-      <a className="bg-gradient-to-b from-white to-brand-light-blue rounded-lg shadow-xl focus-default">
-        <div className={styles.image}>
-          <Image
-            width={1600}
-            height={900}
-            layout="responsive"
-            alt={name}
-            src={asset(card)}
-          />
-        </div>
-        <div className="p-5">{name}</div>
+      <a className={cn(cardClassName, 'shadow-xl hover:shadow-lg')}>
+        {content}
       </a>
     </Link>
   );

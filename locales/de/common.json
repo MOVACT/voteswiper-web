@@ -2,5 +2,8 @@
   "name": "WahlSwiper",
   "titleTemplate": "%s - WahlSwiper",
   "twitterHandle": "@wahlswiper",
-  "metaDefaultDescription": "Wir helfen dir einen Überblick über wichtige Themen und Positionen zu aktuellen politischen Wahlen zu geben."
+  "metaDefaultDescription": "Wir helfen dir einen Überblick über wichtige Themen und Positionen zu aktuellen politischen Wahlen zu geben.",
+
+  "votingDay": "Wahltag am {{date}}",
+  "availableFrom": "Voraussichtlich verfügbar ab {{date}}"
 }

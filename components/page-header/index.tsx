@@ -7,7 +7,7 @@ import styles from './page-header.module.css';
 import IconHome from 'icons/home.svg';
 import Link from 'next/link';
 
-interface IPageHeaderProps {
+interface Props {
   title: string;
   breadcrumb?: {
     name: string;
@@ -15,7 +15,7 @@ interface IPageHeaderProps {
   }[];
 }
 
-const PageHeader: React.FC<IPageHeaderProps> = ({ title, breadcrumb }) => {
+const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
   const breadcrumbArray = [
     {
       position: 1,

@@ -1,6 +1,7 @@
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import url from 'util/url';
+import Footer from './footer';
 import Header from './header';
 
 const Layout: React.FC = ({ children }) => {
@@ -85,6 +86,7 @@ const Layout: React.FC = ({ children }) => {
       />
       <Header />
       {children}
+      <Footer />
     </>
   );
 };

@@ -3,7 +3,7 @@ module.exports = {
   "locales": ['de', 'en'],
   "defaultLocale": "de",
   "pages": {
-    "*": ["common", "header"],
+    "*": ["common", "header", "footer"],
     "/[country]": ["country"]
   }
 };

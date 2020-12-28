@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import styles from './button.module.css';
 
-interface IButtonProps {
+interface Props {
   href?: string;
   className?: string;
   onClick?: (
@@ -13,7 +13,7 @@ interface IButtonProps {
   color?: 'default' | 'outline' | 'white' | 'outlineDark';
 }
 
-const Button: React.FC<IButtonProps> = ({
+const Button: React.FC<Props> = ({
   href,
   children,
   className,
