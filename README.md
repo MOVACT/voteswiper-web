@@ -1,6 +1,7 @@
 # VoteSwiper / WahlSwiper - Website
 
-[![License](https://img.shields.io/badge/License-AGPL%203.0-green.svg)](./LICENSE) [![Last Commit](https://img.shields.io/github/last-commit/movact/voteswiper-web)](https://github.com/MOVACT/voteswiper-web/commits) [![Open issues](https://img.shields.io/github/issues/movact/voteswiper-web)](https://github.com/MOVACT/voteswiper-web/issues) [![Follow WahlSwiper](https://img.shields.io/twitter/follow/wahlswiper)](https://www.twitter.com/wahlswiper)
+[![License](https://img.shields.io/badge/License-AGPL%203.0-green.svg)](./LICENSE) [![Last Commit](https://img.shields.io/github/last-commit/movact/voteswiper-web)](https://github.com/MOVACT/voteswiper-web/commits) [![Open issues](https://img.shields.io/github/issues/movact/voteswiper-web)](https://github.com/MOVACT/voteswiper-web/issues) [![GitHub Super-Linter](https://github.com/movact/voteswiper-web/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+ [![Follow WahlSwiper](https://img.shields.io/twitter/follow/wahlswiper)](https://www.twitter.com/wahlswiper)
 
 VoteSwiper (in Germany better known as WahlSwiper) is a cross-platform voting advice app for Android, iOS and web browsers. The app is operated by [MOVACT](https://www.movact.de) primarily for German federale and state elections. The content for the surveys is researched and developed by various institutions, most recently mainly by political scientists at the University of Freiburg.
 
