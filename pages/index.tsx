@@ -76,41 +76,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-/*export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const countries = await apiFetch(ENDPOINTS.COUNTRIES, 'get', locale);
-
-  console.log('THE COUNTRIES', countries.data);
-  return {
-    props: {},
-  };
-};*/
-
-/*const getCookie = (
-  cookies: string | undefined,
-  name: string
-): null | string => {
-  if (!cookies) return null;
-
-  const value = '; ' + cookies;
-  const parts = value.split('; ' + name + '=');
-  if (parts.length == 2) {
-    return parts?.pop()?.split(';').shift() ?? null;
-  }
-
-  return null;
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const locale = getCookie(req.headers.cookie, 'NEXT_LOCALE');
-
-  res.writeHead(302, {
-    Location: locale !== null ? locale : i18n.defaultLocale,
-  });
-  res.end();
-
-  return {
-    props: {},
-  };
-};*/
-
 export default Home;
