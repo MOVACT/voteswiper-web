@@ -17,7 +17,6 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ countries, elections }) => {
-  console.log(countries, elections);
   return (
     <div className="relative">
       <Container className="pt-48 pb-48 flex items-center min-h-screen">
