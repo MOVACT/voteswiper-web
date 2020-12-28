@@ -64,4 +64,5 @@ jobs:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_TSX: true
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.js
