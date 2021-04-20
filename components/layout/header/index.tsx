@@ -46,22 +46,22 @@ const Header: React.FC = () => {
             onClick={() => {
               setMobileNavVisibility(!mobileNavOpened);
             }}
-            className="h-10 ring-1 ring-inset ring-opacity-20 hover:ring-opacity-40 ring-white mr-3 rounded-lg w-10 flex lg:hidden items-center justify-center focus-default"
+            className="flex items-center justify-center w-10 h-10 mr-3 rounded-lg ring-1 ring-inset ring-opacity-20 hover:ring-opacity-40 ring-white lg:hidden focus-default"
           >
             {mobileNavOpened ? (
-              <IconClose className="h-5 w-auto text-white" />
+              <IconClose className="w-auto h-5 text-white" />
             ) : (
-              <IconToggle className="h-5 w-auto text-white" />
+              <IconToggle className="w-auto h-5 text-white" />
             )}
           </button>
           <Link passHref href="/">
-            <a className="text-white font-normal text-base lg:text-3xl flex items-center rounded focus-default">
-              <WahlSwiperLogo className="h-5 lg:h-8 mr-2 lg:mr-3 w-auto" />
+            <a className="flex items-center text-base font-normal text-white rounded lg:text-3xl focus-default">
+              <WahlSwiperLogo className="w-auto h-5 mr-2 lg:h-8 lg:mr-3" />
               {t('common:name')}
             </a>
           </Link>
 
-          <div className="hidden lg:flex flex-1 items-center justify-between pl-8">
+          <div className="items-center justify-between flex-1 hidden pl-8 lg:flex">
             <nav>
               <ul className="flex">
                 {navItems.map((item) => (
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
                       <a
                         className={cn(
                           styles.link,
-                          'font-medium inline-block text-white text-sm relative cursor-pointer rounded focus-default'
+                          'font-medium inline-block text-white relative cursor-pointer rounded focus-default'
                         )}
                       >
                         {t(item.text)}

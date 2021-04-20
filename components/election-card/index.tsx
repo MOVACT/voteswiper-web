@@ -38,10 +38,7 @@ const ElectionCard: React.FC<Props> = ({
           src={asset(card)}
         />
       </div>
-      <div className="py-4 px-5 leading-tight">
-        <div className="font-medium text-lg lg:text-xl text-brand-primary">
-          {name}
-        </div>
+      <div className="px-5 py-4 leading-tight">
         <div className="pt-1 text-brand-primary">
           {t(active ? 'common:votingDay' : 'common:availableFrom', {
             date: formatLocal(
@@ -50,6 +47,9 @@ const ElectionCard: React.FC<Props> = ({
               locale
             ),
           })}
+        </div>
+        <div className="text-lg font-medium lg:text-xl text-brand-primary">
+          {name}
         </div>
       </div>
     </>

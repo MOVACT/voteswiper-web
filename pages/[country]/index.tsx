@@ -52,7 +52,7 @@ const CountryPage: NextPage<Props> = ({
         <Container>
           {elections.length > 0 && (
             <>
-              <h2 className="text-white font-medium text-2xl md:text-3xl leading-tight pb-4 md:pb-6 lg:pb-8">
+              <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
                 {t('currentElections')}
               </h2>
               <ElectionGrid>
@@ -73,7 +73,7 @@ const CountryPage: NextPage<Props> = ({
             <div
               className={elections.length > 0 ? 'pt-8 md:pt-10 lg:pt-14' : ''}
             >
-              <h2 className="text-white font-medium text-2xl md:text-3xl leading-tight pb-4 md:pb-6 lg:pb-8">
+              <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
                 {t('pastElections')}
               </h2>
 
@@ -120,6 +120,8 @@ export const getStaticPaths: GetStaticPaths<{ country: string }> = async ({
       });
     }
   }
+
+  console.log(paths);
   return {
     paths,
     fallback: 'blocking',

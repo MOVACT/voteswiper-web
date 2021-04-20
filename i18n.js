@@ -4,6 +4,7 @@ module.exports = {
   "defaultLocale": "de",
   "pages": {
     "*": ["common", "header", "footer"],
-    "/[country]": ["country"]
+    "/[country]": ["country"],
+    "/404": ["error"],
   }
 };

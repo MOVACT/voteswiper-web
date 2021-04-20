@@ -64,8 +64,8 @@ const moreLinks = [
     icon: null,
   },
   {
-    href: 'contactLink',
-    translatedLink: true,
+    href: 'mailto:info@voteswiper.org',
+    translatedLink: false,
     text: 'contact',
     translatedText: true,
     icon: null,
@@ -95,7 +95,8 @@ const Footer: React.FC = () => {
   const renderLink = React.useCallback(
     (item) => {
       const href = item.translatedLink ? t(item.href) : item.href;
-      const isExternal = href.indexOf('http') > -1 === true;
+      const isExternal =
+        href.indexOf('http') > -1 || href.indexOf('mailto') > -1 === true;
 
       const content = (
         <>
