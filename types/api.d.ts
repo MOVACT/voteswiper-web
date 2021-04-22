@@ -72,3 +72,9 @@ export interface ApiGetElections {
     pastElections: Election[];
   };
 }
+
+export interface ApiGetElection {
+  data: {
+    election: Election;
+  };
+}

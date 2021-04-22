@@ -133,11 +133,49 @@ query Elections($locale: String!, $country: String!) {
 }
 `;
 
+const GET_ELECTION = `
+  query Election($locale: String!, $slug: String!) {
+    election: electionBySlug(locale: $locale, slug: $slug) {
+      id
+      name
+      slug
+      card
+      voting_day
+      partner_logo
+      partner_name
+      partner_text
+      voting_day
+      active
+      active_date
+      parties {
+        id
+        election_id
+        name
+        slug
+        full_name
+        logo
+        pivot {
+          id
+          program
+          program_pdf
+          answers {
+            id
+            question_id
+            answer
+            reason
+          }
+        }
+      }
+    }
+  }
+`;
+
 const queries = {
   GET_COUNTRIES,
   GET_COUNTRY,
   GET_UPCOMING_ELECTIONS,
   GET_ELECTIONS,
+  GET_ELECTION,
 };
 
 export enum QUERIES {
@@ -145,6 +183,7 @@ export enum QUERIES {
   GET_COUNTRY = 'GET_COUNTRY',
   GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS',
   GET_ELECTIONS = 'GET_ELECTIONS',
+  GET_ELECTION = 'GET_ELECTION',
 }
 
 const apiFetch = <T>(

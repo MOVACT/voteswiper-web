@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
       const content = (
         <>
           {item.icon && (
-            <item.icon className="w-3 lg:w-4 h-auto mr-2 lg:mr-3" />
+            <item.icon className="w-3 h-auto mr-2 lg:w-4 lg:mr-3" />
           )}
           {item.translatedText ? t(item.text) : item.text}
         </>
@@ -114,13 +114,13 @@ const Footer: React.FC = () => {
               href={href}
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="inline-flex items-center hover:text-brand-highlight focus-default rounded"
+              className="inline-flex items-center rounded hover:text-brand-highlight focus-default"
             >
               {content}
             </a>
           ) : (
             <Link href={href} passHref>
-              <a className="inline-flex items-center hover:text-brand-highlight focus-default rounded">
+              <a className="inline-flex items-center rounded hover:text-brand-highlight focus-default">
                 {content}
               </a>
             </Link>
@@ -133,14 +133,14 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div className="h-px opacity-25 bg-white" />
-      <div className="bg-black bg-opacity-25 py-6 md:py-10 text-white md:text-base lg:text-lg">
+      <div className="h-px bg-white opacity-[0.1]" />
+      <div className="py-6 text-white md:py-10 md:text-base lg:text-lg">
         <Container>
           <div className="flex flex-wrap -mx-4">
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4">
+            <div className="w-full px-4 md:w-1/2 lg:w-1/4">
               <div
                 id="socialMedia"
-                className="font-medium md:text-lg pb-2 md:pb-4"
+                className="pb-2 font-medium md:text-lg md:pb-4"
               >
                 Social Media
               </div>
@@ -148,10 +148,10 @@ const Footer: React.FC = () => {
                 <ul>{socialLinks.map((item) => renderLink(item))}</ul>
               </nav>
             </div>
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 pt-6 md:pt-0">
+            <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 md:pt-0">
               <div
                 id="openSource"
-                className="font-medium md:text-lg pb-2 md:pb-4"
+                className="pb-2 font-medium md:text-lg md:pb-4"
               >
                 Open Source
               </div>
@@ -161,11 +161,11 @@ const Footer: React.FC = () => {
 
                   <li className="py-1">
                     <div className="flex items-start">
-                      <IconGithub className="w-3 lg:w-4 h-auto mr-2 lg:mr-3 opacity-50 mt-1 md:mt-2" />
+                      <IconGithub className="w-3 h-auto mt-1 mr-2 opacity-50 lg:w-4 lg:mr-3 md:mt-2" />
                       <div>
                         <span className="opacity-50">{t('apiOnGithub')}</span>
                         <div className="md:-mt-1">
-                          <span className="text-xs font-medium rounded-full px-2 py-1 leading-none bg-white text-brand-primary inline-block">
+                          <span className="inline-block px-2 py-1 text-xs font-medium leading-none bg-white rounded-full text-brand-primary">
                             {t('availableSoon')}
                           </span>
                         </div>
@@ -175,10 +175,10 @@ const Footer: React.FC = () => {
                 </ul>
               </nav>
             </div>
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 pt-6 lg:pt-0">
+            <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 lg:pt-0">
               <div
                 id="moreLinks"
-                className="font-medium md:text-lg pb-2 md:pb-4"
+                className="pb-2 font-medium md:text-lg md:pb-4"
               >
                 {t('moreLinks')}
               </div>
@@ -186,10 +186,10 @@ const Footer: React.FC = () => {
                 <ul>{moreLinks.map((item) => renderLink(item))}</ul>
               </nav>
             </div>
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 pt-6 lg:pt-0">
+            <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 lg:pt-0">
               <div
                 id="moreLinks"
-                className="font-medium md:text-lg pb-2 md:pb-4"
+                className="pb-2 font-medium md:text-lg md:pb-4"
               >
                 {t('legalLinks')}
               </div>
