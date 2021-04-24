@@ -121,7 +121,6 @@ export const getStaticPaths: GetStaticPaths<{ country: string }> = async ({
     }
   }
 
-  console.log(paths);
   return {
     paths,
     fallback: 'blocking',

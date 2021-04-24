@@ -4,6 +4,7 @@ import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
+import { ElectionProvider } from 'contexts/election';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
@@ -17,15 +18,17 @@ import {
   ApiGetQuestions,
   Country,
   Election,
+  Question,
 } from 'types/api';
 import url from 'util/url';
 
 interface Props {
   country: Country;
   election: Election;
+  questions: Question[];
 }
 
-const CountryPage: NextPage<Props> = ({ country, election }) => {
+const CountryPage: NextPage<Props> = ({ country, election, questions }) => {
   const [running, setRunning] = React.useState(false);
   const { name: countryName, slug: countrySlug } = country;
   const { name, slug } = election;
@@ -34,7 +37,7 @@ const CountryPage: NextPage<Props> = ({ country, election }) => {
   useLockBodyScroll(running);
 
   return (
-    <>
+    <ElectionProvider questions={questions} election={election}>
       <NextSeo
         title={name}
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'de')}
@@ -83,7 +86,7 @@ const CountryPage: NextPage<Props> = ({ country, election }) => {
       </Page>
 
       <Swiper open={running} />
-    </>
+    </ElectionProvider>
   );
 };
 
@@ -154,8 +157,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     { slug: params?.election as string },
     locale
   );
-
-  console.log(questions.data);
 
   const country = await apiFetch<ApiGetCountry>(
     QUERIES.GET_COUNTRY,
