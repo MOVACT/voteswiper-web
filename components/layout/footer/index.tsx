@@ -1,11 +1,11 @@
-import React from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import Container from '../container';
-import IconTwitter from 'icons/twitter.svg';
 import IconFacebook from 'icons/facebook.svg';
-import IconInstagram from 'icons/instagram.svg';
 import IconGithub from 'icons/github.svg';
+import IconInstagram from 'icons/instagram.svg';
+import IconTwitter from 'icons/twitter.svg';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
+import React from 'react';
+import Container from '../container';
 
 const socialLinks = [
   {

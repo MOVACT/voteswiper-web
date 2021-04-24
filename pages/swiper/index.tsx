@@ -1,6 +1,4 @@
 import {
-  ForwardRefComponent,
-  HTMLMotionProps,
   motion,
   PanInfo,
   useAnimation,

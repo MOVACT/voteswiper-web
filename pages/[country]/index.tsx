@@ -1,11 +1,14 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import React from 'react';
-import Page from 'components/page';
-import Container from 'components/layout/container';
-import PageHeader from 'components/page-header';
-import ElectionGrid from 'components/election-grid';
-import ElectionCard from 'components/election-card';
 import apiFetch, { QUERIES } from 'api/fetch';
+import ElectionCard from 'components/election-card';
+import ElectionGrid from 'components/election-grid';
+import Container from 'components/layout/container';
+import Page from 'components/page';
+import PageHeader from 'components/page-header';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
+import React from 'react';
 import {
   ApiGetCountries,
   ApiGetCountry,
@@ -13,9 +16,6 @@ import {
   Country,
   Election,
 } from 'types/api';
-import useTranslation from 'next-translate/useTranslation';
-import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import url from 'util/url';
 
 interface Props {

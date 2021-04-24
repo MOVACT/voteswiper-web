@@ -155,6 +155,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     locale
   );
 
+  console.log(questions.data);
+
   const country = await apiFetch<ApiGetCountry>(
     QUERIES.GET_COUNTRY,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

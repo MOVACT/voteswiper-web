@@ -1,11 +1,11 @@
-import url from 'util/url';
 import cn from 'classnames';
+import IconHome from 'icons/home.svg';
 import { BreadcrumbJsonLd } from 'next-seo';
+import Link from 'next/link';
 import React from 'react';
+import url from 'util/url';
 import Container from '../layout/container';
 import styles from './page-header.module.css';
-import IconHome from 'icons/home.svg';
-import Link from 'next/link';
 
 interface Props {
   title: string;

@@ -1,15 +1,15 @@
-import { GetStaticProps, NextPage } from 'next';
-import cn from 'classnames';
 import apiFetch, { QUERIES } from 'api/fetch';
+import cn from 'classnames';
 import Container from 'components/layout/container';
-import MapGermany from './germany.svg';
-import styles from './home.module.css';
+import { GetStaticProps, NextPage } from 'next';
 import {
-  ApiGetUpcomingElections,
   ApiGetCountries,
+  ApiGetUpcomingElections,
   Country,
   Election,
 } from 'types/api';
+import MapGermany from './germany.svg';
+import styles from './home.module.css';
 
 interface Props {
   countries: Country[];

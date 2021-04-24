@@ -1,15 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
 import cn from 'classnames';
 import Button from 'components/button';
+import IconClose from 'icons/close.svg';
+import IconToggle from 'icons/navigation.svg';
+import WahlSwiperLogo from 'icons/wahlswiper_logo.svg';
+import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
+import React from 'react';
 import { useWindowScroll } from 'react-use';
 import Container from '../container';
-import styles from './header.module.css';
-import WahlSwiperLogo from 'icons/wahlswiper_logo.svg';
-import IconToggle from 'icons/navigation.svg';
-import IconClose from 'icons/close.svg';
 import navItems from './data';
+import styles from './header.module.css';
 import MobileNav from './mobile-nav';
 
 const HEADER_THRESHOLD = 30;

@@ -5,6 +5,7 @@ interface Context {
   questions: Question[];
   election: Election;
   currentQuestion: number;
+  setCurrentQuestion: (currentQuestion: number) => void;
 }
 
 interface Props {
@@ -22,7 +23,9 @@ export const ElectionProvider: React.FC<Props> = ({
   const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
 
   return (
-    <ElectionContext.Provider value={{ questions, election, currentQuestion }}>
+    <ElectionContext.Provider
+      value={{ questions, election, currentQuestion, setCurrentQuestion }}
+    >
       {children}
     </ElectionContext.Provider>
   );

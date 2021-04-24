@@ -1,13 +1,13 @@
-import React from 'react';
 import cn from 'classnames';
-import Link from 'next/link';
-import Image from 'next/image';
-import styles from './election-card.module.css';
-import asset from 'util/asset';
-import { Country, Election } from 'types/api';
-import { useRouter } from 'next/router';
-import formatLocal from 'util/formatLocal';
 import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { Country, Election } from 'types/api';
+import asset from 'util/asset';
+import formatLocal from 'util/formatLocal';
+import styles from './election-card.module.css';
 
 interface Props extends Election {
   country: Country;
