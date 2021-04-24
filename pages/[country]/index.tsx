@@ -152,6 +152,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   return {
     props,
+    revalidate: 500,
   };
 };
 

@@ -147,6 +147,12 @@ const GET_ELECTION = `
       voting_day
       active
       active_date
+      parties_not_participating {
+        id
+        name
+        full_name
+        logo
+      }
       parties {
         id
         election_id
@@ -170,12 +176,26 @@ const GET_ELECTION = `
   }
 `;
 
+const GET_QUESTIONS = `
+query Questions($locale: String!, $slug: String!) {
+  questions: questionsByElectionSlug(locale: $locale, slug: $slug) {
+    id
+    question
+    title
+    video_url
+    thumbnail
+    explainer_text
+  }
+}
+`;
+
 const queries = {
   GET_COUNTRIES,
   GET_COUNTRY,
   GET_UPCOMING_ELECTIONS,
   GET_ELECTIONS,
   GET_ELECTION,
+  GET_QUESTIONS,
 };
 
 export enum QUERIES {
@@ -184,6 +204,7 @@ export enum QUERIES {
   GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS',
   GET_ELECTIONS = 'GET_ELECTIONS',
   GET_ELECTION = 'GET_ELECTION',
+  GET_QUESTIONS = 'GET_QUESTIONS',
 }
 
 const apiFetch = <T>(

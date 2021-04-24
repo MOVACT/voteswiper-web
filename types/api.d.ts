@@ -36,6 +36,14 @@ export interface Party {
   };
 }
 
+export interface PartyNotParticipating {
+  slug: string;
+  id: number;
+  logo: string;
+  name: string;
+  full_name: string;
+}
+
 export interface Election {
   slug: string;
   card: string;
@@ -46,6 +54,7 @@ export interface Election {
   active: boolean;
   questions: Question[];
   parties: Party[];
+  parties_not_participating: PartyNotParticipating[];
 }
 
 export interface ApiGetCountries {
@@ -76,5 +85,11 @@ export interface ApiGetElections {
 export interface ApiGetElection {
   data: {
     election: Election;
+  };
+}
+
+export interface ApiGetQuestions {
+  data: {
+    questions: Question[];
   };
 }

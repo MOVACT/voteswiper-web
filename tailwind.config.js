@@ -28,7 +28,24 @@ module.exports = {
       },
       boxShadow: {
         xl: '0px 0.7rem 3rem 0px rgba(0,0,0,0.25)'
-      }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            strong: {
+              fontWeight: '500',
+            },
+          },
+        },
+        'white': {
+          css: {
+            color: '#fff',
+            strong: {
+              color: '#fff',
+            }
+          }
+        }
+      },
     },
   },
   variants: {
@@ -41,5 +58,7 @@ module.exports = {
       ringOpacity: ['focus-visible', 'hover'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
