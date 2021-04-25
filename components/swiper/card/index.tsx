@@ -11,7 +11,6 @@ import Image from 'next/image';
 import React from 'react';
 import { Question } from 'types/api';
 import asset from 'util/asset';
-import { ANSWERS } from '../constants';
 
 const SWIPE_THRESHOLD = 250;
 const OVERLAY_THRESHOLD = 30;
@@ -20,9 +19,16 @@ interface Props {
   cardIndex: number;
   question: Question;
 }
+export interface Ref {
+  flyToRight: () => void;
+  flyToLeft: () => void;
+}
 
-const Card: React.FC<Props> = ({ cardIndex, question }) => {
-  const { answers, setAnswer, goToNextQuestion } = useElection();
+const Card: React.ForwardRefRenderFunction<Ref, Props> = (
+  { cardIndex, question },
+  ref
+) => {
+  const { answers, setAnswer, onSwipeLeft, onSwipeRight } = useElection();
   const [constrained, setConstrained] = React.useState<boolean>(true);
 
   const x = useMotionValue(0);
@@ -51,22 +57,6 @@ const Card: React.FC<Props> = ({ cardIndex, question }) => {
 
   const controls = useAnimation();
 
-  const onSwipeRight = React.useCallback(() => {
-    setAnswer({
-      id: question.id,
-      answer: ANSWERS.YES,
-    });
-    goToNextQuestion();
-  }, [question, setAnswer, goToNextQuestion]);
-
-  const onSwipeLeft = React.useCallback(() => {
-    setAnswer({
-      id: question.id,
-      answer: ANSWERS.NO,
-    });
-    goToNextQuestion();
-  }, [question, setAnswer, goToNextQuestion]);
-
   const onDragEnd = React.useCallback(
     (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
       // Yes, No or Skip
@@ -87,18 +77,47 @@ const Card: React.FC<Props> = ({ cardIndex, question }) => {
           info.offset.x > SWIPE_THRESHOLD &&
           info.offset.y > SWIPE_THRESHOLD * -1
         ) {
-          onSwipeRight();
+          onSwipeRight(question);
         } else if (
           // No
           info.offset.x < SWIPE_THRESHOLD * -1 &&
           info.offset.y > SWIPE_THRESHOLD * -1
         ) {
-          onSwipeLeft();
+          onSwipeLeft(question);
         }
       }
     },
-    [controls, onSwipeRight, onSwipeLeft]
+    [controls, onSwipeRight, onSwipeLeft, question]
   );
+
+  React.useImperativeHandle(ref, () => ({
+    flyToRight: () => {
+      setConstrained(false);
+      controls.start(
+        {
+          x: window.innerWidth * 0.7,
+          y: 0,
+          opacity: 0,
+        },
+        {
+          duration: 0.5,
+        }
+      );
+    },
+    flyToLeft: () => {
+      setConstrained(false);
+      controls.start(
+        {
+          x: window.innerWidth * -0.7,
+          y: 0,
+          opacity: 0,
+        },
+        {
+          duration: 0.5,
+        }
+      );
+    },
+  }));
 
   return (
     <motion.div
@@ -118,7 +137,7 @@ const Card: React.FC<Props> = ({ cardIndex, question }) => {
       <motion.div
         animate={{ y: cardIndex * 10, scale: 1 - cardIndex * 0.02 }}
         className={cn(
-          'h-full bg-white rounded-xl shadow-xl overflow-hidden gradient-to-b from-white to-[#d9daeb] text-center flex-col flex ring ring-brand-highlight ring-4',
+          'h-full rounded-xl shadow-xl overflow-hidden bg-gradient-to-b from-white to-[#d9daeb] text-center flex-col flex ring ring-brand-highlight ring-4',
           answers[question.id].doubleWeighted === false && 'ring-opacity-0'
         )}
       >
@@ -142,7 +161,7 @@ const Card: React.FC<Props> = ({ cardIndex, question }) => {
         </div>
 
         <button
-          className="py-2 text-xs font-medium bg-red-500 text-brand-dark-blue bg-brand-primary bg-opacity-10 focus-default"
+          className="py-2 text-xs font-medium text-brand-dark-blue bg-brand-primary bg-opacity-10 focus-default"
           onClick={() => {
             setAnswer({
               id: question.id,
@@ -171,4 +190,4 @@ const Card: React.FC<Props> = ({ cardIndex, question }) => {
   );
 };
 
-export default Card;
+export default React.forwardRef(Card);

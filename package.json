@@ -16,6 +16,7 @@
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
+    "country-flag-icons": "^1.2.9",
     "date-fns": "^2.21.1",
     "framer-motion": "^4.1.4",
     "graphql": "^15.4.0",
@@ -32,6 +33,7 @@
     "react-use": "^17.2.3",
     "request": "^2.88.2",
     "sass": "^1.28.0",
+    "storyblok-js-client": "^4.0.3",
     "tailwindcss": "^2.1.1"
   },
   "devDependencies": {

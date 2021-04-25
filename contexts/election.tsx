@@ -28,6 +28,8 @@ interface Context {
   setAnswer: (args: SetAnswerArgs) => void;
   goToNextQuestion: () => void;
   goToPreviousQuestion: () => void;
+  onSwipeLeft: (question: Question) => void;
+  onSwipeRight: (question: Question) => void;
 }
 
 interface Props {
@@ -86,6 +88,28 @@ export const ElectionProvider: React.FC<Props> = ({
     setCurrentQuestion(currentQuestion - 1);
   }, [currentQuestion]);
 
+  const onSwipeRight = React.useCallback(
+    (question: Question) => {
+      setAnswer({
+        id: question.id,
+        answer: ANSWERS.YES,
+      });
+      goToNextQuestion();
+    },
+    [setAnswer, goToNextQuestion]
+  );
+
+  const onSwipeLeft = React.useCallback(
+    (question: Question) => {
+      setAnswer({
+        id: question.id,
+        answer: ANSWERS.NO,
+      });
+      goToNextQuestion();
+    },
+    [setAnswer, goToNextQuestion]
+  );
+
   const stack = React.useMemo(() => {
     const sliced = questions.slice(currentQuestion);
 
@@ -104,6 +128,8 @@ export const ElectionProvider: React.FC<Props> = ({
         setAnswer,
         goToNextQuestion,
         goToPreviousQuestion,
+        onSwipeLeft,
+        onSwipeRight,
       }}
     >
       {children}

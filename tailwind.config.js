@@ -36,6 +36,10 @@ module.exports = {
           'dark-blue': '#392f52',
           highlight: '#E6E90F',
         },
+        "green-vibrant": {
+          500: '#00e640',
+          600: '#12a73b',
+        }
       },
       screens: {
         print: { raw: 'print' },

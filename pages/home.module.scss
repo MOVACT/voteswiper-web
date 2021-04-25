@@ -1,0 +1,33 @@
+.visual {
+  height: 80%;
+  top: 10%;
+  right: 5%;
+  width: 40%;
+}
+
+.countryPicker {
+  @apply grid mt-4 px-6 -mx-6;
+  grid-auto-flow: column;
+  overflow: auto hidden;
+  scroll-snap-type: x mandatory;
+  grid-auto-columns: calc((100% / 2) - 20px);
+  gap: 10px;
+  scroll-padding: 0px 1.5rem;
+
+  > div {
+    scroll-snap-align: start;
+  }
+}
+
+@screen md {
+  .countryPicker {
+    grid-auto-columns: calc((100% / 3) - 20px);
+  }
+}
+
+@screen lg {
+  .countryPicker {
+    @apply flex flex-wrap overflow-visible;
+    gap: 0;
+  }
+}

@@ -2096,6 +2096,11 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
+country-flag-icons@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.2.9.tgz#cee7d150b23d3532adcc1e22c2ebb59962e04633"
+  integrity sha512-qn1cKt9PJrghEb1IbyIIqHcvNLPJ8mul0lbz6lFSBmzbGqYC38PJ4wPSIT0gV/iB/DbPylHE04zJNedrj1BXvA==
+
 create-ecdh@^4.0.0:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.4.tgz#d6e7f4bffa66736085a0762fd3a632684dabcc4e"
@@ -4583,6 +4588,13 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
+qs@^6.9.4:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
+  integrity sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==
+  dependencies:
+    side-channel "^1.0.4"
+
 qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
@@ -5010,6 +5022,15 @@ side-channel@^1.0.2, side-channel@^1.0.3:
     es-abstract "^1.18.0-next.0"
     object-inspect "^1.8.0"
 
+side-channel@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/side-channel/-/side-channel-1.0.4.tgz#efce5c8fdc104ee751b25c58d4290011fa5ea2cf"
+  integrity sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==
+  dependencies:
+    call-bind "^1.0.0"
+    get-intrinsic "^1.0.2"
+    object-inspect "^1.9.0"
+
 simple-swizzle@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/simple-swizzle/-/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
@@ -5128,6 +5149,13 @@ stacktrace-parser@0.1.10:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
+
+storyblok-js-client@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-4.0.3.tgz#ba25f6c0fef96cac517b01681ebf8c3dedb43f2c"
+  integrity sha512-t/J0xDDd6WNb0w/c5696638AFg/w5z7cZZdZ9N0ZVJO3+ns5VkjxWJeZP5GvrPSPTz+4gUdi1pE8pQNurduNNw==
+  dependencies:
+    qs "^6.9.4"
 
 stream-browserify@3.0.0:
   version "3.0.0"

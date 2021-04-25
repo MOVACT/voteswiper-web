@@ -1,14 +1,21 @@
 import { useElection } from 'contexts/election';
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import Card from './card';
+import Card, { Ref } from './card';
 
 interface Props {
   open: boolean;
 }
 
 const Swiper: React.FC<Props> = ({ open }) => {
-  const { stack } = useElection();
+  const $card = React.useRef<Ref>(null);
+  const {
+    stack,
+    onSwipeRight,
+    onSwipeLeft,
+    currentQuestion,
+    questions,
+  } = useElection();
 
   return (
     <AnimatePresence>
@@ -25,12 +32,45 @@ const Swiper: React.FC<Props> = ({ open }) => {
               {stack.map((question, index) => {
                 return (
                   <Card
+                    ref={index === 0 ? $card : undefined}
                     cardIndex={index}
                     key={question.id}
                     question={question}
                   />
                 );
               })}
+            </div>
+
+            <div className="flex justify-between pt-8">
+              <button
+                className="w-16 h-16 font-medium text-white rounded-full shadow-xl hover:shadow-md focus-default bg-gradient-to-b from-red-500 to-red-700"
+                onClick={() => {
+                  if ($card.current !== null) {
+                    $card.current.flyToLeft();
+                  }
+                  setTimeout(() => {
+                    onSwipeLeft(questions[currentQuestion]);
+                  }, 500);
+                }}
+              >
+                Nein
+              </button>
+              <button className="flex flex-col items-center justify-center text-sm font-medium text-white hover:opacity-75">
+                Überspringen
+              </button>
+              <button
+                className="w-16 h-16 font-medium text-white rounded-full shadow-xl hover:shadow-md focus-default bg-gradient-to-b from-green-vibrant-500 to-green-vibrant-600"
+                onClick={() => {
+                  if ($card.current !== null) {
+                    $card.current.flyToRight();
+                  }
+                  setTimeout(() => {
+                    onSwipeRight(questions[currentQuestion]);
+                  }, 500);
+                }}
+              >
+                Ja
+              </button>
             </div>
           </div>
         </motion.div>

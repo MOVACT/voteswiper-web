@@ -77,11 +77,14 @@ const CountryPage: NextPage<Props> = ({ country, election, questions }) => {
             </p>
           </div>
 
-          <h2 className="mt-12 text-3xl font-medium text-white">
+          <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
             Weitere Informationen
           </h2>
+          <p>hello</p>
 
-          <h2 className="mt-12 text-3xl font-medium text-white">Partner</h2>
+          <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
+            Partner
+          </h2>
         </Container>
       </Page>
 
