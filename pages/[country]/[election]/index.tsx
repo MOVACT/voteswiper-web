@@ -64,8 +64,6 @@ const CountryPage: NextPage<Props> = ({
   const { t } = useTranslation();
   const { locale } = useRouter();
 
-  console.log(story);
-
   useLockBodyScroll(running);
 
   return (

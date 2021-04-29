@@ -20,7 +20,6 @@ export const fetchTranslatedStory = async <T>({
       }${paths.join('/')}`,
     })
       .then((response) => {
-        console.log(response);
         if (response.data.stories.length > 0) {
           resolve((response.data.stories[0] as unknown) as StoryblokStory<T>);
         } else {
