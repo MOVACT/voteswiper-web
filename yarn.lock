@@ -1055,6 +1055,11 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.0.tgz#6c9eafc78c1529248f8f4d92b0799a712b6052c6"
   integrity sha512-i9YbZPN3QgfighY/1X1Pu118VUz2Fmmhd6b2n0/O8YVgGGfw0FbUYoA97k7FkpGJ+pLCFEDLUmAPPV4D1kpeFw==
 
+"@headlessui/react@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.0.0.tgz#661b50ebfd25041abb45d8eedd85e7559056bcaf"
+  integrity sha512-mjqRJrgkbcHQBfAHnqH0yRxO/y/22jYrdltpE7WkurafREKZ+pj5bPBwYHMt935Sdz/n16yRcVmsSCqDFHee9A==
+
 "@next/env@10.1.3":
   version "10.1.3"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-10.1.3.tgz#29e5d62919b4a7b1859f8d36169848dc3f5ddebe"
@@ -5156,6 +5161,11 @@ storyblok-js-client@^4.0.3:
   integrity sha512-t/J0xDDd6WNb0w/c5696638AFg/w5z7cZZdZ9N0ZVJO3+ns5VkjxWJeZP5GvrPSPTz+4gUdi1pE8pQNurduNNw==
   dependencies:
     qs "^6.9.4"
+
+storyblok-rich-text-react-renderer@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/storyblok-rich-text-react-renderer/-/storyblok-rich-text-react-renderer-2.3.1.tgz#70db4f45d87cfafaa2a12d2b7f4b6e811f1fdfb0"
+  integrity sha512-9G5G/wsVW/md88WoSWfaP42c+3SqOuDhk1n23yg0aD74rRuBFyS8cq2wiYf9JZWxT0Oz1BxNyFxetjYcRDVVtQ==
 
 stream-browserify@3.0.0:
   version "3.0.0"

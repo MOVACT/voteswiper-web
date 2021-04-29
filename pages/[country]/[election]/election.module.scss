@@ -1,0 +1,11 @@
+.partner {
+  @apply grid;
+  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+
+  > div {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+  }
+}

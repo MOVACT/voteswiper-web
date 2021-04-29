@@ -61,6 +61,18 @@ module.exports = {
             strong: {
               color: '#fff',
             },
+            a: {
+              color: '#fff',
+            },
+            h2: {
+              color: '#fff',
+            },
+            h3: {
+              color: '#fff',
+            },
+            h4: {
+              color: '#fff',
+            },
           },
         },
       },

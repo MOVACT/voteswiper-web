@@ -8,13 +8,13 @@
   "availableSoon": "coming soon",
   "moreLinks": "More",
   "legalLinks": "Legal",
-  "faqLink": "/faq",
+  "faqLink": "/page/faq",
   "faq": "FAQ",
-  "pressLink": "/press",
+  "pressLink": "/page/press",
   "press": "Press",
   "contact": "Contact",
-  "imprintLink": "/imprint",
+  "imprintLink": "/page/imprint",
   "imprint": "Imprint",
-  "privacyLink": "/privacy",
+  "privacyLink": "/page/privacy",
   "privacy": "Privacy"
 }

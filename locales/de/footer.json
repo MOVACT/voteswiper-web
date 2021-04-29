@@ -8,13 +8,13 @@
   "availableSoon": "bald verfügbar",
   "moreLinks": "Weitere Infos",
   "legalLinks": "Rechtliches",
-  "faqLink": "/faq",
+  "faqLink": "/page/faq",
   "faq": "Häufige Fragen",
-  "pressLink": "/presse",
+  "pressLink": "/page/presse",
   "press": "Presse",
   "contact": "Kontakt",
-  "imprintLink": "/impressum",
+  "imprintLink": "/page/impressum",
   "imprint": "Impressum",
-  "privacyLink": "/datenschutz",
+  "privacyLink": "/page/datenschutz",
   "privacy": "Datenschutz"
 }

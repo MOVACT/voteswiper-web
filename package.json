@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.0.0",
     "@tailwindcss/typography": "^0.4.0",
     "@types/react-dom": "^17.0.3",
     "autoprefixer": "^10.2.5",
@@ -34,6 +35,7 @@
     "request": "^2.88.2",
     "sass": "^1.28.0",
     "storyblok-js-client": "^4.0.3",
+    "storyblok-rich-text-react-renderer": "^2.3.1",
     "tailwindcss": "^2.1.1"
   },
   "devDependencies": {

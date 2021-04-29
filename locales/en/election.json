@@ -1,0 +1,10 @@
+{
+  "introText": "Die {{name}} findet am <0>{{date}}</0> statt. Es treten {{total}} Parteien an. <0>{{participating}} von {{total}} Parteien</0> haben ihre Antworten beim WahlSwiper übermittelt.",
+  "introTextPast": "",
+  "introTextAll": "Die {{name}} findet am <0>{{date}}</0> statt. Es treten {{total}} Parteien an. <0>Alle Parteien</0> haben ihre Antworten beim WahlSwiper übermittelt.",
+  "introTextPastAll": "",
+  "start": "Start VoteSwiper",
+  "moreInformation": "More Information",
+  "parties": "Parties",
+  "partner": "Partner"
+}

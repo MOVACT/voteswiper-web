@@ -7,5 +7,6 @@ module.exports = {
     '/': ['home'],
     '/[country]': ['country'],
     '/404': ['error'],
+    '/[country]/[election]': ['election'],
   },
 };

@@ -10,6 +10,7 @@ import { useWindowScroll } from 'react-use';
 import Container from '../container';
 import navItems from './data';
 import styles from './header.module.css';
+import LanguageSwitcher from './language-switcher';
 import MobileNav from './mobile-nav';
 
 const HEADER_THRESHOLD = 30;
@@ -81,7 +82,7 @@ const Header: React.FC = () => {
               </ul>
             </nav>
 
-            <Button color="outline">Deutsch</Button>
+            <LanguageSwitcher />
           </div>
           <Button className="ml-auto lg:ml-2">
             <span className="lg:hidden">{t('app')}</span>
