@@ -9,6 +9,17 @@ const config = {
     fi: 'Suomi',
     sv: 'Svenska',
   } as { [key: string]: string },
+
+  // A workaround because next.js can't translate non dynamic routes yet, so we're just gonna make them dynamic
+  translatedSlugs: {
+    parties: {
+      de: 'parteien',
+      en: 'parties',
+      fr: 'partis',
+      fi: 'puolueet',
+      sv: 'partier',
+    } as { [key: string]: string },
+  },
 };
 
 export default config;

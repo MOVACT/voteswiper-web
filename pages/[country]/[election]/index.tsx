@@ -5,6 +5,7 @@ import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
+import config from 'config';
 import { ElectionProvider } from 'contexts/election';
 import HyperlinkIcon from 'icons/hyperlink.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
@@ -130,7 +131,14 @@ const CountryPage: NextPage<Props> = ({
 
                   <ul className="flex flex-wrap mb-4 -mx-1 -mx-2 md:mb-6 lg:mb-12">
                     <li className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3">
-                      <Link href={`/${country.slug}/${election.slug}`} passHref>
+                      <Link
+                        href={`/${country.slug}/${election.slug}/${
+                          config.translatedSlugs.parties[
+                            (locale as unknown) as string
+                          ]
+                        }`}
+                        passHref
+                      >
                         <a className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default">
                           {t('election:parties')}
                         </a>

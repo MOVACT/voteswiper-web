@@ -8,5 +8,6 @@ module.exports = {
     '/[country]': ['country'],
     '/404': ['error'],
     '/[country]/[election]': ['election'],
+    '/[country]/[election]/[parties]': ['election'],
   },
 };
