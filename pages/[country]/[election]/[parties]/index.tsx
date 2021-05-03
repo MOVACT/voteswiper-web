@@ -2,6 +2,7 @@ import apiFetch, { QUERIES } from 'api/fetch';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
+import PartyInfoCard from 'components/party-info-card';
 import config from 'config';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -15,6 +16,7 @@ import {
   ApiGetElections,
   Country,
   Election,
+  Party,
 } from 'types/api';
 import url from 'util/url';
 
@@ -28,6 +30,11 @@ const CountryPage: NextPage<Props> = ({ country, election }) => {
   const { name, slug } = election;
   const { t } = useTranslation();
   const { locale } = useRouter();
+
+  const allParties = [
+    ...election.parties,
+    ...election.parties_not_participating,
+  ] as Party[];
 
   return (
     <>
@@ -60,7 +67,20 @@ const CountryPage: NextPage<Props> = ({ country, election }) => {
         title={t('election:parties')}
       />
       <Page>
-        <Container>hello</Container>
+        <Container>
+          <div className="flex flex-wrap md:-mx-2 lg:-mx-4">
+            {allParties.map((party) => {
+              return (
+                <div
+                  key={party.id}
+                  className="flex w-full my-2 md:m-0 md:p-2 lg:p-4 md:w-1/2 lg:w-1/3"
+                >
+                  <PartyInfoCard party={party} />
+                </div>
+              );
+            })}
+          </div>
+        </Container>
       </Page>
     </>
   );

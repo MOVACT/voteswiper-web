@@ -152,6 +152,11 @@ const GET_ELECTION = `
         name
         full_name
         logo
+        pivot {
+          id
+          program
+          program_pdf
+        }
       }
       parties {
         id

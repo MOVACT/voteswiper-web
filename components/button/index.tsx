@@ -12,6 +12,8 @@ interface Props {
   ) => void;
   color?: 'default' | 'outline' | 'white' | 'outlineDark' | 'primary';
   size?: 'default' | 'lg';
+  target?: string;
+  rel?: string;
 }
 
 const Button: React.FC<Props> = ({
@@ -20,6 +22,8 @@ const Button: React.FC<Props> = ({
   className,
   color = 'default',
   size = 'default',
+  target,
+  rel,
   ...restProps
 }) => {
   const props = {
@@ -42,7 +46,11 @@ const Button: React.FC<Props> = ({
   };
 
   if (href) {
-    return <a {...props}>{children}</a>;
+    return (
+      <a {...props} href={href} rel={rel} target={target}>
+        {children}
+      </a>
+    );
   }
   return <button {...props}>{children}</button>;
 };
