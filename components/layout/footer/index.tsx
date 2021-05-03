@@ -7,7 +7,7 @@ import Link from 'next/link';
 import React from 'react';
 import Container from '../container';
 
-const socialLinks = [
+export const socialLinks = [
   {
     href: 'twitterLink',
     translatedLink: true,

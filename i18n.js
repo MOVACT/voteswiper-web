@@ -9,5 +9,6 @@ module.exports = {
     '/404': ['error'],
     '/[country]/[election]': ['election'],
     '/[country]/[election]/[parties]': ['election'],
+    '/page/[page]': ['page'],
   },
 };
