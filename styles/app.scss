@@ -16,6 +16,12 @@ body {
   }
 }
 
+@layer utilities {
+  .text-underline-offset-2 {
+    text-underline-offset: 0.15rem;
+  }
+}
+
 /*@import '~modern-normalize/modern-normalize.css';*/
 /*
 :root {

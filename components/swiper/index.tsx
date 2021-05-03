@@ -1,13 +1,18 @@
+import Container from 'components/layout/container';
 import { useElection } from 'contexts/election';
 import { AnimatePresence, motion } from 'framer-motion';
+import IconClose from 'icons/close.svg';
 import React from 'react';
 import Card, { Ref } from './card';
+import QuestionCounter from './question-counter';
+import QuestionToSpeech from './question-to-speech';
 
 interface Props {
   open: boolean;
+  onRequestClose: () => void;
 }
 
-const Swiper: React.FC<Props> = ({ open }) => {
+const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
   const $card = React.useRef<Ref>(null);
   const {
     stack,
@@ -27,7 +32,25 @@ const Swiper: React.FC<Props> = ({ open }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <div className="relative w-full max-w-xs my-auto">
+          <div className="fixed top-0 left-0 z-40 flex items-center w-screen h-16 bg-black bg-opacity-10">
+            <Container className="flex">
+              <div className="mr-10">
+                <QuestionCounter />
+              </div>
+              <QuestionToSpeech />
+
+              <div className="ml-auto">
+                <button
+                  onClick={() => onRequestClose()}
+                  className="flex items-center text-sm font-medium text-white rounded lg:text-lg text-underline-offset-2 hover:text-brand-highlight hover:underline focus-default"
+                >
+                  <IconClose className="w-auto h-5 mr-2" />
+                  Beenden
+                </button>
+              </div>
+            </Container>
+          </div>
+          <div className="relative z-50 w-full max-w-xs my-auto">
             <div className="h-[450px] relative">
               {stack.map((question, index) => {
                 return (

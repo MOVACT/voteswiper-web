@@ -58,7 +58,7 @@ const CountryPage: NextPage<Props> = ({
   questions,
   story,
 }) => {
-  const [running, setRunning] = React.useState(false);
+  const [running, setRunning] = React.useState(true);
   const { name: countryName, slug: countrySlug } = country;
   const { name, slug } = election;
   const { t } = useTranslation();
@@ -218,7 +218,12 @@ const CountryPage: NextPage<Props> = ({
         </Container>
       </Page>
 
-      <Swiper open={running} />
+      <Swiper
+        open={running}
+        onRequestClose={() => {
+          setRunning(false);
+        }}
+      />
     </ElectionProvider>
   );
 };

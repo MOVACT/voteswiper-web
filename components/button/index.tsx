@@ -11,9 +11,10 @@ interface Props {
       | React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => void;
   color?: 'default' | 'outline' | 'white' | 'outlineDark' | 'primary';
-  size?: 'default' | 'lg';
+  size?: 'default' | 'lg' | 'sm' | 'blank';
   target?: string;
   rel?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<Props> = ({
@@ -24,6 +25,7 @@ const Button: React.FC<Props> = ({
   size = 'default',
   target,
   rel,
+  disabled = false,
   ...restProps
 }) => {
   const props = {
@@ -33,6 +35,7 @@ const Button: React.FC<Props> = ({
       // Sizes
       size === 'default' && 'text-sm py-2.5 px-4 rounded-lg',
       size === 'lg' && 'text-base lg:text-lg py-4 px-6 rounded-xl',
+      size === 'sm' && 'text-sm lg:text-base py-2 px-3 rounded-lg',
       // Colors
       color === 'default' && styles.default,
       color === 'outline' &&
@@ -41,6 +44,7 @@ const Button: React.FC<Props> = ({
         'text-brand-primary bg-transparent ring-1 ring-inset ring-brand-primary ring-opacity-20 hover:ring-opacity-40',
       color === 'primary' &&
         'bg-gradient-to-b from-[#db67ae] to-[#8186d7] shadow-xl hover:shadow-sm transform hover:scale-[0.99] transition-transform',
+      disabled && 'opacity-75 text-opacity-75',
       className
     ),
   };
@@ -52,7 +56,11 @@ const Button: React.FC<Props> = ({
       </a>
     );
   }
-  return <button {...props}>{children}</button>;
+  return (
+    <button {...props} disabled={disabled}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
