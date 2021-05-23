@@ -212,6 +212,36 @@ export enum QUERIES {
   GET_QUESTIONS = 'GET_QUESTIONS',
 }
 
+export enum ENDPOINTS {
+  COUNTRIES = '/countries',
+  ALTERNATE_COUNTRY_SLUGS = '/alternateCountrySlugs',
+  COUNTRY = '/countryBySlug',
+  ELECTIONS = '/elections',
+  ELECTION = '/electionBySlug',
+  QUESTIONS = '/questions',
+  PARTIES = '/parties',
+}
+
+const fetch = <T, D = void>(
+  url: ENDPOINTS,
+  locale?: string,
+  options?: {
+    data?: D;
+    method?: 'post' | 'get' | 'put' | 'delete';
+  }
+): AxiosPromise<T> => {
+  return axios({
+    method: options ? options.method ?? 'get' : 'get',
+    url: `${process.env.NEXT_PUBLIC_API_URL}${url}`,
+    data: options?.data,
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Language': locale,
+      Accept: `application/x.voteswiper.v${process.env.NEXT_PUBLIC_API_VERSION}+json`,
+    },
+  });
+};
+
 const apiFetch = <T>(
   query: QUERIES,
   variables: { [key: string]: string | number },
@@ -237,4 +267,5 @@ const apiFetch = <T>(
   });
 };
 
+export { fetch };
 export default apiFetch;

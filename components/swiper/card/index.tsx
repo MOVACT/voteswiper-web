@@ -63,7 +63,6 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
       // Yes, No or Skip
       if (
         info.offset.x > SWIPE_THRESHOLD ||
-        info.offset.y < SWIPE_THRESHOLD * -1 ||
         info.offset.x < SWIPE_THRESHOLD * -1
       ) {
         setConstrained(false);
@@ -136,7 +135,16 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
       dragConstraints={constrained && { left: 0, right: 0, top: 0, bottom: 0 }}
     >
       <motion.div
-        animate={{ y: cardIndex * 10, scale: 1 - cardIndex * 0.02 }}
+        initial={{
+          y: cardIndex * 20,
+          scale: 1 - cardIndex * 0.04,
+          opacity: 1 - cardIndex * 0.3,
+        }}
+        animate={{
+          y: cardIndex * 20,
+          scale: 1 - cardIndex * 0.04,
+          opacity: 1 - cardIndex * 0.3,
+        }}
         className={cn(
           'h-full rounded-xl shadow-xl overflow-hidden bg-gradient-to-b from-white to-[#d9daeb] text-center flex-col flex ring ring-brand-highlight ring-4',
           answers[question.id].doubleWeighted === false && 'ring-opacity-0'
@@ -169,7 +177,10 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
         </div>
 
         <button
-          className="py-2 text-xs font-medium text-brand-dark-blue bg-brand-primary bg-opacity-10 focus-default"
+          className={cn(
+            'py-2 text-xs font-medium text-brand-dark-blue bg-brand-primary bg-opacity-10 focus-default',
+            cardIndex !== 0 && 'opacity-0 pointer-events-none'
+          )}
           onClick={() => {
             setAnswer({
               id: question.id,

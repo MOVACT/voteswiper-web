@@ -1,4 +1,4 @@
-import apiFetch, { QUERIES } from 'api/fetch';
+import { ENDPOINTS, fetch } from 'api/fetch';
 import ElectionCard from 'components/election-card';
 import ElectionGrid from 'components/election-grid';
 import Container from 'components/layout/container';
@@ -9,24 +9,18 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
-import {
-  ApiGetCountries,
-  ApiGetCountry,
-  ApiGetElections,
-  Country,
-  Election,
-} from 'types/api';
+import { Country, CountryData, Election, ElectionsData } from 'types/api2';
 import url from 'util/url';
 
 interface Props {
   country: Country;
-  elections: Election[];
+  upcomingElections: Election[];
   pastElections: Election[];
 }
 
 const CountryPage: NextPage<Props> = ({
   country,
-  elections,
+  upcomingElections,
   pastElections,
 }) => {
   const { name, slug } = country;
@@ -50,13 +44,13 @@ const CountryPage: NextPage<Props> = ({
       />
       <Page>
         <Container>
-          {elections.length > 0 && (
+          {upcomingElections.length > 0 && (
             <>
               <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
                 {t('currentElections')}
               </h2>
               <ElectionGrid>
-                {elections.map((election) => {
+                {upcomingElections.map((election) => {
                   return (
                     <ElectionCard
                       key={election.id}
@@ -71,7 +65,9 @@ const CountryPage: NextPage<Props> = ({
 
           {pastElections.length > 0 && (
             <div
-              className={elections.length > 0 ? 'pt-8 md:pt-10 lg:pt-14' : ''}
+              className={
+                upcomingElections.length > 0 ? 'pt-8 md:pt-10 lg:pt-14' : ''
+              }
             >
               <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
                 {t('pastElections')}
@@ -104,13 +100,9 @@ export const getStaticPaths: GetStaticPaths<{ country: string }> = async ({
   > = [];
   if (locales) {
     for (const locale of locales) {
-      const countries = await apiFetch<ApiGetCountries>(
-        QUERIES.GET_COUNTRIES,
-        {},
-        locale
-      );
+      const countries = await fetch<Country[]>(ENDPOINTS.COUNTRIES, locale);
 
-      countries.data.data.countries.map((country) => {
+      countries.data.map((country) => {
         paths.push({
           params: {
             country: country.slug,
@@ -128,25 +120,43 @@ export const getStaticPaths: GetStaticPaths<{ country: string }> = async ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const electionsForCountry = await apiFetch<ApiGetElections>(
-    QUERIES.GET_ELECTIONS,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    { country: params!.country as string },
-    locale
+  const country = await fetch<Country, CountryData>(ENDPOINTS.COUNTRY, locale, {
+    data: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      slug: params!.country as string,
+    },
+  });
+
+  if (country.data === null) return { notFound: true };
+
+  const upcomingElections = await fetch<Election[], ElectionsData>(
+    ENDPOINTS.ELECTIONS,
+    locale,
+    {
+      data: {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        country: params!.country as string,
+        include: 'upcoming',
+      },
+    }
   );
 
-  const country = await apiFetch<ApiGetCountry>(
-    QUERIES.GET_COUNTRY,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    { slug: params!.country as string },
-    locale
+  const pastElections = await fetch<Election[], ElectionsData>(
+    ENDPOINTS.ELECTIONS,
+    locale,
+    {
+      data: {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        country: params!.country as string,
+        include: 'past',
+      },
+    }
   );
-
-  if (country.data.data.country === null) return { notFound: true };
 
   const props = {
-    ...electionsForCountry.data.data,
-    country: country.data.data.country,
+    upcomingElections: upcomingElections.data,
+    pastElections: pastElections.data,
+    country: country.data,
   };
 
   return {

@@ -1,6 +1,6 @@
 import { ANSWERS } from 'components/swiper/constants';
 import React from 'react';
-import { Election, Question } from 'types/api';
+import { Election, Question } from 'types/api2';
 interface SwiperAnswer {
   answer: ANSWERS;
   doubleWeighted: boolean;
@@ -61,6 +61,42 @@ export const ElectionProvider: React.FC<Props> = ({
   );
 
   /**
+   * Will push a new entry to the browsers history api together with the current state
+   * so that it will become possible to navigate to the previous question by using
+   * the browsers history api
+   */
+  const pushHistoryState = React.useCallback((questionNumber: number) => {
+    window.history.pushState(
+      {
+        currentQuestion: questionNumber,
+      },
+      document.title
+    );
+  }, []);
+
+  /**
+   * Listen to the browser history api
+   */
+  const historyListener = React.useCallback((ev: PopStateEvent) => {
+    if (typeof ev.state.currentQuestion !== 'undefined') {
+      setCurrentQuestion(ev.state.currentQuestion);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    window.addEventListener('popstate', historyListener);
+
+    return () => {
+      window.removeEventListener('popstate', historyListener);
+    };
+  });
+
+  React.useEffect(() => {
+    console.log('initial');
+    pushHistoryState(0);
+  }, [pushHistoryState]);
+
+  /**
    * Answer a question
    */
   const setAnswer = React.useCallback(
@@ -81,8 +117,9 @@ export const ElectionProvider: React.FC<Props> = ({
   );
 
   const goToNextQuestion = React.useCallback(() => {
+    pushHistoryState(currentQuestion + 1);
     setCurrentQuestion(currentQuestion + 1);
-  }, [currentQuestion]);
+  }, [currentQuestion, pushHistoryState]);
 
   const goToPreviousQuestion = React.useCallback(() => {
     setCurrentQuestion(currentQuestion - 1);

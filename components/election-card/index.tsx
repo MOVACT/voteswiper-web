@@ -4,8 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Country, Election } from 'types/api';
-import asset from 'util/asset';
+import { Country, Election } from 'types/api2';
 import formatLocal from 'util/formatLocal';
 import styles from './election-card.module.css';
 
@@ -18,8 +17,8 @@ const ElectionCard: React.FC<Props> = ({
   card,
   name,
   country,
-  active,
-  active_date,
+  playable,
+  playable_date,
   voting_day,
 }) => {
   const { locale } = useRouter();
@@ -31,18 +30,19 @@ const ElectionCard: React.FC<Props> = ({
     <>
       <div className={styles.image}>
         <Image
-          width={1600}
-          height={900}
+          width={card.width}
+          height={card.height}
+          sizes="(min-width: 1025px) 424px, (min-width: 770px) 470px, 100vw"
           layout="responsive"
           alt={name}
-          src={asset(card)}
+          src={card.public_link}
         />
       </div>
       <div className="px-5 py-4 leading-tight">
         <div className="pt-1 text-brand-primary">
-          {t(active ? 'common:votingDay' : 'common:availableFrom', {
+          {t(playable ? 'common:votingDay' : 'common:availableFrom', {
             date: formatLocal(
-              new Date(active ? voting_day : active_date),
+              new Date(playable ? voting_day : playable_date),
               'PPP',
               locale
             ),
@@ -55,7 +55,7 @@ const ElectionCard: React.FC<Props> = ({
     </>
   );
 
-  if (!active) {
+  if (!playable) {
     return (
       <div className={cn(cardClassName, 'opacity-50 shadow-xl')}>{content}</div>
     );

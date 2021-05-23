@@ -1,4 +1,4 @@
-import apiFetch, { QUERIES } from 'api/fetch';
+import { ENDPOINTS, fetch } from 'api/fetch';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
@@ -10,31 +10,27 @@ import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
 import {
-  ApiGetCountries,
-  ApiGetCountry,
-  ApiGetElection,
-  ApiGetElections,
   Country,
+  CountryData,
   Election,
+  ElectionBySlugData,
+  ElectionsData,
+  PartiesData,
   Party,
-} from 'types/api';
+} from 'types/api2';
 import url from 'util/url';
 
 interface Props {
   country: Country;
   election: Election;
+  parties: Party[];
 }
 
-const CountryPage: NextPage<Props> = ({ country, election }) => {
+const CountryPage: NextPage<Props> = ({ country, election, parties }) => {
   const { name: countryName, slug: countrySlug } = country;
   const { name, slug } = election;
   const { t } = useTranslation();
   const { locale } = useRouter();
-
-  const allParties = [
-    ...election.parties,
-    ...election.parties_not_participating,
-  ] as Party[];
 
   return (
     <>
@@ -69,7 +65,7 @@ const CountryPage: NextPage<Props> = ({ country, election }) => {
       <Page>
         <Container>
           <div className="flex flex-wrap md:-mx-2 lg:-mx-4">
-            {allParties.map((party) => {
+            {parties.map((party) => {
               return (
                 <div
                   key={party.id}
@@ -100,33 +96,22 @@ export const getStaticPaths: GetStaticPaths<{
   > = [];
   if (locales) {
     for (const locale of locales) {
-      const countries = await apiFetch<ApiGetCountries>(
-        QUERIES.GET_COUNTRIES,
-        {},
-        locale
-      );
+      const countries = await fetch<CountryData[]>(ENDPOINTS.COUNTRIES, locale);
 
       await Promise.all(
-        countries.data.data.countries.map(async (country) => {
-          const electionsForCountry = await apiFetch<ApiGetElections>(
-            QUERIES.GET_ELECTIONS,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            { country: country.slug },
-            locale
+        countries.data.map(async (country) => {
+          const electionsForCountry = await fetch<Election[], ElectionsData>(
+            ENDPOINTS.ELECTIONS,
+            locale,
+            {
+              data: {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                country: country.slug as string,
+              },
+            }
           );
 
-          electionsForCountry.data.data.elections.map((election) => {
-            paths.push({
-              params: {
-                country: country.slug,
-                election: election.slug,
-                parties: config.translatedSlugs.parties[locale],
-              },
-              locale,
-            });
-          });
-
-          electionsForCountry.data.data.pastElections.map((election) => {
+          electionsForCountry.data.map((election) => {
             paths.push({
               params: {
                 country: country.slug,
@@ -148,29 +133,37 @@ export const getStaticPaths: GetStaticPaths<{
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const election = await apiFetch<ApiGetElection>(
-    QUERIES.GET_ELECTION,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    { slug: params!.election as string },
-    locale
+  const election = await fetch<Election, ElectionBySlugData>(
+    ENDPOINTS.ELECTION,
+    locale,
+    {
+      data: {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        slug: params!.election as string,
+      },
+    }
   );
 
-  const country = await apiFetch<ApiGetCountry>(
-    QUERIES.GET_COUNTRY,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    { slug: params!.country as string },
-    locale
-  );
+  const country = await fetch<Country, CountryData>(ENDPOINTS.COUNTRY, locale, {
+    data: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      slug: params!.country as string,
+    },
+  });
 
-  if (
-    country.data.data.country === null ||
-    election.data.data.election === null
-  )
-    return { notFound: true };
+  if (!country.data || !election.data) return { notFound: true };
+
+  const parties = await fetch<Party, PartiesData>(ENDPOINTS.PARTIES, locale, {
+    data: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      election: params!.election as string,
+    },
+  });
 
   const props = {
-    election: election.data.data.election,
-    country: country.data.data.country,
+    election: election.data,
+    country: country.data,
+    parties: parties.data,
   };
 
   return {

@@ -6,5 +6,7 @@
   "start": "Start VoteSwiper",
   "moreInformation": "More Information",
   "parties": "Parties",
-  "partner": "Partner"
+  "partner": "Partner",
+  "website": "Homepage",
+  "program": "Election program"
 }

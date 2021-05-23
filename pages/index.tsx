@@ -1,4 +1,4 @@
-import apiFetch, { QUERIES } from 'api/fetch';
+import { ENDPOINTS, fetch } from 'api/fetch';
 import cn from 'classnames';
 import CountryFlag from 'components/country-flag';
 import Container from 'components/layout/container';
@@ -7,23 +7,17 @@ import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
-import { ApiGetCountries, Country } from 'types/api';
+import { Country } from 'types/api2';
 import url from 'util/url';
 import MapGermany from './germany.svg';
 import styles from './home.module.scss';
+
 interface Props {
   countries: Country[];
 }
 
 const Home: NextPage<Props> = ({ countries }) => {
   const { t } = useTranslation('home');
-
-  /**
-   * languageAlternates={[{
-  hrefLang: 'de-AT',
-  href: 'https://www.canonical.ie/de',
-}]}
-   */
 
   return (
     <div className="relative w-screen overflow-hidden">
@@ -89,15 +83,11 @@ const Home: NextPage<Props> = ({ countries }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const countries = await apiFetch<ApiGetCountries>(
-    QUERIES.GET_COUNTRIES,
-    {},
-    locale
-  );
+  const countries = await fetch<Country[]>(ENDPOINTS.COUNTRIES, locale);
 
   return {
     props: {
-      countries: countries.data.data.countries,
+      countries: countries.data,
     },
   };
 };

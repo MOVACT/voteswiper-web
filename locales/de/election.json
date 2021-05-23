@@ -4,5 +4,7 @@
   "start": "WahlSwiper starten",
   "moreInformation": "Mehr Informationen",
   "parties": "Parteien",
-  "partner": "Partner"
+  "partner": "Partner",
+  "website": "Partei-Webseite",
+  "program": "Wahlprogramm"
 }
