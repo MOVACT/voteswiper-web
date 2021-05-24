@@ -8,5 +8,6 @@
   "parties": "Parties",
   "partner": "Partner",
   "website": "Homepage",
-  "program": "Election program"
+  "program": "Election program",
+  "quit": "Do you really want to quit? Your result is not going to be saved."
 }

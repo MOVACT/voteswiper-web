@@ -23,6 +23,7 @@
     "framer-motion": "^4.1.4",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "hls.js": "^1.0.4",
     "next": "^10.2.2",
     "next-compose-plugins": "^2.2.1",
     "next-seo": "^4.24.0",

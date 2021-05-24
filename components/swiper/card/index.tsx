@@ -10,8 +10,7 @@ import {
 import IconPlay from 'icons/play.svg';
 import Image from 'next/image';
 import React from 'react';
-import { Question } from 'types/api';
-import asset from 'util/asset';
+import { Question } from 'types/api2';
 
 const SWIPE_THRESHOLD = 250;
 const OVERLAY_THRESHOLD = 30;
@@ -29,7 +28,13 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
   { cardIndex, question },
   ref
 ) => {
-  const { answers, setAnswer, onSwipeLeft, onSwipeRight } = useElection();
+  const {
+    answers,
+    setAnswer,
+    onSwipeLeft,
+    onSwipeRight,
+    openExplainer,
+  } = useElection();
   const [constrained, setConstrained] = React.useState<boolean>(true);
 
   const x = useMotionValue(0);
@@ -150,17 +155,20 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
           answers[question.id].doubleWeighted === false && 'ring-opacity-0'
         )}
       >
-        <div className="flex flex-col flex-1 p-4 lg:p-6">
+        <div className="flex flex-col flex-1 p-6">
           <div className="relative h-[150px] rounded overflow-hidden shadow-lg pointer-events-none">
             <Image
               layout="fill"
               objectFit="cover"
               objectPosition="center"
-              src={asset(question.thumbnail)}
+              role="presentation"
+              sizes="(min-width: 768px) 320px, 100vw"
+              src={question.thumbnail.public_link}
             />
 
             <button
               disabled={cardIndex !== 0}
+              onClick={() => openExplainer()}
               className="absolute w-12 h-12 flex items-center justify-center text-white pl-1 -mt-6 -ml-6 bg-gradient-to-b from-[#db67ae] to-[#8186d7] transform hover:scale-[0.97] hover:shadow-sm shadow-xl rounded-full pointer-events-auto focus-default left-1/2 top-1/2"
             >
               <IconPlay className="w-5 h-5" />
@@ -168,10 +176,10 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
           </div>
           <div className="my-auto">
             <div className="pb-2 text-xs font-medium tracking-widest uppercase text-brand-primary">
-              {question.title}
+              {question.topic}
             </div>
             <div className="font-medium leading-5 lg:leading-6 text-brand-dark-blue lg:text-lg">
-              {question.question}
+              {question.thesis}
             </div>
           </div>
         </div>

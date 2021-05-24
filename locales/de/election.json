@@ -6,5 +6,6 @@
   "parties": "Parteien",
   "partner": "Partner",
   "website": "Partei-Webseite",
-  "program": "Wahlprogramm"
+  "program": "Wahlprogramm",
+  "quit": "Willst du den WahlSwiper wirklich beenden? Dein Ergebnis wird nicht gespeichert."
 }

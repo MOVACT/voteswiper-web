@@ -1,5 +1,6 @@
-import { ANSWERS } from 'components/swiper/constants';
+import { ANSWERS, STEPS } from 'components/swiper/constants';
 import React from 'react';
+import { useLockBodyScroll } from 'react-use';
 import { Election, Question } from 'types/api2';
 interface SwiperAnswer {
   answer: ANSWERS;
@@ -13,7 +14,6 @@ interface SetAnswerArgs {
   answer?: ANSWERS;
   doubleWeighted?: boolean;
 }
-
 interface Context {
   questions: Question[];
   election: Election;
@@ -24,6 +24,13 @@ interface Context {
   // The next 3 questions for the stack
   stack: Question[];
   answers: SwiperAnswers;
+
+  screen: STEPS;
+  setScreen: (screen: STEPS) => void;
+  openExplainer: () => void;
+  closeExplainer: () => void;
+  startSwiper: () => void;
+  endSwiper: () => void;
 
   setAnswer: (args: SetAnswerArgs) => void;
   goToNextQuestion: () => void;
@@ -45,6 +52,8 @@ export const ElectionProvider: React.FC<Props> = ({
   election,
 }) => {
   const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
+  const [screen, setScreen] = React.useState<STEPS>(STEPS.START);
+  useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
   const [answers, setAnswers] = React.useState<SwiperAnswers>(
     (() => {
       // Create a default of all the answers
@@ -65,14 +74,18 @@ export const ElectionProvider: React.FC<Props> = ({
    * so that it will become possible to navigate to the previous question by using
    * the browsers history api
    */
-  const pushHistoryState = React.useCallback((questionNumber: number) => {
-    window.history.pushState(
-      {
-        currentQuestion: questionNumber,
-      },
-      document.title
-    );
-  }, []);
+  const pushHistoryState = React.useCallback(
+    (questionNumber: number, screen: STEPS = STEPS.SWIPER) => {
+      window.history.pushState(
+        {
+          currentQuestion: questionNumber,
+          screen,
+        },
+        document.title
+      );
+    },
+    []
+  );
 
   /**
    * Listen to the browser history api
@@ -80,6 +93,7 @@ export const ElectionProvider: React.FC<Props> = ({
   const historyListener = React.useCallback((ev: PopStateEvent) => {
     if (typeof ev.state.currentQuestion !== 'undefined') {
       setCurrentQuestion(ev.state.currentQuestion);
+      setScreen(ev.state.screen);
     }
   }, []);
 
@@ -153,6 +167,32 @@ export const ElectionProvider: React.FC<Props> = ({
     return sliced.slice(0, Math.min(3, sliced.length - 1));
   }, [currentQuestion, questions]);
 
+  /**
+   * Start Swiper
+   */
+  const startSwiper = React.useCallback(() => {
+    pushHistoryState(currentQuestion, STEPS.SWIPER);
+    setScreen(STEPS.SWIPER);
+  }, [currentQuestion, pushHistoryState]);
+
+  const endSwiper = React.useCallback(() => {
+    pushHistoryState(currentQuestion, STEPS.START);
+    setScreen(STEPS.START);
+  }, [currentQuestion, pushHistoryState]);
+
+  /**
+   * Explainer Overlay
+   */
+  const openExplainer = React.useCallback(() => {
+    pushHistoryState(currentQuestion, STEPS.EXPLAINER);
+    setScreen(STEPS.EXPLAINER);
+  }, [currentQuestion, pushHistoryState]);
+
+  const closeExplainer = React.useCallback(() => {
+    pushHistoryState(currentQuestion, STEPS.SWIPER);
+    setScreen(STEPS.SWIPER);
+  }, [currentQuestion, pushHistoryState]);
+
   return (
     <ElectionContext.Provider
       value={{
@@ -167,6 +207,12 @@ export const ElectionProvider: React.FC<Props> = ({
         goToPreviousQuestion,
         onSwipeLeft,
         onSwipeRight,
+        screen,
+        setScreen,
+        openExplainer,
+        closeExplainer,
+        startSwiper,
+        endSwiper,
       }}
     >
       {children}

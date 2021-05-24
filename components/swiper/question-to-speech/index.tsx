@@ -18,7 +18,7 @@ const QuestionToSpeech: React.FC = () => {
 
   const read = React.useCallback(() => {
     const msg = new SpeechSynthesisUtterance();
-    msg.text = question.question;
+    msg.text = question.thesis;
     msg.lang = locale || 'en';
 
     speechSynthesis.speak(msg);
@@ -29,7 +29,7 @@ const QuestionToSpeech: React.FC = () => {
   return (
     <button
       onClick={read}
-      className="flex items-center text-sm font-medium text-white rounded lg:text-lg hover:underline hover:text-brand-highlight text-underline-offset-2 focus-default"
+      className="items-center hidden text-sm font-medium text-white rounded lg:flex lg:text-lg hover:underline hover:text-brand-highlight text-underline-offset-2 focus-default"
     >
       <IconVolume className="w-auto h-6 mr-2" />
       Frage vorlesen
