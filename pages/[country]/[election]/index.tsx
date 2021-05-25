@@ -6,6 +6,7 @@ import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
 import { STEPS } from 'components/swiper/constants';
+import PartiesScreen from 'components/swiper/screen-parties';
 import config from 'config';
 import { ElectionProvider, useElection } from 'contexts/election';
 import HyperlinkIcon from 'icons/hyperlink.svg';
@@ -23,9 +24,11 @@ import {
   Election,
   ElectionBySlugData,
   ElectionsData,
+  PartiesData,
+  Party,
   Question,
   QuestionsData,
-} from 'types/api2';
+} from 'types/api';
 import formatLocal from 'util/formatLocal';
 import url from 'util/url';
 
@@ -49,17 +52,17 @@ type ElectionStory = null | StoryblokStory<{
 interface Props {
   country: Country;
   election: Election;
+  parties: Party[];
   questions: Question[];
   story: ElectionStory;
 }
 
 interface ContentProps {
-  country: Country;
   story: ElectionStory;
 }
 
-const CountryPageContent: React.FC<ContentProps> = ({ story, country }) => {
-  const { election, screen, startSwiper, endSwiper } = useElection();
+const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
+  const { election, screen, startSwiper, endSwiper, country } = useElection();
   const { name: countryName, slug: countrySlug } = country;
   const { name, slug } = election;
   const { t } = useTranslation();
@@ -221,6 +224,8 @@ const CountryPageContent: React.FC<ContentProps> = ({ story, country }) => {
         </>
       )}
 
+      {screen === STEPS.PARTIES && <PartiesScreen />}
+
       <Swiper
         open={screen === STEPS.SWIPER}
         onRequestClose={() => {
@@ -237,18 +242,17 @@ const CountryPage: NextPage<Props> = ({
   country,
   election,
   questions,
+  parties,
   story,
 }) => {
   return (
     <ElectionProvider
-      questions={
-        process.env.NODE_ENV === 'development'
-          ? questions.slice(0, 4)
-          : questions
-      }
+      country={country}
+      parties={parties}
+      questions={questions}
       election={election}
     >
-      <CountryPageContent story={story} country={country} />
+      <CountryPageContent story={story} />
     </ElectionProvider>
   );
 };
@@ -335,10 +339,18 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   if (country.data === null || election.data === null)
     return { notFound: true };
 
+  const parties = await fetch<Party, PartiesData>(ENDPOINTS.PARTIES, locale, {
+    data: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      election: params!.election as string,
+    },
+  });
+
   const props = {
     election: election.data,
     questions: questions.data,
     country: country.data,
+    parties: parties.data,
     story,
   };
 

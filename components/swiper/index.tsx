@@ -2,6 +2,7 @@ import Container from 'components/layout/container';
 import { useElection } from 'contexts/election';
 import { AnimatePresence, motion } from 'framer-motion';
 import IconClose from 'icons/close.svg';
+import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import Card, { Ref } from './card';
 import QuestionCounter from './question-counter';
@@ -15,6 +16,7 @@ interface Props {
 
 const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
   const $card = React.useRef<Ref>(null);
+  const { t } = useTranslation();
   const {
     stack,
     onSwipeRight,
@@ -47,7 +49,7 @@ const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
                     className="flex items-center h-6 text-sm font-medium text-white rounded lg:text-lg text-underline-offset-2 hover:text-brand-highlight hover:underline focus-default"
                   >
                     <IconClose className="w-auto h-5 mr-2" />
-                    Beenden
+                    {t('election:exit')}
                   </button>
                 </div>
               </Container>
@@ -78,10 +80,10 @@ const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
                     }, 500);
                   }}
                 >
-                  Nein
+                  {t('election:no')}
                 </button>
                 <button className="flex flex-col items-center justify-center text-sm font-medium text-white hover:opacity-75">
-                  Überspringen
+                  {t('election:skip')}
                 </button>
                 <button
                   className="w-16 h-16 font-medium text-white rounded-full shadow-xl hover:shadow-md focus-default bg-gradient-to-b from-green-vibrant-500 to-green-vibrant-600"
@@ -94,7 +96,7 @@ const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
                     }, 500);
                   }}
                 >
-                  Ja
+                  {t('election:yes')}
                 </button>
               </div>
             </div>

@@ -7,5 +7,15 @@
   "partner": "Partner",
   "website": "Partei-Webseite",
   "program": "Wahlprogramm",
-  "quit": "Willst du den WahlSwiper wirklich beenden? Dein Ergebnis wird nicht gespeichert."
+  "quit": "Willst du den WahlSwiper wirklich beenden? Dein Ergebnis wird nicht gespeichert.",
+  "selectParties": "Parteien auswählen",
+  "selectPartiesIntro": "Wähle jetzt die Parteien mit denen du deine Antworten vergleichen willst. <0>Standardmäßig</0> sind <0>alle ausgewählt</0>. Danach klicke unten auf <1>»Weiter«</1> um zu deinem Ergebnis zu kommen. Du kannst jederzeit erneut die Anzahl der Parteien anpassen.",
+  "goToResult": "Weiter zum Ergebnis",
+  "back": "Zurück",
+  "readQuestion": "Frage vorlesen",
+  "questionCounter": "Frage {{current}} von {{total}}",
+  "exit": "Beenden",
+  "no": "Nein",
+  "yes": "Ja",
+  "skip": "Überspringen"
 }

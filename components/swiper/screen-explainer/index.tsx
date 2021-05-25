@@ -1,11 +1,13 @@
 import { useElection } from 'contexts/election';
 import { AnimatePresence, motion } from 'framer-motion';
 import IconChevronLeft from 'icons/chevron-left.svg';
+import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import Video from './video';
 
 const ExplainerScreen: React.FC = () => {
   const { screen, stack, closeExplainer } = useElection();
+  const { t } = useTranslation();
 
   // Current Question must be index 0 at stack
   const currentQuestion = stack[0];
@@ -31,7 +33,7 @@ const ExplainerScreen: React.FC = () => {
               className="flex items-center px-6 py-3 mb-6 font-medium leading-none rounded bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20"
             >
               <IconChevronLeft className="w-3 h-3 mr-2" />
-              Zurück
+              {t('election:back')}
             </button>
             <div className="lg:flex">
               {currentQuestion.video_url && (

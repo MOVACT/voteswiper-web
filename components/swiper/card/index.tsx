@@ -10,7 +10,7 @@ import {
 import IconPlay from 'icons/play.svg';
 import Image from 'next/image';
 import React from 'react';
-import { Question } from 'types/api2';
+import { Question } from 'types/api';
 
 const SWIPE_THRESHOLD = 250;
 const OVERLAY_THRESHOLD = 30;

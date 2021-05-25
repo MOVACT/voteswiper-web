@@ -2,11 +2,12 @@ import Button from 'components/button';
 import { useElection } from 'contexts/election';
 import IconChevronLeft from 'icons/chevron-left.svg';
 import IconChevronRight from 'icons/chevron-right.svg';
+import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 
 const QuestionCounter: React.FC = () => {
   const { questions, currentQuestion, setCurrentQuestion } = useElection();
-
+  const { t } = useTranslation();
   return (
     <div className="flex items-center">
       <div className="flex items-center mr-2">
@@ -32,7 +33,10 @@ const QuestionCounter: React.FC = () => {
         </Button>
       </div>
       <div className="text-sm font-medium text-white lg:text-lg">
-        Frage {currentQuestion + 1} von {questions.length}
+        {t('election:questionCounter', {
+          current: currentQuestion + 1,
+          total: questions.length,
+        })}
       </div>
     </div>
   );

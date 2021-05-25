@@ -1,5 +1,20 @@
-export interface Country {
+export interface CommonRow {
   id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Upload extends CommonRow {
+  filename: string;
+  filetype: string;
+  width: number;
+  height: number;
+  filesize: number;
+  alt_text: string;
+  public_link: string;
+}
+
+export interface Country extends CommonRow {
   country_code: string;
   language_code: string;
   name: string;
@@ -7,89 +22,72 @@ export interface Country {
   published: boolean;
 }
 
-export interface Question {
-  id: number;
-  question: string;
-  title: string;
-  video_url: null | string;
-  video_legacy: false;
-  thumbnail: string;
-  explainer_text: null | string;
+export interface AlternateLinks {
+  [locale: string]: string;
 }
 
-interface PartyAnswer {
-  question_id: number;
-  answer: number;
-  reason: null | string;
-}
-
-export interface Party {
-  slug: string;
-  id: number;
-  logo: string;
+export interface Election extends CommonRow {
+  country_id: number;
   name: string;
-  full_name: string;
-  pivot: {
-    answers: PartyAnswer[];
-    program: string;
-    url?: null | string;
-  };
-}
-
-export interface PartyNotParticipating {
   slug: string;
-  id: number;
-  logo: string;
-  name: string;
-  full_name: string;
-}
-
-export interface Election {
-  slug: string;
-  card: string;
-  id: number;
-  name: string;
+  published: boolean;
+  playable: boolean;
+  card_upload_id: number;
   voting_day: string;
-  active_date: string;
-  active: boolean;
-  questions: Question[];
-  parties: Party[];
-  parties_not_participating: PartyNotParticipating[];
+  playable_date: string;
+  translations_available: string[];
+  card: Upload;
+  parties_participating: number;
+  parties_not_participating: number;
 }
 
-export interface ApiGetCountries {
-  data: {
-    countries: Country[];
-  };
+export interface Question extends CommonRow {
+  election_id: number;
+  thesis: string;
+  topic: string;
+  video_url: string;
+  explainer_text: string;
+  thumbnail_upload_id: number;
+  sort_order: 1;
+  thumbnail: Upload;
 }
 
-export interface ApiGetCountry {
-  data: {
-    country: Country;
-  };
+export interface PartyPivot extends CommonRow {
+  election_id: number;
+  party_id: number;
+  playable: boolean;
+  published: boolean;
+  program_upload_id: null | Upload;
+  program_link: null | string;
 }
 
-export interface ApiGetUpcomingElections {
-  data: {
-    elections: Election[];
-  };
+export interface Party extends CommonRow {
+  country_id: number;
+  name: string;
+  slug: string;
+  full_name: string;
+  url: null | string;
+  logo_upload_id: number;
+  logo: Upload;
+  pivot: PartyPivot;
 }
 
-export interface ApiGetElections {
-  data: {
-    elections: Election[];
-    pastElections: Election[];
-  };
+export interface CountryData {
+  slug: string;
+}
+export interface ElectionsData {
+  country: string;
+  include?: 'all' | 'upcoming' | 'past';
 }
 
-export interface ApiGetElection {
-  data: {
-    election: Election;
-  };
+export interface ElectionBySlugData {
+  slug: string;
 }
 
-export interface ApiGetQuestions {
-  data: {
-    questions: Question[];
-  };
+export interface QuestionsData {
+  election: string;
+}
+
+export interface PartiesData {
+  election: string;
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Country, Election } from 'types/api2';
+import { Country, Election } from 'types/api';
 import formatLocal from 'util/formatLocal';
 import styles from './election-card.module.css';
 

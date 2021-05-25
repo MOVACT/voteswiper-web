@@ -1,11 +1,13 @@
 import { useElection } from 'contexts/election';
 import IconVolume from 'icons/volume.svg';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 const QuestionToSpeech: React.FC = () => {
   const [isApiAvailable, setApiAvailable] = React.useState(true);
   const { currentQuestion, questions } = useElection();
+  const { t } = useTranslation();
   const { locale } = useRouter();
 
   const question = questions[currentQuestion];
@@ -32,7 +34,7 @@ const QuestionToSpeech: React.FC = () => {
       className="items-center hidden text-sm font-medium text-white rounded lg:flex lg:text-lg hover:underline hover:text-brand-highlight text-underline-offset-2 focus-default"
     >
       <IconVolume className="w-auto h-6 mr-2" />
-      Frage vorlesen
+      {t('election:readQuestion')}
     </button>
   );
 };

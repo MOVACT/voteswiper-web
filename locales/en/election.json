@@ -9,5 +9,15 @@
   "partner": "Partner",
   "website": "Homepage",
   "program": "Election program",
-  "quit": "Do you really want to quit? Your result is not going to be saved."
+  "quit": "Do you really want to quit? Your result is not going to be saved.",
+  "selectParties": "Choose parties",
+  "selectPartiesIntro": "Now select the parties you want to compare your answers with. <0>By default</0> <0>all are selected</0>. Then click <1>\"Next\"</1> at the bottom to get to your result. You can always adjust the number of parties again.",
+  "goToResult": "Continue to result",
+  "back": "Back",
+  "readQuestion": "Read question",
+  "questionCounter": "Question {{current}} of {{total}}",
+  "exit": "Quit",
+  "no": "No",
+  "yes": "Yes",
+  "skip": "Skip"
 }

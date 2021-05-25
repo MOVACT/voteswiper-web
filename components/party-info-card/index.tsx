@@ -3,7 +3,7 @@ import HyperlinkIcon from 'icons/hyperlink.svg';
 import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React from 'react';
-import { Party } from 'types/api2';
+import { Party } from 'types/api';
 
 interface Props {
   party: Party;

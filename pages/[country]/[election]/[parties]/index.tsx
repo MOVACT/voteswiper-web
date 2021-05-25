@@ -17,7 +17,7 @@ import {
   ElectionsData,
   PartiesData,
   Party,
-} from 'types/api2';
+} from 'types/api';
 import url from 'util/url';
 
 interface Props {

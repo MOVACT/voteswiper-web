@@ -7,7 +7,7 @@ import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
-import { Country } from 'types/api2';
+import { Country } from 'types/api';
 import url from 'util/url';
 import MapGermany from './germany.svg';
 import styles from './home.module.scss';
