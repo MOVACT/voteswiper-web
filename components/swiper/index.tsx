@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import IconClose from 'icons/close.svg';
 import React from 'react';
 import Card, { Ref } from './card';
-import ExplainerScreen from './explainer-screen';
 import QuestionCounter from './question-counter';
 import QuestionToSpeech from './question-to-speech';
+import ExplainerScreen from './screen-explainer';
 
 interface Props {
   open: boolean;

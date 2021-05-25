@@ -240,7 +240,14 @@ const CountryPage: NextPage<Props> = ({
   story,
 }) => {
   return (
-    <ElectionProvider questions={questions} election={election}>
+    <ElectionProvider
+      questions={
+        process.env.NODE_ENV === 'development'
+          ? questions.slice(0, 4)
+          : questions
+      }
+      election={election}
+    >
       <CountryPageContent story={story} country={country} />
     </ElectionProvider>
   );
