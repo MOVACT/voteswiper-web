@@ -17,6 +17,7 @@
     "@types/react-dom": "^17.0.3",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
+    "chrome-aws-lambda": "^9.1.0",
     "classnames": "^2.3.1",
     "country-flag-icons": "^1.2.9",
     "date-fns": "^2.21.1",
@@ -30,6 +31,7 @@
     "next-translate": "^1.0.6",
     "postcss": "^8.3.0",
     "postcss-focus-visible": "^5.0.0",
+    "puppeteer-core": "^9.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.15.8",
@@ -41,7 +43,7 @@
     "tailwindcss": "^2.1.1"
   },
   "devDependencies": {
-    "@svgr/webpack": "^5.4.0",
+    "@svgr/webpack": "^5.5.0",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.6",
     "@types/react": "^17.0.3",

@@ -52,6 +52,13 @@ export interface Question extends CommonRow {
   thumbnail: Upload;
 }
 
+export interface Answer extends CommonRow {
+  electionparty_id: number;
+  question_id: number;
+  answer: number;
+  reason: string;
+}
+
 export interface PartyPivot extends CommonRow {
   election_id: number;
   party_id: number;
@@ -59,6 +66,7 @@ export interface PartyPivot extends CommonRow {
   published: boolean;
   program_upload_id: null | Upload;
   program_link: null | string;
+  answers: Answer[];
 }
 
 export interface Party extends CommonRow {

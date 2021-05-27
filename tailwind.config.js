@@ -34,6 +34,7 @@ module.exports = {
           primary: '#59568b',
           'light-blue': '#eff3ff',
           'dark-blue': '#392f52',
+          pink: '#DB67AE',
           highlight: '#E6E90F',
         },
         "green-vibrant": {
@@ -46,6 +47,7 @@ module.exports = {
       },
       boxShadow: {
         xl: '0px 0.7rem 3rem 0px rgba(0,0,0,0.25)',
+        right: '2px 0 2px 0 rgba(0,0,0,0.10)'
       },
       typography: {
         DEFAULT: {

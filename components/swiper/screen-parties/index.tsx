@@ -8,6 +8,7 @@ import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React from 'react';
+import { STEPS } from '../constants';
 
 const PartiesScreen: React.FC = () => {
   const {
@@ -16,6 +17,7 @@ const PartiesScreen: React.FC = () => {
     parties,
     selectedParties,
     toggleParty,
+    goToScreen,
   } = useElection();
   const { t } = useTranslation();
 
@@ -82,6 +84,9 @@ const PartiesScreen: React.FC = () => {
                 color="primary"
                 size="blank"
                 className="w-full py-2.5 px-4 lg:px-10 lg:py-4 text-base lg:w-auto lg:text-lg rounded-xl"
+                onClick={() => {
+                  goToScreen(STEPS.RESULT);
+                }}
                 disabled={selectedParties.length === 0}
               >
                 {t('election:goToResult')}

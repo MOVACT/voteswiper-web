@@ -42,6 +42,8 @@ interface Context {
 
   selectedParties: number[];
   toggleParty: (partyId: number) => void;
+
+  goToScreen: (swiperScreen: STEPS) => void;
 }
 
 interface Props {
@@ -52,6 +54,83 @@ interface Props {
 }
 
 const ElectionContext = React.createContext<Context>({} as Context);
+
+export type PartyScore = {
+  id: number;
+  name: string;
+  score: number;
+  percentage: number;
+};
+
+export const calculateResult = (
+  questions: Question[],
+  userAnswers: SwiperAnswers,
+  parties: Party[]
+): { scores: PartyScore[]; totalScore: number } => {
+  const partyScore: PartyScore[] = [];
+  let relevantQuestions = 0;
+
+  // Set initial scores
+  parties.map((party) => {
+    partyScore.push({
+      id: party.id,
+      score: 0,
+      percentage: 0,
+      name: party.name,
+    });
+  });
+
+  questions.map((question) => {
+    const userAnswer = userAnswers[question.id].answer;
+    // If a user double weighted their answer, it will be worth two points
+    const pointsToAdd = userAnswers[question.id].doubleWeighted ? 2 : 1;
+
+    if (userAnswer !== ANSWERS.NONE) {
+      relevantQuestions = relevantQuestions + pointsToAdd;
+
+      // Loop over parties
+      parties.map((party) => {
+        let addToScore = 0;
+
+        const partyAnswer = party.pivot.answers.find(
+          (a) => a.question_id === question.id
+        )?.answer;
+
+        // Make sure party has given an answer
+        if (partyAnswer !== 0 && userAnswer === partyAnswer) {
+          // if same answer, count 1 up
+          addToScore = pointsToAdd;
+        }
+
+        const index = partyScore.findIndex((i) => i.id === party.id);
+        partyScore[index].score = partyScore[index].score + addToScore;
+      });
+    }
+  });
+
+  partyScore.map((score, index) => {
+    // relevantQuestions === 100%
+    // score === x%
+
+    partyScore[index] = {
+      ...score,
+      percentage: +(
+        Math.round(
+          (((score.score * 100) / relevantQuestions +
+            'e+1') as unknown) as number
+        ) + 'e-1'
+      ),
+    };
+  });
+
+  // Sort from lowest to highest
+  partyScore.sort((a, b) => (a.score - b.score > 0 ? -1 : 1));
+
+  return {
+    scores: partyScore,
+    totalScore: relevantQuestions,
+  };
+};
 
 export const ElectionProvider: React.FC<Props> = ({
   children,
@@ -178,12 +257,13 @@ export const ElectionProvider: React.FC<Props> = ({
   );
 
   const goToNextQuestion = React.useCallback(() => {
-    pushHistoryState(currentQuestion + 1);
-
     if (currentQuestion === questions.length - 1) {
+      pushHistoryState(currentQuestion + 1, STEPS.PARTIES);
       setScreen(STEPS.PARTIES);
+    } else {
+      pushHistoryState(currentQuestion + 1);
+      setCurrentQuestion(currentQuestion + 1);
     }
-    setCurrentQuestion(currentQuestion + 1);
   }, [currentQuestion, pushHistoryState, questions]);
 
   const goToPreviousQuestion = React.useCallback(() => {
@@ -262,6 +342,17 @@ export const ElectionProvider: React.FC<Props> = ({
     [selectedParties]
   );
 
+  const goToScreen = React.useCallback(
+    (swiperScreen: STEPS) => {
+      pushHistoryState(currentQuestion, swiperScreen);
+      window.scrollTo({
+        top: 0,
+      });
+      setScreen(swiperScreen);
+    },
+    [currentQuestion, pushHistoryState]
+  );
+
   return (
     <ElectionContext.Provider
       value={{
@@ -286,6 +377,7 @@ export const ElectionProvider: React.FC<Props> = ({
         endSwiper,
         toggleParty,
         selectedParties,
+        goToScreen,
       }}
     >
       {children}

@@ -9,4 +9,5 @@ export enum STEPS {
   SWIPER = 'swiper',
   EXPLAINER = 'explainer',
   PARTIES = 'parties',
+  RESULT = 'result',
 }

@@ -7,6 +7,7 @@ import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
 import { STEPS } from 'components/swiper/constants';
 import PartiesScreen from 'components/swiper/screen-parties';
+import ResultScreen from 'components/swiper/screen-result';
 import config from 'config';
 import { ElectionProvider, useElection } from 'contexts/election';
 import HyperlinkIcon from 'icons/hyperlink.svg';
@@ -225,6 +226,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
       )}
 
       {screen === STEPS.PARTIES && <PartiesScreen />}
+      {screen === STEPS.RESULT && <ResultScreen />}
 
       <Swiper
         open={screen === STEPS.SWIPER}
