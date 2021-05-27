@@ -5,7 +5,7 @@ const nextConfig = {
   images: {
     deviceSizes: [320, 420, 768, 1024, 1200],
     iconSizes: [],
-    domains: ['voteswiper-assets.ams3.cdn.digitaloceanspaces.com', 'a.storyblok.com', 'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com'],
+    domains: ['cdn.voteswiper.org', 'voteswiper-assets-prod.fra1.cdn.digitaloceanspaces.com', 'voteswiper-assets.ams3.cdn.digitaloceanspaces.com', 'a.storyblok.com', 'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com'],
     path: '/_next/image',
     loader: 'default',
   },
