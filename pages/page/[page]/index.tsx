@@ -1,8 +1,8 @@
-import Storyblok, { fetchTranslatedStory } from 'api/storyblok';
 import ContentPage, {
   ContentPageStory,
 } from 'components/layout/page-types/content-page';
 import FaqPage, { FaqPageStory } from 'components/layout/page-types/faq-page';
+import Storyblok, { fetchTranslatedStory } from 'connectors/storyblok';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React from 'react';
 

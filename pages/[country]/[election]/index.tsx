@@ -1,5 +1,3 @@
-import { ENDPOINTS, fetch } from 'api/fetch';
-import { fetchTranslatedStory } from 'api/storyblok';
 import Button from 'components/button';
 import Container from 'components/layout/container';
 import Page from 'components/page';
@@ -9,6 +7,8 @@ import { STEPS } from 'components/swiper/constants';
 import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
 import config from 'config';
+import { ENDPOINTS, fetch } from 'connectors/fetch';
+import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';
 import HyperlinkIcon from 'icons/hyperlink.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';

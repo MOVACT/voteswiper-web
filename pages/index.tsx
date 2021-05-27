@@ -1,7 +1,7 @@
-import { ENDPOINTS, fetch } from 'api/fetch';
 import cn from 'classnames';
 import CountryFlag from 'components/country-flag';
 import Container from 'components/layout/container';
+import { ENDPOINTS, fetch } from 'connectors/fetch';
 import i18n from 'i18n';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';

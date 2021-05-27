@@ -1,9 +1,9 @@
-import { ENDPOINTS, fetch } from 'api/fetch';
 import ElectionCard from 'components/election-card';
 import ElectionGrid from 'components/election-grid';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
+import { ENDPOINTS, fetch } from 'connectors/fetch';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
