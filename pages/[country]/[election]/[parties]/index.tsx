@@ -3,7 +3,7 @@ import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import PartyInfoCard from 'components/party-info-card';
 import config from 'config';
-import { ENDPOINTS, fetch } from 'connectors/fetch';
+import { ENDPOINTS, fetch } from 'connectors/api';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
@@ -156,7 +156,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const parties = await fetch<Party, PartiesData>(ENDPOINTS.PARTIES, locale, {
     data: {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      election: params!.election as string,
+      slug: params!.election as string,
     },
   });
 

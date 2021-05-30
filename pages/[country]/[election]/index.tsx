@@ -7,7 +7,7 @@ import { STEPS } from 'components/swiper/constants';
 import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
 import config from 'config';
-import { ENDPOINTS, fetch } from 'connectors/fetch';
+import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';
 import HyperlinkIcon from 'icons/hyperlink.svg';
@@ -321,7 +321,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     {
       data: {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        election: params!.election as string,
+        slug: params!.election as string,
       },
     }
   );
@@ -344,7 +344,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const parties = await fetch<Party, PartiesData>(ENDPOINTS.PARTIES, locale, {
     data: {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      election: params!.election as string,
+      slug: params!.election as string,
     },
   });
 

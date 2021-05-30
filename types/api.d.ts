@@ -93,9 +93,11 @@ export interface ElectionBySlugData {
 }
 
 export interface QuestionsData {
-  election: string;
+  slug?: string;
+  id?: number;
 }
 
 export interface PartiesData {
-  election: string;
+  slug?: string;
+  id?: number;
 }

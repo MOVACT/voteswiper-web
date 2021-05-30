@@ -217,7 +217,7 @@ export enum ENDPOINTS {
   ALTERNATE_COUNTRY_SLUGS = '/alternateCountrySlugs',
   COUNTRY = '/countryBySlug',
   ELECTIONS = '/elections',
-  ELECTION = '/electionBySlug',
+  ELECTION = '/election',
   QUESTIONS = '/questions',
   PARTIES = '/parties',
 }
@@ -231,7 +231,7 @@ const fetch = <T, D = void>(
   }
 ): AxiosPromise<T> => {
   return axios({
-    method: options ? options.method ?? 'get' : 'get',
+    method: options ? options.method ?? 'post' : 'post',
     url: `${process.env.NEXT_PUBLIC_API_URL}${url}`,
     data: options?.data,
     headers: {
