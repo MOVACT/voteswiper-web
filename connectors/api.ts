@@ -220,6 +220,9 @@ export enum ENDPOINTS {
   ELECTION = '/election',
   QUESTIONS = '/questions',
   PARTIES = '/parties',
+  COUNT_ANSWER = '/statistics/countAnswer',
+  SAVE_RESULT = '/statistics/saveResult',
+  COUNT_INITIATE = '/statistics/initiate',
 }
 
 const fetch = <T, D = void>(

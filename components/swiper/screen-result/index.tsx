@@ -10,11 +10,23 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 const ResultScreen: React.FC = () => {
-  const { country, election, questions, answers, parties } = useElection();
+  const {
+    country,
+    election,
+    questions,
+    answers,
+    parties,
+    saveResult,
+  } = useElection();
   const { t } = useTranslation();
   const { locale } = useRouter();
 
   const result = calculateResult(questions, answers, parties);
+
+  React.useEffect(() => {
+    saveResult(result.scores);
+  }, [result, saveResult]);
+
   /*
   const queryString =
     result.scores

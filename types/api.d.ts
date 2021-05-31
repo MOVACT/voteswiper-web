@@ -1,3 +1,5 @@
+import { ANSWERS } from 'components/swiper/constants';
+
 export interface CommonRow {
   id: number;
   created_at: string;
@@ -100,4 +102,27 @@ export interface QuestionsData {
 export interface PartiesData {
   slug?: string;
   id?: number;
+}
+
+export interface StatisticResult {
+  status: string;
+}
+
+export interface CountAnswerData {
+  election_id: number;
+  question_id: number;
+  answer: ANSWERS;
+  platform: string;
+}
+
+export interface InitiateData {
+  election_id: number;
+  platform: string;
+}
+
+export interface ResultData {
+  election_id: number;
+  result: string;
+  top_party_id: number;
+  platform: string;
 }

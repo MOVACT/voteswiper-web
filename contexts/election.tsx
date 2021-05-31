@@ -1,7 +1,18 @@
 import { ANSWERS, STEPS } from 'components/swiper/constants';
+import { ENDPOINTS, fetch } from 'connectors/api';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useLockBodyScroll } from 'react-use';
-import { Country, Election, Party, Question } from 'types/api';
+import {
+  CountAnswerData,
+  Country,
+  Election,
+  InitiateData,
+  Party,
+  Question,
+  ResultData,
+  StatisticResult,
+} from 'types/api';
 interface SwiperAnswer {
   answer: ANSWERS;
   doubleWeighted: boolean;
@@ -14,6 +25,13 @@ interface SetAnswerArgs {
   answer?: ANSWERS;
   doubleWeighted?: boolean;
 }
+
+export type PartyScore = {
+  id: number;
+  name: string;
+  score: number;
+  percentage: number;
+};
 interface Context {
   questions: Question[];
   country: Country;
@@ -44,6 +62,7 @@ interface Context {
   toggleParty: (partyId: number) => void;
 
   goToScreen: (swiperScreen: STEPS) => void;
+  saveResult: (result: PartyScore[]) => void;
 }
 
 interface Props {
@@ -54,13 +73,6 @@ interface Props {
 }
 
 const ElectionContext = React.createContext<Context>({} as Context);
-
-export type PartyScore = {
-  id: number;
-  name: string;
-  score: number;
-  percentage: number;
-};
 
 export const calculateResult = (
   questions: Question[],
@@ -139,11 +151,13 @@ export const ElectionProvider: React.FC<Props> = ({
   parties,
   election,
 }) => {
+  const wasResultStored = React.useRef(false);
   const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
   const [screen, setScreen] = React.useState<STEPS>(STEPS.START);
   const [selectedParties, setSelectedParties] = React.useState<number[]>(
     parties.map((party) => party.id)
   );
+  const { locale } = useRouter();
 
   useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
 
@@ -241,6 +255,7 @@ export const ElectionProvider: React.FC<Props> = ({
    */
   const setAnswer = React.useCallback(
     ({ id, answer, doubleWeighted }: SetAnswerArgs) => {
+      console.log('set answer called');
       const newAnswers = answers;
       newAnswers[id] = {
         // Take the provided answer or use the existing one if not set
@@ -251,9 +266,28 @@ export const ElectionProvider: React.FC<Props> = ({
             : doubleWeighted,
       };
 
+      try {
+        if (answer) {
+          fetch<StatisticResult, CountAnswerData>(
+            ENDPOINTS.COUNT_ANSWER,
+            locale,
+            {
+              data: {
+                answer: answer,
+                election_id: election.id,
+                question_id: id,
+                platform: 'web',
+              },
+            }
+          );
+        }
+      } catch (e) {
+        return null;
+      }
+
       setAnswers({ ...newAnswers });
     },
-    [answers]
+    [answers, election, locale]
   );
 
   const goToNextQuestion = React.useCallback(() => {
@@ -272,6 +306,7 @@ export const ElectionProvider: React.FC<Props> = ({
 
   const onSwipeRight = React.useCallback(
     (question: Question) => {
+      console.log('on swiped right');
       setAnswer({
         id: question.id,
         answer: ANSWERS.YES,
@@ -302,9 +337,16 @@ export const ElectionProvider: React.FC<Props> = ({
    * Start Swiper
    */
   const startSwiper = React.useCallback(() => {
+    fetch<StatisticResult, InitiateData>(ENDPOINTS.COUNT_INITIATE, locale, {
+      data: {
+        platform: 'web',
+        election_id: election.id,
+      },
+    });
+
     pushHistoryState(currentQuestion, STEPS.SWIPER);
     setScreen(STEPS.SWIPER);
-  }, [currentQuestion, pushHistoryState]);
+  }, [currentQuestion, pushHistoryState, locale, election]);
 
   const endSwiper = React.useCallback(() => {
     pushHistoryState(currentQuestion, STEPS.START);
@@ -353,6 +395,22 @@ export const ElectionProvider: React.FC<Props> = ({
     [currentQuestion, pushHistoryState]
   );
 
+  const saveResult = React.useCallback(
+    (result: PartyScore[]) => {
+      if (!wasResultStored.current) {
+        fetch<StatisticResult, ResultData>(ENDPOINTS.SAVE_RESULT, locale, {
+          data: {
+            election_id: election.id,
+            result: JSON.stringify(result),
+            top_party_id: result[0].id,
+            platform: 'web',
+          },
+        });
+      }
+    },
+    [locale, election]
+  );
+
   return (
     <ElectionContext.Provider
       value={{
@@ -378,6 +436,7 @@ export const ElectionProvider: React.FC<Props> = ({
         toggleParty,
         selectedParties,
         goToScreen,
+        saveResult,
       }}
     >
       {children}
