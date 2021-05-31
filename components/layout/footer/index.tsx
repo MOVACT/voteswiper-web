@@ -46,6 +46,13 @@ const openSourceLinks = [
     translatedText: true,
     icon: IconGithub,
   },
+  {
+    href: 'https://github.com/movact/voteswiper-api',
+    translatedLink: false,
+    text: 'apiOnGithub',
+    translatedText: true,
+    icon: IconGithub,
+  },
 ];
 
 const moreLinks = [
@@ -156,23 +163,7 @@ const Footer: React.FC = () => {
                 Open Source
               </div>
               <nav aria-labelledby="openSource">
-                <ul>
-                  {openSourceLinks.map((item) => renderLink(item))}
-
-                  <li className="py-1">
-                    <div className="flex items-start">
-                      <IconGithub className="w-3 h-auto mt-1 mr-2 opacity-50 lg:w-4 lg:mr-3 md:mt-2" />
-                      <div>
-                        <span className="opacity-50">{t('apiOnGithub')}</span>
-                        <div className="md:-mt-1">
-                          <span className="inline-block px-2 py-1 text-xs font-medium leading-none bg-white rounded-full text-brand-primary">
-                            {t('availableSoon')}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <ul>{openSourceLinks.map((item) => renderLink(item))}</ul>
               </nav>
             </div>
             <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 lg:pt-0">

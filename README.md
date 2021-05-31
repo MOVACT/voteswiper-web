@@ -7,8 +7,6 @@ VoteSwiper (in Germany better known as WahlSwiper) is a cross-platform voting ad
 
 We started this project in 2017 for the federal election and since then grow a user base of over one million. While we operated closed source for a long time, we believe the right thing to do is to disclose the source code of the whole project for transparency and to invite others to help grow this project.
 
-**Source code for the API will be available soon. This repository is for a new version of the website**
-
 ## Development
 
 The website is built with Next.js. You can start the project, like any other Next.js project, by running the following command in the terminal. Head over to the Next.js documentation [here](https://nextjs.org/docs/getting-started) to learn more.
