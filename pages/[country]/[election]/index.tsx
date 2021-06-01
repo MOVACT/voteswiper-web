@@ -4,6 +4,8 @@ import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
 import { STEPS } from 'components/swiper/constants';
+import EditAnswersScreen from 'components/swiper/screen-edit-answers';
+import ExplainerScreen from 'components/swiper/screen-explainer';
 import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
 import config from 'config';
@@ -227,6 +229,8 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
 
       {screen === STEPS.PARTIES && <PartiesScreen />}
       {screen === STEPS.RESULT && <ResultScreen />}
+      {screen === STEPS.EDIT_ANSWERS && <EditAnswersScreen />}
+      <ExplainerScreen />
 
       <Swiper
         open={screen === STEPS.SWIPER}

@@ -8,6 +8,7 @@ import IconChevronRight from 'icons/chevron-right.svg';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { STEPS } from '../constants';
 
 const ResultScreen: React.FC = () => {
   const {
@@ -17,6 +18,7 @@ const ResultScreen: React.FC = () => {
     answers,
     parties,
     saveResult,
+    goToScreen,
   } = useElection();
   const { t } = useTranslation();
   const { locale } = useRouter();
@@ -99,19 +101,37 @@ const ResultScreen: React.FC = () => {
             </div>
             <div className="w-1/3 pl-10">
               <div className="mb-1 text-lg font-medium text-white">
-                Ergebnis anpassen
+                {t('election:adjustResult')}
               </div>
-              <Button className="w-full mt-3">Parteienauswahl ändern</Button>
+              <Button
+                className="w-full mt-3"
+                onClick={() => {
+                  goToScreen(STEPS.PARTIES);
+                }}
+              >
+                {t('election:changeParties')}
+              </Button>
 
-              <Button className="w-full mt-3">Antworten anpassen</Button>
+              <Button
+                className="w-full mt-3"
+                onClick={() => {
+                  goToScreen(STEPS.EDIT_ANSWERS);
+                }}
+              >
+                {t('election:changeAnswers')}
+              </Button>
 
               <div className="mt-8 mb-1 text-lg font-medium text-white">
-                Ergebnis analyisieren
+                {t('election:analyzeResult')}
               </div>
 
-              <Button className="w-full mt-3">Vergleich nach Parteien</Button>
+              <Button className="w-full mt-3">
+                {t('election:compareParties')}
+              </Button>
 
-              <Button className="w-full mt-3">Vergleich nach Antworten</Button>
+              <Button className="w-full mt-3">
+                {t('election:compareQuestion')}
+              </Button>
             </div>
           </div>
         </Container>

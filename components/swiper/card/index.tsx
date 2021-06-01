@@ -1,4 +1,6 @@
 import cn from 'classnames';
+import Thesis from 'components/typography/thesis';
+import Topic from 'components/typography/topic';
 import { useElection } from 'contexts/election';
 import {
   motion,
@@ -8,6 +10,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import IconPlay from 'icons/play.svg';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React from 'react';
 import { Question } from 'types/api';
@@ -35,6 +38,7 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
     onSwipeRight,
     openExplainer,
   } = useElection();
+  const { t } = useTranslation();
   const [constrained, setConstrained] = React.useState<boolean>(true);
 
   const x = useMotionValue(0);
@@ -175,12 +179,8 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
             </button>
           </div>
           <div className="my-auto">
-            <div className="pb-2 text-xs font-medium tracking-widest uppercase text-brand-primary">
-              {question.topic}
-            </div>
-            <div className="font-medium leading-5 lg:leading-6 text-brand-dark-blue lg:text-lg">
-              {question.thesis}
-            </div>
+            <Topic>{question.topic}</Topic>
+            <Thesis>{question.thesis}</Thesis>
           </div>
         </div>
 
@@ -197,7 +197,7 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
           }}
           disabled={cardIndex !== 0}
         >
-          Frage doppelt gewichten
+          {t('election:doubleWeight')}
         </button>
       </motion.div>
 
@@ -205,14 +205,14 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
         style={{ opacity: noOverlayOpactiy }}
         className="absolute top-0 z-10 flex items-center justify-center w-full h-full text-4xl font-bold text-white bg-red-500 rounded-lg pointer-events-none bg-opacity-90"
       >
-        Nein
+        {t('election:no')}
       </motion.div>
 
       <motion.div
         style={{ opacity: yesOverlayOpacity }}
         className="absolute top-0 z-10 flex items-center justify-center w-full h-full text-4xl font-bold text-white bg-green-500 rounded-lg pointer-events-none bg-opacity-90"
       >
-        Ja
+        {t('election:yes')}
       </motion.div>
     </motion.div>
   );

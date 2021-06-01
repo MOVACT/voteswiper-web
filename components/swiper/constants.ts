@@ -10,4 +10,5 @@ export enum STEPS {
   EXPLAINER = 'explainer',
   PARTIES = 'parties',
   RESULT = 'result',
+  EDIT_ANSWERS = 'editAnswers',
 }

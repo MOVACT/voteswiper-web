@@ -7,7 +7,6 @@ import React from 'react';
 import Card, { Ref } from './card';
 import QuestionCounter from './question-counter';
 import QuestionToSpeech from './question-to-speech';
-import ExplainerScreen from './screen-explainer';
 
 interface Props {
   open: boolean;
@@ -103,8 +102,6 @@ const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <ExplainerScreen />
     </>
   );
 };

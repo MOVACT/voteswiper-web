@@ -18,5 +18,14 @@
   "no": "Nein",
   "yes": "Ja",
   "skip": "Überspringen",
-  "yourResult": "Dein Ergebnis"
+  "yourResult": "Dein Ergebnis",
+  "adjustResult": "Ergebnis anpassen",
+  "changeParties": "Parteienauswahl ändern",
+  "changeAnswers": "Antworten anpassen",
+  "analyzeResult": "Ergebnis analyisieren",
+  "compareParties": "Vergleich nach Partei",
+  "compareQuestion": "Vergleich nach Fragen",
+  "selectAllParties": "Alle Parteien auswählen",
+  "selectedAllParties": "Alle Parteien ausgewählt",
+  "doubleWeight": "Frage doppelt gewichten"
 }

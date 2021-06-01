@@ -17,10 +17,10 @@ interface SwiperAnswer {
   answer: ANSWERS;
   doubleWeighted: boolean;
 }
-interface SwiperAnswers {
+export interface SwiperAnswers {
   [key: number]: SwiperAnswer;
 }
-interface SetAnswerArgs {
+export interface SetAnswerArgs {
   id: number;
   answer?: ANSWERS;
   doubleWeighted?: boolean;
@@ -53,6 +53,7 @@ interface Context {
   endSwiper: () => void;
 
   setAnswer: (args: SetAnswerArgs) => void;
+  setAnswers: (answers: SwiperAnswers) => void;
   goToNextQuestion: () => void;
   goToPreviousQuestion: () => void;
   onSwipeLeft: (question: Question) => void;
@@ -60,6 +61,7 @@ interface Context {
 
   selectedParties: number[];
   toggleParty: (partyId: number) => void;
+  toggleAllParties: () => void;
 
   goToScreen: (swiperScreen: STEPS) => void;
   saveResult: (result: PartyScore[]) => void;
@@ -153,7 +155,7 @@ export const ElectionProvider: React.FC<Props> = ({
 }) => {
   const wasResultStored = React.useRef(false);
   const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
-  const [screen, setScreen] = React.useState<STEPS>(STEPS.START);
+  const [screen, setScreen] = React.useState<STEPS>(STEPS.PARTIES);
   const [selectedParties, setSelectedParties] = React.useState<number[]>(
     parties.map((party) => party.id)
   );
@@ -161,7 +163,7 @@ export const ElectionProvider: React.FC<Props> = ({
 
   useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
 
-  const [answers, setAnswers] = React.useState<SwiperAnswers>(
+  /*const [answers, setAnswers] = React.useState<SwiperAnswers>(
     (() => {
       // Create a default of all the answers
       const initialAnswers: SwiperAnswers = {};
@@ -174,9 +176,9 @@ export const ElectionProvider: React.FC<Props> = ({
 
       return initialAnswers;
     })()
-  );
+  );*/
 
-  /*const [answers, setAnswers] = React.useState<SwiperAnswers>({
+  const [answers, setAnswers] = React.useState<SwiperAnswers>({
     1318: { answer: 2, doubleWeighted: false },
     1319: { answer: 1, doubleWeighted: false },
     1320: { answer: 2, doubleWeighted: true },
@@ -207,7 +209,7 @@ export const ElectionProvider: React.FC<Props> = ({
     1345: { answer: 2, doubleWeighted: false },
     1346: { answer: 2, doubleWeighted: false },
     1347: { answer: 2, doubleWeighted: false },
-  });*/
+  });
 
   /**
    * Will push a new entry to the browsers history api together with the current state
@@ -255,7 +257,6 @@ export const ElectionProvider: React.FC<Props> = ({
    */
   const setAnswer = React.useCallback(
     ({ id, answer, doubleWeighted }: SetAnswerArgs) => {
-      console.log('set answer called');
       const newAnswers = answers;
       newAnswers[id] = {
         // Take the provided answer or use the existing one if not set
@@ -384,6 +385,14 @@ export const ElectionProvider: React.FC<Props> = ({
     [selectedParties]
   );
 
+  const toggleAllParties = React.useCallback(() => {
+    if (selectedParties.length === parties.length) {
+      setSelectedParties([]);
+    } else {
+      setSelectedParties(parties.map((p) => p.id));
+    }
+  }, [parties, selectedParties]);
+
   const goToScreen = React.useCallback(
     (swiperScreen: STEPS) => {
       pushHistoryState(currentQuestion, swiperScreen);
@@ -423,6 +432,7 @@ export const ElectionProvider: React.FC<Props> = ({
         stack,
         answers,
         setAnswer,
+        setAnswers,
         goToNextQuestion,
         goToPreviousQuestion,
         onSwipeLeft,
@@ -434,6 +444,7 @@ export const ElectionProvider: React.FC<Props> = ({
         startSwiper,
         endSwiper,
         toggleParty,
+        toggleAllParties,
         selectedParties,
         goToScreen,
         saveResult,
