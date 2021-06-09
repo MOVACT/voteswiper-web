@@ -1,0 +1,4 @@
+.answer {
+  max-width: 9rem;
+  @apply w-full flex flex-col justify-center items-center text-center;
+}

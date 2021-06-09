@@ -172,7 +172,7 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
 
             <button
               disabled={cardIndex !== 0}
-              onClick={() => openExplainer()}
+              onClick={() => openExplainer(question.id)}
               className="absolute w-12 h-12 flex items-center justify-center text-white pl-1 -mt-6 -ml-6 bg-gradient-to-b from-[#db67ae] to-[#8186d7] transform hover:scale-[0.97] hover:shadow-sm shadow-xl rounded-full pointer-events-auto focus-default left-1/2 top-1/2"
             >
               <IconPlay className="w-5 h-5" />

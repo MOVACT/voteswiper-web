@@ -32,7 +32,7 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
   ];
 
   return (
-    <header className="bg-black bg-opacity-20 pt-28 md:pt-48 pb-4 md:pb-8">
+    <header className="pb-4 bg-black bg-opacity-20 pt-28 md:pt-48 md:pb-8">
       {breadcrumb && <BreadcrumbJsonLd itemListElements={breadcrumbArray} />}
       <Container>
         {breadcrumb && (
@@ -45,7 +45,7 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
             >
               <li className="flex items-center">
                 <Link href="/" passHref>
-                  <a className="text-white flex items-center hover:opacity-75 rounded focus-default">
+                  <a className="flex items-center text-white rounded hover:opacity-75 focus-default">
                     <IconHome className="w-3 h-3 transform -translate-y-px" />
                     <span className="sr-only">Home</span>
                   </a>
@@ -53,12 +53,20 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
               </li>
               {breadcrumb.map((entry, index) => {
                 return (
-                  <li key={entry.item} className="flex items-center">
+                  <li
+                    key={entry.item}
+                    className={cn(
+                      'items-center',
+                      breadcrumb.length === index + 1
+                        ? 'flex'
+                        : 'hidden lg:flex'
+                    )}
+                  >
                     {breadcrumb.length === index + 1 ? (
                       <span className="opacity-75">{entry.name}</span>
                     ) : (
                       <Link href={entry.item} passHref>
-                        <a className="text-white flex items-center hover:opacity-75 rounded focus-default">
+                        <a className="flex items-center text-white rounded hover:opacity-75 focus-default">
                           {entry.name}
                         </a>
                       </Link>
@@ -69,7 +77,7 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
             </ol>
           </nav>
         )}
-        <h1 className="text-white font-medium text-3xl md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-medium text-white md:text-4xl lg:text-5xl">
           {title}
         </h1>
       </Container>

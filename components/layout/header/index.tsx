@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import Button from 'components/button';
 import IconClose from 'icons/close.svg';
 import IconToggle from 'icons/navigation.svg';
 import WahlSwiperLogo from 'icons/wahlswiper_logo.svg';
@@ -8,6 +7,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useWindowScroll } from 'react-use';
 import Container from '../container';
+import AppDownload from './app-download';
 import navItems from './data';
 import styles from './header.module.css';
 import LanguageSwitcher from './language-switcher';
@@ -84,10 +84,7 @@ const Header: React.FC = () => {
 
             <LanguageSwitcher />
           </div>
-          <Button className="ml-auto lg:ml-2">
-            <span className="lg:hidden">{t('app')}</span>
-            <span className="hidden lg:inline">{t('download')}</span>
-          </Button>
+          <AppDownload />
         </Container>
       </header>
       <MobileNav open={mobileNavOpened} setNav={setMobileNavVisibility} />

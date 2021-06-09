@@ -4,6 +4,7 @@ import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
 import { STEPS } from 'components/swiper/constants';
+import ComparePartyScreen from 'components/swiper/screen-compare-party';
 import EditAnswersScreen from 'components/swiper/screen-edit-answers';
 import ExplainerScreen from 'components/swiper/screen-explainer';
 import PartiesScreen from 'components/swiper/screen-parties';
@@ -230,6 +231,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
       {screen === STEPS.PARTIES && <PartiesScreen />}
       {screen === STEPS.RESULT && <ResultScreen />}
       {screen === STEPS.EDIT_ANSWERS && <EditAnswersScreen />}
+      {screen === STEPS.COMPARE_PARTY && <ComparePartyScreen />}
       <ExplainerScreen />
 
       <Swiper

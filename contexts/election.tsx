@@ -13,7 +13,7 @@ import {
   ResultData,
   StatisticResult,
 } from 'types/api';
-interface SwiperAnswer {
+export interface SwiperAnswer {
   answer: ANSWERS;
   doubleWeighted: boolean;
 }
@@ -47,7 +47,7 @@ interface Context {
 
   screen: STEPS;
   setScreen: (screen: STEPS) => void;
-  openExplainer: () => void;
+  openExplainer: (id: number) => void;
   closeExplainer: () => void;
   startSwiper: () => void;
   endSwiper: () => void;
@@ -65,6 +65,11 @@ interface Context {
 
   goToScreen: (swiperScreen: STEPS) => void;
   saveResult: (result: PartyScore[]) => void;
+
+  explainer: number | null;
+
+  compareParty: (partyId: number) => void;
+  comparePartyId: number | null;
 }
 
 interface Props {
@@ -159,6 +164,8 @@ export const ElectionProvider: React.FC<Props> = ({
   const [selectedParties, setSelectedParties] = React.useState<number[]>(
     parties.map((party) => party.id)
   );
+  const [comparePartyId, setCompareParty] = React.useState<number | null>(null);
+  const [explainer, setExplainer] = React.useState<number | null>(null);
   const { locale } = useRouter();
 
   useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
@@ -181,7 +188,7 @@ export const ElectionProvider: React.FC<Props> = ({
   const [answers, setAnswers] = React.useState<SwiperAnswers>({
     1318: { answer: 2, doubleWeighted: false },
     1319: { answer: 1, doubleWeighted: false },
-    1320: { answer: 2, doubleWeighted: true },
+    1320: { answer: 0, doubleWeighted: true },
     1321: { answer: 1, doubleWeighted: false },
     1322: { answer: 1, doubleWeighted: false },
     1323: { answer: 2, doubleWeighted: false },
@@ -217,14 +224,21 @@ export const ElectionProvider: React.FC<Props> = ({
    * the browsers history api
    */
   const pushHistoryState = React.useCallback(
-    (questionNumber: number, screen: STEPS = STEPS.SWIPER) => {
-      window.history.pushState(
-        {
-          currentQuestion: questionNumber,
-          screen,
-        },
-        document.title
-      );
+    (
+      questionNumber: number,
+      screen: STEPS = STEPS.SWIPER,
+      additionalData?: { [key: string]: number | string }
+    ) => {
+      let data = {
+        currentQuestion: questionNumber,
+        screen,
+      };
+
+      if (additionalData) {
+        data = { ...data, ...additionalData };
+      }
+
+      window.history.pushState(data, document.title);
     },
     []
   );
@@ -236,6 +250,10 @@ export const ElectionProvider: React.FC<Props> = ({
     if (typeof ev.state.currentQuestion !== 'undefined') {
       setCurrentQuestion(ev.state.currentQuestion);
       setScreen(ev.state.screen);
+
+      if (typeof ev.state.comparePartyId !== 'undefined') {
+        setCompareParty(ev.state.comparePartyId);
+      }
     }
   }, []);
 
@@ -248,7 +266,6 @@ export const ElectionProvider: React.FC<Props> = ({
   });
 
   React.useEffect(() => {
-    console.log('initial');
     pushHistoryState(0);
   }, [pushHistoryState]);
 
@@ -357,15 +374,20 @@ export const ElectionProvider: React.FC<Props> = ({
   /**
    * Explainer Overlay
    */
-  const openExplainer = React.useCallback(() => {
-    pushHistoryState(currentQuestion, STEPS.EXPLAINER);
-    setScreen(STEPS.EXPLAINER);
-  }, [currentQuestion, pushHistoryState]);
+  const openExplainer = React.useCallback(
+    (explainerQuestionId: number) => {
+      pushHistoryState(currentQuestion, STEPS.EXPLAINER, {
+        explainerQuestionId,
+      });
+      setExplainer(explainerQuestionId);
+      setScreen(STEPS.EXPLAINER);
+    },
+    [currentQuestion, pushHistoryState]
+  );
 
   const closeExplainer = React.useCallback(() => {
-    pushHistoryState(currentQuestion, STEPS.SWIPER);
-    setScreen(STEPS.SWIPER);
-  }, [currentQuestion, pushHistoryState]);
+    setExplainer(null);
+  }, []);
 
   /**
    * Parties
@@ -420,6 +442,20 @@ export const ElectionProvider: React.FC<Props> = ({
     [locale, election]
   );
 
+  /**
+   * Compare Party
+   */
+  const compareParty = React.useCallback(
+    (partyId: number) => {
+      pushHistoryState(currentQuestion, STEPS.COMPARE_PARTY, {
+        comparePartyId: partyId,
+      });
+      setCompareParty(partyId);
+      setScreen(STEPS.COMPARE_PARTY);
+    },
+    [currentQuestion, pushHistoryState]
+  );
+
   return (
     <ElectionContext.Provider
       value={{
@@ -439,6 +475,7 @@ export const ElectionProvider: React.FC<Props> = ({
         onSwipeRight,
         screen,
         setScreen,
+        explainer,
         openExplainer,
         closeExplainer,
         startSwiper,
@@ -448,6 +485,8 @@ export const ElectionProvider: React.FC<Props> = ({
         selectedParties,
         goToScreen,
         saveResult,
+        compareParty,
+        comparePartyId,
       }}
     >
       {children}

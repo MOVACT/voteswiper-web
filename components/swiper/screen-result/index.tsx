@@ -19,6 +19,7 @@ const ResultScreen: React.FC = () => {
     parties,
     saveResult,
     goToScreen,
+    compareParty,
   } = useElection();
   const { t } = useTranslation();
   const { locale } = useRouter();
@@ -29,7 +30,6 @@ const ResultScreen: React.FC = () => {
     saveResult(result.scores);
   }, [result, saveResult]);
 
-  /*
   const queryString =
     result.scores
       .map((party) => {
@@ -40,7 +40,7 @@ const ResultScreen: React.FC = () => {
       .join('&') +
     '&election=' +
     encodeURIComponent(election.name);
-*/
+
   return (
     <>
       <PageHeader
@@ -64,7 +64,12 @@ const ResultScreen: React.FC = () => {
                 {result.scores.map((score, index) => {
                   return (
                     <div key={score.id}>
-                      <button className="block w-full focus-default h-12 bg-[#8186D7] rounded shadow-lg overflow-hidden relative hover:bg-[#7A7FD2]">
+                      <button
+                        className="block w-full focus-default h-12 bg-[#8186D7] rounded shadow-lg overflow-hidden relative hover:bg-[#7A7FD2]"
+                        onClick={() => {
+                          compareParty(score.id);
+                        }}
+                      >
                         <motion.div
                           className="h-12 rounded bg-brand-pink shadow-right"
                           initial={{
@@ -100,6 +105,17 @@ const ResultScreen: React.FC = () => {
               </div>
             </div>
             <div className="w-1/3 pl-10">
+              <Button
+                href={`https://share.voteswiper.org/api/share-image?${queryString}`}
+                target="_blank"
+                className="w-full text-center"
+              >
+                Ergebnis als Bild teilen
+              </Button>
+              <div className="pt-2 mb-6 text-sm text-white">
+                Das Generieren des Bildes kann einen Moment dauern.
+              </div>
+
               <div className="mb-1 text-lg font-medium text-white">
                 {t('election:adjustResult')}
               </div>

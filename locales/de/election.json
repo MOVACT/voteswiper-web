@@ -27,5 +27,6 @@
   "compareQuestion": "Vergleich nach Fragen",
   "selectAllParties": "Alle Parteien auswählen",
   "selectedAllParties": "Alle Parteien ausgewählt",
-  "doubleWeight": "Frage doppelt gewichten"
+  "doubleWeight": "Frage doppelt gewichten",
+  "compareParty": "Dein Vergleich mit „{{party}}“"
 }

@@ -1,8 +1,18 @@
+import cn from 'classnames';
 import React from 'react';
 
-const Thesis: React.FC = ({ children }) => {
+interface Props {
+  customColorClassName?: string;
+}
+
+const Thesis: React.FC<Props> = ({ children, customColorClassName }) => {
   return (
-    <div className="font-medium leading-5 lg:leading-6 text-brand-dark-blue lg:text-lg">
+    <div
+      className={cn(
+        'font-medium leading-5 lg:leading-6 lg:text-lg',
+        customColorClassName ?? 'text-brand-dark-blue'
+      )}
+    >
       {children}
     </div>
   );

@@ -11,4 +11,6 @@ export enum STEPS {
   PARTIES = 'parties',
   RESULT = 'result',
   EDIT_ANSWERS = 'editAnswers',
+  COMPARE_PARTY = 'compareParty',
+  COMPARE_QUESTION = 'compareQuestion',
 }

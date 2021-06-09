@@ -52,17 +52,17 @@ const EditAnswersScreen: React.FC = () => {
       <Page>
         <Container>
           <div className="flex w-full">
-            <div className="w-2/3">
+            <div className="lg:4/5 xl:w-2/3">
               {questions.map((question) => {
                 const answer = answers[question.id];
 
                 return (
                   <div
                     key={question.id}
-                    className="pb-2 mb-6 rounded-lg lg:max-w-4xl lg:p-6 lg:bg-gradient-to-b from-white to-brand-light-blue"
+                    className="pb-2 mb-6 rounded-lg lg:max-w-4xl md:p-6 md:bg-gradient-to-b from-white to-brand-light-blue"
                   >
-                    <div className="flex">
-                      <div className="w-1/4">
+                    <div className="md:flex">
+                      <div className="md:w-1/4">
                         <div className="relative h-[148px] rounded overflow-hidden shadow-lg pointer-events-none">
                           <Image
                             layout="fill"
@@ -74,7 +74,7 @@ const EditAnswersScreen: React.FC = () => {
                           />
 
                           <button
-                            onClick={() => openExplainer()}
+                            onClick={() => openExplainer(question.id)}
                             className="absolute w-12 h-12 flex items-center justify-center text-white pl-1 -mt-6 -ml-6 bg-gradient-to-b from-[#db67ae] to-[#8186d7] transform hover:scale-[0.97] hover:shadow-sm shadow-xl rounded-full pointer-events-auto focus-default left-1/2 top-1/2"
                           >
                             <IconPlay className="w-5 h-5" />
@@ -82,13 +82,17 @@ const EditAnswersScreen: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="w-3/4 pl-6">
-                        <Topic>{question.topic}</Topic>
-                        <Thesis>{question.thesis}</Thesis>
+                      <div className="pt-6 md:w-3/4 md:pl-6 md:pt-0">
+                        <Topic customColorClassName="text-white md:text-brand-primary">
+                          {question.topic}
+                        </Topic>
+                        <Thesis customColorClassName="text-white md:text-brand-primary">
+                          {question.thesis}
+                        </Thesis>
 
                         <div className="mt-4">
                           <button
-                            className="flex items-center font-medium rounded text-dark-blue focus-default"
+                            className="flex items-center text-sm font-medium text-white rounded md:text-base md:text-brand-dark-blue focus-default"
                             onClick={() => {
                               setAnswer({
                                 id: question.id,
@@ -96,7 +100,7 @@ const EditAnswersScreen: React.FC = () => {
                               });
                             }}
                           >
-                            <div className="flex items-center justify-center w-5 h-5 mr-2 border rounded-sm border-brand-primary lg:mr-4 lg:w-6 lg:h-6">
+                            <div className="flex items-center justify-center w-5 h-5 mr-2 border border-white rounded-sm md:border-brand-primary lg:mr-4 lg:w-6 lg:h-6">
                               {answer.doubleWeighted && (
                                 <IconCheckmark className="w-5 h-5 lg:w-6 lg:h-6" />
                               )}
@@ -113,10 +117,10 @@ const EditAnswersScreen: React.FC = () => {
                                 });
                               }}
                               className={cn(
-                                'w-1/3 h-12 font-medium border rounded-l border-brand-primary focus-default',
+                                'w-1/3 h-12 text-sm md:text-base font-medium border rounded-l border-white text-white md:border-brand-primary focus-default',
                                 answer.answer === ANSWERS.NO
-                                  ? 'text-white bg-brand-primary'
-                                  : 'hover:bg-opacity-10 hover:bg-brand-primary'
+                                  ? 'text-brand-primary md:text-white bg-white md:bg-brand-primary'
+                                  : 'hover:bg-opacity-10 hover:bg-brand-primary md:text-brand-primary'
                               )}
                             >
                               Nein
@@ -129,10 +133,10 @@ const EditAnswersScreen: React.FC = () => {
                                 });
                               }}
                               className={cn(
-                                'w-1/3 h-12 font-medium border border-l-0 border-r-0 border-brand-primary focus-default',
+                                'w-1/3 h-12 text-sm md:text-base font-medium border border-l-0 px-3 border-r-0 text-white border-white md:border-brand-primary focus-default',
                                 answer.answer === ANSWERS.NONE
-                                  ? 'text-white bg-brand-primary'
-                                  : 'hover:bg-opacity-10 hover:bg-brand-primary'
+                                  ? 'text-brand-primary md:text-white bg-white md:bg-brand-primary'
+                                  : 'hover:bg-opacity-10 hover:bg-brand-primary md:text-brand-primary'
                               )}
                             >
                               Keine Antwort
@@ -145,10 +149,10 @@ const EditAnswersScreen: React.FC = () => {
                                 });
                               }}
                               className={cn(
-                                'w-1/3 h-12 font-medium border rounded-r border-brand-primary focus-default',
+                                'w-1/3 h-12 text-sm md:text-base font-medium border rounded-r text-white border-white md:border-brand-primary focus-default',
                                 answer.answer === ANSWERS.YES
-                                  ? 'text-white bg-brand-primary'
-                                  : 'hover:bg-opacity-10 hover:bg-brand-primary'
+                                  ? 'text-brand-primary md:text-white bg-white md:bg-brand-primary'
+                                  : 'hover:bg-opacity-10 hover:bg-brand-primary md:text-brand-primary'
                               )}
                             >
                               Ja
