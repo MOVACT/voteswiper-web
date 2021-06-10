@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import CircleAnswer from 'components/circle-answer';
 import Container from 'components/layout/container';
 import Page from 'components/page';
@@ -5,7 +6,10 @@ import PageHeader from 'components/page-header';
 import Thesis from 'components/typography/thesis';
 import Topic from 'components/typography/topic';
 import { useElection } from 'contexts/election';
+import { AnimatePresence, motion } from 'framer-motion';
 import IconChevronLeft from 'icons/chevron-left.svg';
+import IconChevronRight from 'icons/chevron-right.svg';
+import IconInfo from 'icons/info.svg';
 import IconPlay from 'icons/play.svg';
 import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
@@ -27,6 +31,7 @@ const ComparePartyScreen: React.FC = () => {
   } = useElection();
   const { t } = useTranslation();
   const { back } = useRouter();
+  const [reason, showReason] = React.useState<null | number>(null);
 
   const compareParty = parties.find((p) => p.id === comparePartyId);
 
@@ -69,11 +74,11 @@ const ComparePartyScreen: React.FC = () => {
 
               return (
                 <div
-                  className="flex items-start pb-2 rounded-lg md:p-6 md:bg-gradient-to-b from-white to-brand-light-blue"
+                  className="flex flex-wrap items-start p-4 rounded-lg md:p-6 bg-gradient-to-b from-white to-brand-light-blue"
                   key={question.id}
                 >
-                  <div className="md:w-1/5">
-                    <div className="relative h-[120px] rounded overflow-hidden shadow-lg pointer-events-none">
+                  <div className="w-1/2 md:w-1/5">
+                    <div className="relative h-[60px] lg:h-[120px] rounded overflow-hidden shadow-lg pointer-events-none">
                       <Image
                         layout="fill"
                         objectFit="cover"
@@ -85,24 +90,70 @@ const ComparePartyScreen: React.FC = () => {
 
                       <button
                         onClick={() => openExplainer(question.id)}
-                        className="absolute w-12 h-12 flex items-center justify-center text-white pl-1 -mt-6 -ml-6 bg-gradient-to-b from-[#db67ae] to-[#8186d7] transform hover:scale-[0.97] hover:shadow-sm shadow-xl rounded-full pointer-events-auto focus-default left-1/2 top-1/2"
+                        className="absolute w-8 lg:w-12 h-8 lg:h-12 flex items-center justify-center text-white pl-1 -mt-4 -ml-4 lg:-mt-6 lg:-ml-6 bg-gradient-to-b from-[#db67ae] to-[#8186d7] transform hover:scale-[0.97] hover:shadow-sm shadow-xl rounded-full pointer-events-auto focus-default left-1/2 top-1/2"
                       >
-                        <IconPlay className="w-5 h-5" />
+                        <IconPlay className="h-3 lg:h-5" />
                       </button>
                     </div>
                   </div>
 
-                  <div className="flex-1 pt-6 md:px-6 md:pt-0">
+                  <div className="w-full pt-4 pb-4 md:w-auto md:flex-1 md:px-6 md:pt-0 md:pb-0">
                     <Topic>{question.topic}</Topic>
                     <Thesis>{question.thesis}</Thesis>
+
+                    <div className="mt-1 md:mt-2 lg:mt-4">
+                      {partyAnswer?.reason ? (
+                        <>
+                          <button
+                            onClick={() => {
+                              showReason(
+                                reason === question.id ? null : question.id
+                              );
+                            }}
+                            className={cn(
+                              'flex items-center text-sm lg:text-base focus-default font-medium underline text-brand-dark-blue hover:text-brand-primary',
+                              styles.reasonLink
+                            )}
+                          >
+                            Begründung der Partei lesen
+                            <IconChevronRight className="h-3 ml-px" />
+                          </button>
+
+                          <AnimatePresence>
+                            {reason === question.id && (
+                              <motion.div
+                                initial={{ height: 0 }}
+                                animate={{ height: 'auto' }}
+                                exit={{ height: 0 }}
+                                transition={{ ease: 'easeOut', duration: 0.5 }}
+                                className="overflow-hidden text-sm lg:text-base"
+                              >
+                                <div className="pt-2 prose-sm lg:prose">
+                                  {partyAnswer?.reason}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        <div className="flex items-center font-medium text-brand-primary">
+                          <IconInfo className="h-5 mr-2 text-brand-dark-blue" />
+                          Die Partei hat ihre Antwort nicht begründet.
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div className={styles.answer}>
-                    <Topic>Deine Antwort</Topic>
+                    <div className="pt-1 pl-2 md:pt-0 md:pl-0">
+                      <Topic>Deine Antwort</Topic>
+                    </div>
 
                     <CircleAnswer answer={userAnswer} />
                   </div>
                   <div className={styles.answer}>
-                    <Topic>{compareParty.name}</Topic>
+                    <div className="pt-1 pl-2 md:pt-0 md:pl-0">
+                      <Topic>Partei</Topic>
+                    </div>
 
                     <CircleAnswer answer={partyAnswer} />
                   </div>

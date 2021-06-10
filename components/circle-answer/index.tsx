@@ -13,22 +13,22 @@ interface Props {
 const CircleAnswer: React.FC<Props> = ({ answer }) => {
   if (!answer || answer.answer === ANSWERS.NONE) {
     return (
-      <div className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-b from-gray-300 to-gray-400">
-        <IconNeutral className="w-6 h-6" />
+      <div className="flex items-center justify-center w-5 h-5 text-white rounded-full md:w-10 md:h-10 bg-gradient-to-b from-gray-300 to-gray-400">
+        <IconNeutral className="w-4 h-4 md:w-6 md:h-6" />
       </div>
     );
   }
 
   if (answer.answer === ANSWERS.YES) {
     return (
-      <div className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-b from-green-vibrant-500 to-green-vibrant-600">
-        <IconCheckmark className="w-6 h-6" />
+      <div className="flex items-center justify-center w-5 h-5 text-white rounded-full md:w-10 md:h-10 bg-gradient-to-b from-green-vibrant-500 to-green-vibrant-600">
+        <IconCheckmark className="w-4 h-4 md:w-6 md:h-6" />
       </div>
     );
   }
   return (
-    <div className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-b from-red-500 to-red-700">
-      <IconCross className="w-6 h-6" />
+    <div className="flex items-center justify-center w-5 h-5 text-white rounded-full md:w-10 md:h-10 bg-gradient-to-b from-red-500 to-red-700">
+      <IconCross className="w-4 h-4 md:w-6 md:h-6" />
     </div>
   );
 };

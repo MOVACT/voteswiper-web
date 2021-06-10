@@ -1,4 +1,14 @@
 .answer {
-  max-width: 9rem;
-  @apply w-full flex flex-col justify-center items-center text-center;
+  @apply w-full flex flex-row-reverse text-left justify-end items-center;
+}
+
+@screen md {
+  .answer {
+    max-width: 9rem;
+    @apply flex-col justify-center text-center;
+  }
+}
+
+.reasonLink {
+  text-underline-offset: 3px;
 }
