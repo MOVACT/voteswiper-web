@@ -13,6 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^1.0.0",
     "@socialgouv/matomo-next": "^1.2.2",
+    "@tabler/icons": "^1.41.2",
     "@tailwindcss/typography": "^0.4.0",
     "@types/react-dom": "^17.0.3",
     "autoprefixer": "^10.2.5",

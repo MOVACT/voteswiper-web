@@ -4,8 +4,10 @@ import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import Swiper from 'components/swiper';
 import { STEPS } from 'components/swiper/constants';
+import ResultContainer from 'components/swiper/result-container';
 import ComparePartyScreen from 'components/swiper/screen-compare-party';
 import EditAnswersScreen from 'components/swiper/screen-edit-answers';
+import EditPartiesScreen from 'components/swiper/screen-edit-parties';
 import ExplainerScreen from 'components/swiper/screen-explainer';
 import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
@@ -229,9 +231,21 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
       )}
 
       {screen === STEPS.PARTIES && <PartiesScreen />}
-      {screen === STEPS.RESULT && <ResultScreen />}
-      {screen === STEPS.EDIT_ANSWERS && <EditAnswersScreen />}
-      {screen === STEPS.COMPARE_PARTY && <ComparePartyScreen />}
+
+      {[
+        STEPS.RESULT,
+        STEPS.EDIT_ANSWERS,
+        STEPS.EDIT_PARTIES,
+        STEPS.COMPARE_PARTY,
+      ].indexOf(screen) > -1 && (
+        <ResultContainer>
+          {screen === STEPS.RESULT && <ResultScreen />}
+          {screen === STEPS.EDIT_ANSWERS && <EditAnswersScreen />}
+          {screen === STEPS.EDIT_PARTIES && <EditPartiesScreen />}
+          {screen === STEPS.COMPARE_PARTY && <ComparePartyScreen />}
+        </ResultContainer>
+      )}
+
       <ExplainerScreen />
 
       <Swiper

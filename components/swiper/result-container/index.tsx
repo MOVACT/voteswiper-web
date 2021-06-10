@@ -2,14 +2,24 @@ import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import { useElection } from 'contexts/election';
-import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
-import PartiesForm from './form';
+import { STEPS } from '../constants';
+import ResultMenu from '../result-menu';
 
-const PartiesScreen: React.FC = () => {
-  const { country, election } = useElection();
+const ResultContainer: React.FC = ({ children }) => {
+  const { country, election, screen } = useElection();
   const { t } = useTranslation();
+
+  const title = React.useMemo(() => {
+    if (screen === STEPS.EDIT_ANSWERS) {
+      return t('election:changeAnswers');
+    } else if (screen === STEPS.COMPARE_PARTY) {
+      return t('election:compareParty');
+    }
+
+    return t('election:yourResult');
+  }, [screen, t]);
 
   return (
     <>
@@ -24,23 +34,16 @@ const PartiesScreen: React.FC = () => {
             name: election.name,
           },
         ]}
-        title={t('election:selectParties')}
+        title={title}
       />
       <Page>
         <Container>
-          <div className="mb-4 prose lg:mb-10 prose-white lg:prose-xl">
-            <p>
-              <Trans
-                i18nKey="election:selectPartiesIntro"
-                components={[<strong key="" />, <em key="" />]}
-              />
-            </p>
-          </div>
-          <PartiesForm />
+          <ResultMenu />
+          {children}
         </Container>
       </Page>
     </>
   );
 };
 
-export default PartiesScreen;
+export default ResultContainer;

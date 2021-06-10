@@ -1,0 +1,25 @@
+.menu {
+  display: hidden;
+  scroll-snap-type: x mandatory;
+  grid-auto-columns: calc(50% - 20px);
+  scroll-padding: 0 1.5rem;
+}
+
+.menu > button {
+  scroll-snap-align: start;
+}
+
+@screen md {
+  .menu {
+    grid-auto-columns: calc(25% - 20px);
+  }
+}
+
+@screen lg {
+  .menu {
+    grid-auto-columns: auto;
+    @apply grid-cols-5;
+    scroll-snap-type: initial;
+    scroll-padding: 0;
+  }
+}

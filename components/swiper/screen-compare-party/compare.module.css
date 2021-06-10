@@ -3,9 +3,8 @@
 }
 
 @screen md {
-  .answer {
+  .answers {
     max-width: 9rem;
-    @apply flex-col justify-center text-center;
   }
 }
 

@@ -29,5 +29,6 @@
   "compareQuestions": "Compare by question",
   "selectAllParties": "Select all parties",
   "selectedAllParties": "Selected all parties",
-  "doubleWeight": "Weigh question twice"
+  "doubleWeight": "Weigh question twice",
+  "compareParty": "Compare with party"
 }
