@@ -40,7 +40,7 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
             <ol
               className={cn(
                 styles.breadcrumb,
-                'flex text-sm text-white leading-5'
+                'flex flex-wrap text-sm text-white leading-5'
               )}
             >
               <li className="flex items-center">
@@ -53,15 +53,7 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
               </li>
               {breadcrumb.map((entry, index) => {
                 return (
-                  <li
-                    key={entry.item}
-                    className={cn(
-                      'items-center',
-                      breadcrumb.length === index + 1
-                        ? 'flex'
-                        : 'hidden lg:flex'
-                    )}
-                  >
+                  <li key={entry.item} className="flex items-center">
                     {breadcrumb.length === index + 1 ? (
                       <span className="opacity-75">{entry.name}</span>
                     ) : (

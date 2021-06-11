@@ -15,6 +15,7 @@ import config from 'config';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';
+import { isPast } from 'date-fns';
 import HyperlinkIcon from 'icons/hyperlink.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -74,6 +75,23 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
   const { t } = useTranslation();
   const { locale } = useRouter();
 
+  const translationString = (): string => {
+    const isElectionPast = isPast(new Date(election.voting_day));
+    if (election.parties_not_participating === 0) {
+      if (isElectionPast) {
+        return 'election:introTextAllPast';
+      } else {
+        return 'election:introTextAllFuture';
+      }
+    }
+
+    if (isElectionPast) {
+      return 'election:introTextPast';
+    }
+
+    return 'election:introTextFuture';
+  };
+
   return (
     <>
       <NextSeo
@@ -100,7 +118,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
               <div className="mb-24 prose prose-white lg:prose-xl">
                 <p>
                   <Trans
-                    i18nKey="election:introText"
+                    i18nKey={translationString()}
                     values={{
                       name: name,
                       date: formatLocal(

@@ -83,14 +83,17 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
 
         if (
           // Yes
-          info.offset.x > SWIPE_THRESHOLD &&
-          info.offset.y > SWIPE_THRESHOLD * -1
+          info.offset.x >
+          SWIPE_THRESHOLD /*&&
+          info.offset.y > SWIPE_THRESHOLD * -1*/
         ) {
           onSwipeRight(question);
         } else if (
           // No
-          info.offset.x < SWIPE_THRESHOLD * -1 &&
-          info.offset.y > SWIPE_THRESHOLD * -1
+          info.offset.x <
+          SWIPE_THRESHOLD *
+            -1 /*&&
+          info.offset.y > SWIPE_THRESHOLD * -1*/
         ) {
           onSwipeLeft(question);
         }
