@@ -1,0 +1,9 @@
+{
+  "name": "VoteSwiper",
+  "titleTemplate": "%s - VoteSwiper",
+  "twitterHandle": "@voteswiper",
+  "metaDefaultDescription": "Nous t'aidons à avoir un aperçu des principaux thèmes de campagne et des positions des candidats pour les élections en cours.",
+
+  "votingDay": "Le jour des élections est le {{date}}",
+  "availableFrom": "La disponibilité est prévue à partir du {{date}}"
+}
