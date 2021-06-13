@@ -102,7 +102,7 @@ const EditAnswersScreen: React.FC = () => {
                             : 'hover:bg-opacity-10 hover:bg-brand-primary md:text-brand-primary'
                         )}
                       >
-                        Nein
+                        {t('election:no')}
                       </button>
                       <button
                         onClick={() => {
@@ -118,7 +118,7 @@ const EditAnswersScreen: React.FC = () => {
                             : 'hover:bg-opacity-10 hover:bg-brand-primary md:text-brand-primary'
                         )}
                       >
-                        Keine Antwort
+                        {t('election:noAnswer')}
                       </button>
                       <button
                         onClick={() => {
@@ -134,7 +134,7 @@ const EditAnswersScreen: React.FC = () => {
                             : 'hover:bg-opacity-10 hover:bg-brand-primary md:text-brand-primary'
                         )}
                       >
-                        Ja
+                        {t('election:yes')}
                       </button>
                     </div>
                   </div>

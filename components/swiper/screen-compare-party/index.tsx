@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import IconChevronRight from 'icons/chevron-right.svg';
 import IconInfo from 'icons/info.svg';
 import IconPlay from 'icons/play.svg';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React from 'react';
 import styles from './compare.module.css';
@@ -21,13 +22,14 @@ const ComparePartyScreen: React.FC = () => {
     compareParty,
   } = useElection();
   const [reason, showReason] = React.useState<null | number>(null);
+  const { t } = useTranslation();
 
   const comparedParty = parties.find((p) => p.id === comparePartyId);
 
   return (
     <>
       <div className="flex flex-wrap items-center justify-start text-lg font-medium text-white xl:text-xl">
-        <div className="mr-3">Antworten vergleichen mit</div>
+        <div className="mr-3">{t('election:compareAnswersWith')}</div>
         <select
           value={comparePartyId ?? ''}
           className="w-full font-medium bg-transparent border-b lg:w-auto focus-default"
@@ -37,7 +39,7 @@ const ComparePartyScreen: React.FC = () => {
             );
           }}
         >
-          <option value="">Partei wählen</option>
+          <option value="">{t('election:chooseParty')}</option>
           {parties.map((party) => {
             return (
               <option key={party.id} value={party.id}>
@@ -98,7 +100,7 @@ const ComparePartyScreen: React.FC = () => {
                               }}
                               className="flex items-center text-sm font-medium underline lg:text-base focus-default text-brand-dark-blue hover:text-brand-primary text-underline-offset-2 "
                             >
-                              Begründung der Partei lesen
+                              {t('election:readReasoning')}
                               <IconChevronRight className="h-3 ml-px" />
                             </button>
 
@@ -124,7 +126,7 @@ const ComparePartyScreen: React.FC = () => {
                         ) : (
                           <div className="flex items-center font-medium text-brand-primary">
                             <IconInfo className="h-5 mr-2 text-brand-dark-blue" />
-                            Die Partei hat ihre Antwort nicht begründet.
+                            {t('election:noReasoningAvailable')}
                           </div>
                         )}
                       </div>
@@ -133,14 +135,14 @@ const ComparePartyScreen: React.FC = () => {
                     <div className={styles.answers}>
                       <div className={styles.answer}>
                         <div className="pt-1 pl-2">
-                          <Topic>Deine Antwort</Topic>
+                          <Topic>{t('election:yourAnswer')}</Topic>
                         </div>
 
                         <CircleAnswer answer={userAnswer} />
                       </div>
                       <div className={styles.answer}>
                         <div className="pt-1 pl-2">
-                          <Topic>Partei</Topic>
+                          <Topic>{t('election:party')}</Topic>
                         </div>
 
                         <CircleAnswer answer={partyAnswer} />
@@ -171,14 +173,14 @@ const ComparePartyScreen: React.FC = () => {
             {comparedParty.url && (
               <div className="mt-3">
                 <ExternalLink href={comparedParty.url}>
-                  Partei-Webseite
+                  {t('election:website')}
                 </ExternalLink>
               </div>
             )}
             {comparedParty.pivot.program_link && (
               <div className="mt-3">
                 <ExternalLink href={comparedParty.pivot.program_link}>
-                  Parteiprogramm
+                  {t('election:program')}
                 </ExternalLink>
               </div>
             )}

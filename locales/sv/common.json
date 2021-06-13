@@ -1,0 +1,9 @@
+{
+  "name": "VoteSwiper",
+  "titleTemplate": "%s - VoteSwiper",
+  "twitterHandle": "@voteswiper",
+  "metaDefaultDescription": "Vi hjälper dig med att få en översikt över viktiga ämnen och ståndpunkter till aktuella val.",
+
+  "votingDay": "Valdag den {{date}}",
+  "availableFrom": "Förväntas vara tillgänglig från och med den {{date}}"
+}

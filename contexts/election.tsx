@@ -445,9 +445,9 @@ export const ElectionProvider: React.FC<Props> = ({
    * Compare Party
    */
   const compareParty = React.useCallback(
-    (partyId: number) => {
+    (partyId: number | null) => {
       pushHistoryState(currentQuestion, STEPS.COMPARE_PARTY, {
-        comparePartyId: partyId,
+        comparePartyId: partyId ?? '',
       });
       setCompareParty(partyId);
       setScreen(STEPS.COMPARE_PARTY);
