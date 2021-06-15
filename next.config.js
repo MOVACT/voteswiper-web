@@ -8,10 +8,12 @@ const nextConfig = {
     domains: ['cdn.voteswiper.org', 'voteswiper-assets-prod.fra1.digitaloceanspaces.com', 'voteswiper-assets.ams3.cdn.digitaloceanspaces.com', 'a.storyblok.com', 'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com'],
     path: '/_next/image',
     loader: 'default',
+    disableStaticImages: true
   },
   rewrites: () => [
     { source: '/!:path*', destination: 'https://voteswiper.org/!:path*' },
   ],
+  webpack5: false,
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg?$/,
