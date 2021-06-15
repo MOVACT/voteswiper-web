@@ -12,6 +12,46 @@ const nextConfig = {
   rewrites: () => [
     { source: '/!:path*', destination: 'https://voteswiper.org/!:path*' },
   ],
+  async redirects() {
+    return [
+      {
+        source: '/de/germany',
+        destination: '/de/deutschland',
+        locale: false,
+        permanent: true,
+      },
+      {
+        source: '/de/austria',
+        destination: '/de/oesterreich',
+        locale: false,
+        permanent: true,
+      },
+      {
+        source: '/de/faq',
+        destination: '/de/page/faq',
+        locale: false,
+        permanent: true,
+      },
+      {
+        source: '/de/germany',
+        destination: '/de/deutschland',
+        locale: false,
+        permanent: true,
+      },
+      {
+        source: '/catchAll',
+        destination: '/de',
+        locale: false,
+        permanent: false,
+      },
+      {
+        source: '/catchAll/:slug*',
+        destination: '/de/:slug*',
+        locale: false,
+        permanent: false,
+      },
+    ]
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg?$/,
