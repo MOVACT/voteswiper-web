@@ -239,7 +239,7 @@ const fetch = <T, D = void>(
     data: options?.data,
     headers: {
       'Content-Type': 'application/json',
-      'Content-Language': locale === 'catchAll' ? 'de' : locale,
+      'Content-Language': locale,
       Accept: `application/x.voteswiper.v${process.env.NEXT_PUBLIC_API_VERSION}+json`,
     },
   });
