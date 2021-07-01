@@ -25,6 +25,7 @@ interface Props {
 export interface Ref {
   flyToRight: () => void;
   flyToLeft: () => void;
+  flyToTop: () => void;
 }
 
 const Card: React.ForwardRefRenderFunction<Ref, Props> = (
@@ -122,6 +123,19 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
         {
           x: window.innerWidth * -0.7,
           y: 0,
+          opacity: 0,
+        },
+        {
+          duration: 0.5,
+        }
+      );
+    },
+    flyToTop: () => {
+      setConstrained(false);
+      controls.start(
+        {
+          y: window.innerHeight * -0.7,
+          x: 0,
           opacity: 0,
         },
         {

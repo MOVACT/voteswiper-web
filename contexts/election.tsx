@@ -58,6 +58,7 @@ interface Context {
   goToPreviousQuestion: () => void;
   onSwipeLeft: (question: Question) => void;
   onSwipeRight: (question: Question) => void;
+  onSwipeUp: (question: Question) => void;
 
   selectedParties: number[];
   toggleParty: (partyId: number) => void;
@@ -352,6 +353,17 @@ export const ElectionProvider: React.FC<Props> = ({
     [setAnswer, goToNextQuestion]
   );
 
+  const onSwipeUp = React.useCallback(
+    (question: Question) => {
+      setAnswer({
+        id: question.id,
+        answer: ANSWERS.NONE,
+      });
+      goToNextQuestion();
+    },
+    [setAnswer, goToNextQuestion]
+  );
+
   const stack = React.useMemo(() => {
     const sliced = questions.slice(currentQuestion);
 
@@ -480,6 +492,7 @@ export const ElectionProvider: React.FC<Props> = ({
         goToPreviousQuestion,
         onSwipeLeft,
         onSwipeRight,
+        onSwipeUp,
         screen,
         setScreen,
         explainer,

@@ -37,11 +37,14 @@ const QuestionCounter: React.FC = () => {
           <IconChevronRight className="w-auto h-3" />
         </Button>
       </div>
-      <div className="text-sm font-medium text-white lg:text-lg">
+      <div className="hidden text-lg font-medium text-white lg:block">
         {t('election:questionCounter', {
           current: currentQuestion + 1,
           total: questions.length,
         })}
+      </div>
+      <div className="text-sm font-medium text-white lg:hidden">
+        {currentQuestion + 1}/{questions.length}
       </div>
     </div>
   );

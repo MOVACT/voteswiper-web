@@ -22,7 +22,7 @@ const Video: React.FC<Props> = ({ src }) => {
       playsInline
       controls
       autoPlay
-      className="w-full h-56 lg:w-auto lg:h-[60vh] rounded-lg"
+      className="w-full h-[80%] md:h-[70vh] lg:w-auto lg:h-[60vh] rounded-lg"
     />
   );
 };
