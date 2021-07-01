@@ -229,6 +229,12 @@ export const ElectionProvider: React.FC<Props> = ({
       screen: STEPS = STEPS.SWIPER,
       additionalData?: { [key: string]: number | string }
     ) => {
+      console.debug(
+        'Push History state',
+        questionNumber,
+        screen,
+        additionalData
+      );
       let data = {
         currentQuestion: questionNumber,
         screen,
@@ -247,6 +253,8 @@ export const ElectionProvider: React.FC<Props> = ({
    * Listen to the browser history api
    */
   const historyListener = React.useCallback((ev: PopStateEvent) => {
+    console.debug('History listener', ev.state);
+
     if (typeof ev.state.currentQuestion !== 'undefined') {
       setCurrentQuestion(ev.state.currentQuestion);
       setScreen(ev.state.screen);

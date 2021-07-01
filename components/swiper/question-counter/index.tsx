@@ -6,7 +6,12 @@ import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 
 const QuestionCounter: React.FC = () => {
-  const { questions, currentQuestion, setCurrentQuestion } = useElection();
+  const {
+    questions,
+    currentQuestion,
+    goToNextQuestion,
+    goToPreviousQuestion,
+  } = useElection();
   const { t } = useTranslation();
   return (
     <div className="flex items-center">
@@ -16,7 +21,7 @@ const QuestionCounter: React.FC = () => {
           className="flex items-center justify-center w-6 h-6 mr-1 rounded-lg"
           disabled={currentQuestion === 0}
           onClick={() => {
-            setCurrentQuestion(currentQuestion - 1);
+            goToPreviousQuestion();
           }}
         >
           <IconChevronLeft className="w-auto h-3" />
@@ -26,7 +31,7 @@ const QuestionCounter: React.FC = () => {
           className="flex items-center justify-center w-6 h-6 rounded-lg"
           disabled={currentQuestion === questions.length - 1}
           onClick={() => {
-            setCurrentQuestion(currentQuestion + 1);
+            goToNextQuestion();
           }}
         >
           <IconChevronRight className="w-auto h-3" />
