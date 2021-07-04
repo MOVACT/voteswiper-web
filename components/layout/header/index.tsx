@@ -67,7 +67,7 @@ const Header: React.FC = () => {
               <ul className="flex">
                 {navItems.map((item) => (
                   <li className="px-3" key={item.text}>
-                    <Link href={item.href} passHref>
+                    <Link href={t(item.href)} passHref>
                       <a
                         className={cn(
                           styles.link,
