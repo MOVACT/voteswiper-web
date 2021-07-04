@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const LanguageSwitcher: React.FC = () => {
+interface Props {
+  position?: 'top' | 'bottom';
+}
+
+const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
   const { locale, locales } = useRouter();
 
   const onLanguageChange = React.useCallback((newLocale: string) => {
@@ -49,7 +53,11 @@ const LanguageSwitcher: React.FC = () => {
           >
             <Menu.Items
               static
-              className="z-[60] absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className={cn(
+                'z-[60] absolute w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+                position === 'bottom' && 'right-0',
+                position === 'top' && 'left-0 bottom-[100%] mb-4'
+              )}
             >
               <div className="p-2 ">
                 {locales?.map((loc, index) => {
