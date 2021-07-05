@@ -26,6 +26,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended', // Accessibility rules
         'prettier/@typescript-eslint', // Prettier plugin
         'plugin:prettier/recommended', // Prettier recommended rules
+        'plugin:@next/next/recommended'
       ],
       rules: {
         // We will use TypeScript's types for component props instead
@@ -37,6 +38,7 @@ module.exports = {
         // This rule is not compatible with Next.js's <Link /> components
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/media-has-caption': 'off',
+        'jsx-a11y/no-onchange': 'off',
 
         // Why would you want unused vars?
         '@typescript-eslint/no-unused-vars': ['error'],
