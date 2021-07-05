@@ -10,7 +10,7 @@ const AppDownload: React.FC = () => {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg text-sm font-medium text-white ring-1 ring-inset ring-opacity-20 hover:ring-opacity-40 ring-white focus-default">
+            <Menu.Button className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-black text-sm font-medium text-white hover:from-[rgba(0,0,0,0.5)] focus-default">
               <span className="lg:hidden">{t('app')}</span>
               <span className="hidden lg:inline">{t('download')}</span>
             </Menu.Button>

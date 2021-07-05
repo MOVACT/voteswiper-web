@@ -2,6 +2,7 @@ import CountryFlag from 'components/country-flag';
 import Container from 'components/layout/container';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import i18n from 'i18n';
+import HeroVisual from 'icons/hero.svg';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
@@ -34,6 +35,12 @@ const Home: NextPage<Props> = ({ countries }) => {
           return alternates;
         })()}
       />
+
+      <HeroVisual
+        className="absolute top-0 left-0 hidden w-screen h-screen pointer-events-none lg:block"
+        preserveAspectRatio="xMaxYMin meet"
+      />
+
       <Container className="flex items-center pt-24 pb-24 lg:min-h-screen lg:pt-48">
         <div className="w-full text-base text-white md:text-lg lg:text-xl lg:w-1/2">
           <h1 className="text-4xl font-bold text-white lg:text-6xl">
