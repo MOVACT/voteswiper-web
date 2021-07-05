@@ -10,7 +10,7 @@ const nextConfig = {
     loader: 'default',
   },
   rewrites: () => [
-    { source: '/!:path*', destination: 'https://voteswiper.org/!:path*' },
+    { source: '/!:path*', destination: 'https://old.voteswiper.org/!:path*' },
   ],
   async redirects() {
     return [
