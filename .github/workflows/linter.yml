@@ -18,7 +18,9 @@ on:
     # branches-ignore: [master]
     # Remove the line above to run when pushing to master
   pull_request:
-    branches: [main]
+    branches:
+      - develop
+      - main
 
 ###############
 # Set the Job #
@@ -32,7 +34,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     ##################
     # Load all steps #
