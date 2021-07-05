@@ -26,6 +26,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended', // Accessibility rules
         'prettier/@typescript-eslint', // Prettier plugin
         'plugin:prettier/recommended', // Prettier recommended rules
+        'plugin:@next/next/recommended'
       ],
       rules: {
         // We will use TypeScript's types for component props instead

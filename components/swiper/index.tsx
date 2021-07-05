@@ -1,3 +1,4 @@
+import { IconPlayerTrackNext } from '@tabler/icons';
 import Container from 'components/layout/container';
 import { useElection } from 'contexts/election';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -20,6 +21,7 @@ const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
     stack,
     onSwipeRight,
     onSwipeLeft,
+    onSwipeUp,
     currentQuestion,
     questions,
   } = useElection();
@@ -81,7 +83,18 @@ const Swiper: React.FC<Props> = ({ open, onRequestClose }) => {
                 >
                   {t('election:no')}
                 </button>
-                <button className="flex flex-col items-center justify-center text-sm font-medium text-white hover:opacity-75">
+                <button
+                  onClick={() => {
+                    if ($card.current !== null) {
+                      $card.current.flyToTop();
+                    }
+                    setTimeout(() => {
+                      onSwipeUp(questions[currentQuestion]);
+                    }, 500);
+                  }}
+                  className="flex flex-col items-center justify-center text-sm font-medium text-white focus-default hover:opacity-75"
+                >
+                  <IconPlayerTrackNext className="h-4 mb-px" />
                   {t('election:skip')}
                 </button>
                 <button

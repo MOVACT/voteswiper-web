@@ -23,20 +23,20 @@ const ExplainerScreen: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full p-6 overflow-auto lg:p-10 bg-brand-primary"
+            className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full p-4 overflow-auto md:p-6 lg:p-10 bg-brand-primary"
           >
             <motion.div
               initial={{ y: 40 }}
               animate={{ y: 0 }}
               exit={{ y: 40 }}
-              className="p-6 my-auto bg-white shadow-xl rounded-xl"
+              className="p-4 my-auto bg-white shadow-xl md:p-6 rounded-xl"
             >
               <button
                 onClick={() => {
                   closeExplainer();
                   back();
                 }}
-                className="flex items-center px-6 py-3 mb-6 font-medium leading-none rounded bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20"
+                className="flex items-center px-6 py-3 mb-3 font-medium leading-none rounded md:mb-6 bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20"
               >
                 <IconChevronLeft className="w-3 h-3 mr-2" />
                 {t('election:back')}

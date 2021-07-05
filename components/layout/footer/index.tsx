@@ -6,6 +6,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import React from 'react';
 import Container from '../container';
+import LanguageSwitcher from '../header/language-switcher';
 
 export const socialLinks = [
   {
@@ -188,6 +189,10 @@ const Footer: React.FC = () => {
                 <ul>{legalLinks.map((item) => renderLink(item))}</ul>
               </nav>
             </div>
+          </div>
+
+          <div className="mt-4 lg:hidden">
+            <LanguageSwitcher position="top" />
           </div>
         </Container>
       </div>

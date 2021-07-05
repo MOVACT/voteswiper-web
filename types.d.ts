@@ -2,6 +2,11 @@ declare module 'country-flag-icons';
 declare module 'country-flag-icons/react/3x2';
 declare module 'storyblok-rich-text-react-renderer';
 
+declare module '*.svg' {
+  const value: React.StatelessComponent<React.SVGAttributes<SVGElement>>;
+  export default value;
+}
+
 interface StoryblokTranslatedSlug {
   path: string;
   name: null | string;

@@ -52,7 +52,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
   }): React.ReactElement => {
     return (
       <li className="py-2" key={item.text}>
-        <Link href={item.href} passHref>
+        <Link href={t(item.href)} passHref>
           <motion.a
             key={item.text}
             variants={itemVariants}
@@ -91,7 +91,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
                 ease: 'easeInOut',
               },
             }}
-            className="bg-brand-primary z-30 bg-opacity-80 fixed top-0 left-0 w-screen h-full"
+            className="fixed top-0 left-0 z-30 w-screen h-full bg-brand-primary bg-opacity-80"
           />
 
           <motion.div

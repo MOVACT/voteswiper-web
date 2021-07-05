@@ -1,6 +1,6 @@
 const data = [
   {
-    href: '/about',
+    href: 'header:about-link',
     text: 'header:about',
   },
 ];
