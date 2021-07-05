@@ -58,6 +58,7 @@ interface Context {
   goToPreviousQuestion: () => void;
   onSwipeLeft: (question: Question) => void;
   onSwipeRight: (question: Question) => void;
+  onSwipeUp: (question: Question) => void;
 
   selectedParties: number[];
   toggleParty: (partyId: number) => void;
@@ -229,6 +230,12 @@ export const ElectionProvider: React.FC<Props> = ({
       screen: STEPS = STEPS.SWIPER,
       additionalData?: { [key: string]: number | string }
     ) => {
+      console.debug(
+        'Push History state',
+        questionNumber,
+        screen,
+        additionalData
+      );
       let data = {
         currentQuestion: questionNumber,
         screen,
@@ -247,6 +254,8 @@ export const ElectionProvider: React.FC<Props> = ({
    * Listen to the browser history api
    */
   const historyListener = React.useCallback((ev: PopStateEvent) => {
+    console.debug('History listener', ev.state);
+
     if (typeof ev.state.currentQuestion !== 'undefined') {
       setCurrentQuestion(ev.state.currentQuestion);
       setScreen(ev.state.screen);
@@ -338,6 +347,17 @@ export const ElectionProvider: React.FC<Props> = ({
       setAnswer({
         id: question.id,
         answer: ANSWERS.NO,
+      });
+      goToNextQuestion();
+    },
+    [setAnswer, goToNextQuestion]
+  );
+
+  const onSwipeUp = React.useCallback(
+    (question: Question) => {
+      setAnswer({
+        id: question.id,
+        answer: ANSWERS.NONE,
       });
       goToNextQuestion();
     },
@@ -472,6 +492,7 @@ export const ElectionProvider: React.FC<Props> = ({
         goToPreviousQuestion,
         onSwipeLeft,
         onSwipeRight,
+        onSwipeUp,
         screen,
         setScreen,
         explainer,

@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const LanguageSwitcher: React.FC = () => {
+interface Props {
+  position?: 'top' | 'bottom';
+}
+
+const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
   const { locale, locales } = useRouter();
 
   const onLanguageChange = React.useCallback((newLocale: string) => {
@@ -33,7 +37,7 @@ const LanguageSwitcher: React.FC = () => {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg text-sm font-medium text-white ring-1 ring-inset ring-opacity-20 hover:ring-opacity-40 ring-white focus-default">
+            <Menu.Button className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-black text-sm font-medium text-white hover:from-[rgba(0,0,0,0.5)] focus-default">
               {locale && config.languageNames[locale]}
             </Menu.Button>
           </div>
@@ -49,7 +53,11 @@ const LanguageSwitcher: React.FC = () => {
           >
             <Menu.Items
               static
-              className="z-[60] absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className={cn(
+                'z-[60] absolute w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+                position === 'bottom' && 'right-0',
+                position === 'top' && 'left-0 bottom-[100%] mb-4'
+              )}
             >
               <div className="p-2 ">
                 {locales?.map((loc, index) => {
