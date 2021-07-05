@@ -36,7 +36,7 @@ const Header: React.FC = () => {
           styles.header,
           'fixed z-50 w-screen flex items-center transition-all print:hidden border-b border-black border-opacity-10 lg:border-0',
           scrolled
-            ? 'h-16 bg-brand-primary bg-opacity-75 duration-500'
+            ? 'h-16 bg-brand-primary duration-500'
             : 'h-16 lg:h-32 lg:pt-12 duration-200 bg-brand-primary lg:bg-transparent',
           scrolled && styles.scrolled
         )}
