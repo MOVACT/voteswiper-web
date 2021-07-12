@@ -14,12 +14,19 @@ import ResultItem from './item';
 import styles from './result-menu.module.css';
 
 const ResultMenu: React.FC = () => {
-  const { questions, answers, parties, election } = useElection();
+  const {
+    questions,
+    answers,
+    parties,
+    election,
+    selectedParties,
+  } = useElection();
   const result = calculateResult(questions, answers, parties);
   const { t } = useTranslation();
 
   const queryString =
     result.scores
+      .filter((s) => selectedParties.indexOf(s.id) > -1)
       .map((party) => {
         return (
           'score[]=' + encodeURIComponent(`${party.name},${party.percentage}`)
