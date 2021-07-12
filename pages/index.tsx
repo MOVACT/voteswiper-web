@@ -2,11 +2,12 @@ import CountryFlag from 'components/country-flag';
 import Container from 'components/layout/container';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import i18n from 'i18n';
-import HeroVisual from 'icons/hero.svg';
+import bodymovin, { AnimationItem } from 'lottie-web';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
+import React from 'react';
 import { Country } from 'types/api';
 import url from 'util/url';
 import styles from './home.module.scss';
@@ -17,6 +18,26 @@ interface Props {
 
 const Home: NextPage<Props> = ({ countries }) => {
   const { t } = useTranslation('home');
+  const animation = React.useRef<AnimationItem>();
+
+  React.useEffect(() => {
+    animation.current = bodymovin.loadAnimation({
+      container: document.getElementById('visual') as HTMLDivElement,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/lottie/header.json',
+      rendererSettings: {
+        preserveAspectRatio: 'xMaxYMin meet',
+        className:
+          'absolute top-0 left-0 hidden w-screen h-screen pointer-events-none lg:block',
+      },
+    });
+
+    return () => {
+      animation.current?.destroy();
+    };
+  }, []);
 
   return (
     <div className="relative w-screen overflow-hidden">
@@ -36,10 +57,7 @@ const Home: NextPage<Props> = ({ countries }) => {
         })()}
       />
 
-      <HeroVisual
-        className="absolute top-0 left-0 hidden w-screen h-screen pointer-events-none lg:block"
-        preserveAspectRatio="xMaxYMin meet"
-      />
+      <div id="visual" />
 
       <Container className="flex items-center pt-24 pb-24 lg:min-h-screen lg:pt-48">
         <div className="w-full text-base text-white md:text-lg lg:text-xl lg:w-1/2">
