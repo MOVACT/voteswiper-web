@@ -153,6 +153,24 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                         {t('election:start')}
                       </Button>
                     </p>
+
+                    {/*<p className="text-sm text-white opacity-70">
+                      <Trans
+                        i18nKey="election:privacyNote"
+                        components={[
+                          <Link
+                            href="/de/page/datenschutz"
+                            key="link"
+                            passHref
+                          />,
+                          // eslint-disable-next-line jsx-a11y/anchor-has-content
+                          <a
+                            className="font-normal text-underline"
+                            key="hyperlink"
+                          />,
+                        ]}
+                      />
+                      </p>*/}
                   </div>
 
                   {story !== null && (
