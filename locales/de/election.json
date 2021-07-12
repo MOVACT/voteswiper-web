@@ -39,5 +39,6 @@
   "readReasoning": "Begründung der Partei lesen",
   "noReasoningAvailable": "Die Partei hat ihre Antwort nicht begründet.",
   "yourAnswer": "Deine Antwort",
-  "party": "Partei"
+  "party": "Partei",
+  "privacyNote": "Mit einem Klick auf »WahlSwiper starten« akzeptierst du unsere <0><1>Datenschutzbedingungen</1></0>."
 }

@@ -32,7 +32,7 @@ const ContentPage: React.FC<Props> = ({ story }) => {
       <PageHeader
         breadcrumb={[
           {
-            item: `/${router.query.page}`,
+            item: `/page/${router.query.page}`,
             name: title,
           },
         ]}

@@ -16,6 +16,7 @@ import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';
 import { isPast } from 'date-fns';
+import { AnimatePresence, motion } from 'framer-motion';
 import HyperlinkIcon from 'icons/hyperlink.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -98,155 +99,193 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
         title={name}
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'de')}
       />
-      {(screen === STEPS.START || screen === STEPS.SWIPER) && (
-        <>
-          <PageHeader
-            breadcrumb={[
-              {
-                item: `/${countrySlug}`,
-                name: countryName,
-              },
-              {
-                item: `/${countrySlug}/${slug}`,
-                name: name,
-              },
-            ]}
-            title={name}
-          />
-          <Page>
-            <Container>
-              <div className="mb-24 prose prose-white lg:prose-xl">
-                <p>
-                  <Trans
-                    i18nKey={translationString()}
-                    values={{
-                      name: name,
-                      date: formatLocal(
-                        new Date(election.voting_day),
-                        'PPP',
-                        locale
-                      ),
-                      participating: election.parties_participating,
-                      total:
-                        election.parties_not_participating +
-                        election.parties_participating,
-                    }}
-                    components={[<strong key="" />]}
-                  />
-                </p>
+      <div className="min-h-screen">
+        <AnimatePresence exitBeforeEnter>
+          {screen === STEPS.START && (
+            <motion.div
+              key="start"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <PageHeader
+                breadcrumb={[
+                  {
+                    item: `/${countrySlug}`,
+                    name: countryName,
+                  },
+                  {
+                    item: `/${countrySlug}/${slug}`,
+                    name: name,
+                  },
+                ]}
+                title={name}
+              />
+              <Page>
+                <Container>
+                  <div className="mb-24 prose prose-white lg:prose-xl">
+                    <p>
+                      <Trans
+                        i18nKey={translationString()}
+                        values={{
+                          name: name,
+                          date: formatLocal(
+                            new Date(election.voting_day),
+                            'PPP',
+                            locale
+                          ),
+                          participating: election.parties_participating,
+                          total:
+                            election.parties_not_participating +
+                            election.parties_participating,
+                        }}
+                        components={[<strong key="" />]}
+                      />
+                    </p>
 
-                <p>
-                  <Button
-                    color="primary"
-                    size="lg"
-                    className="w-full md:w-auto"
-                    onClick={() => startSwiper()}
-                  >
-                    {t('election:start')}
-                  </Button>
-                </p>
-              </div>
+                    <p>
+                      <Button
+                        color="primary"
+                        size="lg"
+                        className="w-full md:w-auto"
+                        onClick={() => startSwiper()}
+                      >
+                        {t('election:start')}
+                      </Button>
+                    </p>
 
-              {story !== null && (
-                <>
-                  {story.content.links.length > 0 && (
-                    <>
-                      <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4">
-                        {t('election:moreInformation')}
-                      </h2>
-
-                      <ul className="flex flex-wrap mb-4 -mx-1 -mx-2 md:mb-6 lg:mb-12">
-                        <li className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3">
+                    {/*<p className="text-sm text-white opacity-70">
+                      <Trans
+                        i18nKey="election:privacyNote"
+                        components={[
                           <Link
-                            href={`/${country.slug}/${election.slug}/${
-                              config.translatedSlugs.parties[
-                                (locale as unknown) as string
-                              ]
-                            }`}
+                            href="/de/page/datenschutz"
+                            key="link"
                             passHref
-                          >
-                            <a className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default">
-                              {t('election:parties')}
-                            </a>
-                          </Link>
-                        </li>
+                          />,
+                          // eslint-disable-next-line jsx-a11y/anchor-has-content
+                          <a
+                            className="font-normal text-underline"
+                            key="hyperlink"
+                          />,
+                        ]}
+                      />
+                      </p>*/}
+                  </div>
 
-                        {story.content.links.map((link) => {
-                          return (
-                            <li
-                              className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3"
-                              key={link._uid}
-                            >
-                              <a
-                                className="block text-lg text-white bg-white hover:text-brand-highlight hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default flex items-center justify-between"
-                                href={link.link.url}
-                                key={link._uid}
-                                target="_blank"
-                                rel="noopener noreferrer nofollow"
+                  {story !== null && (
+                    <>
+                      {story.content.links.length > 0 && (
+                        <>
+                          <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4">
+                            {t('election:moreInformation')}
+                          </h2>
+
+                          <ul className="flex flex-wrap mb-4 -mx-1 -mx-2 md:mb-6 lg:mb-12">
+                            <li className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3">
+                              <Link
+                                href={`/${country.slug}/${election.slug}/${
+                                  config.translatedSlugs.parties[
+                                    (locale as unknown) as string
+                                  ]
+                                }`}
+                                passHref
                               >
-                                {link.text}
-                                <HyperlinkIcon className="w-4 h-4 ml-2" />
-                              </a>
+                                <a className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default">
+                                  {t('election:parties')}
+                                </a>
+                              </Link>
                             </li>
-                          );
-                        })}
-                      </ul>
+
+                            {story.content.links.map((link) => {
+                              return (
+                                <li
+                                  className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3"
+                                  key={link._uid}
+                                >
+                                  <a
+                                    className="block text-lg text-white bg-white hover:text-brand-highlight hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default flex items-center justify-between"
+                                    href={link.link.url}
+                                    key={link._uid}
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                  >
+                                    {link.text}
+                                    <HyperlinkIcon className="w-4 h-4 ml-2" />
+                                  </a>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </>
+                      )}
                     </>
                   )}
-                </>
-              )}
 
-              {story !== null && story.content.partner.length > 0 && (
-                <>
-                  <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
-                    {t('election:partner')}
-                  </h2>
+                  {story !== null && story.content.partner.length > 0 && (
+                    <>
+                      <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
+                        {t('election:partner')}
+                      </h2>
 
-                  <div className="flex flex-wrap">
-                    {story.content.partner.map((partner) => {
-                      return (
-                        <div
-                          key={partner._uid}
-                          className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
-                        >
-                          <div className="relative min-h-[125px]">
-                            {partner.link.url !== '' ? (
-                              <a
-                                href={partner.link.url}
-                                target="_blank"
-                                rel="noopener noreferrer nofollow"
-                                title={partner.name}
-                              >
-                                <Image
-                                  src={partner.logo.filename}
-                                  alt={partner.logo.alt}
-                                  className="w-auto h-10"
-                                  layout="fill"
-                                  objectFit="contain"
-                                  objectPosition="center"
-                                />
-                              </a>
-                            ) : (
-                              <Image
-                                src={partner.logo.filename}
-                                alt={partner.logo.alt}
-                                className="w-auto h-10"
-                                layout="fill"
-                                objectFit="contain"
-                                objectPosition="center"
-                              />
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
-            </Container>
-          </Page>
-        </>
-      )}
+                      <div className="flex flex-wrap">
+                        {story.content.partner.map((partner) => {
+                          return (
+                            <div
+                              key={partner._uid}
+                              className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+                            >
+                              <div className="relative min-h-[125px]">
+                                {partner.link.url !== '' ? (
+                                  <a
+                                    href={partner.link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                    title={partner.name}
+                                  >
+                                    <Image
+                                      src={partner.logo.filename}
+                                      alt={partner.logo.alt}
+                                      className="w-auto h-10"
+                                      layout="fill"
+                                      objectFit="contain"
+                                      objectPosition="center"
+                                    />
+                                  </a>
+                                ) : (
+                                  <Image
+                                    src={partner.logo.filename}
+                                    alt={partner.logo.alt}
+                                    className="w-auto h-10"
+                                    layout="fill"
+                                    objectFit="contain"
+                                    objectPosition="center"
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
+                </Container>
+              </Page>
+            </motion.div>
+          )}
+
+          {screen === STEPS.SWIPER && (
+            <Swiper
+              key="swiper"
+              onRequestClose={() => {
+                if (window.confirm(t('election:quit'))) {
+                  endSwiper();
+                }
+              }}
+            />
+          )}
+        </AnimatePresence>
+      </div>
 
       {screen === STEPS.PARTIES && <PartiesScreen />}
 
@@ -265,15 +304,6 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
       )}
 
       <ExplainerScreen />
-
-      <Swiper
-        open={screen === STEPS.SWIPER}
-        onRequestClose={() => {
-          if (window.confirm(t('election:quit'))) {
-            endSwiper();
-          }
-        }}
-      />
     </>
   );
 };
