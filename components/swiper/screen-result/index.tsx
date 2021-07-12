@@ -11,6 +11,7 @@ const ResultScreen: React.FC = () => {
     parties,
     saveResult,
     compareParty,
+    selectedParties,
   } = useElection();
   const { locale } = useRouter();
 
@@ -25,6 +26,9 @@ const ResultScreen: React.FC = () => {
       <div className="w-full lg:w-2/3">
         <div className="grid grid-cols-1 gap-4">
           {result.scores.map((score, index) => {
+            if (selectedParties.indexOf(score.id) === -1)
+              return <React.Fragment key={score.id}></React.Fragment>;
+
             return (
               <div key={score.id}>
                 <button

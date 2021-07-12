@@ -18,7 +18,7 @@ class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html className="bg-brand-primary">
+      <Html className="bg-brand-primary min-h-[initial] h-[auto]">
         <Head>
           <link
             rel="apple-touch-icon"
