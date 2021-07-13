@@ -69,6 +69,15 @@ interface ContentProps {
   story: ElectionStory;
 }
 
+const PrivacyLink: React.FC = ({ children }) => {
+  const { t } = useTranslation();
+  return (
+    <Link href={t('footer:privacyLink')} passHref>
+      <a className="font-normal text-underline">{children}</a>
+    </Link>
+  );
+};
+
 const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
   const { election, screen, startSwiper, endSwiper, country } = useElection();
   const { name: countryName, slug: countrySlug } = country;
@@ -154,23 +163,12 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                       </Button>
                     </p>
 
-                    {/*<p className="text-sm text-white opacity-70">
+                    <p className="text-sm text-white opacity-70">
                       <Trans
                         i18nKey="election:privacyNote"
-                        components={[
-                          <Link
-                            href="/de/page/datenschutz"
-                            key="link"
-                            passHref
-                          />,
-                          // eslint-disable-next-line jsx-a11y/anchor-has-content
-                          <a
-                            className="font-normal text-underline"
-                            key="hyperlink"
-                          />,
-                        ]}
+                        components={[<PrivacyLink key="pl" />]}
                       />
-                      </p>*/}
+                    </p>
                   </div>
 
                   {story !== null && (
@@ -347,6 +345,7 @@ const CountryPage: NextPage<Props> = ({
   React.useEffect(() => {
     requestRef.current = requestAnimationFrame(resizeFrame);
     return () => cancelAnimationFrame(requestRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -417,16 +416,23 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     }
   );
 
-  const questions = await fetch<Question, QuestionsData>(
-    ENDPOINTS.QUESTIONS,
-    locale,
-    {
-      data: {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        slug: params!.election as string,
-      },
-    }
-  );
+  let questions = null;
+  try {
+    questions = await fetch<Question, QuestionsData>(
+      ENDPOINTS.QUESTIONS,
+      locale,
+      {
+        data: {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          slug: params!.election as string,
+        },
+      }
+    );
+  } catch {
+    questions = {
+      data: [],
+    };
+  }
 
   const country = await fetch<Country, CountryData>(ENDPOINTS.COUNTRY, locale, {
     data: {

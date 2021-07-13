@@ -39,5 +39,6 @@
   "readReasoning": "Läs partiets motivering",
   "noReasoningAvailable": "Partiet motiverade inte sitt svar.",
   "yourAnswer": "Ditt svar",
-  "party": "Parti"
+  "party": "Parti",
+  "privacyNote": "Genom att klicka på »Starta VoteSwiper« godkänner du vår <0>integritetspolicy</0>."
 }

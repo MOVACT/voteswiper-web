@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import CountryFlag from 'components/country-flag';
 import Container from 'components/layout/container';
 import { ENDPOINTS, fetch } from 'connectors/api';
@@ -29,8 +30,10 @@ const Home: NextPage<Props> = ({ countries }) => {
       path: '/lottie/header.json',
       rendererSettings: {
         preserveAspectRatio: 'xMaxYMin meet',
-        className:
-          'absolute top-0 left-0 hidden w-screen h-screen pointer-events-none lg:block',
+        className: cn(
+          'absolute top-0 left-0 hidden w-screen pointer-events-none lg:block',
+          styles.visual
+        ),
       },
     });
 

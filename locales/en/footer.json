@@ -16,5 +16,6 @@
   "imprintLink": "/page/imprint",
   "imprint": "Imprint",
   "privacyLink": "/page/privacy",
-  "privacy": "Privacy"
+  "privacy": "Privacy",
+  "sourceCodeNote": "We will be releasing our source code for all platforms for review soon."
 }

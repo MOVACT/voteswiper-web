@@ -39,5 +39,6 @@
   "readReasoning": "Lue puolueen perustelut",
   "noReasoningAvailable": "Puolue ei perustellut vastaustaan.",
   "yourAnswer": "Vastauksesi",
-  "party": "Puolue"
+  "party": "Puolue",
+  "privacyNote": "Klikkaamalla »Käynnistä VoteSwiper« hyväksyt <0>tietosuojakäytäntömme</0>."
 }
