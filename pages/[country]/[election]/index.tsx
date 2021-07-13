@@ -345,6 +345,7 @@ const CountryPage: NextPage<Props> = ({
   React.useEffect(() => {
     requestRef.current = requestAnimationFrame(resizeFrame);
     return () => cancelAnimationFrame(requestRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

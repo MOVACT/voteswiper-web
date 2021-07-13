@@ -1,5 +1,4 @@
 import IconFacebook from 'icons/facebook.svg';
-import IconGithub from 'icons/github.svg';
 import IconInstagram from 'icons/instagram.svg';
 import IconTwitter from 'icons/twitter.svg';
 import useTranslation from 'next-translate/useTranslation';
@@ -32,7 +31,7 @@ export const socialLinks = [
   },
 ];
 
-const openSourceLinks = [
+/*const openSourceLinks = [
   {
     href: 'https://github.com/movact/voteswiper-app',
     translatedLink: false,
@@ -54,7 +53,7 @@ const openSourceLinks = [
     translatedText: true,
     icon: IconGithub,
   },
-];
+];*/
 
 const moreLinks = [
   {
