@@ -416,16 +416,23 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     }
   );
 
-  const questions = await fetch<Question, QuestionsData>(
-    ENDPOINTS.QUESTIONS,
-    locale,
-    {
-      data: {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        slug: params!.election as string,
-      },
-    }
-  );
+  let questions = null;
+  try {
+    questions = await fetch<Question, QuestionsData>(
+      ENDPOINTS.QUESTIONS,
+      locale,
+      {
+        data: {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          slug: params!.election as string,
+        },
+      }
+    );
+  } catch {
+    questions = {
+      data: [],
+    };
+  }
 
   const country = await fetch<Country, CountryData>(ENDPOINTS.COUNTRY, locale, {
     data: {
