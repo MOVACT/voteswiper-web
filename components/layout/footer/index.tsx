@@ -161,11 +161,12 @@ const Footer: React.FC = () => {
                 id="openSource"
                 className="pb-2 font-medium md:text-lg md:pb-4"
               >
-                Open Source
+                Source Code
               </div>
-              <nav aria-labelledby="openSource">
+              {/*<nav aria-labelledby="openSource">
                 <ul>{openSourceLinks.map((item) => renderLink(item))}</ul>
-              </nav>
+              </nav>*/}
+              <p className="pt-1">{t('footer:sourceCodeNote')}</p>
             </div>
             <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 lg:pt-0">
               <div

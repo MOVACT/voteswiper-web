@@ -39,5 +39,6 @@
   "readReasoning": "Lire le raisonnement du parti",
   "noReasoningAvailable": "Le parti n'a pas fourni les raisons de sa réponse.",
   "yourAnswer": "Votre réponse",
-  "party": "Parti"
+  "party": "Parti",
+  "privacyNote": "En cliquant sur »Lancez VoteSwiper«, vous acceptez notre <0>politique de confidentialité</0>."
 }

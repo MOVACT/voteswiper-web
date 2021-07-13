@@ -16,5 +16,6 @@
   "imprintLink": "/page/imprint",
   "imprint": "Mentions légales",
   "privacyLink": "/page/privacy",
-  "privacy": "Politique de protection des données"
+  "privacy": "Politique de protection des données",
+  "sourceCodeNote": "Nous publierons bientôt notre code source pour que toutes les plateformes puissent le consulter."
 }
