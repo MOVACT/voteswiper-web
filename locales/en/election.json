@@ -1,4 +1,5 @@
 {
+  "introVotingDay": "The {{name}} will take place on <0>{{date}}</0>.<1></1>The VoteSwiper is expected to be available from <0>{{playableDate}}</0>.",
   "introTextFuture": "The {{name}} will take place on <0>{{date}}</0>. There are {{total}} parties running. <0>{{participating}} of {{total}} parties</0> have submitted their answers to VoteSwiper.",
   "introTextPast": "The {{name}} was held on <0>{{date}}</0>. {{total}} parties were competing. <0>{{participating}} of {{total}} parties</0> have submitted their answers to VoteSwiper.",
   "introTextAllFuture": "The {{name}} will take place on <0>{{date}}</0>. There are {{total}} parties running. <0>Every party</0> has submitted their answers to VoteSwiper.",

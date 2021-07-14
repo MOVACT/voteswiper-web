@@ -134,22 +134,46 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                 <Container>
                   <div className="mb-24 prose prose-white lg:prose-xl">
                     <p>
-                      <Trans
-                        i18nKey={translationString()}
-                        values={{
-                          name: name,
-                          date: formatLocal(
-                            new Date(election.voting_day),
-                            'PPP',
-                            locale
-                          ),
-                          participating: election.parties_participating,
-                          total:
-                            election.parties_not_participating +
-                            election.parties_participating,
-                        }}
-                        components={[<strong key="" />]}
-                      />
+                      {election.playable ? (
+                        <Trans
+                          i18nKey={translationString()}
+                          values={{
+                            name: name,
+                            date: formatLocal(
+                              new Date(election.voting_day),
+                              'PPP',
+                              locale
+                            ),
+                            participating: election.parties_participating,
+                            total:
+                              election.parties_not_participating +
+                              election.parties_participating,
+                          }}
+                          components={[<strong key="" />]}
+                        />
+                      ) : (
+                        <>
+                          <p>
+                            <Trans
+                              i18nKey={'election:introVotingDay'}
+                              values={{
+                                name: name,
+                                date: formatLocal(
+                                  new Date(election.voting_day),
+                                  'PPP',
+                                  locale
+                                ),
+                                playableDate: formatLocal(
+                                  new Date(election.playable_date),
+                                  'PPP',
+                                  locale
+                                ),
+                              }}
+                              components={[<strong key="" />, <br key="" />]}
+                            />
+                          </p>
+                        </>
+                      )}
                     </p>
 
                     <p>
@@ -157,18 +181,24 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                         color="primary"
                         size="lg"
                         className="w-full md:w-auto"
-                        onClick={() => startSwiper()}
+                        disabled={!election.playable}
+                        onClick={() => {
+                          if (!election.playable) return;
+                          startSwiper();
+                        }}
                       >
                         {t('election:start')}
                       </Button>
                     </p>
 
-                    <p className="text-sm text-white opacity-70">
-                      <Trans
-                        i18nKey="election:privacyNote"
-                        components={[<PrivacyLink key="pl" />]}
-                      />
-                    </p>
+                    {election.playable && (
+                      <p className="text-sm text-white opacity-70">
+                        <Trans
+                          i18nKey="election:privacyNote"
+                          components={[<PrivacyLink key="pl" />]}
+                        />
+                      </p>
+                    )}
                   </div>
 
                   {story !== null && (
