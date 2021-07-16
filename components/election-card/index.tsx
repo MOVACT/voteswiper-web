@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Country, Election } from 'types/api';
+import createFromDateTime from 'util/createFromDatetime';
 import formatLocal from 'util/formatLocal';
 import styles from './election-card.module.css';
 
@@ -42,7 +43,7 @@ const ElectionCard: React.FC<Props> = ({
         <div className="pt-1 text-brand-primary">
           {t(playable ? 'common:votingDay' : 'common:availableFrom', {
             date: formatLocal(
-              new Date(playable ? voting_day : playable_date),
+              createFromDateTime(playable ? voting_day : playable_date),
               'PPP',
               locale
             ),

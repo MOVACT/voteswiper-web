@@ -37,6 +37,7 @@ import {
   Question,
   QuestionsData,
 } from 'types/api';
+import createFromDateTime from 'util/createFromDatetime';
 import formatLocal from 'util/formatLocal';
 import url from 'util/url';
 
@@ -86,7 +87,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
   const { locale } = useRouter();
 
   const translationString = (): string => {
-    const isElectionPast = isPast(new Date(election.voting_day));
+    const isElectionPast = isPast(createFromDateTime(election.voting_day));
     if (election.parties_not_participating === 0) {
       if (isElectionPast) {
         return 'election:introTextAllPast';
@@ -140,7 +141,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                           values={{
                             name: name,
                             date: formatLocal(
-                              new Date(election.voting_day),
+                              createFromDateTime(election.voting_day),
                               'PPP',
                               locale
                             ),
@@ -159,12 +160,12 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                               values={{
                                 name: name,
                                 date: formatLocal(
-                                  new Date(election.voting_day),
+                                  createFromDateTime(election.voting_day),
                                   'PPP',
                                   locale
                                 ),
                                 playableDate: formatLocal(
-                                  new Date(election.playable_date),
+                                  createFromDateTime(election.playable_date),
                                   'PPP',
                                   locale
                                 ),
