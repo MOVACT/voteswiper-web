@@ -89,6 +89,7 @@ module.exports = {
       ringOffsetWidth: ['focus-visible'],
       ringOpacity: ['focus-visible', 'hover'],
     },
+    logical: ['responsive']
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('tailwindcss-logical')],
 };

@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
       const content = (
         <>
           {item.icon && (
-            <item.icon className="w-3 h-auto mr-2 lg:w-4 lg:mr-3" />
+            <item.icon className="w-3 h-auto mie-2 lg:w-4 lg:mie-3" />
           )}
           {item.translatedText ? t(item.text) : item.text}
         </>

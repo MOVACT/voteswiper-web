@@ -57,12 +57,12 @@ const Header: React.FC = () => {
           </button>
           <Link passHref href="/">
             <a className="flex items-center text-base font-normal text-white rounded lg:text-3xl focus-default">
-              <WahlSwiperLogo className="w-auto h-5 mr-2 lg:h-8 lg:mr-3" />
+              <WahlSwiperLogo className="w-auto h-5 mie-2 lg:h-8 lg:mie-3" />
               {t('common:name')}
             </a>
           </Link>
 
-          <div className="items-center justify-between flex-1 hidden pl-8 lg:flex">
+          <div className="items-center justify-between flex-1 hidden pis-8 lg:flex">
             <nav>
               <ul className="flex">
                 {navItems.map((item) => (

@@ -84,7 +84,7 @@ const Home: NextPage<Props> = ({ countries }) => {
                       <div className="px-3 pt-1 pb-3 lg:pt-0 lg:px-0 lg:pb-0">
                         <CountryFlag
                           countryCode={country.country_code}
-                          className="w-full h-auto rounded lg:rounded-sm lg:w-8 lg:mr-3"
+                          className="w-full h-auto rounded lg:rounded-sm lg:w-8 lg:mie-3"
                         />
                       </div>
                       {country.name}
