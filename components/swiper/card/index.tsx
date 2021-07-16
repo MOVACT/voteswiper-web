@@ -68,6 +68,40 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
 
   const controls = useAnimation();
 
+  const flyToRight = React.useCallback(
+    (duration?: number): void => {
+      setConstrained(false);
+      controls.start(
+        {
+          x: window.innerWidth * 0.7,
+          y: 0,
+          opacity: 0,
+        },
+        {
+          duration: duration || 0.5,
+        }
+      );
+    },
+    [controls]
+  );
+
+  const flyToLeft = React.useCallback(
+    (duration?: number): void => {
+      setConstrained(false);
+      controls.start(
+        {
+          x: window.innerWidth * -0.7,
+          y: 0,
+          opacity: 0,
+        },
+        {
+          duration: duration || 0.5,
+        }
+      );
+    },
+    [controls]
+  );
+
   const onDragEnd = React.useCallback(
     (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
       // Yes, No or Skip
@@ -88,7 +122,10 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
           SWIPE_THRESHOLD /*&&
           info.offset.y > SWIPE_THRESHOLD * -1*/
         ) {
-          onSwipeRight(question);
+          flyToRight(0.25);
+          setTimeout(() => {
+            onSwipeRight(question);
+          }, 250);
         } else if (
           // No
           info.offset.x <
@@ -96,11 +133,14 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
             -1 /*&&
           info.offset.y > SWIPE_THRESHOLD * -1*/
         ) {
-          onSwipeLeft(question);
+          flyToLeft(0.25);
+          setTimeout(() => {
+            onSwipeLeft(question);
+          }, 250);
         }
       }
     },
-    [controls, onSwipeRight, onSwipeLeft, question]
+    [controls, onSwipeRight, flyToLeft, flyToRight, onSwipeLeft, question]
   );
 
   React.useImperativeHandle(ref, () => ({
@@ -117,19 +157,7 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
         }
       );
     },
-    flyToLeft: () => {
-      setConstrained(false);
-      controls.start(
-        {
-          x: window.innerWidth * -0.7,
-          y: 0,
-          opacity: 0,
-        },
-        {
-          duration: 0.5,
-        }
-      );
-    },
+    flyToLeft: flyToLeft,
     flyToTop: () => {
       setConstrained(false);
       controls.start(
