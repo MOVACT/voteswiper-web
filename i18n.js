@@ -7,6 +7,7 @@ module.exports = {
     '/[country]': ['country'],
     '/404': ['error'],
     '/[country]/[election]': ['election'],
+    '/embed/[country]/[election]': ['election'],
     '/[country]/[election]/[parties]': ['election'],
     '/page/[page]': ['page'],
   },

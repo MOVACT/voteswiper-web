@@ -103,13 +103,29 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
     return 'election:introTextFuture';
   };
 
+  React.useEffect(() => {
+    const container = document.getElementById('swiper-container');
+    if (screen === STEPS.SWIPER) {
+      document.getElementById('footer')?.classList.add('hidden');
+      if (container) {
+        container.style.minHeight = '657px';
+      }
+    } else {
+      document.getElementById('footer')?.classList.remove('hidden');
+      if (container) {
+        container.style.minHeight = 'auto';
+      }
+    }
+  }, [screen]);
+
   return (
     <>
       <NextSeo
         title={name}
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'de')}
+        noindex
       />
-      <div className="min-h-screen">
+      <div id="swiper-container">
         <AnimatePresence exitBeforeEnter>
           {screen === STEPS.START && (
             <motion.div
@@ -344,6 +360,43 @@ const CountryPage: NextPage<Props> = ({
   parties,
   story,
 }) => {
+  const $windowHeight = React.useRef<number>(0);
+  const requestRef = React.useRef<number>(0);
+
+  const resizeFrame = React.useCallback(() => {
+    const $htmlEl = document.getElementsByTagName('html')[0];
+
+    const windowHeight = document.body
+      ? Math.max(document.body.offsetHeight, $htmlEl.offsetHeight)
+      : $htmlEl.offsetHeight;
+
+    console.log('window height', windowHeight);
+
+    if ($windowHeight.current === windowHeight) {
+      requestRef.current = requestAnimationFrame(resizeFrame);
+      return false;
+    }
+
+    $windowHeight.current = windowHeight;
+
+    window.parent.postMessage(
+      {
+        sentinel: 'amp',
+        type: 'embed-size',
+        height: windowHeight,
+      },
+      '*'
+    );
+
+    requestRef.current = requestAnimationFrame(resizeFrame);
+  }, []);
+
+  React.useEffect(() => {
+    requestRef.current = requestAnimationFrame(resizeFrame);
+    return () => cancelAnimationFrame(requestRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ElectionProvider
       country={country}
