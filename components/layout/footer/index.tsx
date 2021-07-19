@@ -141,7 +141,10 @@ const Footer: React.FC = () => {
   return (
     <>
       <div className="h-px bg-white opacity-[0.1]" />
-      <div className="py-6 text-white md:py-10 md:text-base lg:text-lg">
+      <div
+        className="py-6 text-white md:py-10 md:text-base lg:text-lg"
+        id="footer"
+      >
         <Container>
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 md:w-1/2 lg:w-1/4">
