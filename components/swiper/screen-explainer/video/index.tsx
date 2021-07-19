@@ -13,6 +13,8 @@ const Video: React.FC<Props> = ({ src }) => {
       const hls = new Hls();
       hls.loadSource(src);
       hls.attachMedia($video.current as HTMLMediaElement);
+    } else {
+      if ($video.current) $video.current.src = src;
     }
   }, [src]);
 
