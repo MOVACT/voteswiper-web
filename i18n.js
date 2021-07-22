@@ -1,6 +1,7 @@
 module.exports = {
   locales: ['de', 'en', 'sv', 'fr', 'fi'],
   defaultLocale: 'en',
+  rtlLocales: ['ar', 'de', 'fa'],
   pages: {
     '*': ['common', 'header', 'footer'],
     '/': ['home'],
