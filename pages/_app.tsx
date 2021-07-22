@@ -3,6 +3,7 @@ import { AppComponent } from 'next/dist/next-server/lib/router/router';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Layout from '../components/layout';
+import i18n from '../i18n';
 import '../styles/app.scss';
 
 const App: AppComponent = ({ Component, pageProps }) => {
@@ -19,6 +20,16 @@ const App: AppComponent = ({ Component, pageProps }) => {
       });
     }
   }, []);
+
+  React.useEffect(() => {
+    const dir =
+      router.locale && i18n.rtlLocales.indexOf(router.locale) > -1
+        ? 'rtl'
+        : 'ltr';
+    const lang = router.locale || 'en';
+    document.querySelector('html')?.setAttribute('dir', dir);
+    document.querySelector('html')?.setAttribute('lang', lang);
+  }, [router]);
 
   if (router.route === '/share-image') {
     return <Component {...pageProps} />;
