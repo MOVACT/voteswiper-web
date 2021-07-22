@@ -71,7 +71,7 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
                             tabIndex={index}
                             onKeyPress={(e) => onKeyPress(e, loc)}
                             className={cn(
-                              'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
+                              'block rounded-md text-start font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
                               loc === locale &&
                                 !active &&
                                 'bg-brand-primary bg-opacity-10',

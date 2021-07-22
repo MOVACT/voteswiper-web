@@ -6,7 +6,7 @@ import React from 'react';
 const AppDownload: React.FC = () => {
   const { t } = useTranslation('header');
   return (
-    <Menu as="div" className="relative inline-block ml-auto text-left lg:ml-2">
+    <Menu as="div" className="relative inline-block ml-auto text-left lg:mis-2">
       {({ open }) => (
         <>
           <div>

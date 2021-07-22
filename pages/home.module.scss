@@ -28,3 +28,7 @@
 .visual {
   height: 100vh !important;
 }
+
+:global(html[dir="rtl"]) .visual {
+  transform: scaleX(-1) translate3d(0px, 0px, 0px) !important;
+}

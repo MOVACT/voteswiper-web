@@ -49,7 +49,7 @@ const ElectionCard: React.FC<Props> = ({
             ),
           })}
         </div>
-        <div className="pt-1 text-lg font-medium leading-4 text-brand-dark-blue">
+        <div className="pt-1 text-lg font-medium leading-5 text-brand-dark-blue">
           {name}
         </div>
       </div>
