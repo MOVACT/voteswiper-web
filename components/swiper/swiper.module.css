@@ -1,0 +1,3 @@
+html[dir="rtl"] .actions {
+  flex-direction: row-reverse;
+}

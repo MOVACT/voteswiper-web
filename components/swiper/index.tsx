@@ -1,4 +1,5 @@
 import { IconPlayerTrackNext } from '@tabler/icons';
+import cn from 'classnames';
 import Container from 'components/layout/container';
 import { useElection } from 'contexts/election';
 import { motion } from 'framer-motion';
@@ -8,6 +9,7 @@ import React from 'react';
 import Card, { Ref } from './card';
 import QuestionCounter from './question-counter';
 import QuestionToSpeech from './question-to-speech';
+import styles from './swiper.module.css';
 
 interface Props {
   onRequestClose: () => void;
@@ -65,7 +67,7 @@ const Swiper: React.FC<Props> = ({ onRequestClose }) => {
           })}
         </div>
 
-        <div className="flex justify-between pt-10">
+        <div className={cn('flex justify-between pt-10', styles.actions)}>
           <button
             className="w-16 h-16 font-medium text-white rounded-full shadow-xl hover:shadow-md focus-default bg-gradient-to-b from-red-500 to-red-700"
             onClick={() => {
