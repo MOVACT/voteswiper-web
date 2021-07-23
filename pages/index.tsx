@@ -101,7 +101,7 @@ const Home: NextPage<Props> = ({ countries }) => {
 
       <Container className="mb-10 md:mb-12 lg:mb-20">
         <h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
-          Bekannt aus
+          {t('knownFrom')}
         </h2>
 
         <div className="flex flex-wrap justify-center space-x-4 md:justify-between md:flex-nowrap">

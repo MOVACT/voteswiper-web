@@ -1,0 +1,21 @@
+{
+  "twitterLink": "https://twitter.com/wahlswiper",
+  "facebookLink": "https://facebook.com/wahlswiper",
+  "instagramLink": "https://instagram.com/wahlswiper",
+  "appOnGithub": "Приложение на GitHub",
+  "websiteOnGithub": "Сайт на GitHub",
+  "apiOnGithub": "API на Github",
+  "availableSoon": "Скоро в доступе",
+  "moreLinks": "Дополнительная информация",
+  "legalLinks": "Правовые вопросы",
+  "faqLink": "/page/faq",
+  "faq": "Часто задаваемые вопросы",
+  "pressLink": "/page/press",
+  "press": "Пресса",
+  "contact": "Контакт",
+  "imprintLink": "/page/impressum",
+  "imprint": "Правовая информация",
+  "privacyLink": "/page/datenschutz",
+  "privacy": "Политика конфиденциальности",
+  "sourceCodeNote": "We will publish our source code soon."
+}

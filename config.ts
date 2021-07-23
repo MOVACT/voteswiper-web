@@ -8,6 +8,10 @@ const config = {
     fr: 'Français',
     fi: 'Suomi',
     sv: 'Svenska',
+    fa: 'فارسی',
+    ar: 'عربى',
+    tr: 'Türkçe',
+    ru: 'русский язык',
   } as { [key: string]: string },
 
   // A workaround because next.js can't translate non dynamic routes yet, so we're just gonna make them dynamic
@@ -18,6 +22,10 @@ const config = {
       fr: 'partis',
       fi: 'puolueet',
       sv: 'partier',
+      ru: 'partii',
+      tr: 'partiler',
+      fa: 'parties',
+      ar: 'parties',
     } as { [key: string]: string },
   },
 };
