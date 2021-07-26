@@ -4,7 +4,7 @@ import config from 'config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-
+import i18n from '../../../../i18n';
 interface Props {
   position?: 'top' | 'bottom';
 }
@@ -77,7 +77,11 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
                                 'bg-brand-primary bg-opacity-10',
                               active
                                 ? 'bg-brand-primary text-white'
-                                : 'text-brand-dark-blue'
+                                : 'text-brand-dark-blue',
+                              i18n.rtlLocales.indexOf(loc) > -1 &&
+                                i18n.rtlLocales.indexOf(locale || 'en') === -1
+                                ? 'text-end'
+                                : 'text-start'
                             )}
                           >
                             {config.languageNames[loc]}

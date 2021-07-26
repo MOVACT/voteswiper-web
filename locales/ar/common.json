@@ -1,0 +1,9 @@
+{
+  "name": "WahlSwiper",
+  "titleTemplate": "%s - WahlSwiper",
+  "twitterHandle": "@wahlswiper",
+  "metaDefaultDescription": "نحن نساعدك للاطلاع على لمحة عامة عن الموضوعات والمواقف المهمة في الانتخابات السياسية الحالية.",
+
+  "votingDay": "الانتخابات يوم {{date}}",
+  "availableFrom": "من المتوقع أن يكون الانتخاب متاحًا اعتبارًا من يوم {{date}}"
+}

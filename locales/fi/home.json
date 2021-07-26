@@ -2,5 +2,6 @@
   "pageTitle": "Löydä puolueesi poliittisiin vaaleihin",
   "title": "Pyyhkäise ja äänestä!",
   "intro": "VoteSwiper helpottaa parhaan päätöksen löytämistä poliittisissa vaaleissa. Vastaa kysymyksiin ajankohtaisista aiheista pyyhkäisemällä ruutua ja me kerromme, mitkä puolueet sopivat näkökantoihisi.",
-  "pickCountry": "Aloita valitsemalla maa:"
+  "pickCountry": "Aloita valitsemalla maa:",
+  "knownFrom": "Known from"
 }

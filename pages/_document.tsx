@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
+import i18n from '../i18n';
 
 class MyDocument extends Document {
   static async getInitialProps(
@@ -18,7 +19,14 @@ class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html className="bg-brand-primary min-h-[initial] h-[auto]">
+      <Html
+        className="bg-brand-primary min-h-[initial] h-[auto]"
+        dir={
+          this.props.locale && i18n.rtlLocales.indexOf(this.props.locale) > -1
+            ? 'rtl'
+            : 'ltr'
+        }
+      >
         <Head>
           <link
             rel="apple-touch-icon"

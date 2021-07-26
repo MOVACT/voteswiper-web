@@ -1,9 +1,11 @@
+import cn from 'classnames';
 import Button from 'components/button';
 import { useElection } from 'contexts/election';
 import IconChevronLeft from 'icons/chevron-left.svg';
 import IconChevronRight from 'icons/chevron-right.svg';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
+import styles from './counter.module.css';
 
 const QuestionCounter: React.FC = () => {
   const {
@@ -15,16 +17,16 @@ const QuestionCounter: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className="flex items-center">
-      <div className="flex items-center mr-2">
+      <div className="flex items-center mie-2">
         <Button
           size="blank"
-          className="flex items-center justify-center w-6 h-6 mr-1 rounded-lg"
+          className="flex items-center justify-center w-6 h-6 rounded-lg mie-1"
           disabled={currentQuestion === 0}
           onClick={() => {
             goToPreviousQuestion();
           }}
         >
-          <IconChevronLeft className="w-auto h-3" />
+          <IconChevronLeft className={cn('w-auto h-3', styles.icon)} />
         </Button>
         <Button
           size="blank"
@@ -34,7 +36,7 @@ const QuestionCounter: React.FC = () => {
             goToNextQuestion();
           }}
         >
-          <IconChevronRight className="w-auto h-3" />
+          <IconChevronRight className={cn('w-auto h-3', styles.icon)} />
         </Button>
       </div>
       <div className="hidden text-lg font-medium text-white lg:block">

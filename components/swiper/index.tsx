@@ -1,4 +1,5 @@
 import { IconPlayerTrackNext } from '@tabler/icons';
+import cn from 'classnames';
 import Container from 'components/layout/container';
 import { useElection } from 'contexts/election';
 import { motion } from 'framer-motion';
@@ -8,6 +9,7 @@ import React from 'react';
 import Card, { Ref } from './card';
 import QuestionCounter from './question-counter';
 import QuestionToSpeech from './question-to-speech';
+import styles from './swiper.module.css';
 
 interface Props {
   onRequestClose: () => void;
@@ -35,17 +37,17 @@ const Swiper: React.FC<Props> = ({ onRequestClose }) => {
     >
       <div className="fixed top-0 left-0 z-40 flex items-center w-screen h-12 bg-black lg:h-16 bg-opacity-10">
         <Container className="flex">
-          <div className="mr-10">
+          <div className="mie-10">
             <QuestionCounter />
           </div>
           <QuestionToSpeech />
 
-          <div className="ml-auto">
+          <div className="mis-auto">
             <button
               onClick={() => onRequestClose()}
               className="flex items-center h-6 text-sm font-medium text-white rounded lg:text-lg text-underline-offset-2 hover:text-brand-highlight hover:underline focus-default"
             >
-              <IconClose className="w-auto h-5 mr-2" />
+              <IconClose className="w-auto h-5 mie-2" />
               {t('election:exit')}
             </button>
           </div>
@@ -65,7 +67,7 @@ const Swiper: React.FC<Props> = ({ onRequestClose }) => {
           })}
         </div>
 
-        <div className="flex justify-between pt-10">
+        <div className={cn('flex justify-between pt-10', styles.actions)}>
           <button
             className="w-16 h-16 font-medium text-white rounded-full shadow-xl hover:shadow-md focus-default bg-gradient-to-b from-red-500 to-red-700"
             onClick={() => {
