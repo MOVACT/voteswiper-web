@@ -1,0 +1,9 @@
+{
+  "name": "WahlSwiper",
+  "titleTemplate": "%s - WahlSwiper",
+  "twitterHandle": "@wahlswiper",
+  "metaDefaultDescription": "بهت کمک میکنیم که بتوانی نگاه کلی درباره ی موضوع های مهم و دید گاه ها راجع به رای گیری های سیاسی بروز داشته باشی",
+
+  "votingDay": "روز رای گیری در {{date}}",
+  "availableFrom": "به احتمال زیاد  در اختیار از {{date}}"
+}
