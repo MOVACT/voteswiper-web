@@ -314,25 +314,25 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
             />
           )}
         </AnimatePresence>
+
+        {screen === STEPS.PARTIES && <PartiesScreen />}
+
+        {[
+          STEPS.RESULT,
+          STEPS.EDIT_ANSWERS,
+          STEPS.EDIT_PARTIES,
+          STEPS.COMPARE_PARTY,
+        ].indexOf(screen) > -1 && (
+          <ResultContainer>
+            {screen === STEPS.RESULT && <ResultScreen />}
+            {screen === STEPS.EDIT_ANSWERS && <EditAnswersScreen />}
+            {screen === STEPS.EDIT_PARTIES && <EditPartiesScreen />}
+            {screen === STEPS.COMPARE_PARTY && <ComparePartyScreen />}
+          </ResultContainer>
+        )}
+
+        <ExplainerScreen />
       </div>
-
-      {screen === STEPS.PARTIES && <PartiesScreen />}
-
-      {[
-        STEPS.RESULT,
-        STEPS.EDIT_ANSWERS,
-        STEPS.EDIT_PARTIES,
-        STEPS.COMPARE_PARTY,
-      ].indexOf(screen) > -1 && (
-        <ResultContainer>
-          {screen === STEPS.RESULT && <ResultScreen />}
-          {screen === STEPS.EDIT_ANSWERS && <EditAnswersScreen />}
-          {screen === STEPS.EDIT_PARTIES && <EditPartiesScreen />}
-          {screen === STEPS.COMPARE_PARTY && <ComparePartyScreen />}
-        </ResultContainer>
-      )}
-
-      <ExplainerScreen />
     </>
   );
 };

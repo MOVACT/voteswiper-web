@@ -4358,10 +4358,10 @@ next-sitemap@^1.6.111:
     matcher "^4.0.0"
     minimist "^1.2.5"
 
-next-translate@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/next-translate/-/next-translate-1.0.6.tgz#746f4dc5504f00c31a0fd9a934b0fcea03430f59"
-  integrity sha512-CI/IIPLZVcilXP8XxLSfJ/jP8LQkrYBeiXMZvCYZDMvixwHMz8qAmvlcDsxvsfntrCSW15+QNFp10J8jSuwcAw==
+next-translate@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/next-translate/-/next-translate-1.0.7.tgz#53fab15ae856eee62d41ac96aa3e6e4c874e715f"
+  integrity sha512-21FgG5ZVYVoB6of2ySrjfDu/qaojRW/DMPWQQfWDec1jltRGk4Oeb+12Y1DoNWh0Yd+FJvv8WpUeUeU+pfNX6Q==
 
 next@^11.0.1:
   version "11.0.1"

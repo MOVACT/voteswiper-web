@@ -183,12 +183,12 @@ const Footer: React.FC = () => {
             </div>
             <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 lg:pt-0">
               <div
-                id="moreLinks"
+                id="legalLinks"
                 className="pb-2 font-medium md:text-lg md:pb-4"
               >
                 {t('legalLinks')}
               </div>
-              <nav aria-labelledby="moreLinks">
+              <nav aria-labelledby="legalLinks">
                 <ul>{legalLinks.map((item) => renderLink(item))}</ul>
               </nav>
             </div>
