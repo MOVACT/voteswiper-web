@@ -10,6 +10,8 @@ module.exports = {
     '/[country]/[election]': ['election'],
     '/embed/[country]/[election]': ['election'],
     '/[country]/[election]/[parties]': ['election'],
+    '/page/press': ['press'],
+    '/page/press/embed': ['press'],
     '/page/[page]': ['page'],
   },
 };
