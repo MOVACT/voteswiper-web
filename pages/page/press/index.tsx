@@ -64,12 +64,12 @@ const Press: NextPage = () => {
 
   return (
     <>
-      <NextSeo title={t('press:title')} canonical={url(`/page/presse`, true)} />
+      <NextSeo title={t('press:title')} canonical={url(`/page/press`, true)} />
       <PageHeader
         title={t('press:title')}
         breadcrumb={[
           {
-            item: `/page/presse`,
+            item: `/page/press`,
             name: t('press:title'),
           },
         ]}

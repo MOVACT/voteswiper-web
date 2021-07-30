@@ -12,6 +12,8 @@ module.exports = {
     '/[country]/[election]/[parties]': ['election'],
     '/page/press': ['press'],
     '/page/press/embed': ['press'],
+    '/page/press/downloads': ['press'],
+    '/page/press/releases': ['press'],
     '/page/[page]': ['page'],
   },
 };

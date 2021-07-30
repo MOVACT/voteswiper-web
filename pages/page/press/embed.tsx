@@ -58,17 +58,17 @@ const Press: NextPage<Props> = ({ elections }) => {
     <>
       <NextSeo
         title={t('press:embed')}
-        canonical={url(`/page/presse/embed`, true)}
+        canonical={url(`/page/press/embed`, true)}
       />
       <PageHeader
         title={t('press:embed')}
         breadcrumb={[
           {
-            item: `/page/presse`,
+            item: `/page/press`,
             name: t('press:title'),
           },
           {
-            item: '/page/presse/embed',
+            item: '/page/press/embed',
             name: t('press:embed'),
           },
         ]}
