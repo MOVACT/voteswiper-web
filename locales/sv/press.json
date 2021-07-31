@@ -1,0 +1,23 @@
+{
+  "title": "Press",
+  "contact": "Press contact",
+  "downloads": "Downloads",
+  "releases": "Press releases",
+  "embed": "Embed VoteSwiper",
+  "email": "Email:",
+  "intro": "<0>On these pages you will find our latest press releases, images for reporting purposes and information on how to embed the VoteSwiper on your website.</0><0>If you have any questions about our work or press releases, please contact us directly.</0>",
+  "embedIntro": "<0>You have the possibility to integrate the VoteSwiper <1>free of charge</1> as an voting advice application on your website, for example to accompany political reporting.</0><0>The integration is very easy and is available as iFrame and AMP version.</0>",
+  "embedNotice": "If you would like to embed the VoteSwiper on a website with high traffic, please notify us in advance by emailing <0><1>press@voteswiper.org</1></0> so that we can ensure that sufficient server capacity is available.",
+  "yourEmbedCode": "Your embed code",
+  "iFrameVersion": "iFrame-Version",
+  "ampVersion": "AMP-Version",
+  "backToForm": "Back to form",
+  "generateEmbedCode": "Generate embed code",
+  "noEmbedsAvailable": "There are currently no elections available for embedding. If you would like to embed past elections, please contact us by email.",
+  "pickElection": "1. Select the election that you want to embed",
+  "election": "Election",
+  "pickLanguage": "2. Select the (interface) language",
+  "languageHelper": "Select the language in which controls should be displayed. If a election is translated in the selected language, the questions are also displayed in this language, otherwise English is displayed as the fallback language.",
+  "language": "Language",
+  "generateCodeCta": "Generate code"
+}

@@ -14,6 +14,7 @@ module.exports = {
     '/page/press/embed': ['press'],
     '/page/press/downloads': ['press'],
     '/page/press/releases': ['press'],
+    '/page/press/releases/[slug]': ['press'],
     '/page/[page]': ['page'],
   },
 };

@@ -2,11 +2,11 @@ import cn from 'classnames';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
+import PressContact from 'content-components/press-contact';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import url from 'util/url';
@@ -21,12 +21,12 @@ export const PressPage: React.FC = ({ children }) => {
       href: '/page/press',
     },
     {
-      title: 'press:downloads',
-      href: '/page/press/downloads',
-    },
-    {
       title: 'press:releases',
       href: '/page/press/releases',
+    },
+    {
+      title: 'press:downloads',
+      href: '/page/press/downloads',
     },
     {
       title: 'press:embed',
@@ -43,7 +43,9 @@ export const PressPage: React.FC = ({ children }) => {
               <a
                 className={cn(
                   'block bg-white rounded-lg px-4 py-3 leading-0 font-medium text-white focus-default',
-                  router.pathname === menuItem.href
+                  router.pathname === menuItem.href ||
+                    (router.pathname.indexOf(menuItem.href) > -1 &&
+                      menuItem.href === '/page/press/releases')
                     ? 'bg-opacity-20'
                     : 'bg-opacity-0 hover:bg-opacity-10'
                 )}
@@ -80,73 +82,9 @@ const Press: NextPage = () => {
             <div className="prose prose-white">
               <Trans i18nKey="press:intro" components={[<p key="" />]} />
 
-              <h2>{t('press:contact')}</h2>
-
-              <div className="flex items-center space-x-8">
-                <div className="w-24">
-                  <Image
-                    src="/images/matthias-bannert.jpg"
-                    layout="responsive"
-                    sizes="96px"
-                    className="rounded-full"
-                    alt="Matthias Bannert"
-                    width={400}
-                    height={400}
-                  />
-                </div>
-                <div>
-                  Matthias Bannert
-                  <br />
-                  Telefon: +49 (0)30 4036669 43
-                  <br />
-                  {t('press:email')}{' '}
-                  <a
-                    className="text-underline focus-default"
-                    href="mailto:presse@voteswiper.org"
-                  >
-                    press@voteswiper.org
-                  </a>
-                </div>
-              </div>
+              <PressContact />
             </div>
           </PressPage>
-
-          {/*<h2 className="pb-4 text-2xl font-medium leading-tight text-white md:text-3xl md:pb-6 lg:pb-8">
-            Downloads
-          </h2>
-
-          <div className="flex flex-col space-x-6 md:flex-row">
-            <div className="w-full md:w-1/2 lg:w-1/3">
-              <a
-                href="/downloads/wahlswiper_logos.zip"
-                title="Logo als ZIP"
-                download
-                className="block rounded-lg bg-gradient-to-b from-white to-brand-light-blue focus-default"
-              >
-                <div className="px-5 py-4 leading-tight">
-                  <div className="pt-1 text-lg font-medium leading-4 text-brand-dark-blue">
-                    Logos
-                  </div>
-                  <div className="pt-1 text-brand-primary">3.3 MB</div>
-                </div>
-              </a>
-            </div>
-            <div className="w-full md:w-1/2 lg:w-1/3">
-              <a
-                href="/downloads/wahlswiper_screenshots.zip"
-                title="Screenshots als ZIP"
-                download
-                className="block rounded-lg bg-gradient-to-b from-white to-brand-light-blue focus-default"
-              >
-                <div className="px-5 py-4 leading-tight">
-                  <div className="pt-1 text-lg font-medium leading-4 text-brand-dark-blue">
-                    App-Screenshots
-                  </div>
-                  <div className="pt-1 text-brand-primary">5.3 MB</div>
-                </div>
-              </a>
-            </div>
-          </div>*/}
         </Container>
       </Page>
     </>
