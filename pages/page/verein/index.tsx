@@ -2,30 +2,25 @@ import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
 import SidebarMenu from 'components/sidebar-menu';
-import PressContact from 'content-components/press-contact';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
+import React from 'react';
 import url from 'util/url';
 
-export const PressPage: React.FC = ({ children }) => {
+export const VereinPage: React.FC = ({ children }) => {
   const menu = [
     {
-      title: 'press:contact',
-      href: '/page/press',
+      href: '/page/verein',
+      title: 'org:org',
     },
     {
-      title: 'press:releases',
-      href: '/page/press/releases',
+      href: '/page/verein/mitglied-werden',
+      title: 'org:becomeSupporter',
     },
     {
-      title: 'press:downloads',
-      href: '/page/press/downloads',
-    },
-    {
-      title: 'press:embed',
-      href: '/page/press/embed',
+      href: '/page/verein/satzung',
+      title: 'org:statutes',
     },
   ];
 
@@ -37,34 +32,32 @@ export const PressPage: React.FC = ({ children }) => {
   );
 };
 
-const Press: NextPage = () => {
+const Verein: NextPage = () => {
   const { t } = useTranslation();
 
   return (
     <>
-      <NextSeo title={t('press:title')} canonical={url(`/page/press`, true)} />
+      <NextSeo title={t('org:org')} canonical={url(`/page/verein`, true)} />
       <PageHeader
-        title={t('press:title')}
+        title={t('org:org')}
         breadcrumb={[
           {
-            item: `/page/press`,
-            name: t('press:title'),
+            item: `/page/verein`,
+            name: t('org:org'),
           },
         ]}
       />
       <Page>
         <Container>
-          <PressPage>
+          <VereinPage>
             <div className="prose prose-white">
-              <Trans i18nKey="press:intro" components={[<p key="" />]} />
-
-              <PressContact />
+              <p>Allgemeiner Text zum Verein...</p>
             </div>
-          </PressPage>
+          </VereinPage>
         </Container>
       </Page>
     </>
   );
 };
 
-export default Press;
+export default Verein;

@@ -5,5 +5,7 @@
   "donate": "التبرع",
   "app": "التطبيق",
   "download": "التنزيل",
-  "toggle": "فتح أو إغلاق القائمة"
+  "toggle": "فتح أو إغلاق القائمة",
+  "org": "Organization",
+  "org-link": "/page/verein"
 }

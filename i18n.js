@@ -15,6 +15,9 @@ module.exports = {
     '/page/press/downloads': ['press'],
     '/page/press/releases': ['press'],
     '/page/press/releases/[slug]': ['press'],
+    '/page/verein': ['org'],
+    '/page/verein/satzung': ['org'],
+    '/page/verein/mitglied-werden': ['org'],
     '/page/[page]': ['page'],
   },
 };

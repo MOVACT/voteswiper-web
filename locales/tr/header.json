@@ -5,5 +5,7 @@
   "donate": "Bağış",
   "app": "Uygulama",
   "download": "İndirme",
-  "toggle": "Menüyü açıp kapama"
+  "toggle": "Menüyü açıp kapama",
+  "org": "Organization",
+  "org-link": "/page/verein"
 }

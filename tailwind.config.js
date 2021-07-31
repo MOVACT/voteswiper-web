@@ -63,6 +63,13 @@ module.exports = {
             strong: {
               color: '#fff',
             },
+            ol: {
+              li: {
+                '&::before': {
+                  color: '#fff'
+                },
+              },
+            },
             a: {
               color: '#fff',
             },
