@@ -33,11 +33,13 @@ const Verein: NextPage = () => {
       <Page>
         <Container>
           <VereinPage>
-            <iframe
-              title="Aufnahme-Formular"
-              src="https://easyverein.com/public/VoteSwiper/applicationform?iframe=True"
-              className="min-h-[800px] w-full border-0"
-            />
+            <div className="py-8 bg-white rounded">
+              <iframe
+                title="Aufnahme-Formular"
+                src="https://easyverein.com/public/VoteSwiper/applicationform?iframe=True"
+                className="min-h-[850px] w-full border-0"
+              />
+            </div>
           </VereinPage>
         </Container>
       </Page>
