@@ -9,8 +9,8 @@ const PressContact: React.FC = () => {
     <>
       <h2>{t('press:contact')}</h2>
 
-      <div className="flex items-center space-x-8">
-        <div className="w-24">
+      <div className="flex items-center">
+        <div className="w-24 mr-8">
           <Image
             src="/images/matthias-bannert.jpg"
             layout="responsive"

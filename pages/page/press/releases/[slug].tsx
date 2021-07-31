@@ -33,8 +33,6 @@ const Press: NextPage<Props> = ({ story }) => {
   const { t } = useTranslation();
   const { locale } = useRouter();
 
-  console.log(story);
-
   return (
     <>
       <NextSeo
