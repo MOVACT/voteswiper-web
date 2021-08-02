@@ -31,7 +31,7 @@ const CountryPage: NextPage<Props> = ({
     <>
       <NextSeo
         title={t('title', { country: name })}
-        canonical={url(`/${slug}`, locale !== 'de')}
+        canonical={url(`/${slug}`, locale !== 'en')}
       />
       <PageHeader
         breadcrumb={[
