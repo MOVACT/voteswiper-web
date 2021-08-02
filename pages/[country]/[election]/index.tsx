@@ -107,7 +107,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
     <>
       <NextSeo
         title={name}
-        canonical={url(`/${countrySlug}/${slug}`, locale !== 'de')}
+        canonical={url(`/${countrySlug}/${slug}`, locale !== 'en')}
       />
       <div className="min-h-screen">
         <AnimatePresence exitBeforeEnter>

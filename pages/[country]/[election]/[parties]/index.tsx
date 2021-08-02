@@ -40,7 +40,7 @@ const CountryPage: NextPage<Props> = ({ country, election, parties }) => {
           `/${countrySlug}/${slug}/${
             config.translatedSlugs.parties[(locale as unknown) as string]
           }`,
-          locale !== 'de'
+          locale !== 'en'
         )}
       />
       <PageHeader
