@@ -22,8 +22,6 @@ const BlockPage: React.FC<Props> = ({ story }) => {
 
   const { title, blocks } = story.content;
 
-  console.log(blocks);
-
   return (
     <>
       <NextSeo

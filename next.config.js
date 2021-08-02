@@ -13,6 +13,36 @@ const nextConfig = {
   rewrites: () => [
     { source: '/!:path*', destination: 'https://old.voteswiper.org/!:path*' },
   ],
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'sameorigin',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin',
+          },
+        ],
+      },
+      {
+        source: '/embed/:path*',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: '',
+          }
+        ]
+      }
+    ];
+  },
   async redirects() {
     return [
       {
