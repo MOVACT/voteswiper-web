@@ -5,12 +5,13 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import url from 'util/url';
 import pageBlocks from './blocks';
+import { BlockImageGridFields } from './blocks/block-image-grid';
 import { BlockTextFields } from './blocks/block-text';
 
 export type BlockPageStory = {
   component: 'blockPage';
   title: string;
-  blocks: Array<BlockTextFields>;
+  blocks: Array<BlockTextFields | BlockImageGridFields>;
 };
 
 interface Props {
@@ -45,7 +46,7 @@ const BlockPage: React.FC<Props> = ({ story }) => {
           const Component = pageBlocks[block.component];
           return (
             <React.Fragment key={block._uid}>
-              <Component {...block} />
+              <Component {...(block as never)} />
             </React.Fragment>
           );
         })}
