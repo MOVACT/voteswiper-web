@@ -8,6 +8,9 @@ module.exports = {
       './components/**/*.tsx',
       './components/**/*.jsx',
       './components/**/*.js',
+      './content-components/**/*.tsx',
+      './content-components/**/*.jsx',
+      './content-components/**/*.js',
     ],
   },
   darkMode: false, // or 'media' or 'class'
