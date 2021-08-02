@@ -69,7 +69,7 @@ const FaqPage: React.FC<Props> = ({ story }) => {
     <>
       <NextSeo
         title={title}
-        canonical={url(`/page/${router.query.page}`, router.locale !== 'de')}
+        canonical={url(`/page/${router.query.page}`, router.locale !== 'en')}
       />
       <PageHeader
         breadcrumb={[
