@@ -33,7 +33,7 @@ const Press: NextPage = () => {
       <Page>
         <Container>
           <PressPage>
-            <div className="flex flex-col space-y-4 md:space-x-6 md:flex-row">
+            <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
               <div className="w-full md:w-1/2 lg:w-1/3">
                 <a
                   href="/downloads/wahlswiper_logos.zip"
