@@ -1,3 +1,6 @@
+import BlockPage, {
+  BlockPageStory,
+} from 'components/layout/page-types/block-page';
 import ContentPage, {
   ContentPageStory,
 } from 'components/layout/page-types/content-page';
@@ -7,11 +10,13 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React from 'react';
 
 interface Props {
-  story: StoryblokStory<ContentPageStory | FaqPageStory>;
+  story: StoryblokStory<ContentPageStory | FaqPageStory | BlockPageStory>;
 }
 
 const Page: NextPage<Props> = ({ story }) => {
   switch (story.content.component) {
+    case 'blockPage':
+      return <BlockPage story={story as StoryblokStory<BlockPageStory>} />;
     case 'contentPage':
       return <ContentPage story={story as StoryblokStory<ContentPageStory>} />;
     case 'faqPage':
