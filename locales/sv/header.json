@@ -5,5 +5,9 @@
   "donate": "Donera",
   "app": "App",
   "download": "Ladda ner",
-  "toggle": "Växla menyn"
+  "toggle": "Växla menyn",
+  "org": "Organization",
+  "org-link": "/page/verein",
+  "press": "Press",
+  "press-link": "/page/press"
 }

@@ -1,4 +1,5 @@
 import IconFacebook from 'icons/facebook.svg';
+//import IconGithub from 'icons/github.svg';
 import IconInstagram from 'icons/instagram.svg';
 import IconTwitter from 'icons/twitter.svg';
 import useTranslation from 'next-translate/useTranslation';
@@ -167,7 +168,7 @@ const Footer: React.FC = () => {
               </div>
               {/*<nav aria-labelledby="openSource">
                 <ul>{openSourceLinks.map((item) => renderLink(item))}</ul>
-              </nav>*/}
+  </nav>*/}
               <p className="pt-1">{t('footer:sourceCodeNote')}</p>
             </div>
             <div className="w-full px-4 pt-6 md:w-1/2 lg:w-1/4 lg:pt-0">

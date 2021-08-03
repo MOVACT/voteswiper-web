@@ -5,5 +5,9 @@
   "donate": "Faire un don",
   "app": "App",
   "download": "Download",
-  "toggle": "Menu à bascule"
+  "toggle": "Menu à bascule",
+  "org": "Organization",
+  "org-link": "/page/verein",
+  "press": "Press",
+  "press-link": "/page/press"
 }

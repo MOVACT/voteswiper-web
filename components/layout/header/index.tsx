@@ -4,6 +4,7 @@ import IconToggle from 'icons/navigation.svg';
 import WahlSwiperLogo from 'icons/wahlswiper_logo.svg';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useWindowScroll } from 'react-use';
 import Container from '../container';
@@ -18,6 +19,7 @@ const HEADER_THRESHOLD = 30;
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileNavOpened, setMobileNavVisibility] = React.useState(false);
+  const { locale } = useRouter();
   const { y } = useWindowScroll();
   const { t } = useTranslation('header');
 
@@ -65,20 +67,28 @@ const Header: React.FC = () => {
           <div className="items-center justify-between flex-1 hidden pis-8 lg:flex">
             <nav>
               <ul className="flex">
-                {navItems.map((item) => (
-                  <li className="px-3" key={item.text}>
-                    <Link href={t(item.href)} passHref>
-                      <a
-                        className={cn(
-                          styles.link,
-                          'font-medium inline-block text-white relative cursor-pointer rounded focus-default'
-                        )}
-                      >
-                        {t(item.text)}
-                      </a>
-                    </Link>
-                  </li>
-                ))}
+                {navItems.map((item) => {
+                  if (
+                    item.locales &&
+                    item.locales.indexOf(locale || 'de') === -1
+                  )
+                    return <React.Fragment key={item.text}></React.Fragment>;
+
+                  return (
+                    <li className="px-3" key={item.text}>
+                      <Link href={t(item.href)} passHref>
+                        <a
+                          className={cn(
+                            styles.link,
+                            'font-medium inline-block text-white relative cursor-pointer rounded focus-default'
+                          )}
+                        >
+                          {t(item.text)}
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
 
