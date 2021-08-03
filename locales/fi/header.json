@@ -7,5 +7,7 @@
   "download": "Download",
   "toggle": "Toggle menu",
   "org": "Organization",
-  "org-link": "/page/verein"
+  "org-link": "/page/verein",
+  "press": "Paina",
+  "press-link": "/page/press"
 }

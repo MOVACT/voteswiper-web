@@ -7,5 +7,7 @@
   "download": "Скачать",
   "toggle": "Свернуть или развернуть меню",
   "org": "Organization",
-  "org-link": "/page/verein"
+  "org-link": "/page/verein",
+  "press": "Пресса",
+  "press-link": "/page/press"
 }

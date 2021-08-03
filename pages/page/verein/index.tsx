@@ -51,7 +51,48 @@ const Verein: NextPage = () => {
         <Container>
           <VereinPage>
             <div className="prose prose-white">
-              <p>Allgemeiner Text zum Verein...</p>
+              <p>
+                Der Verein VoteSwiper wurde gegründet, um{' '}
+                <strong>Demokratie und politische Bildung</strong> zu{' '}
+                <strong>fördern</strong>, insbesondere durch die Herausgabe der
+                beliebten Wahlhilfe-Anwendung WahlSwiper bzw. VoteSwiper.
+              </p>
+              <p>
+                Der WahlSwiper wurde erstmals 2017 zur Bundestagswahl
+                veröffentlicht und von Max Mitschke, Steven Siebert und Matthias
+                Bannert erfunden, die zusammen das Kreativstudio für Code und
+                Content{' '}
+                <a
+                  href="https://www.movact.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  MOVACT
+                </a>{' '}
+                betreiben. Inzwischen wird der WahlSwiper in Kooperation mit
+                Prof. Uwe Wagschal und der Universität Freiburg entwickelt.
+              </p>
+
+              <p>
+                Seit der Europawahl 2019 gibt es die App auch als VoteSwiper in
+                anderen Ländern und zur Bundestagswahl 2021 in den Sprachen
+                Englisch, Türkisch, Russisch, Arabisch und Persisch.
+              </p>
+
+              <p>
+                Der WahlSwiper war und ist{' '}
+                <strong>gänzlich unkommerziell</strong>. Zur Sicherung der
+                Finanzierung mit Spenden und langfristigen Weiterentwicklung des
+                Bildungsprojektes wurde 2021 der gemeinnützige Verein VoteSwiper
+                gegründet, dem die langjährigen Teammitglieder Matthias Bannert,
+                Prof. Uwe Wagschal und Steven Siebert vorstehen.
+              </p>
+
+              <p>
+                Der Verein wird durch Fördermitgliedschaften und Spenden
+                vorangetrieben und das Projekt WahlSwiper ist auf entsprechende
+                Unterstützung angewiesen.
+              </p>
             </div>
           </VereinPage>
         </Container>

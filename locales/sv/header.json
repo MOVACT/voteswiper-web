@@ -7,5 +7,7 @@
   "download": "Ladda ner",
   "toggle": "Växla menyn",
   "org": "Organization",
-  "org-link": "/page/verein"
+  "org-link": "/page/verein",
+  "press": "Press",
+  "press-link": "/page/press"
 }

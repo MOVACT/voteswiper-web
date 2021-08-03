@@ -33,13 +33,21 @@ const Verein: NextPage = () => {
       <Page>
         <Container>
           <VereinPage>
-            <div className="py-8 bg-white rounded">
+            <div className="prose prose-white">
+              <p>
+                Du kannst hier bald einen Fördermitgliedsantrag stellen. Bis
+                dahin kannst du dich per E-Mail an{' '}
+                <a href="mailto:info@voteswiper.org">info@voteswiper.org</a>{' '}
+                melden, falls du Fördermitglied werden möchtest.
+              </p>
+            </div>
+            {/*<div className="py-8 bg-white rounded">
               <iframe
                 title="Aufnahme-Formular"
                 src="https://easyverein.com/public/VoteSwiper/applicationform?iframe=True"
                 className="min-h-[850px] w-full border-0"
               />
-            </div>
+      </div>*/}
           </VereinPage>
         </Container>
       </Page>

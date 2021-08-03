@@ -7,5 +7,7 @@
   "download": "İndirme",
   "toggle": "Menüyü açıp kapama",
   "org": "Organization",
-  "org-link": "/page/verein"
+  "org-link": "/page/verein",
+  "press": "Basın",
+  "press-link": "/page/press"
 }

@@ -7,5 +7,7 @@
   "download": "دانلود",
   "toggle": "منوی متغیر",
   "org": "Organization",
-  "org-link": "/page/verein"
+  "org-link": "/page/verein",
+  "press": "مطبوعات",
+  "press-link": "/page/press"
 }

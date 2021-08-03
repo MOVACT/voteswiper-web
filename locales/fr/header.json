@@ -7,5 +7,7 @@
   "download": "Download",
   "toggle": "Menu à bascule",
   "org": "Organization",
-  "org-link": "/page/verein"
+  "org-link": "/page/verein",
+  "press": "Press",
+  "press-link": "/page/press"
 }

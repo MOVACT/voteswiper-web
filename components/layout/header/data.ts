@@ -8,6 +8,10 @@ const data = [
     text: 'header:org',
     locales: ['de'],
   },
+  {
+    href: 'header:press-link',
+    text: 'header:press',
+  },
 ];
 
 export default data;
