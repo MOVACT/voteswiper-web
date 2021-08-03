@@ -5,5 +5,9 @@
   "donate": "Donate",
   "app": "App",
   "download": "Download",
-  "toggle": "Toggle menu"
+  "toggle": "Toggle menu",
+  "org": "Organization",
+  "org-link": "/page/verein",
+  "press": "Press",
+  "press-link": "/page/press"
 }

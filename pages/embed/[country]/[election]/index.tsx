@@ -370,8 +370,6 @@ const CountryPage: NextPage<Props> = ({
       ? Math.max(document.body.offsetHeight, $htmlEl.offsetHeight)
       : $htmlEl.offsetHeight;
 
-    console.log('window height', windowHeight);
-
     if ($windowHeight.current === windowHeight) {
       requestRef.current = requestAnimationFrame(resizeFrame);
       return false;
