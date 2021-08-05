@@ -3,4 +3,3 @@ voteswiperProduction:
   inputs:
     domain: "voteswiper-org"
     bucketRegion: "eu-central-1"
-    bucketName: "voteswiper-prod-serverless"
