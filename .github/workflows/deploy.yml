@@ -34,10 +34,10 @@ jobs:
         run: yarn
       
       - name: Download `.serverless` state from S3
-        run: aws s3 sync s3://voteswiper-serverless/voteswiper-galileo/production/.serverless .serverless --delete 
+        run: aws s3 sync s3://voteswiper-serverless/voteswiper-web/production/.serverless .serverless --delete 
 
       - name: Deploy to AWS
         run: npm run deploy
             
       - name: Upload `.serverless` state to S3
-        run: aws s3 sync .serverless s3://voteswiper-serverless/voteswiper-galileo/production/.serverless --delete 
+        run: aws s3 sync .serverless s3://voteswiper-serverless/voteswiper-web/production/.serverless --delete 
