@@ -1,0 +1,5 @@
+voteswiperProduction:
+  component: "@sls-next/serverless-component@3.2.0" # it is recommended you pin the latest stable version of serverless-next.js
+  inputs:
+    domain: "voteswiper.org"
+    bucketRegion: "eu-central-1"

@@ -1,0 +1,43 @@
+name: Deployment
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  serverless-deploy:
+    runs-on: ubuntu-18.04
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      NEXT_PUBLIC_PAGE_DOMAIN: ${{ secrets.NEXT_PUBLIC_PAGE_DOMAIN }}
+      NEXT_PUBLIC_CDN: ${{ secrets.NEXT_PUBLIC_CDN }}
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_API_VERSION: ${{ secrets.NEXT_PUBLIC_API_VERSION }}
+      NEXT_PUBLIC_MATOMO_URL: ${{ secrets.NEXT_PUBLIC_MATOMO_URL }}
+      NEXT_PUBLIC_MATOMO_SITE_ID: ${{ secrets.NEXT_PUBLIC_MATOMO_SITE_ID }}
+      
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Serverless
+        run: npm install -g serverless
+      
+      - name: Install dependencies
+        run: yarn
+      
+      - name: Download `.serverless` state from S3
+        run: aws s3 sync s3://voteswiper-serverless/voteswiper-web/production/.serverless .serverless --delete 
+
+      - name: Deploy to AWS
+        run: npm run deploy
+            
+      - name: Upload `.serverless` state to S3
+        run: aws s3 sync .serverless s3://voteswiper-serverless/voteswiper-web/production/.serverless --delete 
