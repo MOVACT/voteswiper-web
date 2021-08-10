@@ -84,6 +84,7 @@ const Press: NextPage<Props> = ({ releases }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  Storyblok.flushCache();
   const stories = await Storyblok.getAll('cdn/stories', {
     starts_with: 'press/releases/',
     language: locale,
