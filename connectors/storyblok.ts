@@ -1,8 +1,10 @@
-import StoryblokClient from 'storyblok-js-client';
+import StoryblokClient, { StoryblokCache } from 'storyblok-js-client';
 
 const Storyblok = new StoryblokClient({
   accessToken: 'b7BTTUOEkSa786viucYnjwtt',
-  cache: 'none',
+  cache: ({
+    type: 'none',
+  } as unknown) as StoryblokCache,
 });
 
 export default Storyblok;
