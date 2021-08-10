@@ -14,6 +14,7 @@ export const fetchTranslatedStory = async <T>({
   paths: Array<string | string[] | undefined>;
 }): Promise<null | StoryblokStory<T>> => {
   return new Promise<StoryblokStory<T> | null>((resolve, reject) => {
+    Storyblok.flushCache();
     Storyblok.get(`cdn/stories`, {
       starts_with: `${locale === 'en' ? '' : locale}${
         locale === 'en' ? '' : '/'
