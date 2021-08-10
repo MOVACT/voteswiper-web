@@ -9,6 +9,7 @@ module.exports = {
     '/404': ['error'],
     '/[country]/[election]': ['election'],
     '/embed/[country]/[election]': ['election'],
+    '/preview/[country]/[election]': ['election'],
     '/[country]/[election]/[parties]': ['election'],
     '/page/press': ['press'],
     '/page/press/embed': ['press'],
