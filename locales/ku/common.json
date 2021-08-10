@@ -1,0 +1,9 @@
+{
+  "name": "WahlSwiper",
+  "titleTemplate": "%s - WahlSwiper",
+  "twitterHandle": "@wahlswiper",
+  "metaDefaultDescription": "Ji bo wergirtina agehî û pêgehan derbarey babetên girîng di hilbijartinên siyasî yên îsal de em harîkariya te dikin. ",
+
+  "votingDay": "Roja dengdanê li {{date}}",
+  "availableFrom": "Amade ji {{date}}"
+}

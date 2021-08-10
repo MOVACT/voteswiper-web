@@ -1,5 +1,5 @@
 module.exports = {
-  locales: ['de', 'en', 'sv', 'fr', 'fi', 'tr', 'ru', 'ar', 'fa'],
+  locales: ['de', 'en', 'sv', 'fr', 'fi', 'tr', 'ku', 'ru', 'ar', 'fa'],
   defaultLocale: 'en',
   rtlLocales: ['ar', 'fa'],
   pages: {
@@ -9,6 +9,7 @@ module.exports = {
     '/404': ['error'],
     '/[country]/[election]': ['election'],
     '/embed/[country]/[election]': ['election'],
+    '/preview/[country]/[election]': ['election'],
     '/[country]/[election]/[parties]': ['election'],
     '/page/press': ['press'],
     '/page/press/embed': ['press'],

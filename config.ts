@@ -11,6 +11,7 @@ const config = {
     fa: 'فارسی',
     ar: 'عربى',
     tr: 'Türkçe',
+    ku: 'Kurdî',
     ru: 'русский язык',
   } as { [key: string]: string },
 
@@ -25,6 +26,7 @@ const config = {
       ru: 'partii',
       tr: 'partiler',
       fa: 'parties',
+      ku: 'parties',
       ar: 'parties',
     } as { [key: string]: string },
   },

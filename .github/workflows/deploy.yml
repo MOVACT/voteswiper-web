@@ -17,6 +17,7 @@ jobs:
       NEXT_PUBLIC_API_VERSION: ${{ secrets.NEXT_PUBLIC_API_VERSION }}
       NEXT_PUBLIC_MATOMO_URL: ${{ secrets.NEXT_PUBLIC_MATOMO_URL }}
       NEXT_PUBLIC_MATOMO_SITE_ID: ${{ secrets.NEXT_PUBLIC_MATOMO_SITE_ID }}
+      API_PREVIEW_KEY: ${{ secrets.API_PREVIEW_KEY }}
       
     steps:
       - uses: actions/checkout@v1
