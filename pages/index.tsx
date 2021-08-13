@@ -178,6 +178,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const countries = await fetch<Country[]>(ENDPOINTS.COUNTRIES, locale);
 
   return {
+    revalidate: 300,
     props: {
       countries: countries.data,
     },
