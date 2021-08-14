@@ -92,29 +92,9 @@ const CountryPage: NextPage<Props> = ({
   );
 };
 
-export const getStaticPaths: GetStaticPaths<{ country: string }> = async ({
-  locales,
-}) => {
-  const paths: Array<
-    string | { params: { country: string }; locale?: string }
-  > = [];
-  if (locales) {
-    for (const locale of locales) {
-      const countries = await fetch<Country[]>(ENDPOINTS.COUNTRIES, locale);
-
-      countries.data.map((country) => {
-        paths.push({
-          params: {
-            country: country.slug,
-          },
-          locale,
-        });
-      });
-    }
-  }
-
+export const getStaticPaths: GetStaticPaths<{ country: string }> = async () => {
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };

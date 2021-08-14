@@ -2,7 +2,7 @@ import { IconDownload } from '@tabler/icons';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
-import Storyblok, { fetchTranslatedStory } from 'connectors/storyblok';
+import { fetchTranslatedStory } from 'connectors/storyblok';
 import PressContact from 'content-components/press-contact';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -89,34 +89,9 @@ const Press: NextPage<Props> = ({ story }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async ({
-  locales,
-}) => {
-  const paths: Array<
-    string | { params: { slug: string }; locale?: string }
-  > = [];
-  if (locales) {
-    for (const locale of locales) {
-      const stories = await Storyblok.getAll('cdn/stories', {
-        starts_with: 'page/releases/',
-        language: locale,
-      });
-
-      stories.map((story) => {
-        const slug = story.full_slug.split('/').pop();
-
-        paths.push({
-          params: {
-            slug,
-          },
-          locale,
-        });
-      });
-    }
-  }
-
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };

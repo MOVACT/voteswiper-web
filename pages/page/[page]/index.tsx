@@ -5,7 +5,7 @@ import ContentPage, {
   ContentPageStory,
 } from 'components/layout/page-types/content-page';
 import FaqPage, { FaqPageStory } from 'components/layout/page-types/faq-page';
-import Storyblok, { fetchTranslatedStory } from 'connectors/storyblok';
+import { fetchTranslatedStory } from 'connectors/storyblok';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React from 'react';
 
@@ -24,34 +24,9 @@ const Page: NextPage<Props> = ({ story }) => {
   }
 };
 
-export const getStaticPaths: GetStaticPaths<{ page: string }> = async ({
-  locales,
-}) => {
-  const paths: Array<
-    string | { params: { page: string }; locale?: string }
-  > = [];
-  if (locales) {
-    for (const locale of locales) {
-      const stories = await Storyblok.getAll('cdn/stories', {
-        starts_with: 'page/',
-        language: locale,
-      });
-
-      stories.map((story) => {
-        const slug = story.full_slug.split('/').pop();
-
-        paths.push({
-          params: {
-            page: slug,
-          },
-          locale,
-        });
-      });
-    }
-  }
-
+export const getStaticPaths: GetStaticPaths<{ page: string }> = async () => {
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };
