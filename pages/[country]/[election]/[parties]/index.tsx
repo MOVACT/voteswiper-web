@@ -14,7 +14,6 @@ import {
   CountryData,
   Election,
   ElectionBySlugData,
-  ElectionsData,
   PartiesData,
   Party,
 } from 'types/api';
@@ -86,48 +85,9 @@ export const getStaticPaths: GetStaticPaths<{
   country: string;
   election: string;
   parties: string;
-}> = async ({ locales }) => {
-  const paths: Array<
-    | string
-    | {
-        params: { country: string; election: string; parties: string };
-        locale?: string;
-      }
-  > = [];
-  if (locales) {
-    for (const locale of locales) {
-      const countries = await fetch<CountryData[]>(ENDPOINTS.COUNTRIES, locale);
-
-      await Promise.all(
-        countries.data.map(async (country) => {
-          const electionsForCountry = await fetch<Election[], ElectionsData>(
-            ENDPOINTS.ELECTIONS,
-            locale,
-            {
-              data: {
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                country: country.slug as string,
-              },
-            }
-          );
-
-          electionsForCountry.data.map((election) => {
-            paths.push({
-              params: {
-                country: country.slug,
-                election: election.slug,
-                parties: config.translatedSlugs.parties[locale],
-              },
-              locale,
-            });
-          });
-        })
-      );
-    }
-  }
-
+}> = async () => {
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };
