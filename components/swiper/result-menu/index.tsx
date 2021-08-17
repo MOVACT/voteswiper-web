@@ -70,6 +70,7 @@ const ResultMenu: React.FC = () => {
 
       <ResultItem
         icon={IconPolaroid}
+        disabled={selectedParties.length === 0}
         label={t('election:resultImage')}
         href={`https://share.voteswiper.org/api/share-image?${queryString}`}
       />

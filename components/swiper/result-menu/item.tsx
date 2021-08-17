@@ -10,6 +10,7 @@ interface Props {
   icon: TablerIcon;
   screen?: STEPS;
   href?: string;
+  disabled?: boolean;
 }
 
 const ResultItem: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const ResultItem: React.FC<Props> = ({
   icon,
   screen,
   href,
+  disabled = false,
 }) => {
   const { screen: currentScreen, goToScreen } = useElection();
   const IconComponent = icon;
@@ -38,7 +40,10 @@ const ResultItem: React.FC<Props> = ({
 
   if (href) {
     return (
-      <a href={href} className={className}>
+      <a
+        href={href}
+        className={cn(className, disabled && 'opacity-50 pointer-events-none')}
+      >
         {content}
       </a>
     );
