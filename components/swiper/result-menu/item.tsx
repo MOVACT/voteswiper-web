@@ -11,6 +11,7 @@ interface Props {
   screen?: STEPS;
   href?: string;
   disabled?: boolean;
+  visible?: boolean;
 }
 
 const ResultItem: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const ResultItem: React.FC<Props> = ({
   screen,
   href,
   disabled = false,
+  visible = true,
 }) => {
   const { screen: currentScreen, goToScreen } = useElection();
   const IconComponent = icon;
@@ -37,6 +39,8 @@ const ResultItem: React.FC<Props> = ({
       <div className="flex items-start flex-1">{label}</div>
     </>
   );
+
+  if (!visible) return <></>;
 
   if (href) {
     return (

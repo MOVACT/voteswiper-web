@@ -71,6 +71,8 @@ interface Context {
 
   compareParty: (partyId: number | null) => void;
   comparePartyId: number | null;
+
+  featureDownloadImageEnabled: boolean;
 }
 
 interface Props {
@@ -167,9 +169,20 @@ export const ElectionProvider: React.FC<Props> = ({
   );
   const [comparePartyId, setCompareParty] = React.useState<number | null>(null);
   const [explainer, setExplainer] = React.useState<number | null>(null);
-  const { locale } = useRouter();
+  const { locale, query } = useRouter();
+
+  const [
+    featureDownloadImageEnabled,
+    setFeatureDownloadImage,
+  ] = React.useState<boolean>(true);
 
   useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
+
+  React.useEffect(() => {
+    if (query && query['hideDownload']) {
+      setFeatureDownloadImage(false);
+    }
+  }, [query]);
 
   const [answers, setAnswers] = React.useState<SwiperAnswers>(
     (() => {
@@ -499,6 +512,7 @@ export const ElectionProvider: React.FC<Props> = ({
         saveResult,
         compareParty,
         comparePartyId,
+        featureDownloadImageEnabled,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ const ResultMenu: React.FC = () => {
     parties,
     election,
     selectedParties,
+    featureDownloadImageEnabled,
   } = useElection();
   const result = calculateResult(questions, answers, parties);
   const { t } = useTranslation();
@@ -71,6 +72,7 @@ const ResultMenu: React.FC = () => {
       <ResultItem
         icon={IconPolaroid}
         disabled={selectedParties.length === 0}
+        visible={featureDownloadImageEnabled}
         label={t('election:resultImage')}
         href={`https://share.voteswiper.org/api/share-image?${queryString}`}
       />

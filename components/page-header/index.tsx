@@ -2,6 +2,7 @@ import cn from 'classnames';
 import IconHome from 'icons/home.svg';
 import { BreadcrumbJsonLd } from 'next-seo';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import url from 'util/url';
 import Container from '../layout/container';
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
+  const router = useRouter();
   const breadcrumbArray = [
     {
       position: 1,
@@ -33,9 +35,11 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
 
   return (
     <header className="pb-4 bg-black bg-opacity-20 pt-28 md:pt-48 md:pb-8">
-      {breadcrumb && <BreadcrumbJsonLd itemListElements={breadcrumbArray} />}
+      {breadcrumb && router.pathname.indexOf('embed') === -1 && (
+        <BreadcrumbJsonLd itemListElements={breadcrumbArray} />
+      )}
       <Container>
-        {breadcrumb && (
+        {breadcrumb && router.pathname.indexOf('embed') === -1 && (
           <nav className="mb-1 md:mb-2">
             <ol
               className={cn(
