@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import ar from 'date-fns/locale/ar-SA';
 import de from 'date-fns/locale/de';
 import en from 'date-fns/locale/en-GB';
 import fa from 'date-fns/locale/fa-IR';
@@ -17,7 +18,7 @@ const formatLocal = (
       l = de;
       break;
     case 'ar':
-      l = en;
+      l = ar;
       break;
     case 'fa':
       l = fa;
