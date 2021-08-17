@@ -29,7 +29,7 @@ const PressContact: React.FC = () => {
           {t('press:email')}{' '}
           <a
             className="text-underline focus-default"
-            href="mailto:presse@voteswiper.org"
+            href="mailto:press@voteswiper.org"
           >
             press@voteswiper.org
           </a>
