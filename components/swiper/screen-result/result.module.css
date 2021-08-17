@@ -1,0 +1,3 @@
+html[dir="rtl"] .icon {
+  transform: scaleX(-1);
+}

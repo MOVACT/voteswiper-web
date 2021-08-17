@@ -31,6 +31,7 @@ export interface AlternateLinks {
 export interface Election extends CommonRow {
   country_id: number;
   name: string;
+  followup_link: string;
   slug: string;
   published: boolean;
   playable: boolean;

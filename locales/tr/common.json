@@ -5,5 +5,5 @@
   "metaDefaultDescription": "Sana güncel seçimlere dair önemli konu ve bakış açıları hakkında genel bir bilgi edinmende yardımcı oluyoruz.",
 
   "votingDay": "Seçim günü {{date}}",
-  "availableFrom": "'den itibaren mevcut {{date}}"
+  "availableFrom": "{{date}}'den itibaren mevcut"
 }
