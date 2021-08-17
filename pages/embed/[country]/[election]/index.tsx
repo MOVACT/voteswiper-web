@@ -11,13 +11,11 @@ import EditPartiesScreen from 'components/swiper/screen-edit-parties';
 import ExplainerScreen from 'components/swiper/screen-explainer';
 import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
-import config from 'config';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';
 import { isPast } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
-import HyperlinkIcon from 'icons/hyperlink.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Trans from 'next-translate/Trans';
@@ -38,6 +36,7 @@ import {
 } from 'types/api';
 import createFromDateTime from 'util/createFromDatetime';
 import formatLocal from 'util/formatLocal';
+import storyblokDimensions from 'util/storyblokDimensions';
 import url from 'util/url';
 
 type ElectionStory = null | StoryblokStory<{
@@ -133,19 +132,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <PageHeader
-                breadcrumb={[
-                  {
-                    item: `/${countrySlug}`,
-                    name: countryName,
-                  },
-                  {
-                    item: `/${countrySlug}/${slug}`,
-                    name: name,
-                  },
-                ]}
-                title={name}
-              />
+              <PageHeader title={name} />
               <Page>
                 <Container>
                   <div className="mb-24 prose prose-white lg:prose-xl">
@@ -217,97 +204,50 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                     )}
                   </div>
 
-                  {story !== null && (
-                    <>
-                      {story.content.links.length > 0 && (
-                        <>
-                          <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4">
-                            {t('election:moreInformation')}
-                          </h2>
-
-                          <ul className="flex flex-wrap mb-4 -mx-1 -mx-2 md:mb-6 lg:mb-12">
-                            <li className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3">
-                              <Link
-                                href={`/${country.slug}/${election.slug}/${
-                                  config.translatedSlugs.parties[
-                                    (locale as unknown) as string
-                                  ]
-                                }`}
-                                passHref
-                              >
-                                <a className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default">
-                                  {t('election:parties')}
-                                </a>
-                              </Link>
-                            </li>
-
-                            {story.content.links.map((link) => {
-                              return (
-                                <li
-                                  className="w-full p-1 md:p-2 md:w-1/2 lg:w-1/3"
-                                  key={link._uid}
-                                >
-                                  <a
-                                    className="block text-lg text-white bg-white hover:text-brand-highlight hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default flex items-center justify-between"
-                                    href={link.link.url}
-                                    key={link._uid}
-                                    target="_blank"
-                                    rel="noopener noreferrer nofollow"
-                                  >
-                                    {link.text}
-                                    <HyperlinkIcon className="w-4 h-4 ml-2" />
-                                  </a>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </>
-                      )}
-                    </>
-                  )}
-
                   {story !== null && story.content.partner.length > 0 && (
                     <>
                       <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
                         {t('election:partner')}
                       </h2>
 
-                      <div className="flex flex-wrap">
+                      <div className="flex flex-wrap -mx-2 md:-mx-3 lg:-mx-4">
                         {story.content.partner.map((partner) => {
                           return (
-                            <div
-                              key={partner._uid}
-                              className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
-                            >
-                              <div className="relative min-h-[125px]">
-                                {partner.link.url !== '' ? (
-                                  <a
-                                    href={partner.link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer nofollow"
-                                    title={partner.name}
-                                  >
-                                    <Image
-                                      src={partner.logo.filename}
-                                      alt={partner.logo.alt}
-                                      className="w-auto h-10"
-                                      layout="fill"
-                                      objectFit="contain"
-                                      objectPosition="center"
-                                    />
-                                  </a>
-                                ) : (
+                            <React.Fragment key={partner._uid}>
+                              {partner.link.url !== '' ? (
+                                <a
+                                  href={partner.link.url}
+                                  target="_blank"
+                                  className="block w-1/2 px-2 md:w-40 lg:w-52 md:px-3 lg:px-4"
+                                  rel="noopener noreferrer nofollow"
+                                  title={partner.name}
+                                >
                                   <Image
                                     src={partner.logo.filename}
                                     alt={partner.logo.alt}
-                                    className="w-auto h-10"
-                                    layout="fill"
+                                    {...storyblokDimensions(
+                                      partner.logo.filename
+                                    )}
+                                    layout="responsive"
                                     objectFit="contain"
                                     objectPosition="center"
                                   />
-                                )}
-                              </div>
-                            </div>
+                                </a>
+                              ) : (
+                                <div className="w-1/2 px-2 md:w-32 lg:w-40 md:px-3 lg:px-4">
+                                  <Image
+                                    src={partner.logo.filename}
+                                    alt={partner.logo.alt}
+                                    layout="responsive"
+                                    {...storyblokDimensions(
+                                      partner.logo.filename
+                                    )}
+                                    objectFit="contain"
+                                    objectPosition="center"
+                                  />
+                                </div>
+                              )}
+                            </React.Fragment>
                           );
                         })}
                       </div>
