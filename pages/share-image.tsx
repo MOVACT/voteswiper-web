@@ -4,6 +4,14 @@ import React from 'react';
 const ShareImage: React.FC = () => {
   const router = useRouter();
 
+  let scores = router.query['score[]'];
+
+  if (typeof scores === 'string') {
+    scores = [scores];
+  }
+
+  console.log(typeof router.query['score[]'], router.query['score[]']);
+
   // 168px
   // 58
 
@@ -18,8 +26,8 @@ const ShareImage: React.FC = () => {
         </div>
       </div>
       <div className="px-8 pb-10">
-        {router.query['score[]'] &&
-          (router.query['score[]'] as string[]).map((score) => {
+        {scores &&
+          (scores as string[]).map((score) => {
             const values = score.split(',');
 
             return (
