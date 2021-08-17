@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import CircleAnswer from 'components/circle-answer';
 import ExternalLink from 'components/external-link';
 import Thesis from 'components/typography/thesis';
@@ -65,7 +66,7 @@ const ComparePartyScreen: React.FC = () => {
                     className="relative flex flex-wrap items-start p-4 rounded-lg md:p-6 bg-gradient-to-b from-white to-brand-light-blue"
                     key={question.id}
                   >
-                    <div className="absolute top-0 right-0 mt-4 mr-4 md:w-1/5 md:m-0 md:relative">
+                    <div className={styles.video}>
                       <div className="relative h-[60px] md:h-[80px] w-[60px] md:w-full rounded-full lg:h-[120px] md:rounded overflow-hidden shadow-lg pointer-events-none">
                         <Image
                           layout="fill"
@@ -85,7 +86,12 @@ const ComparePartyScreen: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="w-full pb-4 md:w-auto md:flex-1 md:px-6 md:pb-0 pr-[80px] lg:pr-4">
+                    <div
+                      className={cn(
+                        'w-full pb-4 md:w-auto md:flex-1 md:pl-6 md:pb-0',
+                        styles.content
+                      )}
+                    >
                       <Topic>{question.topic}</Topic>
                       <Thesis>{question.thesis}</Thesis>
 

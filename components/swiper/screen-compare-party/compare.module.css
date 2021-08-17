@@ -7,3 +7,35 @@
     max-width: 9rem;
   }
 }
+
+@media (min-width: 375px) {
+  .content {
+    padding-right: 80px;
+  }
+
+  .video {
+    @apply absolute top-0 right-0 mt-4 mr-4;
+  }
+}
+
+@screen md {
+  .content {
+    @apply pr-6;
+  }
+
+  .video {
+    @apply w-1/5 m-0 relative;
+  }
+}
+
+@screen lg {
+  .content {
+    @apply pr-4;
+  }
+}
+
+@media (max-width: 374px) {
+  .video {
+    @apply mb-4;
+  }
+}
