@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
                 id="socialMedia"
                 className="pb-2 font-medium md:text-lg md:pb-4"
               >
-                Social Media
+                {t('footer:socialmedia')}
               </div>
               <nav aria-labelledby="socialMedia">
                 <ul>{socialLinks.map((item) => renderLink(item))}</ul>
@@ -164,7 +164,7 @@ const Footer: React.FC = () => {
                 id="openSource"
                 className="pb-2 font-medium md:text-lg md:pb-4"
               >
-                Source Code
+                {t('footer:sourcecode')}
               </div>
               <nav aria-labelledby="openSource">
                 <ul>{openSourceLinks.map((item) => renderLink(item))}</ul>

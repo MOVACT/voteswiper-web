@@ -29,7 +29,7 @@ const ComparePartyScreen: React.FC = () => {
   return (
     <>
       <div className="flex flex-wrap items-center justify-start text-lg font-medium text-white xl:text-xl">
-        <div className="mr-3">{t('election:compareAnswersWith')}</div>
+        <div className="mie-3">{t('election:compareAnswersWith')}</div>
         <select
           value={comparePartyId ?? ''}
           className="w-full font-medium bg-transparent border-b lg:w-auto focus-default"

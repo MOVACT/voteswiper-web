@@ -13,9 +13,11 @@
   "pressLink": "/page/press",
   "press": "Basın",
   "contact": "İletişim",
-  "imprintLink": "/page/impressum",
+  "imprintLink": "/page/imprint",
   "imprint": "Künye",
-  "privacyLink": "/page/datenschutz",
+  "privacyLink": "/page/privacy",
   "privacy": "Veri koruma",
-  "sourceCodeNote": "Yakında inceleme için tüm platformlar için kaynak kodumuzu yayınlayacağız."
+  "sourceCodeNote": "Yakında inceleme için tüm platformlar için kaynak kodumuzu yayınlayacağız.",
+  "socialmedia": "Sosyal Medya",
+  "sourcecode": "Kaynak Kod"
 }

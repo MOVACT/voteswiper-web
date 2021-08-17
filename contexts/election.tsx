@@ -161,7 +161,7 @@ export const ElectionProvider: React.FC<Props> = ({
 }) => {
   const wasResultStored = React.useRef(false);
   const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
-  const [screen, setScreen] = React.useState<STEPS>(STEPS.START);
+  const [screen, setScreen] = React.useState<STEPS>(STEPS.RESULT);
   const [selectedParties, setSelectedParties] = React.useState<number[]>(
     parties.map((party) => party.id)
   );
@@ -171,7 +171,7 @@ export const ElectionProvider: React.FC<Props> = ({
 
   useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
 
-  const [answers, setAnswers] = React.useState<SwiperAnswers>(
+  /*const [answers, setAnswers] = React.useState<SwiperAnswers>(
     (() => {
       // Create a default of all the answers
       const initialAnswers: SwiperAnswers = {};
@@ -184,9 +184,9 @@ export const ElectionProvider: React.FC<Props> = ({
 
       return initialAnswers;
     })()
-  );
+  );*/
 
-  /*const [answers, setAnswers] = React.useState<SwiperAnswers>({
+  const [answers, setAnswers] = React.useState<SwiperAnswers>({
     1318: { answer: 2, doubleWeighted: false },
     1319: { answer: 1, doubleWeighted: false },
     1320: { answer: 0, doubleWeighted: true },
@@ -217,7 +217,7 @@ export const ElectionProvider: React.FC<Props> = ({
     1345: { answer: 2, doubleWeighted: false },
     1346: { answer: 2, doubleWeighted: false },
     1347: { answer: 2, doubleWeighted: false },
-  });*/
+  });
 
   /**
    * Will push a new entry to the browsers history api together with the current state

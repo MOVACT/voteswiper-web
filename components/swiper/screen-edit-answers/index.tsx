@@ -9,6 +9,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React from 'react';
 import { ANSWERS, STEPS } from '../constants';
+import styles from './edit-answers.module.css';
 import useEditAnswers from './use-edit-answers';
 
 const EditAnswersScreen: React.FC = () => {
@@ -61,7 +62,7 @@ const EditAnswersScreen: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-6 md:w-3/4 md:pl-6 md:pt-0">
+                <div className="pt-6 md:w-3/4 md:pis-6 md:pt-0">
                   <Topic customColorClassName="text-white md:text-brand-primary">
                     {question.topic}
                   </Topic>
@@ -79,7 +80,7 @@ const EditAnswersScreen: React.FC = () => {
                         });
                       }}
                     >
-                      <div className="flex items-center justify-center w-5 h-5 mr-2 border border-white rounded-sm md:border-brand-primary lg:mr-4 lg:w-6 lg:h-6">
+                      <div className="flex items-center justify-center w-5 h-5 border border-white rounded-sm mie-2 md:border-brand-primary lg:mie-4 lg:w-6 lg:h-6">
                         {answer.doubleWeighted && (
                           <IconCheckmark className="w-5 h-5 lg:w-6 lg:h-6" />
                         )}
@@ -87,7 +88,7 @@ const EditAnswersScreen: React.FC = () => {
                       {t('election:doubleWeight')}
                     </button>
 
-                    <div className="flex mt-3">
+                    <div className={cn('flex mt-3', styles.row)}>
                       <button
                         onClick={() => {
                           setAnswer({
