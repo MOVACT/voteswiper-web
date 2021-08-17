@@ -43,7 +43,11 @@ const ComparePartyScreen: React.FC = () => {
           <option value="">{t('election:chooseParty')}</option>
           {parties.map((party) => {
             return (
-              <option key={party.id} value={party.id}>
+              <option
+                key={party.id}
+                value={party.id}
+                className="text-black bg-white"
+              >
                 {party.name}
               </option>
             );
