@@ -25,7 +25,7 @@ const Press: NextPage = () => {
             name: t('press:title'),
           },
           {
-            item: '/page/presse/downloads',
+            item: '/page/press/downloads',
             name: t('press:downloads'),
           },
         ]}

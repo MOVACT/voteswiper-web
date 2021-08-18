@@ -47,11 +47,11 @@ const Press: NextPage<Props> = ({ story }) => {
             name: t('press:title'),
           },
           {
-            item: '/page/presse/releases',
+            item: '/page/press/releases',
             name: t('press:releases'),
           },
           {
-            item: `/page/presse/releases/${story.slug}`,
+            item: `/page/press/releases/${story.slug}`,
             name: formatLocal(
               new Date(story.first_published_at),
               'PPPP',

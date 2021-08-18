@@ -45,7 +45,7 @@ const Press: NextPage<Props> = ({ releases }) => {
             name: t('press:title'),
           },
           {
-            item: '/page/presse/releases',
+            item: '/page/press/releases',
             name: t('press:releases'),
           },
         ]}
