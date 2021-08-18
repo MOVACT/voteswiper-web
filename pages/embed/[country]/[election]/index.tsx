@@ -262,9 +262,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
             <Swiper
               key="swiper"
               onRequestClose={() => {
-                if (window.confirm(t('election:quit'))) {
-                  endSwiper();
-                }
+                endSwiper();
               }}
             />
           )}
