@@ -189,12 +189,22 @@ const ComparePartyScreen: React.FC = () => {
                 </ExternalLink>
               </div>
             )}
-            {comparedParty.pivot.program_link && (
+            {comparedParty.pivot.program !== null ? (
               <div className="mt-3">
-                <ExternalLink href={comparedParty.pivot.program_link}>
+                <ExternalLink href={comparedParty.pivot.program.public_link}>
                   {t('election:program')}
                 </ExternalLink>
               </div>
+            ) : (
+              <>
+                {comparedParty.pivot.program_link && (
+                  <div className="mt-3">
+                    <ExternalLink href={comparedParty.pivot.program_link}>
+                      {t('election:program')}
+                    </ExternalLink>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

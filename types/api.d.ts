@@ -67,8 +67,9 @@ export interface PartyPivot extends CommonRow {
   party_id: number;
   playable: boolean;
   published: boolean;
-  program_upload_id: null | Upload;
+  program_upload_id: null | number;
   program_link: null | string;
+  program: null | Upload;
   answers: Answer[];
 }
 
