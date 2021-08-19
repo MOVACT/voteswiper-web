@@ -46,10 +46,10 @@ const ExplainerScreen: React.FC = () => {
                   <Video src={currentQuestion.video_url} />
                 )}
                 {currentQuestion.explainer_text && (
-                  <div className="mt-6 lg:mt-0 lg:max-w-[450px] lg:w-screen lg:pl-6 prose lg:overflow-auto lg:max-h-[60vh] lg:overflow-scroll">
-                    {currentQuestion.explainer_text}
-                    {currentQuestion.explainer_text}
-                    {currentQuestion.explainer_text}
+                  <div className="mt-6 lg:mt-0 lg:max-w-[450px] lg:w-screen prose lg:overflow-auto lg:max-h-[60vh] lg:overflow-scroll">
+                    <div className="lg:mis-2">
+                      {currentQuestion.explainer_text}
+                    </div>
                   </div>
                 )}
               </div>
