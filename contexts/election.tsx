@@ -391,8 +391,8 @@ export const ElectionProvider: React.FC<Props> = ({
   }, [currentQuestion, pushHistoryState, locale, election]);
 
   const endSwiper = React.useCallback(() => {
-    pushHistoryState(currentQuestion, STEPS.START);
     setScreen(STEPS.START);
+    pushHistoryState(currentQuestion, STEPS.START);
   }, [currentQuestion, pushHistoryState]);
 
   /**

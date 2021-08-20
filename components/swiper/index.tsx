@@ -29,7 +29,7 @@ const Swiper: React.FC<Props> = ({ onRequestClose }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-[#7577bd] to-[#392f52] z-50 overflow-y-auto overflow-x-hidden flex items-center justify-center pt-16 lg:pt-24 pb-10"
+      className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-[#7577bd] to-[#392f52] z-50 overflow-y-auto overflow-x-hidden flex items-center justify-center px-3 lg:px-0 pt-16 lg:pt-24 pb-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
