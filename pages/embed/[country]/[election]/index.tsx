@@ -125,138 +125,142 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
       />
       <div id="swiper-container">
         <AnimatePresence exitBeforeEnter>
-          {screen === STEPS.START && (
-            <motion.div
-              key="start"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <PageHeader title={name} />
-              <Page>
-                <Container>
-                  <div className="mb-24 prose prose-white lg:prose-xl">
-                    <p>
-                      {election.playable ? (
-                        <Trans
-                          i18nKey={translationString()}
-                          values={{
-                            name: name,
-                            date: formatLocal(
-                              createFromDateTime(election.voting_day),
-                              'PPP',
-                              locale
-                            ),
-                            participating: election.parties_participating,
-                            total:
-                              election.parties_not_participating +
-                              election.parties_participating,
-                          }}
-                          components={[<strong key="" />]}
-                        />
-                      ) : (
-                        <>
-                          <p>
-                            <Trans
-                              i18nKey={'election:introVotingDay'}
-                              values={{
-                                name: name,
-                                date: formatLocal(
-                                  createFromDateTime(election.voting_day),
-                                  'PPP',
-                                  locale
-                                ),
-                                playableDate: formatLocal(
-                                  createFromDateTime(election.playable_date),
-                                  'PPP',
-                                  locale
-                                ),
-                              }}
-                              components={[<strong key="" />, <br key="" />]}
-                            />
-                          </p>
-                        </>
-                      )}
-                    </p>
-
-                    <p>
-                      <Button
-                        color="primary"
-                        size="lg"
-                        className="w-full md:w-auto"
-                        disabled={!election.playable}
-                        onClick={() => {
-                          if (!election.playable) return;
-                          startSwiper();
-                        }}
-                      >
-                        {t('election:start')}
-                      </Button>
-                    </p>
-
-                    {election.playable && (
-                      <p className="text-sm text-white opacity-70">
-                        <Trans
-                          i18nKey="election:privacyNote"
-                          components={[<PrivacyLink key="pl" />]}
-                        />
+          {screen !== STEPS.RESULT &&
+            screen !== STEPS.EDIT_PARTIES &&
+            screen !== STEPS.COMPARE_PARTY &&
+            screen !== STEPS.PARTIES &&
+            screen !== STEPS.EDIT_ANSWERS && (
+              <motion.div
+                key="start"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <PageHeader title={name} />
+                <Page>
+                  <Container>
+                    <div className="mb-24 prose prose-white lg:prose-xl">
+                      <p>
+                        {election.playable ? (
+                          <Trans
+                            i18nKey={translationString()}
+                            values={{
+                              name: name,
+                              date: formatLocal(
+                                createFromDateTime(election.voting_day),
+                                'PPP',
+                                locale
+                              ),
+                              participating: election.parties_participating,
+                              total:
+                                election.parties_not_participating +
+                                election.parties_participating,
+                            }}
+                            components={[<strong key="" />]}
+                          />
+                        ) : (
+                          <>
+                            <p>
+                              <Trans
+                                i18nKey={'election:introVotingDay'}
+                                values={{
+                                  name: name,
+                                  date: formatLocal(
+                                    createFromDateTime(election.voting_day),
+                                    'PPP',
+                                    locale
+                                  ),
+                                  playableDate: formatLocal(
+                                    createFromDateTime(election.playable_date),
+                                    'PPP',
+                                    locale
+                                  ),
+                                }}
+                                components={[<strong key="" />, <br key="" />]}
+                              />
+                            </p>
+                          </>
+                        )}
                       </p>
+
+                      <p>
+                        <Button
+                          color="primary"
+                          size="lg"
+                          className="w-full md:w-auto"
+                          disabled={!election.playable}
+                          onClick={() => {
+                            if (!election.playable) return;
+                            startSwiper();
+                          }}
+                        >
+                          {t('election:start')}
+                        </Button>
+                      </p>
+
+                      {election.playable && (
+                        <p className="text-sm text-white opacity-70">
+                          <Trans
+                            i18nKey="election:privacyNote"
+                            components={[<PrivacyLink key="pl" />]}
+                          />
+                        </p>
+                      )}
+                    </div>
+
+                    {story !== null && story.content.partner.length > 0 && (
+                      <>
+                        <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
+                          {t('election:partner')}
+                        </h2>
+
+                        <div className="flex flex-wrap -mx-2 md:-mx-3 lg:-mx-4">
+                          {story.content.partner.map((partner) => {
+                            return (
+                              <React.Fragment key={partner._uid}>
+                                {partner.link.url !== '' ? (
+                                  <a
+                                    href={partner.link.url}
+                                    target="_blank"
+                                    className="block w-1/2 px-2 md:w-40 lg:w-52 md:px-3 lg:px-4"
+                                    rel="noopener noreferrer nofollow"
+                                    title={partner.name}
+                                  >
+                                    <Image
+                                      src={partner.logo.filename}
+                                      alt={partner.logo.alt}
+                                      {...storyblokDimensions(
+                                        partner.logo.filename
+                                      )}
+                                      layout="responsive"
+                                      objectFit="contain"
+                                      objectPosition="center"
+                                    />
+                                  </a>
+                                ) : (
+                                  <div className="w-1/2 px-2 md:w-32 lg:w-40 md:px-3 lg:px-4">
+                                    <Image
+                                      src={partner.logo.filename}
+                                      alt={partner.logo.alt}
+                                      layout="responsive"
+                                      {...storyblokDimensions(
+                                        partner.logo.filename
+                                      )}
+                                      objectFit="contain"
+                                      objectPosition="center"
+                                    />
+                                  </div>
+                                )}
+                              </React.Fragment>
+                            );
+                          })}
+                        </div>
+                      </>
                     )}
-                  </div>
-
-                  {story !== null && story.content.partner.length > 0 && (
-                    <>
-                      <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
-                        {t('election:partner')}
-                      </h2>
-
-                      <div className="flex flex-wrap -mx-2 md:-mx-3 lg:-mx-4">
-                        {story.content.partner.map((partner) => {
-                          return (
-                            <React.Fragment key={partner._uid}>
-                              {partner.link.url !== '' ? (
-                                <a
-                                  href={partner.link.url}
-                                  target="_blank"
-                                  className="block w-1/2 px-2 md:w-40 lg:w-52 md:px-3 lg:px-4"
-                                  rel="noopener noreferrer nofollow"
-                                  title={partner.name}
-                                >
-                                  <Image
-                                    src={partner.logo.filename}
-                                    alt={partner.logo.alt}
-                                    {...storyblokDimensions(
-                                      partner.logo.filename
-                                    )}
-                                    layout="responsive"
-                                    objectFit="contain"
-                                    objectPosition="center"
-                                  />
-                                </a>
-                              ) : (
-                                <div className="w-1/2 px-2 md:w-32 lg:w-40 md:px-3 lg:px-4">
-                                  <Image
-                                    src={partner.logo.filename}
-                                    alt={partner.logo.alt}
-                                    layout="responsive"
-                                    {...storyblokDimensions(
-                                      partner.logo.filename
-                                    )}
-                                    objectFit="contain"
-                                    objectPosition="center"
-                                  />
-                                </div>
-                              )}
-                            </React.Fragment>
-                          );
-                        })}
-                      </div>
-                    </>
-                  )}
-                </Container>
-              </Page>
-            </motion.div>
-          )}
+                  </Container>
+                </Page>
+              </motion.div>
+            )}
 
           {screen === STEPS.SWIPER && (
             <Swiper
