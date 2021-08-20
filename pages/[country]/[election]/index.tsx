@@ -107,6 +107,16 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
     <>
       <NextSeo
         title={name}
+        openGraph={{
+          images: [
+            {
+              url: election.card.public_link,
+              width: election.card.width,
+              height: election.card.height,
+              alt: election.name,
+            },
+          ],
+        }}
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'en')}
       />
       <div className="min-h-screen">

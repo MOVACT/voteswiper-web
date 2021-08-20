@@ -17,6 +17,14 @@ const Layout: React.FC = ({ children }) => {
           site_name: t('name'),
           locale: lang,
           type: 'website',
+          images: [
+            {
+              url:
+                'https://www.voteswiper.org/images/meta/wahlswiper-share-fb.jpeg',
+              width: 1200,
+              height: 630,
+            },
+          ],
         }}
         titleTemplate={t('titleTemplate')}
         description={t('metaDefaultDescription')}
