@@ -6,7 +6,7 @@ import ContentPage, {
 } from 'components/layout/page-types/content-page';
 import FaqPage, { FaqPageStory } from 'components/layout/page-types/faq-page';
 import { fetchTranslatedStory } from 'connectors/storyblok';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 
 interface Props {
@@ -24,14 +24,17 @@ const Page: NextPage<Props> = ({ story }) => {
   }
 };
 
-export const getStaticPaths: GetStaticPaths<{ page: string }> = async () => {
+/*export const getStaticPaths: GetStaticPaths<{ page: string }> = async () => {
   return {
     paths: [],
     fallback: 'blocking',
   };
-};
+};*/
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  locale,
+}) => {
   try {
     const story = await fetchTranslatedStory({
       locale,
@@ -40,7 +43,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
     return {
       props: { story: story },
-      revalidate: 500,
+      // revalidate: 500,
     };
   } catch {
     return {
