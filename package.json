@@ -42,7 +42,7 @@
     "sass": "^1.28.0",
     "storyblok-js-client": "^4.0.3",
     "storyblok-rich-text-react-renderer": "^2.3.1",
-    "tailwindcss": "^2.1.1",
+    "tailwindcss": "^2.2.7",
     "tailwindcss-logical": "^1.4.0"
   },
   "devDependencies": {

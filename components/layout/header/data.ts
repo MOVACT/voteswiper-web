@@ -12,6 +12,10 @@ const data = [
     href: 'header:press-link',
     text: 'header:press',
   },
+  {
+    href: 'header:donate-link',
+    text: 'header:donate',
+  },
 ];
 
 export default data;

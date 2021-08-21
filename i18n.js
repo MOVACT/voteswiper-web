@@ -18,6 +18,7 @@ module.exports = {
     '/page/press/releases/[slug]': ['press'],
     '/page/verein': ['org'],
     '/page/verein/satzung': ['org'],
+    '/page/verein/spenden': ['org'],
     '/page/verein/mitglied-werden': ['org'],
     '/page/[page]': ['page'],
   },

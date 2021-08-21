@@ -15,6 +15,10 @@ export const VereinPage: React.FC = ({ children }) => {
       title: 'org:org',
     },
     {
+      href: '/page/verein/spenden',
+      title: 'org:donate',
+    },
+    {
       href: '/page/verein/mitglied-werden',
       title: 'org:becomeSupporter',
     },
