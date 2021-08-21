@@ -32,7 +32,7 @@ const PartyInfoCard: React.FC<Props> = ({ party }) => {
         </div>
       </div>
 
-      {(party.url || party.pivot.program_link) && (
+      {(party.url || party.pivot.program || party.pivot.program_link) && (
         <div className="mt-2 mt-auto">
           {party.url && (
             <Button
@@ -47,17 +47,36 @@ const PartyInfoCard: React.FC<Props> = ({ party }) => {
             </Button>
           )}
 
-          {party.pivot.program_link && (
-            <Button
-              href={party.pivot.program_link}
-              target="_blank"
-              rel="nofollow noreferrer noopener"
-              color="outlineDark"
-              className="flex items-center justify-between w-full mt-2"
-            >
-              {t('election:program')}
-              <HyperlinkIcon className="w-4 h-4 ml-2" />
-            </Button>
+          {party.pivot.program !== null ? (
+            <div className="mt-3">
+              <Button
+                href={party.pivot.program.public_link}
+                target="_blank"
+                rel="nofollow noreferrer noopener"
+                color="outlineDark"
+                className="flex items-center justify-between w-full mt-2"
+              >
+                {t('election:program')}
+                <HyperlinkIcon className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          ) : (
+            <>
+              {party.pivot.program_link && (
+                <div className="mt-3">
+                  <Button
+                    href={party.pivot.program_link}
+                    target="_blank"
+                    rel="nofollow noreferrer noopener"
+                    color="outlineDark"
+                    className="flex items-center justify-between w-full mt-2"
+                  >
+                    {t('election:program')}
+                    <HyperlinkIcon className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}
