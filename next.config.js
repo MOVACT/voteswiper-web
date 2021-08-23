@@ -52,6 +52,18 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/de/page/impressum',
+        destination: '/de/page/imprint',
+        locale: false,
+        permanent: false,
+      },
+      {
+        source: '/de/page/datenschutz',
+        destination: '/de/page/privacy',
+        locale: false,
+        permanent: false,
+      },
+      {
         source: '/de/austria',
         destination: '/de/oesterreich',
         locale: false,
