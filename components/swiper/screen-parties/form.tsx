@@ -33,7 +33,7 @@ const PartiesForm: React.FC = () => {
             : t('election:selectAllParties')}
         </button>
       </div>
-      <div className="grid grid-cols-2 gap-4 lg:gap-8 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 pb-20 lg:gap-8 lg:grid-cols-3">
         {parties.map((party) => {
           return (
             <button

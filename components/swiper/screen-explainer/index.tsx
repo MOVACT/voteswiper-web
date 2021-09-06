@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useElection } from 'contexts/election';
 import { AnimatePresence, motion } from 'framer-motion';
 import IconChevronLeft from 'icons/chevron-left.svg';
@@ -6,7 +7,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Video from './video';
 
-const ExplainerScreen: React.FC = () => {
+interface Props {
+  inline?: boolean;
+}
+
+const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
   const { screen, questions, closeExplainer, explainer } = useElection();
   const { t } = useTranslation();
   const { back } = useRouter();
@@ -22,8 +27,11 @@ const ExplainerScreen: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full p-4 overflow-auto md:p-6 lg:p-10 bg-brand-primary"
+            transition={{ duration: inline ? 0 : 0.25 }}
+            className={cn(
+              inline ? 'pt-16' : 'fixed',
+              'top-0 left-0 z-50 flex items-center justify-center w-full h-full p-4 overflow-auto md:p-6 lg:p-10 bg-brand-primary'
+            )}
           >
             <motion.div
               initial={{ y: 40 }}
@@ -43,7 +51,15 @@ const ExplainerScreen: React.FC = () => {
               </button>
               <div className="lg:flex">
                 {currentQuestion.video_url && (
-                  <Video src={currentQuestion.video_url} />
+                  <>
+                    {inline ? (
+                      <div className="max-w-[350px] mx-auto rounded overflow-hidden">
+                        <Video inline src={currentQuestion.video_url} />
+                      </div>
+                    ) : (
+                      <Video src={currentQuestion.video_url} />
+                    )}
+                  </>
                 )}
                 {currentQuestion.explainer_text && (
                   <div className="mt-6 lg:mt-0 lg:max-w-[450px] lg:w-screen prose lg:overflow-auto lg:max-h-[60vh] lg:overflow-scroll">

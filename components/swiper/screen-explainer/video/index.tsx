@@ -1,11 +1,13 @@
+import cn from 'classnames';
 import Hls from 'hls.js';
 import React from 'react';
 
 interface Props {
   src: string;
+  inline?: boolean;
 }
 
-const Video: React.FC<Props> = ({ src }) => {
+const Video: React.FC<Props> = ({ src, inline = false }) => {
   const $video = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
@@ -24,7 +26,11 @@ const Video: React.FC<Props> = ({ src }) => {
       playsInline
       controls
       autoPlay
-      className="w-full h-[80%] md:h-[70vh] lg:w-auto lg:h-[60vh] rounded-lg"
+      className={cn(
+        inline
+          ? 'w-full h-auto'
+          : 'w-full h-[80%] md:h-[70vh] lg:w-auto lg:h-[60vh] rounded-lg'
+      )}
     />
   );
 };

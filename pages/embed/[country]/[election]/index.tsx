@@ -106,7 +106,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
     if (screen === STEPS.SWIPER) {
       document.getElementById('footer')?.classList.add('hidden');
       if (container) {
-        container.style.minHeight = '657px';
+        container.style.minHeight = '670px';
       }
     } else {
       document.getElementById('footer')?.classList.remove('hidden');
@@ -129,6 +129,8 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
             screen !== STEPS.EDIT_PARTIES &&
             screen !== STEPS.COMPARE_PARTY &&
             screen !== STEPS.PARTIES &&
+            screen !== STEPS.EXPLAINER &&
+            screen !== STEPS.SWIPER &&
             screen !== STEPS.EDIT_ANSWERS && (
               <motion.div
                 key="start"
@@ -266,7 +268,8 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
             <Swiper
               key="swiper"
               onRequestClose={() => {
-                endSwiper();
+                window.location.reload();
+                //endSwiper();
               }}
             />
           )}
@@ -289,7 +292,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
         </ResultContainer>
       )}
 
-      <ExplainerScreen />
+      <ExplainerScreen inline />
     </>
   );
 };
