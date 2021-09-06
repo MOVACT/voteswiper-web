@@ -78,7 +78,7 @@ const PrivacyLink: React.FC = ({ children }) => {
 };
 
 const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
-  const { election, screen, startSwiper, endSwiper, country } = useElection();
+  const { election, screen, startSwiper, country } = useElection();
   const { slug: countrySlug } = country;
   const { name, slug } = election;
   const { t } = useTranslation();
