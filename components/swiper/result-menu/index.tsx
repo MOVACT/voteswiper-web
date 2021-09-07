@@ -74,7 +74,7 @@ const ResultMenu: React.FC = () => {
         disabled={selectedParties.length === 0}
         visible={featureDownloadImageEnabled}
         label={t('election:resultImage')}
-        href={`https://share.voteswiper.org/api/share-image?${queryString}`}
+        href={`https://share.voteswiper.org/api/share2?${queryString}`}
       />
 
       <div className="w-4 lg:hidden" />
