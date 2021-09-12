@@ -327,10 +327,10 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                             Dafür gibt es verschiedene Gründe: Die formalen
                             Hürden sind zu hoch, das Prozedere erscheint sehr
                             kompliziert und es fehlt eine gezielte Ansprache der
-                            Parteien. Das wollen wir ändern!  Die Neuen
-                            Deutschen sollen ermutigt werden, im September 2021
-                            ihre Stimme bei der Bundestagswahl abzugeben – und
-                            so mitzuentscheiden, wie sich dieses Land in den
+                            Parteien. Das wollen wir ändern! Die Neuen Deutschen
+                            sollen ermutigt werden, im September 2021 ihre
+                            Stimme bei der Bundestagswahl abzugeben – und so
+                            mitzuentscheiden, wie sich dieses Land in den
                             nächsten Jahren entwickeln wird. Dafür stellen wir
                             Informationen und digitale Tools zur Verfügung und
                             erklären, warum es wichtig ist, bei der Wahl
