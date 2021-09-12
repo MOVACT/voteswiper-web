@@ -310,6 +310,53 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                       </div>
                     </>
                   )}
+
+                  {locale === 'de' && election.slug === 'bundestagswahl-2021' && (
+                    <div className="mt-10">
+                      <h2 className="mb-3 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
+                        Unsere Partnerschaft mit #wAlman
+                      </h2>
+
+                      <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between">
+                        <div className="pt-6 prose lg:prose-lg lg:w-2/3 lg:pr-10 prose-white lg:pt-0">
+                          <p>
+                            Wer die Wahl hat, hat die Macht. Denn wählen zu
+                            können, bedeutet mitzubestimmen. Bisher aber
+                            beteiligen sich zu wenige Menschen mit Flucht- und
+                            Migrationshintergrund an Wahlen in Deutschland.
+                            Dafür gibt es verschiedene Gründe: Die formalen
+                            Hürden sind zu hoch, das Prozedere erscheint sehr
+                            kompliziert und es fehlt eine gezielte Ansprache der
+                            Parteien. Das wollen wir ändern!  Die Neuen
+                            Deutschen sollen ermutigt werden, im September 2021
+                            ihre Stimme bei der Bundestagswahl abzugeben – und
+                            so mitzuentscheiden, wie sich dieses Land in den
+                            nächsten Jahren entwickeln wird. Dafür stellen wir
+                            Informationen und digitale Tools zur Verfügung und
+                            erklären, warum es wichtig ist, bei der Wahl
+                            mitzumachen und zum #wAlman zu werden:{' '}
+                            <a
+                              href="https://ichbinwalman.de"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              ichbinwalman.de
+                            </a>
+                            . Eine Kampagne der VielRespektStiftung.
+                          </p>
+                        </div>
+                        <div className="lg:w-1/3">
+                          <Image
+                            src="/images/wAlman.jpg"
+                            layout="responsive"
+                            width={1001}
+                            height={1001}
+                            alt="walman-Kampagne"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </Container>
               </Page>
             </motion.div>
