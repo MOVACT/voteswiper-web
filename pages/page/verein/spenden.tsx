@@ -89,10 +89,43 @@ const Verein: NextPage = () => {
 
               <h2>Unterstütze den WahlSwiper mit einer Spende</h2>
 
-              <h3>Direkt online spenden</h3>
+              <h3>Über PayPal spenden</h3>
+
+              <p>Du kannst den Betrag auf der PayPal-Webseite selbst wählen.</p>
             </div>
 
-            <div className="mt-5 mb-5 text-white">
+            <form
+              action="https://www.paypal.com/donate"
+              method="post"
+              target="_top"
+              className="mt-2 mb-8 -ml-3"
+            >
+              <input
+                type="hidden"
+                name="hosted_button_id"
+                value="RXTWRWTNC6392"
+              />
+              <input
+                type="image"
+                src="/images/btn_donateCC_LG.gif"
+                name="submit"
+                title="PayPal - The safer, easier way to pay online!"
+                alt="Donate with PayPal button"
+              />
+              {/*<img
+                alt=""
+                border="0"
+                src="https://www.paypal.com/de_DE/i/scr/pixel.gif"
+                width="1"
+                height="1"
+              />*/}
+            </form>
+
+            <div className="prose prose-white">
+              <h3>Mit Kreditkarte spenden</h3>
+            </div>
+
+            <div className="mt-5 mb-8 text-white">
               {amounts.map((donationAmount) => {
                 return (
                   <button
