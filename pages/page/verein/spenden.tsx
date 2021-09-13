@@ -3,6 +3,7 @@ import Button from 'components/button';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
+import PaypalDonationForm from 'components/paypal-donation-form';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
@@ -81,7 +82,7 @@ const Verein: NextPage = () => {
 
               <p>
                 So kostet alleine das Hosting bei größeren Wahlen schnell
-                mehrere Hundert Euro. Wir sind daher auf{' '}
+                mehrere Tausend Euro. Wir sind daher auf{' '}
                 <strong className="underline">Deine Unterstützung</strong>{' '}
                 angewiesen, um das Projekt WahlSwiper auch in Zukunft mit und
                 für euch realisieren zu können.
@@ -94,32 +95,9 @@ const Verein: NextPage = () => {
               <p>Du kannst den Betrag auf der PayPal-Webseite selbst wählen.</p>
             </div>
 
-            <form
-              action="https://www.paypal.com/donate"
-              method="post"
-              target="_top"
-              className="mt-2 mb-8 -ml-3"
-            >
-              <input
-                type="hidden"
-                name="hosted_button_id"
-                value="RXTWRWTNC6392"
-              />
-              <input
-                type="image"
-                src="/images/btn_donateCC_LG.gif"
-                name="submit"
-                title="PayPal - The safer, easier way to pay online!"
-                alt="Donate with PayPal button"
-              />
-              {/*<img
-                alt=""
-                border="0"
-                src="https://www.paypal.com/de_DE/i/scr/pixel.gif"
-                width="1"
-                height="1"
-              />*/}
-            </form>
+            <div className="mt-2 mb-8 -ml-3">
+              <PaypalDonationForm />
+            </div>
 
             <div className="prose prose-white">
               <h3>Mit Kreditkarte spenden</h3>

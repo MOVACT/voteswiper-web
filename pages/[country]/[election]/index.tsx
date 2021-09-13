@@ -2,6 +2,7 @@ import Button from 'components/button';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
+import PaypalDonationForm from 'components/paypal-donation-form';
 import Swiper from 'components/swiper';
 import { STEPS } from 'components/swiper/constants';
 import ResultContainer from 'components/swiper/result-container';
@@ -208,6 +209,33 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                           i18nKey="election:privacyNote"
                           components={[<PrivacyLink key="pl" />]}
                         />
+                      </p>
+                    )}
+                  </div>
+
+                  <h2 className="mb-2 text-2xl font-medium leading-tight text-brand-highlight md:text-3xl md:mb-4">
+                    {t('election:donationTitle')}
+                  </h2>
+
+                  <div className="mb-24 prose prose-white lg:prose-xl">
+                    <Trans
+                      i18nKey="election:donationText"
+                      components={[<p key="p" />, <strong key="s" />]}
+                    />
+
+                    <div className="mt-2">
+                      <PaypalDonationForm />
+                    </div>
+
+                    {locale === 'de' && (
+                      <p>
+                        <small>
+                          Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
+                          <Link href="/page/verein/spenden" passHref>
+                            <a>Spendenseite</a>
+                          </Link>
+                          .
+                        </small>
                       </p>
                     )}
                   </div>

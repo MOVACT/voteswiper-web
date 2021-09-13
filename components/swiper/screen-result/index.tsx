@@ -1,8 +1,12 @@
 import cn from 'classnames';
 import ExternalLink from 'components/external-link';
+import PaypalDonationForm from 'components/paypal-donation-form';
 import { calculateResult, useElection } from 'contexts/election';
 import { motion } from 'framer-motion';
 import IconChevronRight from 'icons/chevron-right.svg';
+import Trans from 'next-translate/Trans';
+import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styles from './result.module.css';
@@ -18,7 +22,7 @@ const ResultScreen: React.FC = () => {
     selectedParties,
   } = useElection();
   const { locale } = useRouter();
-
+  const { t } = useTranslation();
   const result = calculateResult(questions, answers, parties);
 
   React.useEffect(() => {
@@ -81,9 +85,56 @@ const ResultScreen: React.FC = () => {
         </div>
       </div>
 
-      {election.followup_link && (
-        <div className="w-full lg:w-1/3 lg:pl-10">
-          <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-0 bg-opacity-20">
+      {/*
+     
+                    <div className="mt-2">
+                      <PaypalDonationForm />
+                    </div>
+
+                    {locale === 'de' && (
+                      <p>
+                        <small>
+                          Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
+                          <Link href="/page/verein/spenden" passHref>
+                            <a>Spendenseite</a>
+                          </Link>
+                          .
+                        </small>
+                      </p>
+                    )}
+    
+     */}
+
+      <div className="w-full lg:w-1/3 lg:pl-10">
+        <div className="mt-6 mb-2 font-medium text-brand-highlight text lg:mt-0">
+          {t('election:donationTitle')}
+        </div>
+
+        <div className="prose-sm prose prose-white">
+          <Trans
+            i18nKey="election:donationText"
+            components={[<p key="p" />, <strong key="s" />]}
+          />
+
+          <div className="mt-2">
+            <PaypalDonationForm />
+          </div>
+
+          {locale === 'de' && (
+            <p>
+              <small>
+                Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
+                <Link href="/page/verein/spenden" passHref>
+                  <a>Spendenseite</a>
+                </Link>
+                .
+              </small>
+            </p>
+          )}
+        </div>
+
+        {election.followup_link && (
+          <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-6 bg-opacity-20">
             <div className="font-medium text-white text">
               Nachbefragung der Uni Freiburg
             </div>
@@ -102,8 +153,8 @@ const ResultScreen: React.FC = () => {
               Zur Umfrage
             </ExternalLink>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
