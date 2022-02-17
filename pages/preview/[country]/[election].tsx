@@ -154,76 +154,68 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
   locale,
 }) => {
-  if (preview) {
-    const election = await fetch<Election, ElectionBySlugData>(
-      ENDPOINTS.ELECTION,
+  const election = await fetch<Election, ElectionBySlugData>(
+    ENDPOINTS.ELECTION,
+    locale,
+    {
+      data: {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        slug: params!.election as string,
+      },
+    }
+  );
+
+  let questions = null;
+  try {
+    questions = await fetch<Question, QuestionsData>(
+      ENDPOINTS.QUESTIONS,
       locale,
       {
         data: {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           slug: params!.election as string,
         },
-      }
-    );
-
-    let questions = null;
-    try {
-      questions = await fetch<Question, QuestionsData>(
-        ENDPOINTS.QUESTIONS,
-        locale,
-        {
-          data: {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            slug: params!.election as string,
-          },
-          headers: {
-            'API-Preview-Key': process.env.API_PREVIEW_KEY,
-          },
-        }
-      );
-    } catch {
-      questions = {
-        data: [],
-      };
-    }
-
-    const country = await fetch<Country, CountryData>(
-      ENDPOINTS.COUNTRY,
-      locale,
-      {
-        data: {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          slug: params!.country as string,
+        headers: {
+          'API-Preview-Key': process.env.API_PREVIEW_KEY,
         },
       }
     );
-
-    if (country.data === null || election.data === null)
-      return { notFound: true };
-
-    const parties = await fetch<Party, PartiesData>(ENDPOINTS.PARTIES, locale, {
-      data: {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        slug: params!.election as string,
-      },
-      headers: {
-        'API-Preview-Key': process.env.API_PREVIEW_KEY,
-      },
-    });
-
-    const props = {
-      election: election.data,
-      questions: questions.data,
-      country: country.data,
-      parties: parties.data,
-    };
-
-    return {
-      props,
+  } catch {
+    questions = {
+      data: [],
     };
   }
 
-  return { notFound: true };
+  const country = await fetch<Country, CountryData>(ENDPOINTS.COUNTRY, locale, {
+    data: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      slug: params!.country as string,
+    },
+  });
+
+  if (country.data === null || election.data === null)
+    return { notFound: true };
+
+  const parties = await fetch<Party, PartiesData>(ENDPOINTS.PARTIES, locale, {
+    data: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      slug: params!.election as string,
+    },
+    headers: {
+      'API-Preview-Key': process.env.API_PREVIEW_KEY,
+    },
+  });
+
+  const props = {
+    election: election.data,
+    questions: questions.data,
+    country: country.data,
+    parties: parties.data,
+  };
+
+  return {
+    props,
+  };
 };
 
 export default ElectionPreviewPage;
