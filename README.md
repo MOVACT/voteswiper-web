@@ -38,4 +38,4 @@ If you find any security related issues we would appreciate if you safely disclo
 
 ## Copyright
 
-Copyright MOVACT UG (haftungsbeschränkt)
+Copyright MOVACT GmbH
