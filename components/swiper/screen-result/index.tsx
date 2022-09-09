@@ -135,14 +135,11 @@ const ResultScreen: React.FC = () => {
 
         {election.followup_link && (
           <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-6 bg-opacity-20">
-            <div className="font-medium text-white text">
-              Nachbefragung der Uni Freiburg
-            </div>
+            <div className="font-medium text-white text">Nachbefragung</div>
 
             <p className="pt-1 text-sm text-white">
               Nimm jetzt an einer kurzen <strong>anonymen Nachbefragung</strong>{' '}
-              der <strong>Universität Freiburg</strong> teil. Damit bringst du
-              dieses Projekt voran:
+              teil. Damit bringst du dieses Projekt voran:
             </p>
 
             <ExternalLink
