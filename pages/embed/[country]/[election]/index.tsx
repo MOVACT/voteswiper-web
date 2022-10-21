@@ -370,6 +370,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         slug: params!.election as string,
       },
+      headers: {
+        'API-Preview-Key': process.env.API_PREVIEW_KEY,
+      },
     }
   );
 
@@ -382,6 +385,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
         data: {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           slug: params!.election as string,
+        },
+        headers: {
+          'API-Preview-Key': process.env.API_PREVIEW_KEY,
         },
       }
     );
@@ -410,6 +416,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     data: {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       slug: params!.election as string,
+    },
+    headers: {
+      'API-Preview-Key': process.env.API_PREVIEW_KEY,
     },
   });
 
