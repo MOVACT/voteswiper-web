@@ -144,11 +144,11 @@ const Verein: NextPage = () => {
               <p>
                 VoteSwiper
                 <br />
-                Deutsche Skatbank
+                Comdirect
                 <br />
-                IBAN: DE67&nbsp;8306&nbsp;5408&nbsp;0004&nbsp;2984&nbsp;62
+                IBAN: DE96&nbsp;2004&nbsp;1144&nbsp;0806&nbsp;4677&nbsp;00
                 <br />
-                BIC: GENO&nbsp;DEF1&nbsp;SLR
+                BIC: COBADEHD044
               </p>
             </div>
           </VereinPage>
