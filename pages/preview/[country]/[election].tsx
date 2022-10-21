@@ -161,6 +161,9 @@ export const getServerSideProps: GetServerSideProps = async ({
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         slug: params!.election as string,
       },
+      headers: {
+        'API-Preview-Key': process.env.API_PREVIEW_KEY,
+      },
     }
   );
 
