@@ -61,6 +61,7 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
             >
               <div className="p-2 ">
                 {locales?.map((loc, index) => {
+                  if (loc === 'de-ch') return;
                   return (
                     <Menu.Item key={loc}>
                       {({ active }) => (

@@ -31,13 +31,22 @@ const fetch = <T, D = void>(
     headers?: { [key: string]: string | number | undefined };
   }
 ): AxiosPromise<T> => {
+  // Rostock Bürgermeisterwahl Test case
+  // We're misusing de-ch locale for getting a slightly changed
+  // version of the site referencing candidates instead of parties
+  let loc = locale;
+
+  if (locale === 'de-ch') {
+    loc = 'de';
+  }
+
   return axios({
     method: options ? options.method ?? 'post' : 'post',
     url: `${process.env.NEXT_PUBLIC_API_URL}${url}`,
     data: options?.data,
     headers: {
       'Content-Type': 'application/json',
-      'Content-Language': locale,
+      'Content-Language': loc,
       Accept: `application/x.voteswiper.v${process.env.NEXT_PUBLIC_API_VERSION}+json`,
       ...(options?.headers ?? {}),
     },

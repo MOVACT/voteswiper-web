@@ -1,0 +1,23 @@
+{
+  "title": "Presse",
+  "contact": "Pressekontakt",
+  "downloads": "Downloads",
+  "releases": "Pressemitteilungen",
+  "embed": "WahlSwiper einbinden",
+  "email": "E-Mail:",
+  "intro": "<0>Auf diesen Seiten finden Sie unsere neusten Presseerklärungen, Bildmaterial für die Berichterstattung und Informationen, wie Sie den WahlSwiper auf Ihrer Webseite einbinden können.</0><0>Wenn Sie Fragen zu unserer Arbeit oder Presseerklärungen haben, wenden Sie sich bitte direkt an uns.</0>",
+  "embedIntro": "<0>Sie haben die Möglichkeit den WahlSwiper <1>kostenfrei</1> als Wahlhilfeanwendung auf Ihrer Webseite, zum Beispiel begleitend zur politischen Berichterstattung, einzubinden.</0><0>Die Einbindung ist ohne große Programmierkentnisse möglich und ist erhältlich als iFrame- und AMP-Version.</0>",
+  "embedNotice": "Falls Sie den WahlSwiper auf einer besucherstärkeren Webseite einbinden möchten, bitten wir Sie um vorherige Ankündigung per E-Mail an <0><1>press@voteswiper.org</1></0>, damit wir sicherstellen können, dass genügend Serverkapazität zur Verfügung steht.",
+  "yourEmbedCode": "Ihr Embed-Code",
+  "iFrameVersion": "iFrame-Version",
+  "ampVersion": "AMP-Version",
+  "backToForm": "Zurück zum Formular",
+  "generateEmbedCode": "Embed-Code generieren",
+  "noEmbedsAvailable": "Derzeit stehen keine Wahlen zum Einbetten zur Verfügung. Wenn Sie vergangene Wahlen einbetten möchten, kontaktieren Sie uns bitte per E-Mail.",
+  "pickElection": "1. Wählen Sie die Wahl, die Sie einbetten möchten.",
+  "election": "Wahl",
+  "pickLanguage": "2. Wählen Sie die (Interface-)-Sprache",
+  "languageHelper": "Wählen Sie die Sprache, in der Bedienelemente angezeigt werden sollen. Ist eine Wahl in der gewählten Sprache übersetzt, werden die Fragen auch in dieser angezeigt, sonst wird als Ausweichsprache Englisch angezeigt.",
+  "language": "Sprache",
+  "generateCodeCta": "Code generieren"
+}

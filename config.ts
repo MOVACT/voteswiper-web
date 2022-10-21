@@ -3,6 +3,7 @@ const config = {
   version: 1,
 
   languageNames: {
+    'de-ch': 'Deutsch',
     de: 'Deutsch',
     en: 'English',
     fr: 'Français',
@@ -18,6 +19,7 @@ const config = {
   // A workaround because next.js can't translate non dynamic routes yet, so we're just gonna make them dynamic
   translatedSlugs: {
     parties: {
+      'de-ch': 'parteien',
       de: 'parteien',
       en: 'parties',
       fr: 'partis',
