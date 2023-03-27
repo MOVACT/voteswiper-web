@@ -11,7 +11,7 @@ const Video: React.FC<Props> = ({ src, inline = false }) => {
   const $video = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
-    if (Hls.isSupported()) {
+    if (Hls.isSupported() && src.indexOf('.mp4') === -1) {
       const hls = new Hls();
       hls.loadSource(src);
       hls.attachMedia($video.current as HTMLMediaElement);
