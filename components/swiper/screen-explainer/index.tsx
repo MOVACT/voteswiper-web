@@ -30,7 +30,7 @@ const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
             transition={{ duration: inline ? 0 : 0.25 }}
             className={cn(
               inline ? 'pt-16' : 'fixed',
-              'top-0 left-0 z-50 flex items-center justify-center w-full h-full p-4 overflow-auto md:p-6 lg:p-10 bg-brand-primary'
+              'top-0 left-0 z-50 flex items-center justify-center w-full h-full p-4 overflow-auto md:p-6 lg:p-10 lg:bg-brand-primary absolute inset-0 pt-20 md:pt-20 lg:pt-10'
             )}
           >
             <motion.div
