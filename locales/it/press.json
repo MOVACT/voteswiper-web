@@ -1,0 +1,23 @@
+{
+  "title": "Stampa",
+  "contact": "Contatto stampa",
+  "downloads": "Download",
+  "releases": "Comunicati stampa",
+  "embed": "Incorpora VoteSwiper",
+  "email": "Email:",
+  "intro": "<0>In queste pagine troverai i nostri ultimi comunicati stampa, immagini per scopi di reportage e informazioni su come incorporare il VoteSwiper sul tuo sito web.</0><0>Se hai domande sul nostro lavoro o sui comunicati stampa, contattaci direttamente.</0>",
+  "embedIntro": "<0>Hai la possibilità di integrare il VoteSwiper <1>gratuitamente</1> come applicazione di consulenza al voto sul tuo sito web, ad esempio per accompagnare i reportage politici.</0><0>L'integrazione è molto semplice ed è disponibile come versione iFrame e AMP.</0>",
+  "embedNotice": "Se desideri incorporare il VoteSwiper su un sito web con un alto traffico, ti preghiamo di notificarcelo in anticipo inviando un'email a <0><1>press@voteswiper.org</1></0> in modo che possiamo garantire che sia disponibile una sufficiente capacità del server.",
+  "yourEmbedCode": "Il tuo codice di incorporamento",
+  "iFrameVersion": "Versione iFrame",
+  "ampVersion": "Versione AMP",
+  "backToForm": "Torna al modulo",
+  "generateEmbedCode": "Genera codice di incorporamento",
+  "noEmbedsAvailable": "Attualmente non ci sono elezioni disponibili per l'incorporamento. Se desideri incorporare elezioni passate, ti preghiamo di contattarci via email.",
+  "pickElection": "1. Seleziona l'elezione che desideri incorporare",
+  "election": "Elezione",
+  "pickLanguage": "2. Seleziona la lingua (dell'interfaccia)",
+  "languageHelper": "Seleziona la lingua in cui devono essere visualizzati i controlli. Se un'elezione è tradotta nella lingua selezionata, anche le domande saranno visualizzate in questa lingua, altrimenti verrà visualizzata la lingua di riserva, che è l'inglese.",
+  "language": "Lingua",
+  "generateCodeCta": "Genera codice"
+}

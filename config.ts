@@ -6,6 +6,7 @@ const config = {
     'de-ch': 'Deutsch',
     de: 'Deutsch',
     en: 'English',
+    it: 'Italiano',
     fr: 'Français',
     fi: 'Suomi',
     sv: 'Svenska',
@@ -30,6 +31,7 @@ const config = {
       fa: 'parties',
       ku: 'parties',
       ar: 'parties',
+      it: 'parti',
     } as { [key: string]: string },
   },
 };
