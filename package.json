@@ -7,7 +7,7 @@
   "homepage": "https://www.voteswiper.org",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "postbuild": "next-sitemap",
     "deploy": "serverless --debug",
     "lint": "next lint",

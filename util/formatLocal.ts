@@ -3,6 +3,7 @@ import ar from 'date-fns/locale/ar-SA';
 import de from 'date-fns/locale/de';
 import en from 'date-fns/locale/en-GB';
 import fa from 'date-fns/locale/fa-IR';
+import it from 'date-fns/locale/it';
 import ru from 'date-fns/locale/ru';
 import tr from 'date-fns/locale/tr';
 
@@ -28,6 +29,9 @@ const formatLocal = (
       break;
     case 'tr':
       l = tr;
+      break;
+    case 'it':
+      l = it;
       break;
   }
 
