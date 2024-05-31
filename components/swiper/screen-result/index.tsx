@@ -133,7 +133,7 @@ const ResultScreen: React.FC = () => {
           )}
         </div>
 
-        {election.followup_link && (
+        {election.followup_link && locale === 'de' && (
           <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-6 bg-opacity-20">
             <div className="font-medium text-white text">Nachbefragung</div>
 
@@ -148,6 +148,25 @@ const ResultScreen: React.FC = () => {
               href={election.followup_link}
             >
               Zur Umfrage
+            </ExternalLink>
+          </div>
+        )}
+
+        {election.followup_link && locale === 'it' && (
+          <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-6 bg-opacity-20">
+            <div className="font-medium text-white text">Sondaggio</div>
+
+            <p className="pt-1 text-sm text-white">
+              Partecipa subito a un breve sondaggio. In questo modo contribuisci
+              a far evolvere questo progetto: Al sondaggio
+            </p>
+
+            <ExternalLink
+              size="sm"
+              className="mt-2"
+              href={election.followup_link}
+            >
+              Al sondaggio
             </ExternalLink>
           </div>
         )}
