@@ -156,7 +156,7 @@ const ResultScreen: React.FC = () => {
               <small>
                 Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
                 <Link href="/page/verein/spenden" passHref>
-                  <a>Spendenseite</a>
+                  <a target="_blank">Spendenseite</a>
                 </Link>
                 .
               </small>
