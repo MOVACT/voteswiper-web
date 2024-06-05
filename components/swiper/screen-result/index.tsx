@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import Button from 'components/button';
 import ExternalLink from 'components/external-link';
 import PaypalDonationForm from 'components/paypal-donation-form';
 import { calculateResult, useElection } from 'contexts/election';
@@ -9,6 +10,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { STEPS } from '../constants';
 import styles from './result.module.css';
 
 const ResultScreen: React.FC = () => {
@@ -20,10 +22,14 @@ const ResultScreen: React.FC = () => {
     election,
     compareParty,
     selectedParties,
+    goToScreen,
   } = useElection();
   const { locale } = useRouter();
   const { t } = useTranslation();
   const result = calculateResult(questions, answers, parties);
+  const hasSkippedAllQuestions = Object.values(answers)
+    .map((obj) => obj.answer)
+    .every((answer) => answer === 0);
 
   React.useEffect(() => {
     saveResult(result.scores);
@@ -32,56 +38,81 @@ const ResultScreen: React.FC = () => {
   return (
     <div className="flex flex-col w-full lg:flex-row">
       <div className="w-full mt-2 lg:w-2/3 lg:mt-0">
-        <div className="grid grid-cols-1 gap-4">
-          {result.scores.map((score, index) => {
-            if (selectedParties.indexOf(score.id) === -1)
-              return <React.Fragment key={score.id}></React.Fragment>;
+        <div
+          className={cn(
+            hasSkippedAllQuestions
+              ? 'flex flex-col justify-center items-center h-full'
+              : 'grid grid-cols-1 gap-4'
+          )}
+        >
+          {hasSkippedAllQuestions ? (
+            <div className="flex flex-col justify-center items-center h-full">
+              <h2 className="prose-xl prose-white font-semibold">
+                {t('election:skippedQuestionsTitle')}
+              </h2>
+              <p className="prose prose-white">
+                {t('election:skippedQuestionsText')}
+              </p>
+              <Button
+                className="mt-2"
+                onClick={() => goToScreen(STEPS.EDIT_ANSWERS)}
+                color="primary"
+              >
+                {t('election:changeAnswers')}
+              </Button>
+            </div>
+          ) : (
+            result.scores.map((score, index) => {
+              if (selectedParties.indexOf(score.id) === -1)
+                return <React.Fragment key={score.id}></React.Fragment>;
 
-            return (
-              <div key={score.id}>
-                <button
-                  className="block w-full focus-default h-12 bg-[#8186D7] rounded shadow-lg overflow-hidden relative hover:bg-[#7A7FD2]"
-                  onClick={() => {
-                    compareParty(score.id);
-                  }}
-                >
-                  <motion.div
-                    className="h-12 rounded bg-brand-pink shadow-right"
-                    initial={{
-                      width: 0,
+              return (
+                <div key={score.id}>
+                  <button
+                    className="block w-full focus-default h-12 bg-[#8186D7] rounded shadow-lg overflow-hidden relative hover:bg-[#7A7FD2]"
+                    onClick={() => {
+                      compareParty(score.id);
                     }}
-                    animate={{
-                      width: score.percentage + '%',
-                    }}
-                    transition={{
-                      delay: index * 0.15,
-                      ease: 'easeOut',
-                      duration: 1.5,
-                    }}
-                  />
+                  >
+                    <motion.div
+                      className="h-12 rounded bg-brand-pink shadow-right"
+                      initial={{
+                        width: 0,
+                      }}
+                      animate={{
+                        width: score.percentage + '%',
+                      }}
+                      transition={{
+                        delay: index * 0.15,
+                        ease: 'easeOut',
+                        duration: 1.5,
+                      }}
+                    />
 
-                  <div className="absolute inset-0 flex items-center justify-between px-4 text-sm font-medium text-white lg:text-base">
-                    <span>{score.name}</span>
+                    <div className="absolute inset-0 flex items-center justify-between px-4 text-sm font-medium text-white lg:text-base">
+                      <span>{score.name}</span>
 
-                    <div className="flex items-center">
-                      <span>
-                        {Intl.NumberFormat(locale).format(
-                          parseFloat(score.percentage.toFixed(1))
-                        )}
-                        %
-                      </span>
-                      <IconChevronRight
-                        className={cn(
-                          'w-3 h-3 mis-2 text-brand-dark-blue',
-                          styles.icon
-                        )}
-                      />
+                      <div className="flex items-center">
+                        <span>
+                          {!isNaN(score.percentage)
+                            ? Intl.NumberFormat(locale).format(
+                                parseFloat(score.percentage.toFixed(1))
+                              ) + '%'
+                            : '0%'}
+                        </span>
+                        <IconChevronRight
+                          className={cn(
+                            'w-3 h-3 mis-2 text-brand-dark-blue',
+                            styles.icon
+                          )}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </button>
-              </div>
-            );
-          })}
+                  </button>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
 
