@@ -43,5 +43,7 @@
   "party": "Partei",
   "privacyNote": "Mit einem Klick auf »WahlSwiper starten« akzeptierst du unsere <0><1>Datenschutzbedingungen</1></0>.",
   "donationTitle": "Projekt unterstützen",
-  "donationText": "<0>Der WahlSwiper ist ein gemeinnütziges Projekt, das von <1>Bürgern für Bürger</1> gemacht wird. Mittlerweile erreichen wir mit diesem Projekt mehrere Millionen Menschen - und das kostet nicht nur Zeit, die wir gerne investieren, sondern auch bares Geld: So kostet alleine das Hosting bei größeren Wahlen schnell <1>mehrere Tausend Euro</1>. Wir sind daher auf Deine Unterstützung angewiesen, um das Projekt WahlSwiper auch in Zukunft mit und für euch realisieren zu können.</0><0>Jeder Betrag hilft, dir auch in Zukunft den WahlSwiper anbieten zu können.</0>"
+  "donationText": "<0>Der WahlSwiper ist ein gemeinnütziges Projekt, das von <1>Bürgern für Bürger</1> gemacht wird. Mittlerweile erreichen wir mit diesem Projekt mehrere Millionen Menschen - und das kostet nicht nur Zeit, die wir gerne investieren, sondern auch bares Geld: So kostet alleine das Hosting bei größeren Wahlen schnell <1>mehrere Tausend Euro</1>. Wir sind daher auf Deine Unterstützung angewiesen, um das Projekt WahlSwiper auch in Zukunft mit und für euch realisieren zu können.</0><0>Jeder Betrag hilft, dir auch in Zukunft den WahlSwiper anbieten zu können.</0>",
+  "skippedQuestionsTitle": "Du hast alle Fragen übersprungen.",
+  "skippedQuestionsText": "Beantworte mindestens eine Frage, um dein Ergebnis zu sehen."
 }
