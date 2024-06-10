@@ -13,6 +13,14 @@ import {
   ResultData,
   StatisticResult,
 } from 'types/api';
+
+export interface SwiperState {
+  election_id: number;
+  isFinished: boolean;
+  currentQuestionIndex: number;
+  answers: SwiperAnswers;
+  result?: PartyScore[];
+}
 export interface SwiperAnswer {
   answer: ANSWERS;
   doubleWeighted: boolean;
@@ -32,6 +40,7 @@ export type PartyScore = {
   score: number;
   percentage: number;
 };
+
 interface Context {
   questions: Question[];
   country: Country;
@@ -49,7 +58,7 @@ interface Context {
   setScreen: (screen: STEPS) => void;
   openExplainer: (id: number) => void;
   closeExplainer: () => void;
-  startSwiper: () => void;
+  startSwiper: (onSavedData: () => boolean) => void;
   endSwiper: () => void;
 
   setAnswer: (args: SetAnswerArgs) => void;
@@ -81,6 +90,8 @@ interface Props {
   parties: Party[];
   country: Country;
 }
+
+const SESSION_STORAGE_KEY = 'voteswiper-swiper-states';
 
 const ElectionContext = React.createContext<Context>({} as Context);
 
@@ -284,6 +295,37 @@ export const ElectionProvider: React.FC<Props> = ({
   }, [pushHistoryState]);
 
   /**
+   * Save the current swiper state to the session storage
+   * - This will be used to restore the state if the user navigates away from the page
+   * - Stores an array of swiper states, one for each election
+   */
+  const saveSwiperState = React.useCallback((swiperState: SwiperState) => {
+    const savedState = sessionStorage.getItem(SESSION_STORAGE_KEY);
+
+    if (!savedState)
+      return sessionStorage.setItem(
+        SESSION_STORAGE_KEY,
+        JSON.stringify([swiperState])
+      );
+
+    const parsedStates = JSON.parse(savedState) as SwiperState[];
+    const existingState = parsedStates.find(
+      (state) => state.election_id === swiperState.election_id
+    );
+
+    if (!existingState) parsedStates.push(swiperState);
+
+    if (existingState) {
+      existingState.answers = swiperState.answers;
+      existingState.currentQuestionIndex = swiperState.currentQuestionIndex;
+      existingState.isFinished = swiperState.isFinished;
+      existingState.result = swiperState.result;
+    }
+
+    sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(parsedStates));
+  }, []);
+
+  /**
    * Answer a question
    */
   const setAnswer = React.useCallback(
@@ -327,10 +369,24 @@ export const ElectionProvider: React.FC<Props> = ({
       pushHistoryState(currentQuestion + 1, STEPS.PARTIES);
       setScreen(STEPS.PARTIES);
     } else {
+      saveSwiperState({
+        election_id: election.id,
+        isFinished: false,
+        currentQuestionIndex: currentQuestion + 1,
+        answers,
+      });
+
       pushHistoryState(currentQuestion + 1);
       setCurrentQuestion(currentQuestion + 1);
     }
-  }, [currentQuestion, pushHistoryState, questions]);
+  }, [
+    answers,
+    currentQuestion,
+    election.id,
+    pushHistoryState,
+    questions.length,
+    saveSwiperState,
+  ]);
 
   const goToPreviousQuestion = React.useCallback(() => {
     setCurrentQuestion(currentQuestion - 1);
@@ -378,22 +434,73 @@ export const ElectionProvider: React.FC<Props> = ({
   /**
    * Start Swiper
    */
-  const startSwiper = React.useCallback(() => {
-    fetch<StatisticResult, InitiateData>(ENDPOINTS.COUNT_INITIATE, locale, {
-      data: {
-        platform: 'web',
-        election_id: election.id,
-      },
-    });
+  const startSwiper = React.useCallback(
+    (onSavedData: () => boolean) => {
+      const savedResults = sessionStorage.getItem(SESSION_STORAGE_KEY);
 
-    pushHistoryState(currentQuestion, STEPS.SWIPER);
-    setScreen(STEPS.SWIPER);
-  }, [currentQuestion, pushHistoryState, locale, election]);
+      if (savedResults) {
+        const parsedResults = JSON.parse(savedResults) as SwiperState[];
+        const savedResult = parsedResults.find(
+          (result) => result.election_id === election.id
+        );
+
+        if (savedResult) {
+          const isContinueing = onSavedData();
+          if (isContinueing) {
+            setAnswers(savedResult.answers);
+            setCurrentQuestion(savedResult.currentQuestionIndex);
+            savedResult.isFinished
+              ? setScreen(STEPS.RESULT)
+              : setScreen(STEPS.SWIPER);
+            return;
+          }
+        }
+      }
+
+      fetch<StatisticResult, InitiateData>(ENDPOINTS.COUNT_INITIATE, locale, {
+        data: {
+          platform: 'web',
+          election_id: election.id,
+        },
+      });
+
+      pushHistoryState(currentQuestion, STEPS.SWIPER);
+      setCurrentQuestion(0);
+      saveSwiperState({
+        election_id: election.id,
+        isFinished: false,
+        currentQuestionIndex: 0,
+        answers,
+      });
+      setScreen(STEPS.SWIPER);
+    },
+    [
+      currentQuestion,
+      pushHistoryState,
+      locale,
+      election,
+      saveSwiperState,
+      answers,
+    ]
+  );
 
   const endSwiper = React.useCallback(() => {
+    saveSwiperState({
+      election_id: election.id,
+      isFinished: false,
+      currentQuestionIndex: currentQuestion,
+      answers,
+    });
+
     setScreen(STEPS.START);
     pushHistoryState(currentQuestion, STEPS.START);
-  }, [currentQuestion, pushHistoryState]);
+  }, [
+    answers,
+    currentQuestion,
+    election.id,
+    pushHistoryState,
+    saveSwiperState,
+  ]);
 
   /**
    * Explainer Overlay
@@ -453,6 +560,14 @@ export const ElectionProvider: React.FC<Props> = ({
   const saveResult = React.useCallback(
     (result: PartyScore[]) => {
       if (!wasResultStored.current) {
+        saveSwiperState({
+          election_id: election.id,
+          isFinished: true,
+          currentQuestionIndex: currentQuestion,
+          answers,
+          result,
+        });
+
         fetch<StatisticResult, ResultData>(ENDPOINTS.SAVE_RESULT, locale, {
           data: {
             election_id: election.id,
@@ -463,7 +578,7 @@ export const ElectionProvider: React.FC<Props> = ({
         });
       }
     },
-    [locale, election]
+    [saveSwiperState, election.id, currentQuestion, answers, locale]
   );
 
   /**
