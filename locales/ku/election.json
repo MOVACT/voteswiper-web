@@ -10,7 +10,7 @@
   "partner": "Hevkar",
   "website": "Malperê Partiyê",
   "program": "Bernameya Hilbijartinan",
-  "quit": "Tu dixwazî WahlSwiper bi dawî bînî? Encama te nayê qeydkirin.",
+  "quit": "Ma hûn bi rastî dixwazin dev jê berdin? Pêşkeftina we dê xilas bibe û hûn dikarin paşê berdewam bikin.",
   "selectParties": "Partiyan hilbijêre",
   "selectPartiesIntro": "Ewan partiyan  hilbijêre yên tu dixwazî encamên xwe ligel yên wan berawird bikî. Destpêkê <0>hemû partî</0> yên<0>hilbijartîne</0>. Paşî li jêr klîk bike <1>»berdewam«</1> da ku bigehî encamê. Tu herdem dikarî hejmara partiyan biguhêrî.",
   "goToResult": "Here ji bo encamê",
@@ -45,5 +45,6 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Te hemû pirs berda.",
-  "skippedQuestionsText": "Bi kêmanî pirsek bersiv bidin ku hûn encama xwe bibînin."
+  "skippedQuestionsText": "Bi kêmanî pirsek bersiv bidin ku hûn encama xwe bibînin.",
+  "savedState": "We berê dest bi dagirtina VoteSwiper ji bo vê hilbijartinê kiriye. Ma hûn dixwazin pêşveçûna xwe bidomînin?"
 }

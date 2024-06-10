@@ -10,7 +10,7 @@
   "partner": "Partner",
   "website": "Webbplats",
   "program": "Valprogram",
-  "quit": "Vill du verkligen sluta? Ditt resultat kommer inte att räddas.",
+  "quit": "Vill du verkligen sluta? Dina framsteg kommer att sparas och du kan fortsätta senare.",
   "selectParties": "Välj partier",
   "selectPartiesIntro": "Välj nu de parter som du vill jämföra dina svar med. <0>Som standard</0> <0>är alla valda</0>. Klicka sedan på <1>\"Nästa\"</1> längst ner för att komma till ditt resultat. Du kan alltid justera antalet parter igen.",
   "goToResult": "Fortsätt till resultatet",
@@ -45,5 +45,6 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Du har hoppat över alla frågor.",
-  "skippedQuestionsText": "Svara på minst en fråga för att se ditt resultat."
+  "skippedQuestionsText": "Svara på minst en fråga för att se ditt resultat.",
+  "savedState": "Du har redan börjat fylla i VoteSwiper för detta val. Vill du fortsätta dina framsteg?"
 }

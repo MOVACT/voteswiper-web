@@ -10,7 +10,7 @@
   "partner": "Partner",
   "website": "Homepage",
   "program": "Programma elettorale",
-  "quit": "Vuoi davvero uscire? Il tuo risultato non verrà salvato.",
+  "quit": "Vuoi veramente abbandonare? I tuoi progressi verranno salvati e potrai continuare in seguito.",
   "selectParties": "Scegli i partiti",
   "selectPartiesIntro": "Ora seleziona i partiti con cui vuoi confrontare le tue risposte. <0>Per impostazione predefinita</0> <0>tutti sono selezionati</0>. Quindi clicca su <1>\"Successivo\"</1> in basso per ottenere il tuo risultato. Puoi sempre regolare nuovamente il numero di partiti.",
   "goToResult": "Continua al risultato",
@@ -45,5 +45,6 @@
   "donationTitle": "Supporta questo progetto",
   "donationText": "<0>Il VoteSwiper è un progetto realizzato da <1>cittadini per i cittadini</1>. Oggi raggiungiamo diverse milioni di persone - e questo non richiede solo molto tempo, che siamo felici di investire, ma anche denaro: solo l'hosting per le elezioni più grandi costa rapidamente <1>diverse migliaia di euro</1>. Siamo quindi dipendenti dal vostro supporto per poter continuare a offrire VoteSwiper per voi in futuro.</0><0>Ogni importo aiuta.</0>",
   "skippedQuestionsTitle": "Hai saltato tutte le domande.",
-  "skippedQuestionsText": "Rispondete ad almeno una domanda per vedere il vostro risultato."
+  "skippedQuestionsText": "Rispondete ad almeno una domanda per vedere il vostro risultato.",
+  "savedState": "Hai già iniziato a compilare il VoteSwiper per queste elezioni. Vuoi continuare i tuoi progressi?"
 }
