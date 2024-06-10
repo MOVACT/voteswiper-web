@@ -49,7 +49,7 @@ const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
               >
                 <Close className="text-red-500 hover:text-red-600 w-6 h-6" />
               </button>
-              <div className="lg:flex">
+              <div className="lg:flex mt-3">
                 {currentQuestion.video_url && (
                   <>
                     {inline ? (
@@ -62,7 +62,7 @@ const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
                   </>
                 )}
                 {currentQuestion.explainer_text && (
-                  <div className="mt-6 lg:mt-0 lg:max-w-[450px] lg:w-screen prose lg:overflow-auto lg:max-h-[60vh]">
+                  <div className="mt-6 lg:mt-0 lg:max-w-[450px] lg:w-screen prose lg:max-h-[60vh]">
                     <div className="lg:mis-2">
                       {currentQuestion.explainer_text}
                     </div>
@@ -74,7 +74,7 @@ const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
                   closeExplainer();
                   back();
                 }}
-                className="flex items-center px-6 py-3 my-3 font-medium leading-none rounded md:mb-6 bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20"
+                className="flex items-center px-6 py-3 my-3 font-medium leading-none rounded bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20"
               >
                 <IconChevronLeft className="w-3 h-3 mr-2" />
                 {t('election:back')}
