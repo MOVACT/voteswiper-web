@@ -196,7 +196,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                         disabled={!election.playable}
                         onClick={() => {
                           if (!election.playable) return;
-                          startSwiper();
+                          startSwiper(() => confirm(t('election:savedState')));
                         }}
                       >
                         {t('election:start')}
