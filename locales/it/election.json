@@ -46,5 +46,8 @@
   "donationText": "<0>Il VoteSwiper è un progetto realizzato da <1>cittadini per i cittadini</1>. Oggi raggiungiamo diverse milioni di persone - e questo non richiede solo molto tempo, che siamo felici di investire, ma anche denaro: solo l'hosting per le elezioni più grandi costa rapidamente <1>diverse migliaia di euro</1>. Siamo quindi dipendenti dal vostro supporto per poter continuare a offrire VoteSwiper per voi in futuro.</0><0>Ogni importo aiuta.</0>",
   "skippedQuestionsTitle": "Hai saltato tutte le domande.",
   "skippedQuestionsText": "Rispondete ad almeno una domanda per vedere il vostro risultato.",
-  "savedState": "Hai già iniziato a compilare il VoteSwiper per queste elezioni. Vuoi continuare i tuoi progressi?"
+  "swiperStateDialogTitle": "Hai già avviato questo VoteSwiper.",
+  "swiperStateDialogText": "Vuoi continuare o ricominciare da capo?",
+  "swiperStateDialogContinue": "Continua",
+  "swiperStateDialogRestart": "Ricomincia" 
 }

@@ -46,5 +46,8 @@
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Du har hoppat över alla frågor.",
   "skippedQuestionsText": "Svara på minst en fråga för att se ditt resultat.",
-  "savedState": "Du har redan börjat fylla i VoteSwiper för detta val. Vill du fortsätta dina framsteg?"
+  "swiperStateDialogTitle": "Du har redan startat denna VoteSwiper.",
+  "swiperStateDialogText": "Vill du fortsätta eller börja om?",
+  "swiperStateDialogContinue": "Fortsätta",
+  "swiperStateDialogRestart": "Börja om" 
 }

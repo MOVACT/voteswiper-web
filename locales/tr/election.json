@@ -46,5 +46,8 @@
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Bütün soruları atladın.",
   "skippedQuestionsText": "Sonucunuzu görmek için en az bir soruyu yanıtlayın.",
-  "savedState": "Bu seçim için VoteSwiper'ı doldurmaya zaten başladınız. İlerlemenize devam etmek istiyor musunuz?"
+  "swiperStateDialogTitle": "Bu VoteSwiper'ı zaten başlattınız.",
+  "swiperStateDialogText": "Devam etmek mi yoksa baştan başlamak mı istiyorsunuz?",
+  "swiperStateDialogContinue": "Devam etmek",
+  "swiperStateDialogRestart": "Baştan başlamak" 
 }

@@ -46,5 +46,8 @@
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Te hemû pirs berda.",
   "skippedQuestionsText": "Bi kêmanî pirsek bersiv bidin ku hûn encama xwe bibînin.",
-  "savedState": "We berê dest bi dagirtina VoteSwiper ji bo vê hilbijartinê kiriye. Ma hûn dixwazin pêşveçûna xwe bidomînin?"
+  "swiperStateDialogTitle": "We berê dest bi vê VoteSwiper kiriye.",
+  "swiperStateDialogText": "Ma hûn dixwazin berdewam bikin an ji nû ve dest pê bikin?",
+  "swiperStateDialogContinue": "Berdewamkirin",
+  "swiperStateDialogRestart": "Ji nû ve dest pê bikin" 
 }
