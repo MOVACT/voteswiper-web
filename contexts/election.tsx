@@ -58,8 +58,9 @@ interface Context {
   setScreen: (screen: STEPS) => void;
   openExplainer: (id: number) => void;
   closeExplainer: () => void;
-  startSwiper: (onSavedData: () => boolean) => void;
+  startSwiper: (savedState?: SwiperState) => void;
   endSwiper: () => void;
+  getSwiperState: (electionId: number) => Promise<SwiperState | null>;
 
   setAnswer: (args: SetAnswerArgs) => void;
   setAnswers: (answers: SwiperAnswers) => void;
@@ -326,6 +327,30 @@ export const ElectionProvider: React.FC<Props> = ({
   }, []);
 
   /**
+   * Get the swiper state from the session storage
+   * - Will returns a Promise that resolves with the saved state or null if not found
+   */
+  const getSwiperState = React.useCallback(
+    (electionId: number): Promise<SwiperState | null> => {
+      return new Promise((resolve) => {
+        const savedState = sessionStorage.getItem(SESSION_STORAGE_KEY);
+
+        if (!savedState) return resolve(null);
+
+        const parsedStates = JSON.parse(savedState) as SwiperState[];
+        const existingState = parsedStates.find(
+          (state) => state.election_id === electionId
+        );
+
+        if (!existingState) return resolve(null);
+
+        return resolve(existingState);
+      });
+    },
+    []
+  );
+
+  /**
    * Answer a question
    */
   const setAnswer = React.useCallback(
@@ -433,28 +458,18 @@ export const ElectionProvider: React.FC<Props> = ({
 
   /**
    * Start Swiper
+   * - Will start the swiper from the beginning or restore the state if it was saved
+   * @param savedState - The saved state to restore
+   * @see SwiperState
    */
   const startSwiper = React.useCallback(
-    (onSavedData: () => boolean) => {
-      const savedResults = sessionStorage.getItem(SESSION_STORAGE_KEY);
-
-      if (savedResults) {
-        const parsedResults = JSON.parse(savedResults) as SwiperState[];
-        const savedResult = parsedResults.find(
-          (result) => result.election_id === election.id
-        );
-
-        if (savedResult) {
-          const isContinueing = onSavedData();
-          if (isContinueing) {
-            setAnswers(savedResult.answers);
-            setCurrentQuestion(savedResult.currentQuestionIndex);
-            savedResult.isFinished
-              ? setScreen(STEPS.RESULT)
-              : setScreen(STEPS.SWIPER);
-            return;
-          }
-        }
+    (savedState?: SwiperState) => {
+      if (savedState) {
+        setCurrentQuestion(savedState.currentQuestionIndex);
+        setAnswers(savedState.answers);
+        pushHistoryState(savedState.currentQuestionIndex, STEPS.SWIPER);
+        setScreen(savedState.isFinished ? STEPS.PARTIES : STEPS.SWIPER);
+        return;
       }
 
       fetch<StatisticResult, InitiateData>(ENDPOINTS.COUNT_INITIATE, locale, {
@@ -628,6 +643,7 @@ export const ElectionProvider: React.FC<Props> = ({
         compareParty,
         comparePartyId,
         featureDownloadImageEnabled,
+        getSwiperState,
       }}
     >
       {children}
