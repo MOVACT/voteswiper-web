@@ -81,7 +81,7 @@ const PrivacyLink: React.FC = ({ children }) => {
 };
 
 const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
-  const { election, screen, startSwiper, endSwiper, country } = useElection();
+  const { election, screen, setScreen, endSwiper, country } = useElection();
   const { name: countryName, slug: countrySlug } = country;
   const { name, slug } = election;
   const { t } = useTranslation();
@@ -196,7 +196,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                         disabled={!election.playable}
                         onClick={() => {
                           if (!election.playable) return;
-                          startSwiper();
+                          setScreen(STEPS.SWIPER);
                         }}
                       >
                         {t('election:start')}

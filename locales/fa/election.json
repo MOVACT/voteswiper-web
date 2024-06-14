@@ -10,7 +10,7 @@
   "partner": "شریک",
   "website": "وبسایت حزب",
   "program": "برنامه انتخاباتی",
-  "quit": "واقعا می خواهی WahlSwiper را به پایان برسانی؟ نتیجه ات ذخیره نمی شود.",
+  "quit":"آیا واقعاً می خواهید ترک کنید؟ پیشرفت شما ذخیره می شود و می توانید بعدا ادامه دهید.",
   "selectParties": "انتخاب حزب",
   "selectPartiesIntro": "حالا احزابی که میخواهی نتیجه ات را با انها مقایسه کنی را انتخاب کن. <0>به طور استانداردهمه انتخاب شدند</0>. بعدش روی <1>»ادامه«</1> کلیک کن که به نتیجه ات برسی. می توانی هر موقع تعداد احزاب را اصلاح کنی.",
   "goToResult": "بعدی بسوی نتیجه ",
@@ -45,5 +45,9 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "شما تمام سوالات را رد کردید",
-  "skippedQuestionsText": "حداقل به یک سوال پاسخ دهید تا نتیجه خود را ببینید"
+  "skippedQuestionsText": "حداقل به یک سوال پاسخ دهید تا نتیجه خود را ببینید",
+  "swiperStateDialogTitle": "شما قبلاً این VoteSwiper را راه اندازی کرده اید",
+  "swiperStateDialogText": "آیا می خواهید ادامه دهید یا از نو شروع کنید؟",
+  "swiperStateDialogContinue": "ادامه هید",
+  "swiperStateDialogRestart": "از نو شروع کن" 
 }
