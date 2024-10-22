@@ -19,6 +19,8 @@ const CountryFlag: React.FC<Props> = ({ countryCode, ...restProps }) => {
       return <Flags.SE {...restProps} />;
     case 'it':
       return <Flags.IT {...restProps} />;
+    case 'gh':
+      return <Flags.GH {...restProps} />;
     default:
       return <svg />;
   }
