@@ -7,6 +7,7 @@ import PaypalDonationForm from 'components/paypal-donation-form';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 import React from 'react';
 import url from 'util/url';
 import { VereinPage } from '.';
@@ -150,6 +151,17 @@ const Verein: NextPage = () => {
                 <br />
                 BIC: COBADEHD044
               </p>
+            </div>
+            <div className="prose prose-white mt-4">
+              <h2>Spenden per QR-Code</h2>
+              <div className="flex justify-center items-center w-1/2 max-w-[200px] bg-white rounded-lg p-4">
+                <Image
+                  src="/images/donate-qr-code.png"
+                  alt="QR-Code für Spenden"
+                  width={200}
+                  height={200}
+                />
+              </div>
             </div>
           </VereinPage>
         </Container>

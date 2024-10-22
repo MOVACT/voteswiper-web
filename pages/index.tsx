@@ -43,7 +43,7 @@ const Home: NextPage<Props> = ({ countries }) => {
   }, []);
 
   return (
-    <div className="relative w-screen overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       <NextSeo
         title={t('pageTitle')}
         languageAlternates={(() => {
