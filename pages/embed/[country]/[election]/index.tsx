@@ -325,7 +325,7 @@ const CountryPage: NextPage<Props> = ({
       {
         sentinel: 'amp',
         type: 'embed-size',
-        height: windowHeight,
+        height: windowHeight === 0 ? 670 : windowHeight,
       },
       '*'
     );
