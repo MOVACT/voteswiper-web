@@ -183,6 +183,25 @@ const ResultScreen: React.FC = () => {
           </div>
         )}
 
+        {election.followup_link && locale === 'en' && (
+          <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-6 bg-opacity-20">
+            <div className="font-medium text-white text">Follow-up survey</div>
+
+            <p className="pt-1 text-sm text-white">
+              Take part in a short <strong>anonymous follow-up survey</strong>.
+              This way you contribute to the development of this project:
+            </p>
+
+            <ExternalLink
+              size="sm"
+              className="mt-2"
+              href={election.followup_link}
+            >
+              To the survey
+            </ExternalLink>
+          </div>
+        )}
+
         {election.followup_link && locale === 'it' && (
           <div className="px-5 py-4 mt-6 bg-black rounded lg:mt-6 bg-opacity-20">
             <div className="font-medium text-white text">Sondaggio</div>
