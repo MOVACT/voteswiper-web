@@ -306,7 +306,7 @@ export const getStaticProps: GetStaticProps = async ({ locales }) => {
     props: {
       elections: allElections,
     },
-    revalidate: 300,
+    revalidate: 86400,
   };
 };
 

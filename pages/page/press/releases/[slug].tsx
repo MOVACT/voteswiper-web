@@ -105,7 +105,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
     return {
       props: { story: story },
-      revalidate: 500,
+      revalidate: 86400,
     };
   } catch {
     return {

@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     props: {
       releases: stories,
     },
-    revalidate: 300,
+    revalidate: 86400,
   };
 };
 
