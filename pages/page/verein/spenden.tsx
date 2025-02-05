@@ -7,7 +7,6 @@ import PaypalDonationForm from 'components/paypal-donation-form';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import React from 'react';
 import url from 'util/url';
 import { VereinPage } from '.';
@@ -134,7 +133,7 @@ const Verein: NextPage = () => {
               </Button>
             </div>
 
-            <div className="prose prose-white">
+            {/*<div className="prose prose-white">
               <h3>Klassisch per Banküberweisung spenden</h3>
 
               <p>
@@ -162,7 +161,7 @@ const Verein: NextPage = () => {
                   height={200}
                 />
               </div>
-            </div>
+            </div>*/}
           </VereinPage>
         </Container>
       </Page>
