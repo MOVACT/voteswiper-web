@@ -16,14 +16,14 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
     enter: {
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: 'easeInOut',
       },
     },
     exit: {
       opacity: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.1,
         ease: 'easeInOut',
       },
     },
@@ -80,14 +80,14 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
             animate={{
               scaleY: 1,
               transition: {
-                duration: 1.5,
+                duration: 0.7,
                 ease: 'easeInOut',
               },
             }}
             exit={{
               scaleY: 0,
               transition: {
-                duration: 1.5,
+                duration: 0.7,
                 ease: 'easeInOut',
               },
             }}

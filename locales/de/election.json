@@ -10,7 +10,7 @@
   "partner": "Partner",
   "website": "Partei-Webseite",
   "program": "Wahlprogramm",
-  "quit": "Willst du den WahlSwiper wirklich beenden? Dein Ergebnis wird nicht gespeichert.",
+  "quit": "Willst du den WahlSwiper wirklich beenden? Dein bisheriger Fortschritt wird gespeichert und du kannst später weitermachen.",
   "selectParties": "Parteien auswählen",
   "selectPartiesIntro": "Wähle jetzt die Parteien mit denen du deine Antworten vergleichen willst. <0>Standardmäßig</0> sind <0>alle ausgewählt</0>. Danach klicke unten auf <1>»Weiter«</1> um zu deinem Ergebnis zu kommen. Du kannst jederzeit erneut die Anzahl der Parteien anpassen.",
   "goToResult": "Weiter zum Ergebnis",
@@ -45,5 +45,9 @@
   "donationTitle": "Projekt unterstützen",
   "donationText": "<0>Der WahlSwiper ist ein gemeinnütziges Projekt, das von <1>Bürgern für Bürger</1> gemacht wird. Mittlerweile erreichen wir mit diesem Projekt mehrere Millionen Menschen - und das kostet nicht nur Zeit, die wir gerne investieren, sondern auch bares Geld: So kostet alleine das Hosting bei größeren Wahlen schnell <1>mehrere Tausend Euro</1>. Wir sind daher auf Deine Unterstützung angewiesen, um das Projekt WahlSwiper auch in Zukunft mit und für euch realisieren zu können.</0><0>Jeder Betrag hilft, dir auch in Zukunft den WahlSwiper anbieten zu können.</0>",
   "skippedQuestionsTitle": "Du hast alle Fragen übersprungen.",
-  "skippedQuestionsText": "Beantworte mindestens eine Frage, um dein Ergebnis zu sehen."
+  "skippedQuestionsText": "Beantworte mindestens eine Frage, um dein Ergebnis zu sehen.",
+  "swiperStateDialogTitle": "Du hast diesen WahlSwiper bereits angefangen.",
+  "swiperStateDialogText": "Möchtest du fortsetzen oder neu beginnen?",
+  "swiperStateDialogContinue": "Fortsetzen",
+  "swiperStateDialogRestart": "Neu beginnen" 
 }

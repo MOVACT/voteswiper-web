@@ -10,7 +10,7 @@
   "partner": "Partnerler",
   "website": "Parti internet sitesi",
   "program": "Seçim programı",
-  "quit": "WahlSwiper'ı gerçekten sonlandırmak istiyor musun? Sonucun kaydedilmeyecek.",
+  "quit": "Gerçekten çıkmak istiyor musun? İlerlemeniz kaydedilecek ve daha sonra devam edebilirsiniz.",
   "selectParties": "Partileri seçin",
   "selectPartiesIntro": "Şimdi cevaplarını karşılaştırmak istediğin partileri seç. <0>Standart olarak</0>  <0>hepsi seçilidir</0>. Sonucuna ulaşmak için ardından aşağıda <1>»Devam«</1>'a tıkla. Partilerin sayısını her zaman yeniden değiştirebiliirsin. ",
   "goToResult": "Sonuca devam et",
@@ -45,5 +45,9 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Bütün soruları atladın.",
-  "skippedQuestionsText": "Sonucunuzu görmek için en az bir soruyu yanıtlayın."
+  "skippedQuestionsText": "Sonucunuzu görmek için en az bir soruyu yanıtlayın.",
+  "swiperStateDialogTitle": "Bu VoteSwiper'ı zaten başlattınız.",
+  "swiperStateDialogText": "Devam etmek mi yoksa baştan başlamak mı istiyorsunuz?",
+  "swiperStateDialogContinue": "Devam etmek",
+  "swiperStateDialogRestart": "Baştan başlamak" 
 }

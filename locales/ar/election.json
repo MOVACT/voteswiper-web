@@ -10,7 +10,7 @@
   "partner": "الشركاء",
   "website": "موقع الحزب",
   "program": "البرنامج الانتخابي",
-  "quit": "هل هل تريد حقًا إنهاء WahlSwiper؟ لن يتم حفظ نتائجك.",
+  "quit": "هل هل تريد حقًا إنهاحقيقة تريد الاستقالة؟ سيتم حفظ تقدمك ويمكنك المتابعة لاحقًا.",
   "selectParties": "اختر الأحزاب",
   "selectPartiesIntro": "اختر الآن الأحزاب التي تريد مقارنة إجاباتك معها. <0>عادةً</0> يتم <0> اختيار جميعها</0>. بعد ذلك انقر بالأسفل على <1>»التالي«</ 1> للوصول إلى نتيجتك. يمكنك ضبط عدد الأحزاب مرة أخرى في أي وقت.",
   "goToResult": "استمر للوصول إلى النتيجة",
@@ -45,5 +45,9 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "لقد تخطيت كل الأسئلة.",
-  "skippedQuestionsText": "أجب عن سؤال واحد على الأقل لمعرفة النتيجة."
+  "skippedQuestionsText": "أجب عن سؤال واحد على الأقل لمعرفة النتيجة.",
+  "swiperStateDialogTitle": "لقد بدأت بالفعل هذا VoteSwiper",
+  "swiperStateDialogText": "هل تريد الاستمرار أم البدء من جديد؟",
+  "swiperStateDialogContinue": "يكمل",
+  "swiperStateDialogRestart": "ابدأ من جديد" 
 }
