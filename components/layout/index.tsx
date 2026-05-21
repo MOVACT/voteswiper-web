@@ -2,6 +2,8 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import url from 'util/url';
+import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
+import ClientEmbedHeader from 'components/client-embed/layout/header';
 import Footer from './footer';
 import Header from './header';
 import EmbedHeader from './header/embed-header';
@@ -9,6 +11,9 @@ import EmbedHeader from './header/embed-header';
 const Layout: React.FC = ({ children }) => {
   const { t, lang } = useTranslation('common');
   const router = useRouter();
+  const isClientEmbed = router.pathname.startsWith('/embed-client');
+  const isStandardEmbed =
+    router.pathname.startsWith('/embed/') && !isClientEmbed;
 
   return (
     <>
@@ -95,9 +100,19 @@ const Layout: React.FC = ({ children }) => {
           site: t('twitterHandle'),
         }}
       />
-      {router.pathname.indexOf('embed') === -1 ? <Header /> : <EmbedHeader />}
-      {children}
-      {router.pathname.indexOf('embed') === -1 && <Footer />}
+      {!isClientEmbed && !isStandardEmbed && <Header />}
+      {isClientEmbed ? (
+        <div className={clientEmbedStyles.root}>
+          <ClientEmbedHeader />
+          {children}
+        </div>
+      ) : (
+        <>
+          {isStandardEmbed && <EmbedHeader />}
+          {children}
+        </>
+      )}
+      {!isClientEmbed && !isStandardEmbed && <Footer />}
     </>
   );
 };

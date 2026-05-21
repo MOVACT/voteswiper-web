@@ -1,0 +1,6 @@
+.default {
+  background: linear-gradient(180deg, #3F3B61 0, #302D4A);
+}
+.default:hover {
+    background: linear-gradient(180deg,rgba(0,0,0,.6) 0,#000);
+}
