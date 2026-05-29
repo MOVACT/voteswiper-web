@@ -1,7 +1,7 @@
 import { IconPlayerTrackNext } from '@tabler/icons';
 import cn from 'classnames';
-import Container from 'components/client-embed/layout/container';
 import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
+import Container from 'components/client-embed/layout/container';
 import { CLIENT_EMBED_BACKGROUND } from 'components/client-embed/theme';
 import { useElection } from 'contexts/election';
 import { motion } from 'framer-motion';

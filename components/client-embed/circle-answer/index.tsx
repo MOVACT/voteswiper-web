@@ -1,7 +1,7 @@
-import { ANSWERS } from 'components/client-embed/swiper/constants';
-import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
-import { SwiperAnswer } from 'contexts/election';
 import cn from 'classnames';
+import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
+import { ANSWERS } from 'components/client-embed/swiper/constants';
+import { SwiperAnswer } from 'contexts/election';
 import IconCheckmark from 'icons/checkmark.svg';
 import IconCross from 'icons/cross.svg';
 import IconNeutral from 'icons/neutral.svg';

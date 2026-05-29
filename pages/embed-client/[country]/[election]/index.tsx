@@ -1,5 +1,4 @@
 import Button from 'components/client-embed/button';
-import useClientEmbedBackground from 'components/client-embed/use-client-embed-background';
 import Container from 'components/client-embed/layout/container';
 import Page from 'components/client-embed/page';
 import PageHeader from 'components/client-embed/page-header';
@@ -12,6 +11,7 @@ import EditPartiesScreen from 'components/client-embed/swiper/screen-edit-partie
 import ExplainerScreen from 'components/client-embed/swiper/screen-explainer';
 import PartiesScreen from 'components/client-embed/swiper/screen-parties';
 import ResultScreen from 'components/client-embed/swiper/screen-result';
+import useClientEmbedBackground from 'components/client-embed/use-client-embed-background';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';

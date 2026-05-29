@@ -1,6 +1,6 @@
 import cn from 'classnames';
-import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
 import CircleAnswer from 'components/client-embed/circle-answer';
+import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
 import ExternalLink from 'components/client-embed/external-link';
 import Thesis from 'components/client-embed/typography/thesis';
 import Topic from 'components/client-embed/typography/topic';

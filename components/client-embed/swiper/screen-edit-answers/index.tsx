@@ -1,6 +1,6 @@
 import cn from 'classnames';
-import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
 import Button from 'components/client-embed/button';
+import clientEmbedStyles from 'components/client-embed/client-embed.module.scss';
 import Thesis from 'components/client-embed/typography/thesis';
 import Topic from 'components/client-embed/typography/topic';
 import { calculateResult, useElection } from 'contexts/election';
