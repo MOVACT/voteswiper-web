@@ -28,8 +28,8 @@ const Video: React.FC<Props> = ({ src, inline = false }) => {
       autoPlay
       className={cn(
         inline
-          ? 'w-full h-auto'
-          : 'w-full h-[80%] md:h-[70vh] lg:w-auto lg:h-[60vh] rounded-lg'
+          ? 'h-auto w-full'
+          : 'h-auto max-h-[50vh] w-full rounded-lg md:max-h-[70vh] lg:h-[60vh] lg:max-h-none lg:w-auto'
       )}
     />
   );

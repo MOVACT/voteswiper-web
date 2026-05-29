@@ -11,6 +11,10 @@ interface Props {
   inline?: boolean;
 }
 
+const scrollContainerStyle: React.CSSProperties = {
+  WebkitOverflowScrolling: 'touch',
+};
+
 const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
   const { screen, questions, closeExplainer, explainer } = useElection();
   const { t } = useTranslation();
@@ -29,31 +33,32 @@ const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
             exit={{ opacity: 0 }}
             transition={{ duration: inline ? 0 : 0.25 }}
             className={cn(
-              inline ? 'pt-16' : 'fixed',
-              'top-0 left-0 z-50 flex items-center justify-center w-full h-full p-4 overflow-auto md:p-6 lg:p-10 lg:bg-brand-primary absolute inset-0 pt-20 md:pt-20 lg:pt-10'
+              'z-50 overflow-y-auto overscroll-y-contain p-4 pt-20 md:p-6 md:pt-20 lg:bg-brand-primary lg:p-10',
+              inline ? 'absolute inset-0 pt-16' : 'fixed inset-0'
             )}
+            style={scrollContainerStyle}
           >
             <motion.div
               initial={{ y: 40 }}
               animate={{ y: 0 }}
               exit={{ y: 40 }}
-              className="p-4 my-auto bg-white shadow-xl md:p-6 rounded-xl"
+              className="mx-auto w-full max-w-4xl rounded-xl bg-white p-4 shadow-xl md:p-6"
             >
               <button
                 onClick={() => {
                   closeExplainer();
                   back();
                 }}
-                className="flex items-center px-6 py-3 mb-3 font-medium leading-none rounded md:mb-6 bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20"
+                className="mb-3 flex items-center rounded px-6 py-3 font-medium leading-none bg-brand-primary bg-opacity-10 focus-default hover:bg-opacity-20 md:mb-6"
               >
-                <IconChevronLeft className="w-3 h-3 mr-2" />
+                <IconChevronLeft className="mr-2 h-3 w-3" />
                 {t('election:back')}
               </button>
-              <div className="lg:flex">
+              <div className="lg:flex lg:items-start lg:gap-6">
                 {currentQuestion.video_url && (
                   <>
                     {inline ? (
-                      <div className="max-w-[350px] mx-auto rounded overflow-hidden">
+                      <div className="mx-auto max-w-[350px] overflow-hidden rounded">
                         <Video inline src={currentQuestion.video_url} />
                       </div>
                     ) : (
@@ -62,7 +67,10 @@ const ExplainerScreen: React.FC<Props> = ({ inline = false }) => {
                   </>
                 )}
                 {currentQuestion.explainer_text && (
-                  <div className="mt-6 lg:mt-0 lg:max-w-[450px] lg:w-screen prose lg:overflow-auto lg:max-h-[60vh] lg:overflow-scroll">
+                  <div
+                    className="prose mt-6 max-h-[50vh] overflow-y-auto overscroll-y-contain lg:mt-0 lg:max-h-[60vh] lg:flex-1"
+                    style={scrollContainerStyle}
+                  >
                     <div className="lg:mis-2">
                       {currentQuestion.explainer_text}
                     </div>
