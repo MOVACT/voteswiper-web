@@ -14,7 +14,6 @@ import ResultScreen from 'components/client-embed/swiper/screen-result';
 import useClientEmbedBackground from 'components/client-embed/use-client-embed-background';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import { ElectionProvider, useElection } from 'contexts/election';
-import { isPast } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
 import KlzLogo from 'icons/klz_logo_rechteck.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
@@ -34,7 +33,6 @@ import {
   Question,
   QuestionsData,
 } from 'types/api';
-import createFromDateTime from 'util/createFromDatetime';
 import url from 'util/url';
 
 interface Props {
@@ -59,23 +57,6 @@ const CountryPageContent: React.FC = () => {
   const { name, slug } = election;
   const { t } = useTranslation();
   const { locale } = useRouter();
-
-  const translationString = (): string => {
-    const isElectionPast = isPast(createFromDateTime(election.voting_day));
-    if (election.parties_not_participating === 0) {
-      if (isElectionPast) {
-        return 'election:introTextAllPast';
-      } else {
-        return 'election:introTextAllFuture';
-      }
-    }
-
-    if (isElectionPast) {
-      return 'election:introTextPast';
-    }
-
-    return 'election:introTextFuture';
-  };
 
   React.useEffect(() => {
     const container = document.getElementById('swiper-container');
