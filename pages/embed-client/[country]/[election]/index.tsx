@@ -13,15 +13,14 @@ import PartiesScreen from 'components/client-embed/swiper/screen-parties';
 import ResultScreen from 'components/client-embed/swiper/screen-result';
 import useClientEmbedBackground from 'components/client-embed/use-client-embed-background';
 import { ENDPOINTS, fetch } from 'connectors/api';
-import { fetchTranslatedStory } from 'connectors/storyblok';
 import { ElectionProvider, useElection } from 'contexts/election';
 import { isPast } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
+import KlzLogo from 'icons/klz_logo_rechteck.svg';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -36,37 +35,13 @@ import {
   QuestionsData,
 } from 'types/api';
 import createFromDateTime from 'util/createFromDatetime';
-import formatLocal from 'util/formatLocal';
-import storyblokDimensions from 'util/storyblokDimensions';
 import url from 'util/url';
-
-type ElectionStory = null | StoryblokStory<{
-  component: 'electionPage';
-  name: string;
-  links: Array<{
-    text: string;
-    link: StoryblokLink;
-    _uid: string;
-  }>;
-  partner: Array<{
-    component: 'partner';
-    _uid: string;
-    link: StoryblokLink;
-    name: string;
-    logo: StoryblokAsset;
-  }>;
-}>;
 
 interface Props {
   country: Country;
   election: Election;
   parties: Party[];
   questions: Question[];
-  story: ElectionStory;
-}
-
-interface ContentProps {
-  story: ElectionStory;
 }
 
 const PrivacyLink: React.FC = ({ children }) => {
@@ -78,7 +53,7 @@ const PrivacyLink: React.FC = ({ children }) => {
   );
 };
 
-const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
+const CountryPageContent: React.FC = () => {
   const { election, screen, startSwiper, country } = useElection();
   const { slug: countrySlug } = country;
   const { name, slug } = election;
@@ -144,48 +119,13 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                   <Container>
                     <div className="mb-24 prose prose-white lg:prose-xl">
                       <p>
-                        {election.playable ? (
-                          <Trans
-                            i18nKey={translationString()}
-                            values={{
-                              name: name,
-                              date: formatLocal(
-                                createFromDateTime(election.voting_day),
-                                'PPP',
-                                locale
-                              ),
-                              participating: election.parties_participating,
-                              total:
-                                election.parties_not_participating +
-                                election.parties_participating,
-                            }}
-                            components={[<strong key="" />]}
-                          />
-                        ) : (
-                          <>
-                            <p>
-                              <Trans
-                                i18nKey={'election:introVotingDay'}
-                                values={{
-                                  name: name,
-                                  date: formatLocal(
-                                    createFromDateTime(election.voting_day),
-                                    'PPP',
-                                    locale
-                                  ),
-                                  playableDate: formatLocal(
-                                    createFromDateTime(election.playable_date),
-                                    'PPP',
-                                    locale
-                                  ),
-                                }}
-                                components={[<strong key="" />, <br key="" />]}
-                              />
-                            </p>
-                          </>
-                        )}
+                        Die Gemeinderatswahl in der Stadt Graz findet am 28.
+                        Juni 2026 statt. Elf Parteien treten an. Doch welche
+                        passt zur eigenen Meinung? Der WahlSwiper von der
+                        Kleinen Zeitung und dem Verein VoteSwiper,
+                        wissenschaftlich begleitet durch Kathrin
+                        Stainer-Hämmerle (FH Kärnten), gibt Orientierung.
                       </p>
-
                       <p>
                         <Button
                           color="primary"
@@ -198,7 +138,6 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                           {t('election:start')}
                         </Button>
                       </p>
-
                       {election.playable && (
                         <p className="text-sm text-white opacity-70">
                           <Trans
@@ -209,55 +148,21 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                       )}
                     </div>
 
-                    {story !== null && story.content.partner.length > 0 && (
-                      <>
-                        <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
-                          {t('election:partner')}
-                        </h2>
+                    <h2 className="mb-2 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
+                      {t('election:partner')}
+                    </h2>
 
-                        <div className="flex flex-wrap -mx-2 md:-mx-3 lg:-mx-4">
-                          {story.content.partner.map((partner) => {
-                            return (
-                              <React.Fragment key={partner._uid}>
-                                {partner.link.url !== '' ? (
-                                  <a
-                                    href={partner.link.url}
-                                    target="_blank"
-                                    className="block w-1/2 px-2 md:w-40 lg:w-52 md:px-3 lg:px-4"
-                                    rel="noopener noreferrer nofollow"
-                                    title={partner.name}
-                                  >
-                                    <Image
-                                      src={partner.logo.filename}
-                                      alt={partner.logo.alt}
-                                      {...storyblokDimensions(
-                                        partner.logo.filename
-                                      )}
-                                      layout="responsive"
-                                      objectFit="contain"
-                                      objectPosition="center"
-                                    />
-                                  </a>
-                                ) : (
-                                  <div className="w-1/2 px-2 md:w-32 lg:w-40 md:px-3 lg:px-4">
-                                    <Image
-                                      src={partner.logo.filename}
-                                      alt={partner.logo.alt}
-                                      layout="responsive"
-                                      {...storyblokDimensions(
-                                        partner.logo.filename
-                                      )}
-                                      objectFit="contain"
-                                      objectPosition="center"
-                                    />
-                                  </div>
-                                )}
-                              </React.Fragment>
-                            );
-                          })}
-                        </div>
-                      </>
-                    )}
+                    <div className="flex flex-wrap -mx-2 md:-mx-3 lg:-mx-4">
+                      <a
+                        href="https://www.kleinezeitung.at"
+                        target="_blank"
+                        className="block w-1/2 px-2 md:w-40 lg:w-52 md:px-3 lg:px-4"
+                        rel="noopener noreferrer nofollow"
+                        title="Kleine Zeitung"
+                      >
+                        <KlzLogo className="w-full h-auto" />
+                      </a>
+                    </div>
                   </Container>
                 </Page>
               </motion.div>
@@ -301,7 +206,6 @@ const CountryPage: NextPage<Props> = ({
   election,
   questions,
   parties,
-  story,
 }) => {
   const $windowHeight = React.useRef<number>(0);
   const requestRef = React.useRef<number>(0);
@@ -347,7 +251,7 @@ const CountryPage: NextPage<Props> = ({
       questions={questions}
       election={election}
     >
-      <CountryPageContent story={story} />
+      <CountryPageContent />
     </ElectionProvider>
   );
 };
@@ -405,11 +309,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     },
   });
 
-  const story = await fetchTranslatedStory({
-    locale,
-    paths: [params?.country, params?.election],
-  });
-
   if (country.data === null || election.data === null)
     return { notFound: true };
 
@@ -428,7 +327,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     questions: questions.data,
     country: country.data,
     parties: parties.data,
-    story,
   };
 
   return {
