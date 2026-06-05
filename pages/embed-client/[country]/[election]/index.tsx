@@ -192,7 +192,6 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                           size="lg"
                           className="w-full md:w-auto"
                           onClick={() => {
-                            if (!election.playable) return;
                             startSwiper();
                           }}
                         >
