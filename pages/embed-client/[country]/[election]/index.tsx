@@ -191,7 +191,6 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                           color="primary"
                           size="lg"
                           className="w-full md:w-auto"
-                          disabled={!election.playable}
                           onClick={() => {
                             if (!election.playable) return;
                             startSwiper();
