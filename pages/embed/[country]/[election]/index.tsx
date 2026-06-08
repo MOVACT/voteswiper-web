@@ -1,4 +1,5 @@
 import Button from 'components/button';
+import EmbedFrameResizer from 'components/embed-frame-resizer';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
@@ -13,7 +14,6 @@ import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
-import EmbedFrameResizer from 'components/embed-frame-resizer';
 import { ElectionProvider, useElection } from 'contexts/election';
 import { isPast } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
