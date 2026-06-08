@@ -13,6 +13,7 @@ import PartiesScreen from 'components/swiper/screen-parties';
 import ResultScreen from 'components/swiper/screen-result';
 import { ENDPOINTS, fetch } from 'connectors/api';
 import { fetchTranslatedStory } from 'connectors/storyblok';
+import EmbedFrameResizer from 'components/embed-frame-resizer';
 import { ElectionProvider, useElection } from 'contexts/election';
 import { isPast } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -304,41 +305,6 @@ const CountryPage: NextPage<Props> = ({
   parties,
   story,
 }) => {
-  const $windowHeight = React.useRef<number>(0);
-  const requestRef = React.useRef<number>(0);
-
-  const resizeFrame = React.useCallback(() => {
-    const $htmlEl = document.getElementsByTagName('html')[0];
-
-    const windowHeight = document.body
-      ? Math.max(document.body.offsetHeight, $htmlEl.offsetHeight)
-      : $htmlEl.offsetHeight;
-
-    if ($windowHeight.current === windowHeight) {
-      requestRef.current = requestAnimationFrame(resizeFrame);
-      return false;
-    }
-
-    $windowHeight.current = windowHeight;
-
-    window.parent.postMessage(
-      {
-        sentinel: 'amp',
-        type: 'embed-size',
-        height: windowHeight === 0 ? 670 : windowHeight,
-      },
-      '*'
-    );
-
-    requestRef.current = requestAnimationFrame(resizeFrame);
-  }, []);
-
-  React.useEffect(() => {
-    requestRef.current = requestAnimationFrame(resizeFrame);
-    return () => cancelAnimationFrame(requestRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <ElectionProvider
       country={country}
@@ -346,6 +312,7 @@ const CountryPage: NextPage<Props> = ({
       questions={questions}
       election={election}
     >
+      <EmbedFrameResizer />
       <CountryPageContent story={story} />
     </ElectionProvider>
   );
