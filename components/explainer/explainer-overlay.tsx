@@ -22,7 +22,7 @@ const ExplainerOverlay: React.FC<Props> = ({
   inline = false,
   variant = 'default',
 }) => {
-  const { screen, questions, closeExplainer, explainer } = useElection();
+  const { screen, questions, explainer } = useElection();
   const { t } = useTranslation();
   const { back } = useRouter();
   const [mounted, setMounted] = React.useState(false);
@@ -39,7 +39,6 @@ const ExplainerOverlay: React.FC<Props> = ({
     currentQuestion !== undefined;
 
   const handleClose = (): void => {
-    closeExplainer();
     back();
   };
 

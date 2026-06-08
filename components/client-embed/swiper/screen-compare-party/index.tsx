@@ -151,14 +151,18 @@ const ComparePartyScreen: React.FC = () => {
                     <div className={styles.answers}>
                       <div className={styles.answer}>
                         <div className="pt-1 pl-2">
-                          <Topic>{t('election:yourAnswer')}</Topic>
+                          <Topic customColorClassName={clientEmbedStyles.questionText}>
+                            {t('election:yourAnswer')}
+                          </Topic>
                         </div>
 
                         <CircleAnswer answer={userAnswer} />
                       </div>
                       <div className={styles.answer}>
                         <div className="pt-1 pl-2">
-                          <Topic>{t('election:party')}</Topic>
+                          <Topic customColorClassName={clientEmbedStyles.questionText}>
+                            {t('election:party')}
+                          </Topic>
                         </div>
 
                         <CircleAnswer answer={partyAnswer} />

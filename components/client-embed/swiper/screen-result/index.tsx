@@ -113,10 +113,7 @@ const ResultScreen: React.FC = () => {
                             : '0%'}
                         </span>
                         <IconChevronRight
-                          className={cn(
-                            'w-3 h-3 mis-2 text-brand-dark-blue',
-                            styles.icon
-                          )}
+                          className={cn('w-3 h-3 mis-2 text-white', styles.icon)}
                         />
                       </div>
                     </div>

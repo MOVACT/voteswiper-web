@@ -265,6 +265,10 @@ export const ElectionProvider: React.FC<Props> = ({
       setCurrentQuestion(ev.state.currentQuestion);
       setScreen(ev.state.screen);
 
+      if (ev.state.screen !== STEPS.EXPLAINER) {
+        setExplainer(null);
+      }
+
       if (typeof ev.state.comparePartyId !== 'undefined') {
         setCompareParty(ev.state.comparePartyId);
       }
