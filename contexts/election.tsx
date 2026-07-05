@@ -176,7 +176,7 @@ export const ElectionProvider: React.FC<Props> = ({
     setFeatureDownloadImage,
   ] = React.useState<boolean>(true);
 
-  useLockBodyScroll(screen === STEPS.SWIPER);
+  useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
 
   React.useEffect(() => {
     if (query && query['hideDownload']) {
@@ -264,10 +264,6 @@ export const ElectionProvider: React.FC<Props> = ({
     if (typeof ev.state.currentQuestion !== 'undefined') {
       setCurrentQuestion(ev.state.currentQuestion);
       setScreen(ev.state.screen);
-
-      if (ev.state.screen !== STEPS.EXPLAINER) {
-        setExplainer(null);
-      }
 
       if (typeof ev.state.comparePartyId !== 'undefined') {
         setCompareParty(ev.state.comparePartyId);

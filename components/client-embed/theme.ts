@@ -1,9 +1,0 @@
-export const CLIENT_EMBED_BACKGROUND = '#1b0054';
-export const CLIENT_EMBED_ACCENT = '#C50C04';
-export const CLIENT_EMBED_YES = '#667df2';
-export const CLIENT_EMBED_CARD_GRADIENT_END = '#f2f4ff';
-export const CLIENT_EMBED_DOUBLE_WEIGHT_BAR = '#bfc7f0';
-export const CLIENT_EMBED_TOPIC = '#C50C04';
-export const CLIENT_EMBED_TEXT = '#111827';
-export const CLIENT_EMBED_LINK_HOVER = '#C50C0E';
-export const CLIENT_EMBED_FONT_FAMILY = 'KleineSans';

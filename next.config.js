@@ -40,15 +40,6 @@ const nextConfig = {
             value: '',
           }
         ]
-      },
-      {
-        source: '/embed-client/:path*',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: '',
-          }
-        ]
       }
     ];
   },

@@ -1,5 +1,4 @@
 import Button from 'components/button';
-import EmbedFrameResizer from 'components/embed-frame-resizer';
 import Container from 'components/layout/container';
 import Page from 'components/page';
 import PageHeader from 'components/page-header';
@@ -305,6 +304,41 @@ const CountryPage: NextPage<Props> = ({
   parties,
   story,
 }) => {
+  const $windowHeight = React.useRef<number>(0);
+  const requestRef = React.useRef<number>(0);
+
+  const resizeFrame = React.useCallback(() => {
+    const $htmlEl = document.getElementsByTagName('html')[0];
+
+    const windowHeight = document.body
+      ? Math.max(document.body.offsetHeight, $htmlEl.offsetHeight)
+      : $htmlEl.offsetHeight;
+
+    if ($windowHeight.current === windowHeight) {
+      requestRef.current = requestAnimationFrame(resizeFrame);
+      return false;
+    }
+
+    $windowHeight.current = windowHeight;
+
+    window.parent.postMessage(
+      {
+        sentinel: 'amp',
+        type: 'embed-size',
+        height: windowHeight === 0 ? 670 : windowHeight,
+      },
+      '*'
+    );
+
+    requestRef.current = requestAnimationFrame(resizeFrame);
+  }, []);
+
+  React.useEffect(() => {
+    requestRef.current = requestAnimationFrame(resizeFrame);
+    return () => cancelAnimationFrame(requestRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ElectionProvider
       country={country}
@@ -312,7 +346,6 @@ const CountryPage: NextPage<Props> = ({
       questions={questions}
       election={election}
     >
-      <EmbedFrameResizer />
       <CountryPageContent story={story} />
     </ElectionProvider>
   );
