@@ -10,7 +10,7 @@
   "partner": "Партнеры",
   "website": "Сайт партии",
   "program": "Предвыборная программа",
-  "quit": "Ты действительно хочешь закрыть приложение WahlSwiper? Твои результаты не сохранятся.",
+  "quit": "Вы действительно хотите бросить курить? Ваш прогресс будет сохранен, и вы сможете продолжить позже.",
   "selectParties": "Выбрать партии",
   "selectPartiesIntro": "Выбери партии, с которыми ты хочешь сравнить свои ответы. <0>По умолчанию</0> <0> выбраны все</0>. Затем ниже нажми на <1>«Далее»</1>, чтобы получить результат. Ты можешь в любой момент изменить количество партий.",
   "goToResult": "Показать результат",
@@ -45,5 +45,9 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Вы пропустили все вопросы.",
-  "skippedQuestionsText": "Ответьте хотя бы на один вопрос, чтобы узнать свой результат."
+  "skippedQuestionsText": "Ответьте хотя бы на один вопрос, чтобы узнать свой результат.",
+  "swiperStateDialogTitle": "Вы уже запустили этот VoteSwiper.",
+  "swiperStateDialogText": "Хотите продолжить или начать заново?",
+  "swiperStateDialogContinue": "Продолжать",
+  "swiperStateDialogRestart": "Начать сначала"   
 }

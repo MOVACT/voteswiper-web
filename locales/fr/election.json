@@ -10,7 +10,7 @@
   "partner": "Partenaire",
   "website": "Site web",
   "program": "Programme électoral",
-  "quit": "Voulez-vous vraiment abandonner ? Votre résultat ne sera pas sauvé.",
+  "quit": "Voulez-vous vraiment arrêter ? Votre progression sera enregistrée et vous pourrez continuer plus tard.",
   "selectParties": "Choisir les parties",
   "selectPartiesIntro": "Sélectionnez maintenant les parties avec lesquelles vous voulez comparer vos réponses. <0>Par défaut</0> <0>tous sont sélectionnés</0>. Cliquez ensuite sur <1>\"Next\"</1> en bas pour obtenir votre résultat. Vous pouvez toujours ajuster à nouveau le nombre de parties.",
   "goToResult": "Aller au résultat",
@@ -45,5 +45,9 @@
   "donationTitle": "Support this project",
   "donationText": "<0>The VoteSwiper is a project made by <1>citizens for citizens</1>. Today we reach several million people with - and that does not only require a lot of time, which we are happy to invest, but also money: The hosting alone for larger elections quickly costs <1>several thousand euros</1>. We are therefore dependent on your support to be able to continue offering VoteSwiper for you in the future.</0><0>Every amount helps.</0>",
   "skippedQuestionsTitle": "Tu as sauté toutes les questions.",
-  "skippedQuestionsText": "Réponds à au moins une question pour voir ton résultat."
+  "skippedQuestionsText": "Réponds à au moins une question pour voir ton résultat.",
+  "swiperStateDialogTitle": "Vous avez déjà démarré ce VoteSwiper.",
+  "swiperStateDialogText": "Voulez-vous continuer ou recommencer ?",
+  "swiperStateDialogContinue": "Continuer",
+  "swiperStateDialogRestart": "Recommencer" 
 }

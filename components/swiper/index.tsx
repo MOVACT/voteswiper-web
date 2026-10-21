@@ -1,7 +1,8 @@
 import { IconPlayerTrackNext } from '@tabler/icons';
 import cn from 'classnames';
+import Button from 'components/button';
 import Container from 'components/layout/container';
-import { useElection } from 'contexts/election';
+import { SwiperState, useElection } from 'contexts/election';
 import { motion } from 'framer-motion';
 import IconClose from 'icons/close.svg';
 import useTranslation from 'next-translate/useTranslation';
@@ -11,11 +12,58 @@ import QuestionCounter from './question-counter';
 import QuestionToSpeech from './question-to-speech';
 import styles from './swiper.module.css';
 
-interface Props {
+interface SwiperProps {
   onRequestClose: () => void;
 }
 
-const Swiper: React.FC<Props> = ({ onRequestClose }) => {
+interface ConfirmationDialogProps {
+  onConfirm: () => void;
+  onCancel: () => void;
+}
+
+const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
+  onConfirm,
+  onCancel,
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="relative z-50 w-full max-w-lg p-6 bg-white rounded-lg shadow-xl">
+          <div className="text-center">
+            <h3 className="text-2xl font-semibold">
+              {t('election:swiperStateDialogTitle')}
+            </h3>
+            <p className="mt-2 text-md text-gray-600">
+              {t('election:swiperStateDialogText')}
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row justify-between px-3 mt-6 gap-2">
+            <Button
+              color="primary"
+              size="lg"
+              onClick={onCancel}
+              className="bg-gradient-to-b from-red-500 to-red-700 text-white"
+            >
+              {t('election:swiperStateDialogRestart')}
+            </Button>
+            <Button
+              color="primary"
+              size="lg"
+              onClick={onConfirm}
+              className="bg-gradient-to-b from-green-vibrant-500 to-green-vibrant-600"
+            >
+              {t('election:swiperStateDialogContinue')}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SwiperDeck: React.FC<SwiperProps> = ({ onRequestClose }) => {
   const $card = React.useRef<Ref>(null);
   const { t } = useTranslation();
   const {
@@ -111,6 +159,48 @@ const Swiper: React.FC<Props> = ({ onRequestClose }) => {
         </div>
       </div>
     </motion.div>
+  );
+};
+
+const Swiper: React.FC<SwiperProps> = ({ onRequestClose }) => {
+  const { getSwiperState, election, startSwiper } = useElection();
+  const [savedState, setSavedState] = React.useState<SwiperState>();
+  const [
+    isConfirmationDialogOpen,
+    setIsConfirmationDialogOpen,
+  ] = React.useState(false);
+
+  const loadSavedSwiperState = async (): Promise<void> => {
+    const savedState = await getSwiperState(election.id);
+
+    if (savedState) {
+      setIsConfirmationDialogOpen(true);
+      setSavedState(savedState);
+    }
+  };
+
+  React.useEffect(() => {
+    loadSavedSwiperState();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div>
+      {isConfirmationDialogOpen ? (
+        <ConfirmationDialog
+          onConfirm={() => {
+            setIsConfirmationDialogOpen(false);
+            startSwiper(savedState);
+          }}
+          onCancel={() => {
+            setIsConfirmationDialogOpen(false);
+            startSwiper();
+          }}
+        />
+      ) : (
+        <SwiperDeck onRequestClose={onRequestClose} />
+      )}
+    </div>
   );
 };
 
