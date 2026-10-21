@@ -5,11 +5,13 @@
   "description": "Voting advice application for political elections in Germany and Europe",
   "license": "GPL-3.0-only",
   "homepage": "https://www.voteswiper.org",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "postbuild": "next-sitemap",
-    "deploy": "serverless --debug",
     "lint": "next lint",
     "start": "next start"
   },
