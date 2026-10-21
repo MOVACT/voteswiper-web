@@ -1,4 +1,13 @@
-import { Listbox, RadioGroup, Transition } from '@headlessui/react';
+import {
+  Label,
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+  Radio,
+  RadioGroup,
+  Transition,
+} from '@headlessui/react';
 import { IconChevronDown } from '@tabler/icons';
 import cn from 'classnames';
 import Button from 'components/button';
@@ -152,19 +161,17 @@ const Press: NextPage<Props> = ({ elections }) => {
                         value={selectedElection}
                         onChange={setElection}
                       >
-                        <RadioGroup.Label hidden>
-                          {t('press:election')}
-                        </RadioGroup.Label>
+                        <Label hidden>{t('press:election')}</Label>
                         {elections[locale || 'de'].map((election) => {
                           return (
-                            <RadioGroup.Option
+                            <Radio
                               value={election.election.id}
                               key={election.election.id}
-                              className={({ active, checked }) =>
+                              className={({ focus, checked }) =>
                                 cn(
                                   'flex items-center rounded-lg my-2 bg-white text-white px-4 py-3 cursor-pointer',
                                   checked ? 'bg-opacity-10' : 'bg-opacity-0',
-                                  active && 'focus-default'
+                                  focus && 'focus-default'
                                 )
                               }
                             >
@@ -180,7 +187,7 @@ const Press: NextPage<Props> = ({ elections }) => {
                                   </>
                                 );
                               }}
-                            </RadioGroup.Option>
+                            </Radio>
                           );
                         })}
                       </RadioGroup>
@@ -190,11 +197,9 @@ const Press: NextPage<Props> = ({ elections }) => {
                       <p>{t('press:languageHelper')}</p>
 
                       <Listbox value={selectedLocale} onChange={setLocale}>
-                        <Listbox.Label hidden>
-                          {t('press:language')}
-                        </Listbox.Label>
+                        <Label hidden>{t('press:language')}</Label>
                         <div className="relative mt-1">
-                          <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg cursor-default bg-opacity-10 focus-default">
+                          <ListboxButton className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg cursor-default bg-opacity-10 focus-default">
                             <span className="block truncate">
                               {config.languageNames[selectedLocale]}
                             </span>
@@ -204,7 +209,7 @@ const Press: NextPage<Props> = ({ elections }) => {
                                 aria-hidden="true"
                               />
                             </span>
-                          </Listbox.Button>
+                          </ListboxButton>
 
                           <Transition
                             as={React.Fragment}
@@ -212,16 +217,16 @@ const Press: NextPage<Props> = ({ elections }) => {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Listbox.Options className="absolute z-50 w-full p-3 mt-1 overflow-auto text-base list-none bg-white rounded-lg shadow-lg max-h-60 focus:outline-none sm:text-sm">
+                            <ListboxOptions className="absolute z-50 w-full p-3 mt-1 overflow-auto text-base list-none bg-white rounded-lg shadow-lg max-h-60 focus:outline-none sm:text-sm">
                               {(locales || []).map((loc) => {
                                 return (
-                                  <Listbox.Option
+                                  <ListboxOption
                                     value={loc}
                                     key={loc}
-                                    className={({ active, selected }) =>
+                                    className={({ focus, selected }) =>
                                       cn(
                                         'cursor-default select-none relative py-2 px-2 list-none',
-                                        active
+                                        focus
                                           ? 'text-black bg-brand-primary bg-opacity-10'
                                           : 'text-brand-primary',
                                         selected &&
@@ -232,10 +237,10 @@ const Press: NextPage<Props> = ({ elections }) => {
                                     <div className="block truncate">
                                       {config.languageNames[loc]}
                                     </div>
-                                  </Listbox.Option>
+                                  </ListboxOption>
                                 );
                               })}
-                            </Listbox.Options>
+                            </ListboxOptions>
                           </Transition>
                         </div>
                       </Listbox>

@@ -1,4 +1,8 @@
-import { Disclosure } from '@headlessui/react';
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react';
 import cn from 'classnames';
 import Container from 'components/layout/container';
 import PageContainer from 'components/page';
@@ -92,7 +96,7 @@ const FaqPage: React.FC<Props> = ({ story }) => {
                     <Disclosure key={question._uid}>
                       {({ open }) => (
                         <>
-                          <Disclosure.Button className="flex justify-between w-full px-4 py-2 mb-2 font-medium text-left text-white bg-white rounded hover:bg-opacity-20 lg:bg-brand-primary bg-opacity-10 lg:bg-opacity-10 focus-default lg:text-brand-dark-blue">
+                          <DisclosureButton className="flex justify-between w-full px-4 py-2 mb-2 font-medium text-left text-white bg-white rounded hover:bg-opacity-20 lg:bg-brand-primary bg-opacity-10 lg:bg-opacity-10 focus-default lg:text-brand-dark-blue">
                             <span>{question.title}</span>
                             <IconChevronRight
                               className={cn(
@@ -100,13 +104,13 @@ const FaqPage: React.FC<Props> = ({ story }) => {
                                 open && 'rotate-90'
                               )}
                             />
-                          </Disclosure.Button>
+                          </DisclosureButton>
 
-                          <Disclosure.Panel>
+                          <DisclosurePanel>
                             <div className="pb-4 prose-white lg:prose">
                               {render(question.body)}
                             </div>
-                          </Disclosure.Panel>
+                          </DisclosurePanel>
                         </>
                       )}
                     </Disclosure>

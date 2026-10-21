@@ -1,4 +1,10 @@
-import { Menu, Transition } from '@headlessui/react';
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition,
+} from '@headlessui/react';
 import cn from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
@@ -10,10 +16,10 @@ const AppDownload: React.FC = () => {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-black text-sm font-medium text-white hover:from-[rgba(0,0,0,0.5)] focus-default">
+            <MenuButton className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-black text-sm font-medium text-white hover:from-[rgba(0,0,0,0.5)] focus-default">
               <span className="lg:hidden">{t('app')}</span>
               <span className="hidden lg:inline">{t('download')}</span>
-            </Menu.Button>
+            </MenuButton>
           </div>
           <Transition
             show={open}
@@ -25,13 +31,13 @@ const AppDownload: React.FC = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items
+            <MenuItems
               static
               className="z-[60] absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
               <div className="p-2 ">
-                <Menu.Item>
-                  {({ active }) => (
+                <MenuItem>
+                  {({ focus }) => (
                     <a
                       href="https://itunes.apple.com/us/app/wahlswiper/id1231104532?mt=8"
                       rel="noopener noreferrer"
@@ -40,7 +46,7 @@ const AppDownload: React.FC = () => {
                       role="button"
                       className={cn(
                         'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
-                        active
+                        focus
                           ? 'bg-brand-primary text-white'
                           : 'text-brand-dark-blue'
                       )}
@@ -48,9 +54,9 @@ const AppDownload: React.FC = () => {
                       iPhone / iPad
                     </a>
                   )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
+                </MenuItem>
+                <MenuItem>
+                  {({ focus }) => (
                     <a
                       href="https://play.google.com/store/apps/details?id=com.wahlswiper"
                       rel="noopener noreferrer"
@@ -59,7 +65,7 @@ const AppDownload: React.FC = () => {
                       role="button"
                       className={cn(
                         'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
-                        active
+                        focus
                           ? 'bg-brand-primary text-white'
                           : 'text-brand-dark-blue'
                       )}
@@ -67,9 +73,9 @@ const AppDownload: React.FC = () => {
                       Android
                     </a>
                   )}
-                </Menu.Item>
+                </MenuItem>
               </div>
-            </Menu.Items>
+            </MenuItems>
           </Transition>
         </>
       )}
