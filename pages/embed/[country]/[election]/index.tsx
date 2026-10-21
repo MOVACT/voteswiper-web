@@ -68,11 +68,11 @@ interface ContentProps {
   story: ElectionStory;
 }
 
-const PrivacyLink: React.FC = ({ children }) => {
+const PrivacyLink: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   return (
-    <Link href={t('footer:privacyLink')} passHref>
-      <a className="font-normal text-underline">{children}</a>
+    <Link href={t('footer:privacyLink')} className="font-normal text-underline">
+      {children}
     </Link>
   );
 };
@@ -124,7 +124,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
         noindex
       />
       <div id="swiper-container">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {screen !== STEPS.RESULT &&
             screen !== STEPS.EDIT_PARTIES &&
             screen !== STEPS.COMPARE_PARTY &&
@@ -234,9 +234,12 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                       {...storyblokDimensions(
                                         partner.logo.filename
                                       )}
-                                      layout="responsive"
-                                      objectFit="contain"
-                                      objectPosition="center"
+                                      style={{
+                                        width: '100%',
+                                        height: 'auto',
+                                        objectFit: 'contain',
+                                        objectPosition: 'center',
+                                      }}
                                     />
                                   </a>
                                 ) : (
@@ -244,12 +247,15 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                     <Image
                                       src={partner.logo.filename}
                                       alt={partner.logo.alt}
-                                      layout="responsive"
                                       {...storyblokDimensions(
                                         partner.logo.filename
                                       )}
-                                      objectFit="contain"
-                                      objectPosition="center"
+                                      style={{
+                                        width: '100%',
+                                        height: 'auto',
+                                        objectFit: 'contain',
+                                        objectPosition: 'center',
+                                      }}
                                     />
                                   </div>
                                 )}

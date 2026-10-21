@@ -33,10 +33,13 @@ const ElectionCard: React.FC<Props> = ({
         <Image
           width={card.width}
           height={card.height}
-          sizes="(min-width: 1025px) 424px, (min-width: 770px) 470px, 100vw"
-          layout="responsive"
           alt={name}
           src={card.public_link}
+          sizes="(min-width: 1025px) 424px, (min-width: 770px) 470px, 100vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
         />
       </div>
       <div className="px-5 py-4 leading-tight">
@@ -63,10 +66,11 @@ const ElectionCard: React.FC<Props> = ({
   }
 
   return (
-    <Link href={`/${country.slug}/${slug}`} passHref>
-      <a className={cn(cardClassName, 'shadow-xl hover:shadow-lg')}>
-        {content}
-      </a>
+    <Link
+      href={`/${country.slug}/${slug}`}
+      className={cn(cardClassName, 'shadow-xl hover:shadow-lg')}
+    >
+      {content}
     </Link>
   );
 };

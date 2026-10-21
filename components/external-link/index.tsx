@@ -2,11 +2,10 @@ import cn from 'classnames';
 import IconHyperlink from 'icons/hyperlink.svg';
 import React from 'react';
 
-interface Props
-  extends React.DetailedHTMLProps<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  > {
+interface Props extends React.DetailedHTMLProps<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+> {
   size?: 'sm' | 'default';
 }
 

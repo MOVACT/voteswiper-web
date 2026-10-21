@@ -18,12 +18,14 @@ const PartyInfoCard: React.FC<Props> = ({ party }) => {
         <div className="w-1/4 ">
           <div className="relative h-[40px]">
             <Image
-              layout="fill"
-              objectFit="contain"
-              objectPosition="left"
               alt={party.full_name}
-              sizes="(min-width: 1024px) 100px, 150px"
               src={party.logo.public_link}
+              fill
+              sizes="(min-width: 1024px) 100px, 150px"
+              style={{
+                objectFit: 'contain',
+                objectPosition: 'left',
+              }}
             />
           </div>
         </div>

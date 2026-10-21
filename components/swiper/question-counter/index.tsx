@@ -8,12 +8,8 @@ import React from 'react';
 import styles from './counter.module.css';
 
 const QuestionCounter: React.FC = () => {
-  const {
-    questions,
-    currentQuestion,
-    goToNextQuestion,
-    goToPreviousQuestion,
-  } = useElection();
+  const { questions, currentQuestion, goToNextQuestion, goToPreviousQuestion } =
+    useElection();
   const { t } = useTranslation();
   return (
     <div className="flex items-center">

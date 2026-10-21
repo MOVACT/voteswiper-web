@@ -7,8 +7,7 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { Richtext } from 'storyblok-js-client';
+import type { StoryblokRichtext as Richtext } from 'storyblok-rich-text-react-renderer';
 import formatLocal from 'util/formatLocal';
 import url from 'util/url';
 import { PressPage } from '../';
@@ -65,11 +64,8 @@ const Press: NextPage<Props> = ({ releases }) => {
                       )}
                     </aside>
                     <h1 className="text-xl font-medium leading-tight text-white underline md:text-2xl">
-                      <Link
-                        href={`/page/press/releases/${release.slug}`}
-                        passHref
-                      >
-                        <a>{release.name}</a>
+                      <Link href={`/page/press/releases/${release.slug}`}>
+                        {release.name}
                       </Link>
                     </h1>
                   </article>
@@ -84,7 +80,7 @@ const Press: NextPage<Props> = ({ releases }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  Storyblok.flushCache();
+  await Storyblok.flushCache();
   const stories = await Storyblok.getAll('cdn/stories', {
     starts_with: 'press/releases/',
     language: locale,

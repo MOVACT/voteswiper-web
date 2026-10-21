@@ -8,7 +8,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import React from 'react';
 import {
   Country,
   CountryData,
@@ -37,7 +36,7 @@ const CountryPage: NextPage<Props> = ({ country, election, parties }) => {
         title={`${t('election:parties')} - ${election.name}`}
         canonical={url(
           `/${countrySlug}/${slug}/${
-            config.translatedSlugs.parties[(locale as unknown) as string]
+            config.translatedSlugs.parties[locale as unknown as string]
           }`,
           locale !== 'en'
         )}
@@ -54,7 +53,7 @@ const CountryPage: NextPage<Props> = ({ country, election, parties }) => {
           },
           {
             item: `/${countrySlug}/${slug}/${
-              config.translatedSlugs.parties[(locale as unknown) as string]
+              config.translatedSlugs.parties[locale as unknown as string]
             }`,
             name: t('election:parties'),
           },

@@ -1,12 +1,12 @@
 import { init } from '@socialgouv/matomo-next';
-import { AppComponent } from 'next/dist/next-server/lib/router/router';
+import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Layout from '../components/layout';
 import i18n from '../i18n';
 import '../styles/app.scss';
 
-const App: AppComponent = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps): React.JSX.Element => {
   const router = useRouter();
 
   React.useEffect(() => {

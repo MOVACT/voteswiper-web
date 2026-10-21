@@ -1,4 +1,10 @@
-import { Menu, Transition } from '@headlessui/react';
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition,
+} from '@headlessui/react';
 import cn from 'classnames';
 import config from 'config';
 import Link from 'next/link';
@@ -37,9 +43,9 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-black text-sm font-medium text-white hover:from-[rgba(0,0,0,0.5)] focus-default">
+            <MenuButton className="inline-flex justify-center w-full py-2.5 px-4 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-black text-sm font-medium text-white hover:from-[rgba(0,0,0,0.5)] focus-default">
               {locale && config.languageNames[locale]}
-            </Menu.Button>
+            </MenuButton>
           </div>
           <Transition
             show={open}
@@ -51,7 +57,7 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items
+            <MenuItems
               static
               className={cn(
                 'z-[60] absolute w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
@@ -63,37 +69,37 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
                 {locales?.map((loc, index) => {
                   if (loc === 'de-ch') return;
                   return (
-                    <Menu.Item key={loc}>
-                      {({ active }) => (
-                        <Link passHref href="/" locale={loc}>
-                          <a
-                            onClick={() => onLanguageChange(loc)}
-                            role="button"
-                            tabIndex={index}
-                            onKeyPress={(e) => onKeyPress(e, loc)}
-                            className={cn(
-                              'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
-                              loc === locale &&
-                                !active &&
-                                'bg-brand-primary bg-opacity-10',
-                              active
-                                ? 'bg-brand-primary text-white'
-                                : 'text-brand-dark-blue',
-                              i18n.rtlLocales.indexOf(loc) > -1 &&
-                                i18n.rtlLocales.indexOf(locale || 'en') === -1
-                                ? 'text-end'
-                                : 'text-start'
-                            )}
-                          >
-                            {config.languageNames[loc]}
-                          </a>
+                    <MenuItem key={loc}>
+                      {({ focus }) => (
+                        <Link
+                          href="/"
+                          locale={loc}
+                          onClick={() => onLanguageChange(loc)}
+                          role="button"
+                          tabIndex={index}
+                          onKeyPress={(e) => onKeyPress(e, loc)}
+                          className={cn(
+                            'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
+                            loc === locale &&
+                              !focus &&
+                              'bg-brand-primary bg-opacity-10',
+                            focus
+                              ? 'bg-brand-primary text-white'
+                              : 'text-brand-dark-blue',
+                            i18n.rtlLocales.indexOf(loc) > -1 &&
+                              i18n.rtlLocales.indexOf(locale || 'en') === -1
+                              ? 'text-end'
+                              : 'text-start'
+                          )}
+                        >
+                          {config.languageNames[loc]}
                         </Link>
                       )}
-                    </Menu.Item>
+                    </MenuItem>
                   );
                 })}
               </div>
-            </Menu.Items>
+            </MenuItems>
           </Transition>
         </>
       )}

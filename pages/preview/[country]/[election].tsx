@@ -53,7 +53,7 @@ const CountryPageContent: React.FC = () => {
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'en')}
       />
       <div className="min-h-screen">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {screen === STEPS.START && (
             <motion.div
               key="start"

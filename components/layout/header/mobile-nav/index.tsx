@@ -1,8 +1,10 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useLockBodyScroll } from 'react-use';
 import navItems from '../data';
+
+const MotionLink = motion.create(Link);
 
 interface Props {
   open: boolean;
@@ -12,7 +14,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
   useLockBodyScroll(open);
   const { t } = useTranslation();
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     enter: {
       opacity: 1,
       transition: {
@@ -29,7 +31,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
     },
   };
 
-  const parentVariants = {
+  const parentVariants: Variants = {
     enter: {
       transition: {
         delayChildren: 0.5,
@@ -52,24 +54,23 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
   }): React.ReactElement => {
     return (
       <li className="py-2" key={item.text}>
-        <Link href={t(item.href)} passHref>
-          <motion.a
-            key={item.text}
-            variants={itemVariants}
-            onClick={() => {
-              setNav(false);
-            }}
-            className={'text-xl text-white font-medium rounded focus-default'}
-          >
-            {t(item.text)}
-          </motion.a>
-        </Link>
+        <MotionLink
+          href={t(item.href)}
+          key={item.text}
+          variants={itemVariants}
+          onClick={() => {
+            setNav(false);
+          }}
+          className={'text-xl text-white font-medium rounded focus-default'}
+        >
+          {t(item.text)}
+        </MotionLink>
       </li>
     );
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       {open && (
         <div className="lg:hidden">
           <motion.div

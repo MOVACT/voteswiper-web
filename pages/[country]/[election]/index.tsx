@@ -71,11 +71,11 @@ interface ContentProps {
   story: ElectionStory;
 }
 
-const PrivacyLink: React.FC = ({ children }) => {
+const PrivacyLink: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   return (
-    <Link href={t('footer:privacyLink')} passHref>
-      <a className="font-normal text-underline">{children}</a>
+    <Link href={t('footer:privacyLink')} className="font-normal text-underline">
+      {children}
     </Link>
   );
 };
@@ -121,7 +121,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'en')}
       />
       <div className="min-h-screen">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {screen === STEPS.START && (
             <motion.div
               key="start"
@@ -231,10 +231,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                       <p>
                         <small>
                           Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
-                          <Link href="/page/verein/spenden" passHref>
-                            <a>Spendenseite</a>
-                          </Link>
-                          .
+                          <Link href="/page/verein/spenden">Spendenseite</Link>.
                         </small>
                       </p>
                     )}
@@ -253,14 +250,12 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                               <Link
                                 href={`/${country.slug}/${election.slug}/${
                                   config.translatedSlugs.parties[
-                                    (locale as unknown) as string
+                                    locale as unknown as string
                                   ]
                                 }`}
-                                passHref
+                                className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default"
                               >
-                                <a className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default">
-                                  {t('election:parties')}
-                                </a>
+                                {t('election:parties')}
                               </Link>
                             </li>
 
@@ -313,9 +308,12 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                     {...storyblokDimensions(
                                       partner.logo.filename
                                     )}
-                                    layout="responsive"
-                                    objectFit="contain"
-                                    objectPosition="center"
+                                    style={{
+                                      width: '100%',
+                                      height: 'auto',
+                                      objectFit: 'contain',
+                                      objectPosition: 'center',
+                                    }}
                                   />
                                 </a>
                               ) : (
@@ -323,12 +321,15 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                   <Image
                                     src={partner.logo.filename}
                                     alt={partner.logo.alt}
-                                    layout="responsive"
                                     {...storyblokDimensions(
                                       partner.logo.filename
                                     )}
-                                    objectFit="contain"
-                                    objectPosition="center"
+                                    style={{
+                                      width: '100%',
+                                      height: 'auto',
+                                      objectFit: 'contain',
+                                      objectPosition: 'center',
+                                    }}
                                   />
                                 </div>
                               )}
@@ -339,52 +340,53 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                     </>
                   )}
 
-                  {locale === 'de' && election.slug === 'bundestagswahl-2021' && (
-                    <div className="mt-10">
-                      <h2 className="mb-3 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
-                        Unsere Partnerschaft mit #wAlman
-                      </h2>
+                  {locale === 'de' &&
+                    election.slug === 'bundestagswahl-2021' && (
+                      <div className="mt-10">
+                        <h2 className="mb-3 text-2xl font-medium leading-tight text-white md:text-3xl md:mb-4 lg:mb-6">
+                          Unsere Partnerschaft mit #wAlman
+                        </h2>
 
-                      <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between">
-                        <div className="pt-6 prose lg:prose-lg lg:w-2/3 lg:pr-10 prose-white lg:pt-0">
-                          <p>
-                            Wer die Wahl hat, hat die Macht. Denn wählen zu
-                            können, bedeutet mitzubestimmen. Bisher aber
-                            beteiligen sich zu wenige Menschen mit Flucht- und
-                            Migrationshintergrund an Wahlen in Deutschland.
-                            Dafür gibt es verschiedene Gründe: Die formalen
-                            Hürden sind zu hoch, das Prozedere erscheint sehr
-                            kompliziert und es fehlt eine gezielte Ansprache der
-                            Parteien. Das wollen wir ändern! Die Neuen Deutschen
-                            sollen ermutigt werden, im September 2021 ihre
-                            Stimme bei der Bundestagswahl abzugeben – und so
-                            mitzuentscheiden, wie sich dieses Land in den
-                            nächsten Jahren entwickeln wird. Dafür stellen wir
-                            Informationen und digitale Tools zur Verfügung und
-                            erklären, warum es wichtig ist, bei der Wahl
-                            mitzumachen und zum #wAlman zu werden:{' '}
-                            <a
-                              href="https://ichbinwalman.de"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              ichbinwalman.de
-                            </a>
-                            . Eine Kampagne der VielRespektStiftung.
-                          </p>
-                        </div>
-                        <div className="lg:w-1/3">
-                          <Image
-                            src="/images/wAlman.jpg"
-                            layout="responsive"
-                            width={1001}
-                            height={1001}
-                            alt="walman-Kampagne"
-                          />
+                        <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between">
+                          <div className="pt-6 prose lg:prose-lg lg:w-2/3 lg:pr-10 prose-white lg:pt-0">
+                            <p>
+                              Wer die Wahl hat, hat die Macht. Denn wählen zu
+                              können, bedeutet mitzubestimmen. Bisher aber
+                              beteiligen sich zu wenige Menschen mit Flucht- und
+                              Migrationshintergrund an Wahlen in Deutschland.
+                              Dafür gibt es verschiedene Gründe: Die formalen
+                              Hürden sind zu hoch, das Prozedere erscheint sehr
+                              kompliziert und es fehlt eine gezielte Ansprache
+                              der Parteien. Das wollen wir ändern! Die Neuen
+                              Deutschen sollen ermutigt werden, im September
+                              2021 ihre Stimme bei der Bundestagswahl abzugeben
+                              – und so mitzuentscheiden, wie sich dieses Land in
+                              den nächsten Jahren entwickeln wird. Dafür stellen
+                              wir Informationen und digitale Tools zur Verfügung
+                              und erklären, warum es wichtig ist, bei der Wahl
+                              mitzumachen und zum #wAlman zu werden:{' '}
+                              <a
+                                href="https://ichbinwalman.de"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                ichbinwalman.de
+                              </a>
+                              . Eine Kampagne der VielRespektStiftung.
+                            </p>
+                          </div>
+                          <div className="lg:w-1/3">
+                            <Image
+                              src="/images/wAlman.jpg"
+                              width={1001}
+                              height={1001}
+                              alt="walman-Kampagne"
+                              style={{ width: '100%', height: 'auto' }}
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </Container>
               </Page>
             </motion.div>

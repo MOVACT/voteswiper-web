@@ -19,7 +19,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ countries }) => {
   const { t } = useTranslation('home');
-  const animation = React.useRef<AnimationItem>();
+  const animation = React.useRef<AnimationItem>(undefined);
 
   React.useEffect(() => {
     animation.current = bodymovin.loadAnimation({
@@ -79,16 +79,17 @@ const Home: NextPage<Props> = ({ countries }) => {
                   className="w-full pb-3 lg:pr-3 lg:w-1/2 xl:w-1/3"
                   key={country.id}
                 >
-                  <Link href={`/${country.slug}`} passHref>
-                    <a className="flex flex-col items-center w-full px-4 pt-4 pb-2 text-base font-medium rounded-lg shadow-lg hover:shadow-sm bg-gradient-to-b from-white to-brand-light-blue hover:to-[#dee3f3] lg:py-3 lg:pl-3 lg:pr-4 lg:flex-row text-brand-dark-blue focus-default">
-                      <div className="px-3 pt-1 pb-3 lg:pt-0 lg:px-0 lg:pb-0">
-                        <CountryFlag
-                          countryCode={country.country_code}
-                          className="w-full h-auto rounded lg:rounded-sm lg:w-8 lg:mie-3"
-                        />
-                      </div>
-                      {country.name}
-                    </a>
+                  <Link
+                    href={`/${country.slug}`}
+                    className="flex flex-col items-center w-full px-4 pt-4 pb-2 text-base font-medium rounded-lg shadow-lg hover:shadow-sm bg-gradient-to-b from-white to-brand-light-blue hover:to-[#dee3f3] lg:py-3 lg:pl-3 lg:pr-4 lg:flex-row text-brand-dark-blue focus-default"
+                  >
+                    <div className="px-3 pt-1 pb-3 lg:pt-0 lg:px-0 lg:pb-0">
+                      <CountryFlag
+                        countryCode={country.country_code}
+                        className="w-full h-auto rounded lg:rounded-sm lg:w-8 lg:mie-3"
+                      />
+                    </div>
+                    {country.name}
                   </Link>
                 </div>
               );

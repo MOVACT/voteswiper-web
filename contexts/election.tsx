@@ -138,8 +138,7 @@ export const calculateResult = (
       ...score,
       percentage: +(
         Math.round(
-          (((score.score * 100) / relevantQuestions +
-            'e+1') as unknown) as number
+          ((score.score * 100) / relevantQuestions + 'e+1') as unknown as number
         ) + 'e-1'
       ),
     };
@@ -154,7 +153,7 @@ export const calculateResult = (
   };
 };
 
-export const ElectionProvider: React.FC<Props> = ({
+export const ElectionProvider: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   questions,
   country,
@@ -171,10 +170,8 @@ export const ElectionProvider: React.FC<Props> = ({
   const [explainer, setExplainer] = React.useState<number | null>(null);
   const { locale, query } = useRouter();
 
-  const [
-    featureDownloadImageEnabled,
-    setFeatureDownloadImage,
-  ] = React.useState<boolean>(true);
+  const [featureDownloadImageEnabled, setFeatureDownloadImage] =
+    React.useState<boolean>(true);
 
   useLockBodyScroll(screen === STEPS.SWIPER || screen === STEPS.EXPLAINER);
 

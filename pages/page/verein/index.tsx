@@ -8,7 +8,7 @@ import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import url from 'util/url';
 
-export const VereinPage: React.FC = ({ children }) => {
+export const VereinPage: React.FC<React.PropsWithChildren> = ({ children }) => {
   const menu = [
     {
       href: '/page/verein',

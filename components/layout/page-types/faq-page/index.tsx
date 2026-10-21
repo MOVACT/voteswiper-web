@@ -1,4 +1,8 @@
-import { Disclosure } from '@headlessui/react';
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react';
 import cn from 'classnames';
 import Container from 'components/layout/container';
 import PageContainer from 'components/page';
@@ -8,10 +12,12 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Richtext } from 'storyblok-js-client';
-import { render } from 'storyblok-rich-text-react-renderer';
+import {
+  render,
+  type StoryblokRichtext as Richtext,
+} from 'storyblok-rich-text-react-renderer';
 import url from 'util/url';
-import { socialLinks } from '../../footer';
+import { FooterLink, socialLinks } from '../../footer';
 
 interface FaqItem {
   _uid: string;
@@ -37,7 +43,7 @@ const FaqPage: React.FC<Props> = ({ story }) => {
   const { title, questions } = story.content;
 
   const renderLink = React.useCallback(
-    (item) => {
+    (item: FooterLink) => {
       const href = item.translatedLink ? t(item.href) : item.href;
 
       const content = (
@@ -90,7 +96,7 @@ const FaqPage: React.FC<Props> = ({ story }) => {
                     <Disclosure key={question._uid}>
                       {({ open }) => (
                         <>
-                          <Disclosure.Button className="flex justify-between w-full px-4 py-2 mb-2 font-medium text-left text-white bg-white rounded hover:bg-opacity-20 lg:bg-brand-primary bg-opacity-10 lg:bg-opacity-10 focus-default lg:text-brand-dark-blue">
+                          <DisclosureButton className="flex justify-between w-full px-4 py-2 mb-2 font-medium text-left text-white bg-white rounded hover:bg-opacity-20 lg:bg-brand-primary bg-opacity-10 lg:bg-opacity-10 focus-default lg:text-brand-dark-blue">
                             <span>{question.title}</span>
                             <IconChevronRight
                               className={cn(
@@ -98,13 +104,13 @@ const FaqPage: React.FC<Props> = ({ story }) => {
                                 open && 'rotate-90'
                               )}
                             />
-                          </Disclosure.Button>
+                          </DisclosureButton>
 
-                          <Disclosure.Panel>
+                          <DisclosurePanel>
                             <div className="pb-4 prose-white lg:prose">
                               {render(question.body)}
                             </div>
-                          </Disclosure.Panel>
+                          </DisclosurePanel>
                         </>
                       )}
                     </Disclosure>

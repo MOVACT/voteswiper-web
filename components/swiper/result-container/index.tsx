@@ -7,7 +7,7 @@ import React from 'react';
 import { STEPS } from '../constants';
 import ResultMenu from '../result-menu';
 
-const ResultContainer: React.FC = ({ children }) => {
+const ResultContainer: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { country, election, screen } = useElection();
   const { t } = useTranslation();
 

@@ -4,7 +4,6 @@ import PageHeader from 'components/page-header';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
-import React from 'react';
 import url from 'util/url';
 import { PressPage } from '.';
 

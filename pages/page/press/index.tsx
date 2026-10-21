@@ -9,7 +9,7 @@ import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
 import url from 'util/url';
 
-export const PressPage: React.FC = ({ children }) => {
+export const PressPage: React.FC<React.PropsWithChildren> = ({ children }) => {
   const menu = [
     {
       title: 'press:contact',

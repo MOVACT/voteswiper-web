@@ -43,10 +43,12 @@ const BlockPage: React.FC<Props> = ({ story }) => {
           if (!pageBlocks[block.component])
             return <React.Fragment key={block._uid} />;
 
-          const Component = pageBlocks[block.component];
+          const Component = pageBlocks[block.component] as React.FC<
+            typeof block
+          >;
           return (
             <React.Fragment key={block._uid}>
-              <Component {...(block as never)} />
+              <Component {...block} />
             </React.Fragment>
           );
         })}

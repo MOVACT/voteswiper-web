@@ -1,17 +1,41 @@
-const withPlugins = require('next-compose-plugins');
-const nextTranslate = require('next-translate');
+const nextTranslate = require('next-translate-plugin');
+
+const svgrOptions = {
+  svgo: true,
+  svgoConfig: {
+    plugins: [
+      {
+        name: 'preset-default',
+        params: { overrides: { removeViewBox: false } },
+      },
+    ],
+  },
+  titleProp: true,
+};
+
 const nextConfig = {
   poweredByHeader: false,
   images: {
     deviceSizes: [320, 420, 768, 1024, 1200],
-    iconSizes: [],
-    domains: ['cdn.voteswiper.org', 'voteswiper-assets-prod.fra1.digitaloceanspaces.com', 'voteswiper-assets.ams3.cdn.digitaloceanspaces.com', 'a.storyblok.com', 'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com'],
-    path: '/_next/image',
-    loader: 'default',
-    disableStaticImages: true
+    remotePatterns: [
+      'cdn.voteswiper.org',
+      'voteswiper-assets-prod.fra1.digitaloceanspaces.com',
+      'voteswiper-assets.ams3.cdn.digitaloceanspaces.com',
+      'a.storyblok.com',
+      'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com',
+    ].map((hostname) => ({ protocol: 'https', hostname })),
+    disableStaticImages: true,
+  },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: [{ loader: '@svgr/webpack', options: svgrOptions }],
+        as: '*.js',
+      },
+    },
   },
   rewrites: () => [
-    { source: '/!:path*', destination: 'https://old.voteswiper.org/!:path*' },
+    { source: '/!:path(.*)', destination: 'https://old.voteswiper.org/!:path' },
   ],
   async headers() {
     return [
@@ -76,12 +100,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/de/germany',
-        destination: '/de/deutschland',
-        locale: false,
-        permanent: true,
-      },
-      {
         source: '/catchAll',
         destination: '/de',
         locale: false,
@@ -105,14 +123,7 @@ const nextConfig = {
           use: [
             {
               loader: '@svgr/webpack',
-              options: {
-                prettier: false,
-                svgo: true,
-                svgoConfig: {
-                  plugins: [{removeViewBox: false}],
-                },
-                titleProp: true,
-              },
+              options: svgrOptions,
             },
           ],
           issuer: {
@@ -126,4 +137,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([[nextTranslate]], nextConfig);
+module.exports = nextTranslate(nextConfig);

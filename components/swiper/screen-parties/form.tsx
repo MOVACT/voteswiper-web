@@ -51,11 +51,13 @@ const PartiesForm: React.FC = () => {
               <div className="relative h-12 lg:h-16">
                 <Image
                   src={party.logo.public_link}
-                  layout="fill"
-                  objectFit="contain"
-                  sizes="280px"
-                  objectPosition="center"
                   alt={party.full_name}
+                  fill
+                  sizes="280px"
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'center',
+                  }}
                 />
               </div>
               <div className="mt-4 text-xs font-medium text-center bg-white rounded-sm text-brand-dark-blue lg:text-base">

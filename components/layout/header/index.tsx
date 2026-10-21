@@ -57,11 +57,12 @@ const Header: React.FC = () => {
               <IconToggle className="w-auto h-5 text-white" />
             )}
           </button>
-          <Link passHref href="/">
-            <a className="flex items-center text-base font-normal text-white rounded lg:text-3xl focus-default">
-              <WahlSwiperLogo className="w-auto h-5 mie-2 lg:h-8 lg:mie-3" />
-              {t('common:name')}
-            </a>
+          <Link
+            href="/"
+            className="flex items-center text-base font-normal text-white rounded lg:text-3xl focus-default"
+          >
+            <WahlSwiperLogo className="w-auto h-5 mie-2 lg:h-8 lg:mie-3" />
+            {t('common:name')}
           </Link>
 
           <div className="items-center justify-between flex-1 hidden pis-8 lg:flex">
@@ -76,15 +77,14 @@ const Header: React.FC = () => {
 
                   return (
                     <li className="px-3" key={item.text}>
-                      <Link href={t(item.href)} passHref>
-                        <a
-                          className={cn(
-                            styles.link,
-                            'font-medium inline-block text-white relative cursor-pointer rounded focus-default'
-                          )}
-                        >
-                          {t(item.text)}
-                        </a>
+                      <Link
+                        href={t(item.href)}
+                        className={cn(
+                          styles.link,
+                          'font-medium inline-block text-white relative cursor-pointer rounded focus-default'
+                        )}
+                      >
+                        {t(item.text)}
                       </Link>
                     </li>
                   );

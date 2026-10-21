@@ -7,7 +7,6 @@ import ContentPage, {
 import FaqPage, { FaqPageStory } from 'components/layout/page-types/faq-page';
 import { fetchTranslatedStory } from 'connectors/storyblok';
 import { GetServerSideProps, NextPage } from 'next';
-import React from 'react';
 
 interface Props {
   story: StoryblokStory<ContentPageStory | FaqPageStory | BlockPageStory>;

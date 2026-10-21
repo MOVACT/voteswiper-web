@@ -17,7 +17,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const Button: React.FC<Props> = ({
+const Button: React.FC<React.PropsWithChildren<Props>> = ({
   href,
   children,
   className,

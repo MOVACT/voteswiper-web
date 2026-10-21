@@ -5,7 +5,10 @@ interface Props {
   className?: string;
 }
 
-const Page: React.FC<Props> = ({ className, children }) => {
+const Page: React.FC<React.PropsWithChildren<Props>> = ({
+  className,
+  children,
+}) => {
   return <main className={cn('py-6 md:py-12', className)}>{children}</main>;
 };
 
