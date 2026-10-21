@@ -2,6 +2,7 @@
 
 # generated on the fly by next-sitemap
 sitemap.xml
+sitemap-*.xml
 robots.txt
 
 # dependencies
