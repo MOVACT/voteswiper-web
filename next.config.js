@@ -1,5 +1,18 @@
-const withPlugins = require('next-compose-plugins');
-const nextTranslate = require('next-translate');
+const nextTranslate = require('next-translate-plugin');
+
+const svgrOptions = {
+  svgo: true,
+  svgoConfig: {
+    plugins: [
+      {
+        name: 'preset-default',
+        params: { overrides: { removeViewBox: false } },
+      },
+    ],
+  },
+  titleProp: true,
+};
+
 const nextConfig = {
   poweredByHeader: false,
   images: {
@@ -76,12 +89,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/de/germany',
-        destination: '/de/deutschland',
-        locale: false,
-        permanent: true,
-      },
-      {
         source: '/catchAll',
         destination: '/de',
         locale: false,
@@ -105,14 +112,7 @@ const nextConfig = {
           use: [
             {
               loader: '@svgr/webpack',
-              options: {
-                prettier: false,
-                svgo: true,
-                svgoConfig: {
-                  plugins: [{removeViewBox: false}],
-                },
-                titleProp: true,
-              },
+              options: svgrOptions,
             },
           ],
           issuer: {
@@ -126,4 +126,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([[nextTranslate]], nextConfig);
+module.exports = nextTranslate(nextConfig);

@@ -10,9 +10,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+    "build": "next build",
     "postbuild": "next-sitemap",
-    "lint": "next lint",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "start": "next start"
   },
   "dependencies": {
@@ -50,7 +51,10 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.2",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.7",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "next-sitemap": "^4.2.3",
     "next-translate-plugin": "^3.2.0",
     "prettier": "^3.9.10",
