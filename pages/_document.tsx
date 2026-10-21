@@ -8,6 +8,8 @@ import Document, {
 } from 'next/document';
 import i18n from '../i18n';
 
+import type { JSX } from 'react';
+
 class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext

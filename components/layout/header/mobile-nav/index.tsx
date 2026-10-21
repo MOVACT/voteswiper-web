@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useLockBodyScroll } from 'react-use';
@@ -12,7 +12,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
   useLockBodyScroll(open);
   const { t } = useTranslation();
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     enter: {
       opacity: 1,
       transition: {
@@ -29,7 +29,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
     },
   };
 
-  const parentVariants = {
+  const parentVariants: Variants = {
     enter: {
       transition: {
         delayChildren: 0.5,
@@ -69,7 +69,7 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       {open && (
         <div className="lg:hidden">
           <motion.div

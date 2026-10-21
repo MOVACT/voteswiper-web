@@ -4,8 +4,10 @@ import PageHeader from 'components/page-header';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Richtext } from 'storyblok-js-client';
-import { render } from 'storyblok-rich-text-react-renderer';
+import {
+  render,
+  type StoryblokRichtext as Richtext,
+} from 'storyblok-rich-text-react-renderer';
 import url from 'util/url';
 
 export type ContentPageStory = {

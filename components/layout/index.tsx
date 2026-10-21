@@ -6,7 +6,7 @@ import Footer from './footer';
 import Header from './header';
 import EmbedHeader from './header/embed-header';
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t, lang } = useTranslation('common');
   const router = useRouter();
 

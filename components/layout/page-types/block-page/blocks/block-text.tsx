@@ -1,7 +1,9 @@
 import Container from 'components/layout/container';
 import React from 'react';
-import { Richtext } from 'storyblok-js-client';
-import { render } from 'storyblok-rich-text-react-renderer';
+import {
+  render,
+  type StoryblokRichtext as Richtext,
+} from 'storyblok-rich-text-react-renderer';
 import { Story } from '../../types';
 
 export interface BlockTextFields extends Story {

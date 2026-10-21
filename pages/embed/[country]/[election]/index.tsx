@@ -68,7 +68,7 @@ interface ContentProps {
   story: ElectionStory;
 }
 
-const PrivacyLink: React.FC = ({ children }) => {
+const PrivacyLink: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   return (
     <Link href={t('footer:privacyLink')} passHref>
@@ -124,7 +124,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
         noindex
       />
       <div id="swiper-container">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {screen !== STEPS.RESULT &&
             screen !== STEPS.EDIT_PARTIES &&
             screen !== STEPS.COMPARE_PARTY &&

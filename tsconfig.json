@@ -4,6 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
+      "@tabler/icons": ["node_modules/@tabler/icons/icons-react/index.d.ts"],
       "*": ["*"]
     },
     "allowJs": true,

@@ -4,7 +4,10 @@ interface Props {
   customColorClassName?: string;
 }
 
-const Topic: React.FC<Props> = ({ children, customColorClassName }) => {
+const Topic: React.FC<React.PropsWithChildren<Props>> = ({
+  children,
+  customColorClassName,
+}) => {
   return (
     <div
       className={cn(

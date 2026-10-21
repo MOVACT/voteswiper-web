@@ -8,7 +8,15 @@ import React from 'react';
 import Container from '../container';
 import LanguageSwitcher from '../header/language-switcher';
 
-export const socialLinks = [
+export interface FooterLink {
+  href: string;
+  translatedLink: boolean;
+  text: string;
+  translatedText: boolean;
+  icon: React.FC<React.SVGProps<SVGSVGElement>> | null;
+}
+
+export const socialLinks: FooterLink[] = [
   {
     href: 'twitterLink',
     translatedLink: true,
@@ -32,7 +40,7 @@ export const socialLinks = [
   },
 ];
 
-const openSourceLinks = [
+const openSourceLinks: FooterLink[] = [
   {
     href: 'https://github.com/movact/voteswiper-app',
     translatedLink: false,
@@ -56,7 +64,7 @@ const openSourceLinks = [
   },
 ];
 
-const moreLinks = [
+const moreLinks: FooterLink[] = [
   {
     href: 'faqLink',
     translatedLink: true,
@@ -80,7 +88,7 @@ const moreLinks = [
   },
 ];
 
-const legalLinks = [
+const legalLinks: FooterLink[] = [
   {
     href: 'imprintLink',
     translatedLink: true,
@@ -101,7 +109,7 @@ const Footer: React.FC = () => {
   const { t } = useTranslation('footer');
 
   const renderLink = React.useCallback(
-    (item) => {
+    (item: FooterLink) => {
       const href = item.translatedLink ? t(item.href) : item.href;
       const isExternal =
         href.indexOf('http') > -1 || href.indexOf('mailto') > -1 === true;

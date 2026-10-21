@@ -153,7 +153,7 @@ export const calculateResult = (
   };
 };
 
-export const ElectionProvider: React.FC<Props> = ({
+export const ElectionProvider: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   questions,
   country,

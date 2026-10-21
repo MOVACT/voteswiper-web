@@ -71,7 +71,7 @@ interface ContentProps {
   story: ElectionStory;
 }
 
-const PrivacyLink: React.FC = ({ children }) => {
+const PrivacyLink: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   return (
     <Link href={t('footer:privacyLink')} passHref>
@@ -121,7 +121,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
         canonical={url(`/${countrySlug}/${slug}`, locale !== 'en')}
       />
       <div className="min-h-screen">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {screen === STEPS.START && (
             <motion.div
               key="start"

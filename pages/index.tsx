@@ -19,7 +19,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ countries }) => {
   const { t } = useTranslation('home');
-  const animation = React.useRef<AnimationItem>();
+  const animation = React.useRef<AnimationItem>(undefined);
 
   React.useEffect(() => {
     animation.current = bodymovin.loadAnimation({

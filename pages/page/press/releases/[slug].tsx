@@ -8,8 +8,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import { Richtext } from 'storyblok-js-client';
-import { render } from 'storyblok-rich-text-react-renderer';
+import {
+  render,
+  type StoryblokRichtext as Richtext,
+} from 'storyblok-rich-text-react-renderer';
 import formatLocal from 'util/formatLocal';
 import url from 'util/url';
 import { PressPage } from '../';
