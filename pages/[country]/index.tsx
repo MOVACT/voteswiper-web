@@ -8,7 +8,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { Country, CountryData, Election, ElectionsData } from 'types/api';
 import url from 'util/url';
 

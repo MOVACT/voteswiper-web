@@ -32,13 +32,8 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
   { cardIndex, question },
   ref
 ) => {
-  const {
-    answers,
-    setAnswer,
-    onSwipeLeft,
-    onSwipeRight,
-    openExplainer,
-  } = useElection();
+  const { answers, setAnswer, onSwipeLeft, onSwipeRight, openExplainer } =
+    useElection();
   const { t } = useTranslation();
   const [constrained, setConstrained] = React.useState<boolean>(true);
 
@@ -118,8 +113,7 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
 
         if (
           // Yes
-          info.offset.x >
-          SWIPE_THRESHOLD /*&&
+          info.offset.x > SWIPE_THRESHOLD /*&&
           info.offset.y > SWIPE_THRESHOLD * -1*/
         ) {
           flyToRight(0.25);
@@ -129,8 +123,7 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
         } else if (
           // No
           info.offset.x <
-          SWIPE_THRESHOLD *
-            -1 /*&&
+          SWIPE_THRESHOLD * -1 /*&&
           info.offset.y > SWIPE_THRESHOLD * -1*/
         ) {
           flyToLeft(0.25);

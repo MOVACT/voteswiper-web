@@ -41,7 +41,7 @@ const fetch = <T, D = void>(
   }
 
   return axios({
-    method: options ? options.method ?? 'post' : 'post',
+    method: options ? (options.method ?? 'post') : 'post',
     url: `${process.env.NEXT_PUBLIC_API_URL}${url}`,
     data: options?.data,
     headers: {

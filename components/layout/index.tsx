@@ -19,8 +19,7 @@ const Layout: React.FC = ({ children }) => {
           type: 'website',
           images: [
             {
-              url:
-                'https://www.voteswiper.org/images/meta/wahlswiper-share-fb.jpeg',
+              url: 'https://www.voteswiper.org/images/meta/wahlswiper-share-fb.jpeg',
               width: 1200,
               height: 630,
             },

@@ -22,7 +22,7 @@ export const fetchTranslatedStory = async <T>({
     })
       .then((response) => {
         if (response.data.stories.length > 0) {
-          resolve((response.data.stories[0] as unknown) as StoryblokStory<T>);
+          resolve(response.data.stories[0] as unknown as StoryblokStory<T>);
         } else {
           resolve(null);
         }
