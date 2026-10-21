@@ -9,8 +9,8 @@
     "node": "24.x"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "postbuild": "next-sitemap",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

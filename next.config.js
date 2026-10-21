@@ -17,14 +17,25 @@ const nextConfig = {
   poweredByHeader: false,
   images: {
     deviceSizes: [320, 420, 768, 1024, 1200],
-    iconSizes: [],
-    domains: ['cdn.voteswiper.org', 'voteswiper-assets-prod.fra1.digitaloceanspaces.com', 'voteswiper-assets.ams3.cdn.digitaloceanspaces.com', 'a.storyblok.com', 'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com'],
-    path: '/_next/image',
-    loader: 'default',
-    disableStaticImages: true
+    remotePatterns: [
+      'cdn.voteswiper.org',
+      'voteswiper-assets-prod.fra1.digitaloceanspaces.com',
+      'voteswiper-assets.ams3.cdn.digitaloceanspaces.com',
+      'a.storyblok.com',
+      'voteswiper-uploads-dev.s3.eu-central-1.amazonaws.com',
+    ].map((hostname) => ({ protocol: 'https', hostname })),
+    disableStaticImages: true,
+  },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: [{ loader: '@svgr/webpack', options: svgrOptions }],
+        as: '*.js',
+      },
+    },
   },
   rewrites: () => [
-    { source: '/!:path*', destination: 'https://old.voteswiper.org/!:path*' },
+    { source: '/!:path(.*)', destination: 'https://old.voteswiper.org/!:path' },
   ],
   async headers() {
     return [
