@@ -75,12 +75,14 @@ const ComparePartyScreen: React.FC = () => {
                     <div className={styles.video}>
                       <div className="relative h-[60px] md:h-[80px] w-[60px] md:w-full rounded-full lg:h-[120px] md:rounded overflow-hidden shadow-lg pointer-events-none">
                         <Image
-                          layout="fill"
-                          objectFit="cover"
-                          objectPosition="center"
-                          role="presentation"
-                          sizes="(min-width: 768px) 320px, 100vw"
+                          alt=""
                           src={question.thumbnail.public_link}
+                          fill
+                          sizes="(min-width: 768px) 320px, 100vw"
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                          }}
                         />
 
                         <button
@@ -173,8 +175,11 @@ const ComparePartyScreen: React.FC = () => {
                   <Image
                     src={comparedParty.logo.public_link}
                     alt={comparedParty.full_name}
-                    objectFit="contain"
-                    layout="fill"
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: 'contain',
+                    }}
                   />
                 </div>
               </div>

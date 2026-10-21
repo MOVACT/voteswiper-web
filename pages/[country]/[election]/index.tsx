@@ -313,9 +313,12 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                     {...storyblokDimensions(
                                       partner.logo.filename
                                     )}
-                                    layout="responsive"
-                                    objectFit="contain"
-                                    objectPosition="center"
+                                    style={{
+                                      width: '100%',
+                                      height: 'auto',
+                                      objectFit: 'contain',
+                                      objectPosition: 'center',
+                                    }}
                                   />
                                 </a>
                               ) : (
@@ -323,12 +326,15 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                   <Image
                                     src={partner.logo.filename}
                                     alt={partner.logo.alt}
-                                    layout="responsive"
                                     {...storyblokDimensions(
                                       partner.logo.filename
                                     )}
-                                    objectFit="contain"
-                                    objectPosition="center"
+                                    style={{
+                                      width: '100%',
+                                      height: 'auto',
+                                      objectFit: 'contain',
+                                      objectPosition: 'center',
+                                    }}
                                   />
                                 </div>
                               )}
@@ -377,10 +383,10 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                           <div className="lg:w-1/3">
                             <Image
                               src="/images/wAlman.jpg"
-                              layout="responsive"
                               width={1001}
                               height={1001}
                               alt="walman-Kampagne"
+                              style={{ width: '100%', height: 'auto' }}
                             />
                           </div>
                         </div>

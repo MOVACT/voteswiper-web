@@ -45,12 +45,14 @@ const EditAnswersScreen: React.FC = () => {
                 <div className="md:w-1/4">
                   <div className="relative h-[148px] rounded overflow-hidden shadow-lg pointer-events-none">
                     <Image
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="center"
-                      role="presentation"
-                      sizes="(min-width: 768px) 320px, 100vw"
+                      alt=""
                       src={question.thumbnail.public_link}
+                      fill
+                      sizes="(min-width: 768px) 320px, 100vw"
+                      style={{
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                      }}
                     />
 
                     <button

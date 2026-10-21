@@ -33,10 +33,13 @@ const ElectionCard: React.FC<Props> = ({
         <Image
           width={card.width}
           height={card.height}
-          sizes="(min-width: 1025px) 424px, (min-width: 770px) 470px, 100vw"
-          layout="responsive"
           alt={name}
           src={card.public_link}
+          sizes="(min-width: 1025px) 424px, (min-width: 770px) 470px, 100vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
         />
       </div>
       <div className="px-5 py-4 leading-tight">

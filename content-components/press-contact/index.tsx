@@ -13,12 +13,12 @@ const PressContact: React.FC = () => {
         <div className="w-24 mie-4">
           <Image
             src="/images/matthias-bannert.jpg"
-            layout="responsive"
             sizes="96px"
             className="rounded-full"
             alt="Matthias Bannert"
             width={400}
             height={400}
+            style={{ width: '100%', height: 'auto' }}
           />
         </div>
         <div>

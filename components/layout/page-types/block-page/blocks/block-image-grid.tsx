@@ -29,10 +29,13 @@ const blockImageGrid: React.FC<BlockImageGridFields> = ({ items, title }) => {
               <Image
                 src={item.image.filename}
                 alt={item.image.alt}
-                layout="responsive"
                 className="rounded-lg"
-                sizes="(min-width: 1281px) 235px, (min-width: 1025px) 274px, (min-width: 768px) 310px, 50vw"
                 {...storyblokDimensions(item.image.filename)}
+                sizes="(min-width: 1281px) 235px, (min-width: 1025px) 274px, (min-width: 768px) 310px, 50vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
               <div className="mt-2 mb-1 text-sm font-semibold md:mb-2 md:mt-4 md:text-base lg:text-lg lg:mt-6">
                 {item.title}

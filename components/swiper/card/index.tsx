@@ -200,12 +200,14 @@ const Card: React.ForwardRefRenderFunction<Ref, Props> = (
         <div className="flex flex-col flex-1 p-6">
           <div className="relative h-[150px] rounded overflow-hidden shadow-lg pointer-events-none">
             <Image
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              role="presentation"
-              sizes="(min-width: 768px) 320px, 100vw"
+              alt=""
               src={question.thumbnail.public_link}
+              fill
+              sizes="(min-width: 768px) 320px, 100vw"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
             />
 
             {(question.explainer_text || question.video_url) && (
