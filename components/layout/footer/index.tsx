@@ -135,10 +135,11 @@ const Footer: React.FC = () => {
               {content}
             </a>
           ) : (
-            <Link href={href} passHref>
-              <a className="inline-flex items-center rounded hover:text-brand-highlight focus-default">
-                {content}
-              </a>
+            <Link
+              href={href}
+              className="inline-flex items-center rounded hover:text-brand-highlight focus-default"
+            >
+              {content}
             </Link>
           )}
         </li>

@@ -71,8 +71,8 @@ interface ContentProps {
 const PrivacyLink: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   return (
-    <Link href={t('footer:privacyLink')} passHref>
-      <a className="font-normal text-underline">{children}</a>
+    <Link href={t('footer:privacyLink')} className="font-normal text-underline">
+      {children}
     </Link>
   );
 };

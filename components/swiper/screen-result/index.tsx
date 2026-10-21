@@ -126,9 +126,7 @@ const ResultScreen: React.FC = () => {
                       <p>
                         <small>
                           Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
-                          <Link href="/page/verein/spenden" passHref>
-                            <a>Spendenseite</a>
-                          </Link>
+                          <Link href="/page/verein/spenden">Spendenseite</Link>
                           .
                         </small>
                       </p>
@@ -155,8 +153,8 @@ const ResultScreen: React.FC = () => {
             <p>
               <small>
                 Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
-                <Link href="/page/verein/spenden" passHref>
-                  <a target="_blank">Spendenseite</a>
+                <Link href="/page/verein/spenden" target="_blank">
+                  Spendenseite
                 </Link>
                 .
               </small>

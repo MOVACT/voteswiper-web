@@ -48,11 +48,12 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
               )}
             >
               <li className="flex items-center">
-                <Link href="/" passHref>
-                  <a className="flex items-center text-white rounded hover:opacity-75 focus-default">
-                    <IconHome className="w-3 h-3 transform -translate-y-px" />
-                    <span className="sr-only">Home</span>
-                  </a>
+                <Link
+                  href="/"
+                  className="flex items-center text-white rounded hover:opacity-75 focus-default"
+                >
+                  <IconHome className="w-3 h-3 transform -translate-y-px" />
+                  <span className="sr-only">Home</span>
                 </Link>
               </li>
               {breadcrumb.map((entry, index) => {
@@ -61,10 +62,11 @@ const PageHeader: React.FC<Props> = ({ title, breadcrumb }) => {
                     {breadcrumb.length === index + 1 ? (
                       <span className="opacity-75">{entry.name}</span>
                     ) : (
-                      <Link href={entry.item} passHref>
-                        <a className="flex items-center text-white rounded hover:opacity-75 focus-default">
-                          {entry.name}
-                        </a>
+                      <Link
+                        href={entry.item}
+                        className="flex items-center text-white rounded hover:opacity-75 focus-default"
+                      >
+                        {entry.name}
                       </Link>
                     )}
                   </li>

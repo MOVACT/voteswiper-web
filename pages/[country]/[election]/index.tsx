@@ -74,8 +74,8 @@ interface ContentProps {
 const PrivacyLink: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   return (
-    <Link href={t('footer:privacyLink')} passHref>
-      <a className="font-normal text-underline">{children}</a>
+    <Link href={t('footer:privacyLink')} className="font-normal text-underline">
+      {children}
     </Link>
   );
 };
@@ -231,10 +231,7 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                       <p>
                         <small>
                           Weitere Zahlungsmöglichkeiten findest du auf unserer{' '}
-                          <Link href="/page/verein/spenden" passHref>
-                            <a>Spendenseite</a>
-                          </Link>
-                          .
+                          <Link href="/page/verein/spenden">Spendenseite</Link>.
                         </small>
                       </p>
                     )}
@@ -256,11 +253,9 @@ const CountryPageContent: React.FC<ContentProps> = ({ story }) => {
                                     locale as unknown as string
                                   ]
                                 }`}
-                                passHref
+                                className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default"
                               >
-                                <a className="block text-lg text-white hover:text-brand-highlight bg-white hover:underline bg-opacity-[0.05] rounded px-4 py-2 hover:bg-opacity-10 focus-default">
-                                  {t('election:parties')}
-                                </a>
+                                {t('election:parties')}
                               </Link>
                             </li>
 

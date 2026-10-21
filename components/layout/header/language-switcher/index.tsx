@@ -65,28 +65,28 @@ const LanguageSwitcher: React.FC<Props> = ({ position = 'bottom' }) => {
                   return (
                     <Menu.Item key={loc}>
                       {({ active }) => (
-                        <Link passHref href="/" locale={loc}>
-                          <a
-                            onClick={() => onLanguageChange(loc)}
-                            role="button"
-                            tabIndex={index}
-                            onKeyPress={(e) => onKeyPress(e, loc)}
-                            className={cn(
-                              'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
-                              loc === locale &&
-                                !active &&
-                                'bg-brand-primary bg-opacity-10',
-                              active
-                                ? 'bg-brand-primary text-white'
-                                : 'text-brand-dark-blue',
-                              i18n.rtlLocales.indexOf(loc) > -1 &&
-                                i18n.rtlLocales.indexOf(locale || 'en') === -1
-                                ? 'text-end'
-                                : 'text-start'
-                            )}
-                          >
-                            {config.languageNames[loc]}
-                          </a>
+                        <Link
+                          href="/"
+                          locale={loc}
+                          onClick={() => onLanguageChange(loc)}
+                          role="button"
+                          tabIndex={index}
+                          onKeyPress={(e) => onKeyPress(e, loc)}
+                          className={cn(
+                            'block rounded-md font-medium items-center w-full px-2 py-2 text-sm hover:bg-opacity-100 hover:bg-brand-primary hover:text-white',
+                            loc === locale &&
+                              !active &&
+                              'bg-brand-primary bg-opacity-10',
+                            active
+                              ? 'bg-brand-primary text-white'
+                              : 'text-brand-dark-blue',
+                            i18n.rtlLocales.indexOf(loc) > -1 &&
+                              i18n.rtlLocales.indexOf(locale || 'en') === -1
+                              ? 'text-end'
+                              : 'text-start'
+                          )}
+                        >
+                          {config.languageNames[loc]}
                         </Link>
                       )}
                     </Menu.Item>

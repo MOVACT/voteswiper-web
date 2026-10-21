@@ -66,10 +66,11 @@ const ElectionCard: React.FC<Props> = ({
   }
 
   return (
-    <Link href={`/${country.slug}/${slug}`} passHref>
-      <a className={cn(cardClassName, 'shadow-xl hover:shadow-lg')}>
-        {content}
-      </a>
+    <Link
+      href={`/${country.slug}/${slug}`}
+      className={cn(cardClassName, 'shadow-xl hover:shadow-lg')}
+    >
+      {content}
     </Link>
   );
 };

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useLockBodyScroll } from 'react-use';
 import navItems from '../data';
 
+const MotionLink = motion.create(Link);
+
 interface Props {
   open: boolean;
   setNav: (showNavigation: boolean) => void;
@@ -52,18 +54,17 @@ const MobileNav: React.FC<Props> = ({ open, setNav }) => {
   }): React.ReactElement => {
     return (
       <li className="py-2" key={item.text}>
-        <Link href={t(item.href)} passHref>
-          <motion.a
-            key={item.text}
-            variants={itemVariants}
-            onClick={() => {
-              setNav(false);
-            }}
-            className={'text-xl text-white font-medium rounded focus-default'}
-          >
-            {t(item.text)}
-          </motion.a>
-        </Link>
+        <MotionLink
+          href={t(item.href)}
+          key={item.text}
+          variants={itemVariants}
+          onClick={() => {
+            setNav(false);
+          }}
+          className={'text-xl text-white font-medium rounded focus-default'}
+        >
+          {t(item.text)}
+        </MotionLink>
       </li>
     );
   };

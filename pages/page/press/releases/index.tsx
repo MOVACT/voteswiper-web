@@ -64,11 +64,8 @@ const Press: NextPage<Props> = ({ releases }) => {
                       )}
                     </aside>
                     <h1 className="text-xl font-medium leading-tight text-white underline md:text-2xl">
-                      <Link
-                        href={`/page/press/releases/${release.slug}`}
-                        passHref
-                      >
-                        <a>{release.name}</a>
+                      <Link href={`/page/press/releases/${release.slug}`}>
+                        {release.name}
                       </Link>
                     </h1>
                   </article>

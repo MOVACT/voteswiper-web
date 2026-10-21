@@ -20,19 +20,19 @@ const SidebarMenu: React.FC<Props> = ({ items, className }) => {
     <div className={cn('flex flex-col space-y-2', className)}>
       {items.map((menuItem) => {
         return (
-          <Link key={menuItem.href} href={menuItem.href} passHref>
-            <a
-              className={cn(
-                'block bg-white rounded-lg px-4 py-3 leading-0 font-medium text-white focus-default',
-                router.pathname === menuItem.href ||
-                  (router.pathname.indexOf(menuItem.href) > -1 &&
-                    menuItem.href === '/page/press/releases')
-                  ? 'bg-opacity-20'
-                  : 'bg-opacity-0 hover:bg-opacity-10'
-              )}
-            >
-              {t(menuItem.title)}
-            </a>
+          <Link
+            key={menuItem.href}
+            href={menuItem.href}
+            className={cn(
+              'block bg-white rounded-lg px-4 py-3 leading-0 font-medium text-white focus-default',
+              router.pathname === menuItem.href ||
+                (router.pathname.indexOf(menuItem.href) > -1 &&
+                  menuItem.href === '/page/press/releases')
+                ? 'bg-opacity-20'
+                : 'bg-opacity-0 hover:bg-opacity-10'
+            )}
+          >
+            {t(menuItem.title)}
           </Link>
         );
       })}
